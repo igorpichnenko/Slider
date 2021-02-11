@@ -1,0 +1,45 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb-typescript/base",
+    "plugin:fsd/all"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "fsd"
+  ],
+  "rules": {
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
+    "import/no-cycle": "off",
+    "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/type-annotation-spacing": ["error", { 
+      "before": false,
+      "after": true,
+      "overrides": { "arrow": { "before": true, "after": true }} 
+    }],
+    "import/order": ["error", { 
+      "groups": [["builtin", "external"], "internal", ["parent", "sibling"], "index"],
+      "newlines-between": "always"
+    }],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true  }],
+    "no-console": ["error", { "allow": ["info", "warn", "error"] }],
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "no-undef": "off",
+    "no-param-reassign": "off",
+    "class-methods-use-this": "off",
+    "no-new": "off"
+  }
+}
