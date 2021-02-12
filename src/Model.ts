@@ -14,11 +14,13 @@ class Model {
   
   
   private init(options: Options): Options {
-    this.setState(options);
+    this.upData(options);
+    
+    
     return this.state;
   }
   
-  public setState(options: Options): void {
+  public upData(options: Options): void {
     
     const validateOptions: Options = this.validateOptions(options);
     

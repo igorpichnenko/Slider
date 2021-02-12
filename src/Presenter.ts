@@ -39,7 +39,7 @@ class Presenter {
   
   private getDataToView(modelData: Options): void {
     
-    this.view.setState(modelData);
+    this.view.upData(modelData);
     this.observable.sendData('newModeldata', modelData);
   }
 
@@ -47,13 +47,13 @@ class Presenter {
    
     const modelState: Options = this.model.state;
     const newModelData: Options = { ...modelState, ...newPositions };
-    this.model.setState(newModelData);
+    this.model.upData(newModelData);
   }
   
   
   public setOptions(options: Partial<Options>): void {
     const newOptions: Options = { ...standardOptions, ...options };
-    this.model.setState(newOptions);
+    this.model.upData(newOptions);
   }
 
   public getOptions(): Options {

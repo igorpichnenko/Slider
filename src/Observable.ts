@@ -18,6 +18,8 @@ class Observable {
   }
 
   public sendData(dataType: string, newData?: object): void {
+    
+    
     const eventCallbacks = this.MassageMemory[dataType];
 
     if (eventCallbacks) {
