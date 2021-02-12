@@ -5,16 +5,24 @@ class View {
   public observable: Observable;
   public state: Options
   public thumbFirst: HTMLElement
+  public thumbSecond: HTMLElement
   public slider: HTMLElement
   public scale: HTMLElement
+  public bar: HTMLElement
+  public track: HTMLElement
+
   constructor(options: Options) {
     this.observable = new Observable();
     this.state = this.init(options);
     this.slider = this.createSlider(options)
-    this.thumbFirst = this.createElements()
-    
-    this.createElements()
+    this.thumbFirst = this.createThumbFirst()
+    this.thumbSecond = this.createThumbSecond()
+    this.track = this.createTrack()
+    this.bar = this.createBar(this.track)
     this.scale = this.createScale()
+    this.startPosition()
+    
+    
   }
 
   private init(options: Options): Options {
@@ -36,37 +44,45 @@ class View {
     
     this.addEventListeners(slider);
     document.querySelector(options.className)!.append(slider)
-    //  this.observable.sendData('newPositions', {max: max, to: to});
+    
     return slider
   }
-  private createElements(): HTMLElement {
-    
-  const { orientation } = this.state
+  private createThumbFirst(): HTMLElement {
 
   let thumbFirst = document.createElement('div');
-  let thumbSecond = document.createElement('div');
   
-  let track = document.createElement('div')
-  let bar = document.createElement('div')
-
-  bar.className = 'slider__bar slider__bar_horizontal';
-  track.className = 'slider__track slider__track_horizontal';
-  
-  thumbSecond.classList.add(
-      'slider__thumb',
-      'slider__thumb_horizontal', 'slider__thumb_second',);
   thumbFirst.classList.add(
         'slider__thumb',
         'slider__thumb_horizontal',
         'slider__thumb_first', );
 
-    track.append(bar)
+    
     this.slider.append(thumbFirst);
-    this.slider.append(thumbSecond);
-    this.slider.append(track)
+    
+    
     
     
      return thumbFirst
+  }
+  private createTrack(): HTMLElement{
+    let track = document.createElement('div')
+  
+  track.className = 'slider__track slider__track_horizontal';
+  
+    this.slider.append(track)
+    
+    return track
+  }
+  private createThumbSecond(): HTMLElement{
+    let thumbSecond = document.createElement('div');
+
+    thumbSecond.classList.add(
+      'slider__thumb',
+      'slider__thumb_horizontal', 'slider__thumb_second',);
+      
+    this.slider.append(thumbSecond);
+    
+    return thumbSecond
   }
   private createScale(): HTMLElement{
     let scale = document.createElement('div')
@@ -76,16 +92,73 @@ class View {
     this.addScaleMarker(scale)
     return scale
   }
-  private addEventListeners(slider: HTMLElement) {
+  public createBar(element: HTMLElement): HTMLElement{
+    let bar = document.createElement('div')
 
-   /* const bindMouseDown = this.dragStart.bind(this);
-    this.slider.addEventListener("touchstart", bindMouseDown);
-    this.slider.addEventListener("mousedown", bindMouseDown);*/
+  bar.className = 'slider__bar slider__bar_horizontal';
+  
+  element.append(bar)
+  
+  
+  return bar
+  }
+  private addEventListeners(slider: HTMLElement) {
+    const bindMouseDown = this.dragStart.bind(this);
+    slider.addEventListener("touchstart", bindMouseDown);
+    slider.addEventListener("mousedown", bindMouseDown);
     
     this.onTrackClick = this.onTrackClick.bind(this)
     slider.addEventListener('click', this.onTrackClick);
     
+  }
+  private dragStart(event: any): void{
+    const target = event.target;
+
+    if (this.getTargetType(target)) {
+
+      const drag = this.drag.bind(this, target);
+
+      const handleMouseUp = () => {
+
+        this.slider.removeEventListener("mousemove", drag);
+        this.slider.removeEventListener("touchmove", drag);
+        document.removeEventListener("mouseup", handleMouseUp);
+        document.removeEventListener("touchend", handleMouseUp);
+      };
+
+      this.slider.addEventListener("mousemove", drag);
+      this.slider.addEventListener("touchmove", drag);
+      document.addEventListener("mouseup", handleMouseUp);
+      document.addEventListener("touchend", handleMouseUp);
+    }
+  }
+  private drag(target: HTMLElement, event: any): void {
     
+    let mouseValue = 0
+    
+      if (event.type === "touchmove") {
+
+        mouseValue = this.convertPxToValue(event.touches[0].clientX);
+
+      } else {
+        mouseValue = this.convertPxToValue(event.clientX);
+      }
+   
+      
+    this.updatePosition(mouseValue, target);
+
+  }
+  private getTargetType(target: HTMLElement): string {
+    if (this.thumbFirst) {
+      if (this.thumbFirst.contains(target)) return "from";
+    }
+    if (this.thumbSecond.contains(target)){
+      
+    return "to";
+      
+    }else {
+      return "undefined"
+    }
     
   }
   private onScaleClick(event: any): void {
@@ -115,7 +188,9 @@ class View {
   }
   private updatePosition(value: number, target?: HTMLElement): void{
     
-    this.moveThumbAtValue(value,this.thumbFirst )
+   this.moveThumbAtValue(value,this.thumbFirst)
+  this.observable.sendData('newPositions', {from: value});
+  this.updateBar()
   }
   private convertPxToValue(coordinate: number): number {
     const { min, max, step, } = this.state;
@@ -218,6 +293,35 @@ class View {
     const offset = this.convertPxToPercent(position);
     
     scaleMarker.style.left = `${offset}%`;
+  }
+  private getThumbsPositions(): number {
+   
+      const width = Number.parseInt(getComputedStyle(this.thumbFirst).width, 10);
+      return this.thumbFirst.getBoundingClientRect().left + width / 2;
+    
+    }
+  private updateBar(): void{
+
+    
+    const thumbsPositions = this.getThumbsPositions();
+
+    const sliderPosition = this.getSliderPosition();
+
+        const end = this.convertPxToPercent(Math.abs(thumbsPositions - sliderPosition));
+
+        this.bar.style.width = '0%';
+        this.bar.style.width = `${end}%`;
+     
+        
+
+  }
+  private startPosition(): void{
+    const { to, from } = this.state 
+    
+    this.moveThumbAtValue(from, this.thumbFirst)
+    this.moveThumbAtValue(to, this.thumbSecond)
+    
+    this.updateBar()
   }
 }
 
