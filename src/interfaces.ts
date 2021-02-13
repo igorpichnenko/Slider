@@ -9,5 +9,15 @@ interface Options {
   to: number,
 }
 
+interface ViewState extends Options{
+  
+  size: number,
+  oneStep: number,
+  sliderPos: number,
+  
+}
 
-export { Options };
+
+
+
+export { Options, ViewState };

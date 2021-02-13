@@ -1,30 +1,29 @@
-type EventCallback = (newData?: any) => void;
+type EventCallback = (data?: any) => void;
 
 interface Callbacks {
   [key: string]: Array<EventCallback>
 }
 
 class Observable {
-  private MassageMemory: Callbacks;
+  
+  private messageMemory: Callbacks
   
   constructor(){
-    this.MassageMemory = {}
+    this.messageMemory = {};
   }
   
 
-  public getData(dataType: string, notification: EventCallback): void {
+  public subscribe(dataType: string, notification: EventCallback): void {
     
-    this.MassageMemory[dataType] = [notification];
+   this.messageMemory[dataType] = [notification];
   }
 
-  public sendData(dataType: string, newData?: object): void {
-    
-    
-    const eventCallbacks = this.MassageMemory[dataType];
+  public notify(dataType: string, newData?: object): void {
+    const messages = this.messageMemory[dataType];
 
-    if (eventCallbacks) {
-      eventCallbacks.forEach((eventCallback: EventCallback) => {
-        eventCallback(newData);
+    if (messages) {
+      messages.forEach((message: EventCallback) => {
+        message(newData);
       });
     }
   }

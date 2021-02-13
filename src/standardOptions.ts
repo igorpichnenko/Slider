@@ -5,10 +5,10 @@ const standardOptions: Options = {
   orientation: 'horizontal',
   type: 'double',
   min: 0,
-  max: 10,
+  max: 1000,
   step: 1,
-  from: 3,
-  to: 7,
+  from: 300,
+  to: 700,
 };
 
 export { standardOptions };

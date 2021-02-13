@@ -1,108 +1,88 @@
-import { Options } from './interfaces'
+import { Options, ViewState } from './interfaces'
 import { Observable } from './Observable'
+import { Roller } from './Roller'
+import { Track } from './Track'
+import { Scale } from './Scale'
+import { Bar } from './Bar'
+
 
 class View {
   public observable: Observable;
-  public state: Options
-  public thumbFirst: HTMLElement
-  public thumbSecond: HTMLElement
-  public slider: HTMLElement
-  public scale: HTMLElement
-  public bar: HTMLElement
-  public track: HTMLElement
+  private state: Options
+  private slider: HTMLElement
+  private bar: Bar
+  private rollers: Roller
+  private scale: Scale
 
   constructor(options: Options) {
     this.observable = new Observable();
     this.state = this.init(options);
     this.slider = this.createSlider(options)
-    this.thumbFirst = this.createThumbFirst()
-    this.thumbSecond = this.createThumbSecond()
-    this.track = this.createTrack()
-    this.bar = this.createBar(this.track)
-    this.scale = this.createScale()
-    this.startPosition()
     
+    this.createComponents(options)
+    this.rollers = this.createRollers(options)
+    this.bar = this.createBar(options)
     
+    this.scale = this.createScale(options)
+    
+    this.addSubscription()
   }
-
+  
   private init(options: Options): Options {
 
     return options
   }
-  public upData(newData: Options) {
+  
+  
+  public setState(newState: Partial<Options>): void{
     
-    this.state = {
-      ...newData
-    };
-
+    console.log(newState)
+    
+    const updatedState: Options = { ...this.state, ...newState };
+    
+    
+    this.rollers.updateState(updatedState)
+    this.bar.updateState(updatedState)
+    
+   // this.observable.notify('newViewState', updatedState);
+   
   }
+  
+  
+  private createComponents(options: Options): void{
+    
+    new Track(options)
+    
+    
+  }
+ private createBar(options: Options): Bar{
+    return  new Bar(options)
+  }
+  
+  private createRollers(options: Options): Roller{
+    
+    return new Roller(options)
+  }
+  private createScale(options: Options): Scale{
+    
+    return new Scale(options)
+  }
+  
   private createSlider(options: Options): HTMLElement {
 
-    let slider: HTMLElement = document.createElement('div')
-    slider.className = 'slider'
+    let slider = document.querySelector(options.className)! as HTMLElement
+    slider.classList.add('slider')
     
     
     this.addEventListeners(slider);
-    document.querySelector(options.className)!.append(slider)
+  
     
     return slider
   }
-  private createThumbFirst(): HTMLElement {
-
-  let thumbFirst = document.createElement('div');
-  
-  thumbFirst.classList.add(
-        'slider__thumb',
-        'slider__thumb_horizontal',
-        'slider__thumb_first', );
-
-    
-    this.slider.append(thumbFirst);
-    
-    
-    
-    
-     return thumbFirst
-  }
-  private createTrack(): HTMLElement{
-    let track = document.createElement('div')
-  
-  track.className = 'slider__track slider__track_horizontal';
-  
-    this.slider.append(track)
-    
-    return track
-  }
-  private createThumbSecond(): HTMLElement{
-    let thumbSecond = document.createElement('div');
-
-    thumbSecond.classList.add(
-      'slider__thumb',
-      'slider__thumb_horizontal', 'slider__thumb_second',);
-      
-    this.slider.append(thumbSecond);
-    
-    return thumbSecond
-  }
-  private createScale(): HTMLElement{
-    let scale = document.createElement('div')
-    scale.className = 'slider__scale slider__scale_horizontal';
-
-    this.slider.append(scale)
-    this.addScaleMarker(scale)
-    return scale
-  }
-  public createBar(element: HTMLElement): HTMLElement{
-    let bar = document.createElement('div')
-
-  bar.className = 'slider__bar slider__bar_horizontal';
-  
-  element.append(bar)
-  
-  
-  return bar
-  }
   private addEventListeners(slider: HTMLElement) {
+    
+    
+    
     const bindMouseDown = this.dragStart.bind(this);
     slider.addEventListener("touchstart", bindMouseDown);
     slider.addEventListener("mousedown", bindMouseDown);
@@ -110,30 +90,49 @@ class View {
     this.onTrackClick = this.onTrackClick.bind(this)
     slider.addEventListener('click', this.onTrackClick);
     
+    
+    
   }
-  private dragStart(event: any): void{
+  
+  
+  private addSubscription(){
+    this.newScalePos = this.newScalePos.bind(this)
+    
+   this.scale.observable.subscribe('scalePos', this.newScalePos);
+  }
+  
+  private newScalePos(options: Options){
+    const { from, to } = options
+    
+    this.observable.notify('newFromTo', {from: from});
+  
+    this.observable.notify('newFromTo', {to: to});
+  }
+  private dragStart(event: any) {
+    
     const target = event.target;
+    
 
     if (this.getTargetType(target)) {
 
       const drag = this.drag.bind(this, target);
 
-      const handleMouseUp = () => {
-
-        this.slider.removeEventListener("mousemove", drag);
-        this.slider.removeEventListener("touchmove", drag);
-        document.removeEventListener("mouseup", handleMouseUp);
-        document.removeEventListener("touchend", handleMouseUp);
+      const handleUp = () => {
+    
+        target.removeEventListener("mousemove", drag);
+        target.removeEventListener("touchmove", drag);
+        document.removeEventListener("mouseup", handleUp);
+        document.removeEventListener("touchend", handleUp);
       };
 
-      this.slider.addEventListener("mousemove", drag);
-      this.slider.addEventListener("touchmove", drag);
-      document.addEventListener("mouseup", handleMouseUp);
-      document.addEventListener("touchend", handleMouseUp);
+      target.addEventListener("mousemove", drag);
+      target.addEventListener("touchmove", drag);
+      document.addEventListener("mouseup", handleUp);
+      document.addEventListener("touchend", handleUp);
     }
   }
   private drag(target: HTMLElement, event: any): void {
-    
+   
     let mouseValue = 0
     
       if (event.type === "touchmove") {
@@ -149,10 +148,13 @@ class View {
 
   }
   private getTargetType(target: HTMLElement): string {
-    if (this.thumbFirst) {
-      if (this.thumbFirst.contains(target)) return "from";
+    
+    const rollers = this.slider.querySelectorAll('.slider__roller');
+   
+    if (rollers[0]) {
+      if (rollers[0].contains(target)) return "from";
     }
-    if (this.thumbSecond.contains(target)){
+    if (rollers[1].contains(target)){
       
     return "to";
       
@@ -161,22 +163,9 @@ class View {
     }
     
   }
-  private onScaleClick(event: any): void {
-    event.preventDefault()
-    
-    const { target } = event;
-
-    if (!(target instanceof HTMLElement)) return;
-
-    if (!target.classList.contains('slider__scale-value')) return;
-
-    const value = Number(target.innerHTML);
-
-    this.updatePosition(value);
-  }
   
   private onTrackClick(event: any): void {
-
+  event.preventDefault();
     const target = event.target;
 
     if (!/track|bar/.test(target.className)) return;
@@ -186,12 +175,55 @@ class View {
     let value = this.convertPxToValue(coordinate)
     this.updatePosition(value);
   }
+  
+  
   private updatePosition(value: number, target?: HTMLElement): void{
+  console.log(this.state)
+
+    const fromDistance = Math.abs(this.state.from - value);
+    const toDistance = Math.abs(this.state.to - value);
+    const isSingle = this.state.type === "single";
+
+
+    if (isSingle && fromDistance) {
+    this.observable.notify('newFromTo', {from: value});
+        
+      return;
+    }
     
-   this.moveThumbAtValue(value,this.thumbFirst)
-  this.observable.sendData('newPositions', {from: value});
-  this.updateBar()
+    if (fromDistance * toDistance === 0) return;
+
+    if (!target) {
+     let isFrom = (fromDistance < toDistance) ? 'from': 'to';
+    
+    if (isFrom === 'from') {
+      if (this.state.to > value) {
+    this.observable.notify('newFromTo', {from: value});
+      }
+    }else if (this.state.from < value) {
+    this.observable.notify('newFromTo', {to: value});
+    }
+  }else{
+    const type = this.getTargetType(target);
+    if (type === "from"){
+     if (value > this.state.to) {
+         value = this.state.from
+        } 
+    this.observable.notify('newFromTo', {from: value});
+    }else{
+      if (value < this.state.from) {
+          value = this.state.to
+        }
+    this.observable.notify('newFromTo', {to: value});
   }
+ }
+
+    
+    
+    
+  }
+      
+    
   private convertPxToValue(coordinate: number): number {
     const { min, max, step, } = this.state;
 
@@ -209,120 +241,26 @@ class View {
   
     return value;
   }
-  public getSliderPosition(): number {
+  private getSliderPosition(): number {
     const position = this.slider.getBoundingClientRect().left
     
     return position
   }
   private getSliderSize(): number{
     
-  let size = this.slider.getBoundingClientRect().width
+  
     
-    return size
+    return this.slider.clientWidth 
   }
   private getOneStep(): number {
     const {  min,  max,  step } = this.state;
     
     const result = Math.ceil((max - min) / step);
     
-    let oneStep = this.getSliderSize() / result;
-    
-    return oneStep
+    return this.getSliderSize() / result;
   }
-  private moveThumbAtValue(value: number, element: HTMLElement): void {
-
-    const coordinate = this.convertValueToPx(value);
-    
-    const position = this.convertPxToPercent(coordinate);
-
-    element.style.left = `${position}%`;
-
-  }
-  private convertValueToPx(value: number): number {
-
-    const {  min, max,step, } = this.state;
-
-    if (value === max) return this.getSliderSize();
-
-    const pxValue = Math.round((value - min) / step) * this.getOneStep();
-
-    return pxValue;
-  }
-  private convertPxToPercent(value: number): number {
-
-    return (value * 100) / this.getSliderSize()
-  }
-  private addScaleMarker(scale: HTMLElement): void {
-    
-    this.onScaleClick = this.onScaleClick.bind(this)
-    scale.addEventListener('click', this.onScaleClick);
-    const {  min,  max,  step, } = this.state;
-    
-    const inc = this.getIncrement(step);
-    const pxInc = (inc / step) * this.getOneStep();
-    const fragment = document.createDocumentFragment();
-
-    let pxCurrent = 0;
-
-    for (let current = min; current < max; current += inc) {
-      if (pxCurrent > this.getSliderSize() - 50) break;
-      this.createScaleMarker(fragment, current, pxCurrent);
-
-      pxCurrent += pxInc;
-
-    }
-
-    this.createScaleMarker(fragment, max, this.getSliderSize());
-    scale.append(fragment);
-  }
-  private getIncrement(step: number): number{
-    const value = Math.ceil(this.getSliderSize() / this.getOneStep());
-    const inc = Math.ceil(value / 5) * step;
-    return inc;
-    
-  }
-  private createScaleMarker(fragment: DocumentFragment, value: number, position: number): void {
-
-    
-
-    const scaleMarker = document.createElement('span');
-    scaleMarker.className = 'slider__scale-value slider__scale-value_horizontal';
-    scaleMarker.innerHTML = value.toString();
-    fragment.append(scaleMarker);
-
-    const offset = this.convertPxToPercent(position);
-    
-    scaleMarker.style.left = `${offset}%`;
-  }
-  private getThumbsPositions(): number {
-   
-      const width = Number.parseInt(getComputedStyle(this.thumbFirst).width, 10);
-      return this.thumbFirst.getBoundingClientRect().left + width / 2;
-    
-    }
-  private updateBar(): void{
-
-    
-    const thumbsPositions = this.getThumbsPositions();
-
-    const sliderPosition = this.getSliderPosition();
-
-        const end = this.convertPxToPercent(Math.abs(thumbsPositions - sliderPosition));
-
-        this.bar.style.width = '0%';
-        this.bar.style.width = `${end}%`;
-     
-        
-
-  }
-  private startPosition(): void{
-    const { to, from } = this.state 
-    
-    this.moveThumbAtValue(from, this.thumbFirst)
-    this.moveThumbAtValue(to, this.thumbSecond)
-    
-    this.updateBar()
-  }
+  
+  
 }
 
 

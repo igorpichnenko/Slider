@@ -1,22 +1,33 @@
 import { Model } from './Model'
 import { View } from './View'
-import { Options } from './interfaces'
+import { Options, ViewState } from './interfaces'
 import { Observable } from './Observable'
 import { standardOptions } from './standardOptions'
 
+
 class Presenter {
-  
   public observable: Observable;
+
   private view: View;
-  private model: Model;
   
-  constructor(options: Options){
+  private model: Model;
+
+  constructor(options: Options) {
     this.observable = new Observable();
     this.model = this.createModel(options);
     this.view = this.createView(this.model.state);
-    this.bindSubscribtions()
+    this.addSubscribtions();
   }
-  
+
+  public setOptions(options: Partial<Options>): void {
+    const newOptions: Options = { ...standardOptions, ...options };
+    this.model.setData(newOptions);
+  }
+
+  public getOptions(): Options {
+    return this.model.state;
+  }
+
   private createModel(options: Options): Model {
     return new Model(options);
   }
@@ -24,42 +35,32 @@ class Presenter {
   private createView(options: Options): View {
     return new View(options);
   }
-  
-  private bindSubscribtions(): void {
-    this.getDataToView = this.getDataToView.bind(this)
-    this.sendDataToModel = this.sendDataToModel.bind(this)
-    
-    this.addSubscribtions()
-  }
-  
+
   private addSubscribtions(): void {
-    this.model.observable.getData('newModeldata', this.getDataToView);
-    this.view.observable.getData('newPositions', this.sendDataToModel);
-  }
-  
-  private getDataToView(modelData: Options): void {
     
-    this.view.upData(modelData);
-    this.observable.sendData('newModeldata', modelData);
-  }
-
-  private sendDataToModel(newPositions: Partial<Options>): void {
+    this.handleNewModelState = this.handleNewModelState.bind(this)
+    
+    this.handleNewFromTo = this.handleNewFromTo.bind(this)
+    
+    this.model.observable.subscribe('newModelState', this.handleNewModelState);
+    this.view.observable.subscribe('newFromTo', this.handleNewFromTo);
    
-    const modelState: Options = this.model.state;
-    const newModelData: Options = { ...modelState, ...newPositions };
-    this.model.upData(newModelData);
-  }
-  
-  
-  public setOptions(options: Partial<Options>): void {
-    const newOptions: Options = { ...standardOptions, ...options };
-    this.model.upData(newOptions);
   }
 
-  public getOptions(): Options {
-    return this.model.state;
-  }
   
+  private handleNewModelState(modelState: Options): void {
+ 
+    this.view.setState(modelState);
+    this.observable.notify('newModelState', modelState);
+  }
+
+ 
+  private handleNewFromTo(newFromTo: Partial<Options>): void {
+    
+    const modelState: Options = this.model.state;
+    const newModelState: Options = { ...modelState, ...newFromTo };
+    this.model.setData(newModelState);
+  }
 }
 
 export { Presenter }
