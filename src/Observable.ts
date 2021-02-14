@@ -5,17 +5,14 @@ interface Callbacks {
 }
 
 class Observable {
-  
-  private messageMemory: Callbacks
-  
-  constructor(){
+  private messageMemory: Callbacks;
+
+  constructor() {
     this.messageMemory = {};
   }
-  
 
   public subscribe(dataType: string, notification: EventCallback): void {
-    
-   this.messageMemory[dataType] = [notification];
+    this.messageMemory[dataType] = [notification];
   }
 
   public notify(dataType: string, newData?: object): void {

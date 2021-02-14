@@ -1,15 +1,14 @@
-import { Model } from './Model'
-import { View } from './View'
-import { Options, ViewState } from './interfaces'
-import { Observable } from './Observable'
-import { standardOptions } from './standardOptions'
-
+import { Model } from './Model';
+import { View } from './View';
+import { Options } from './interfaces';
+import { Observable } from './Observable';
+import { standardOptions } from './standardOptions';
 
 class Presenter {
   public observable: Observable;
 
   private view: View;
-  
+
   private model: Model;
 
   constructor(options: Options) {
@@ -37,30 +36,24 @@ class Presenter {
   }
 
   private addSubscribtions(): void {
-    
-    this.handleNewModelState = this.handleNewModelState.bind(this)
-    
-    this.handleNewFromTo = this.handleNewFromTo.bind(this)
-    
+    this.handleNewModelState = this.handleNewModelState.bind(this);
+
+    this.handleNewFromTo = this.handleNewFromTo.bind(this);
+
     this.model.observable.subscribe('newModelState', this.handleNewModelState);
     this.view.observable.subscribe('newFromTo', this.handleNewFromTo);
-   
   }
 
-  
   private handleNewModelState(modelState: Options): void {
- 
     this.view.setState(modelState);
     this.observable.notify('newModelState', modelState);
   }
 
- 
   private handleNewFromTo(newFromTo: Partial<Options>): void {
-    
     const modelState: Options = this.model.state;
     const newModelState: Options = { ...modelState, ...newFromTo };
     this.model.setData(newModelState);
   }
 }
 
-export { Presenter }
+export { Presenter };

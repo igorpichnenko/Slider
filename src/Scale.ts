@@ -1,123 +1,88 @@
-import { Options } from './interfaces'
-import { Observable } from './Observable'
+import { ViewState } from './interfaces';
 
 class Scale {
-  public observable: Observable;
-  
-  private scale: HTMLElement
-  private options: Options
-  
-  constructor(options: Options){
-    
-    this.observable = new Observable();
-    this.scale = this.create(options)
-    this.addScaleMarker(this.scale,options)
-    this.options = options
+  constructor(options: ViewState) {
+    this.create(options);
   }
-  
-  
-  private create(options: Options): HTMLElement{
-    let scale = document.createElement('div')
-    scale.className = 'slider__scale slider__scale_horizontal';
 
-    document.querySelector(options.className)!.append(scale)
-    
-    return scale
+  private create(options: ViewState): HTMLElement {
+    const { slider, orientation } = options;
+    const scale = document.createElement('div');
+    scale.className = `slider__scale slider__scale_${orientation}`;
+
+    slider.append(scale);
+
+    this.addEventListeners(scale);
+    this.addScaleMarker(options, scale);
+
+    return scale;
   }
-  
-  private addScaleMarker(scale: HTMLElement,options: Options): void {
-    
-    this.onScaleClick = this.onScaleClick.bind(this)
+
+  private addEventListeners(scale: HTMLElement) {
+    this.onScaleClick = this.onScaleClick.bind(this);
     scale.addEventListener('click', this.onScaleClick);
-    const {  min,  max,  step, } = options
-    
-    const inc = this.getIncrement(step,options);
-    const pxInc = (inc / step) * this.getOneStep(options);
+  }
+
+  private addScaleMarker(options: ViewState, scale: HTMLElement): void {
+    const {
+      min, max, step, size, oneStep,
+    } = options;
+
+    const inc = this.getIncrement(options);
+    const pxInc = (inc / step) * oneStep;
     const fragment = document.createDocumentFragment();
 
     let pxCurrent = 0;
 
     for (let current = min; current < max; current += inc) {
-      if (pxCurrent > this.getSliderSize(options) - 50) break;
-      this.createScaleMarker(fragment, current, pxCurrent,options);
+      if (pxCurrent > size - 50) break;
+      this.createScaleMarker(fragment, current, pxCurrent, options);
 
       pxCurrent += pxInc;
-
     }
 
-    this.createScaleMarker(fragment, max, this.getSliderSize(options),options);
+    this.createScaleMarker(fragment, max, size, options);
     scale.append(fragment);
   }
-  private getIncrement(step: number, options: Options): number{
-    const value = Math.ceil(this.getSliderSize(options) / this.getOneStep(options));
+
+  private getIncrement(options: ViewState): number {
+    const { size, oneStep, step } = options;
+    const value = Math.ceil(size / oneStep);
     const inc = Math.ceil(value / 5) * step;
     return inc;
-    
   }
-  private createScaleMarker(fragment: DocumentFragment, value: number, position: number,options: Options): void {
 
+  private createScaleMarker(fragment: DocumentFragment,
+    value: number, position: number, options: ViewState): void {
+    const { orientation } = options;
     const scaleMarker = document.createElement('span');
-    scaleMarker.className = 'slider__scale-value slider__scale-value_horizontal';
+    scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
     scaleMarker.innerHTML = value.toString();
     fragment.append(scaleMarker);
 
     const offset = this.convertPxToPercent(position, options);
-    
-    scaleMarker.style.left = `${offset}%`;
+    if (orientation === 'horizontal') {
+      scaleMarker.style.left = `${offset}%`;
+    } else {
+      scaleMarker.style.bottom = `${offset}%`;
+    }
   }
-  
-  private convertPxToPercent(value: number, options: Options): number {
 
-    return (value * 100) / this.getSliderSize(options)
+  private convertPxToPercent(value: number, options: ViewState): number {
+    const { size } = options;
+    return (value * 100) / size;
   }
-  
-  private getSliderSize(options: Options): number{
-    
-    return document.querySelector(options.className)!.getBoundingClientRect().width
-  }
-  private getOneStep(options: Options): number {
-    const {  min,  max,  step } = options
-    
-    const result = Math.ceil((max - min) / step);
-    
-    return this.getSliderSize(options) / result;
-  }
-  
-  
-  private onScaleClick(event: any): void {
-    event.preventDefault()
-    
+
+  private onScaleClick(event: Event): void {
     const { target } = event;
 
     if (!(target instanceof HTMLElement)) return;
-
     if (!target.classList.contains('slider__scale-value')) return;
 
     const value = Number(target.innerHTML);
 
-    this.updateRollerPosition(value);
-  }
-  private updateRollerPosition(value: number):void{
-    
-    const {  from, to, max} = this.options;
-    const fromDistance = Math.abs(from - value);
-    const toDistance = Math.abs(to - value);
-    
-    
-    
-    if (fromDistance * toDistance === 0) return;
-
-   
-    let  isFrom = (fromDistance < toDistance) ? 'from': 'to';
-   
-    if (isFrom === 'from') {
-     
-    this.observable.notify('scalePos', {from: value});
-    
-  }else{
-    this.observable.notify('scalePos', {to: value});
+    const scaleEvent = new CustomEvent('scaleclick', { bubbles: true, detail: { event, value } });
+    target.dispatchEvent(scaleEvent);
   }
 }
-
-}
-export { Scale }
+export { Scale };

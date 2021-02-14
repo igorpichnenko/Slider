@@ -5,63 +5,21 @@
 .wrap {
   margin-top: 70px;
   margin-left: 70px;
+  
+}
+.js-toxin-slider{
   width: 266px;
   height: 266px;
 }
-.js-toxin-slider{
-  
-  
-}
-
-
-.out {
-  margin-top: 40px;
-  font-family: Montserrat,Arial, sans-serif;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: normal;
-  color: rgba(31,32,65,0.5);
-  border: unset;
-  outline: none;
-  width: 45px;
-  padding: 0;
-  
-}
-.change{
-  margin-top: 40px;
-  font-family: Montserrat,Arial, sans-serif;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: normal;
-  color: rgba(31,32,65,0.5);
- 
-  outline: none;
-  width: 45px;
-  padding: 0;
-}
-
-.minus{
-  color: rgba(31,32,65,0.5);
-}
-.out_from{
-  margin-left: 140px;
-}
-.out_to{
-  width: 50px;
-  
-  margin-left: 2px;
-}
 .slider {
   position: relative;
-  width: 266px;
+  height: 100%;
 }
 
 .slider__roller {
   position: absolute;
   cursor: pointer;
-  z-index: 2;
+  z-index: 3;
   transition: transform 0.25s;
   background: -webkit-gradient(linear, left top, left bottom, from(#6fcf97), to(#66d2ea));
   background: -o-linear-gradient(top, #6fcf97 0%, #66d2ea 100%);
@@ -82,7 +40,6 @@
   line-height: 15px;
   font-weight: normal;
   color: rgba(31,32,65,0.5);
-  z-index: 3;
 }
 
 .slider__roller_second:before {
@@ -95,7 +52,6 @@
   line-height: 15px;
   font-weight: normal;
   color: rgba(31,32,65,0.5);
-  z-index: 3;
 }
 
 .slider__roller_horizontal {
@@ -106,7 +62,6 @@
  transform: translateY(50%)
 }
 .slider__track {
-  
   position: absolute;
   border-radius: 5px;
   cursor: pointer;
@@ -126,8 +81,6 @@
   left: 5px;
   width: 5px;
   height: 100%
-  
-  
 }
 
 .slider__bar {
@@ -140,11 +93,11 @@
 }
 .slider__bar_horizontal {
   height: 5px;
-  top: 3.5px;
+  top: 4px;
 }
 .slider__bar_vertical {
   width: 5px;
-  left: 4.5px;
+  left: 5px;
 }
 
 .slider__scale {
@@ -158,7 +111,6 @@
 .slider__scale_vertical {
   left: 50px;
   height: 100%
-  
 }
 
 .slider__scale-value {
@@ -180,7 +132,6 @@
 
 .slider__scale-value_horizontal {
   transform: translateX(-50%)
-  
 }
 
 .slider__scale-value_vertical {

@@ -2,13 +2,14 @@ import { Options } from './interfaces';
 
 const standardOptions: Options = {
   className: '.js-toxin-slider',
-  orientation: 'horizontal',
+  orientation: 'vertical',
   type: 'double',
   min: 0,
-  max: 1000,
+  max: 15000,
   step: 1,
-  from: 300,
-  to: 700,
+  from: 5000,
+  to: 10000,
+  marker: '₽',
 };
 
 export { standardOptions };

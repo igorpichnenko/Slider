@@ -1,96 +1,96 @@
-import { Options } from './interfaces'
-
+import { ViewState } from './interfaces';
 
 class Bar {
-  
- 
- private element: HTMLElement
-  
-  constructor (options: Options){
-    
-    this.element = this.create(options)
-    this.updateBar(options)
-    
+  constructor(options: ViewState) {
+    this.create(options);
   }
-  
- public updateState(options: Options){
-    this.updateBar(options)
-  }
-  
-  
-  private create(options: Options): HTMLElement{
-    let element = document.createElement('div')
 
-  element.className = 'slider__bar slider__bar_horizontal';
-  
-  document.querySelector(options.className)!.append(element)
-  
-  
-  return element
+  public updateState(options: ViewState) {
+    this.create(options);
   }
-  public getRollerPositions(options: Options): number[] {
-    
-  const slider = document.querySelector(options.className)!
-  let rollers = slider.querySelectorAll('.slider__roller');
-    
 
-    const calculatePosition = (element: Element) => {
-      
+  private create(options: ViewState): void{
+    const { slider, orientation } = options;
+
+    const isBar = slider.querySelector('.slider__bar');
+
+    if (isBar === null) {
+      const bar = document.createElement('div');
+
+      bar.className = `slider__bar slider__bar_${orientation}`;
+
+      slider.append(bar);
+
+      this.updateBar(options, bar);
+    } else {
+      const bar = slider.querySelector('.slider__bar')! as HTMLElement;
+
+      this.updateBar(options, bar);
+    }
+  }
+
+  private getRollerPositions(options: ViewState): number[] {
+    const { slider, orientation } = options;
+
+    const rollers = slider.querySelectorAll('.slider__roller');
+
+    const calculatePosition = (element: Element): number => {
+      const side: 'left' | 'top' = orientation === 'horizontal' ? 'left' : 'top';
       const width = Number.parseInt(getComputedStyle(element).width, 10);
 
-      return element.getBoundingClientRect().left + width / 2;
+      return element.getBoundingClientRect()[side] + width / 2;
     };
 
     const rollersPositions = [calculatePosition(rollers[0]),
       calculatePosition(rollers[1])];
 
     return rollersPositions.sort((a, b) => a - b);
-  
-    
-    
   }
-  private updateBar(options: Options){
-    
-    
-    const slider = document.querySelector(options.className)!
-    
-    const sliderPos = slider.getBoundingClientRect().left
 
-    const rollerPositions = this.getRollerPositions(options);
+  private updateBar(options: ViewState, bar: HTMLElement) {
+    const {
+      sliderPos, type, orientation,
+    } = options;
 
-    const size = slider.getBoundingClientRect().width
+    const isHorizontal = orientation === 'horizontal';
 
-    
-    const isHorizontal = options.orientation === "horizontal"
-    const isSingle = options.type === "single"
+    const side: 'left' | 'top' = isHorizontal ? 'left' : 'top';
+
+    const direction: 'width' | 'height' = isHorizontal ? 'width' : 'height';
+
+    const rollerPos = this.getRollerPositions(options);
+
+    const isSingle = type === 'single';
 
     if (isSingle) {
       if (isHorizontal) {
-        
-        const end = ((Math.abs(rollerPositions[1] - sliderPos)) * 100) / size;
-        
-        this.element.style.left = '0%';
-        this.element.style.width = `${end}%`;
+        const to = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
+
+        bar.style[side] = '0%';
+        bar.style[direction] = `${to}%`;
       } else {
-        const start =  ((Math.abs(rollerPositions[1] - sliderPos)) * 100) / size;
-        const end = 100 - start;
-        this.element.style.left = `${start}%`;
-        this.element.style.width = `${end}%`;
+        const from = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
+        const to = 100 - from;
+
+        bar.style[side] = `${from}%`;
+        bar.style[direction] = `${to}%`;
       }
     } else {
-      const start =  ((Math.abs(rollerPositions[0] - sliderPos)) * 100) / size;
-      
-      const length =  ((Math.abs(rollerPositions[1] - rollerPositions[0])) * 100) / size;
+      const from = this.convertPxToProcent(Math.abs(rollerPos[0] - sliderPos), options);
 
-      this.element.style.left = `${start}%`;
-      this.element.style.width = `${length}%`;
+      const to = this.convertPxToProcent(Math.abs(rollerPos[1] - rollerPos[0]), options);
+
+      bar.style[side] = `${from}%`;
+      bar.style[direction] = `${to}%`;
     }
-  
-  
-   }
-  
-  
-  
+  }
+
+  private convertPxToProcent(value: number, options: ViewState): number {
+    const {
+      size,
+    } = options;
+    return (value * 100) / size;
+  }
 }
 
-export { Bar }
+export { Bar };

@@ -1,86 +1,115 @@
-import { Options } from './interfaces'
+import { ViewState } from './interfaces';
 
-class Roller{
-   private rollerFirst: HTMLElement
-   private rollerSecond: HTMLElement
-  
-  constructor(options: Options){
-    
-    this.rollerFirst = this.createRollerFirst(options)
-    this.rollerSecond = this.createRollerSecond(options)
-    
-    this.moveRollersAtValue( options.from,this.rollerFirst, options)
-    this.moveRollersAtValue( options.to,this.rollerSecond, options)
+class Roller {
+  constructor(options: ViewState) {
+    this.create(options);
   }
-  
-  public updateState(options: Options, target?: HTMLElement){
-    
-    const {  from, to } = options;
-    
-    this.moveRollersAtValue(from, this.rollerFirst,options)
-    
 
-    this.moveRollersAtValue(to, this.rollerSecond,options)
-     
-    
+  public updateState(options: ViewState) {
+    this.create(options);
   }
-  
-  private createRollerFirst(options: Options): HTMLElement {
 
-  let rollerFirst = document.createElement('div');
-  
-  rollerFirst.classList.add(
+  private create(options: ViewState) {
+    const {
+      slider, orientation,
+    } = options;
+
+    const isRollers = slider.querySelector('.slider__roller');
+
+    if (isRollers === null) {
+      const rollerFirst = document.createElement('div');
+      rollerFirst.classList.add(
         'slider__roller',
-        'slider__roller_horizontal',
-        'slider__roller_first', );
+        `slider__roller_${orientation}`,
+        'slider__roller_first',
+      );
+      const rollerSecond = document.createElement('div');
 
-    
-    document.querySelector(options.className)!.append(rollerFirst)
-    
-     return rollerFirst
+      rollerSecond.classList.add(
+        'slider__roller',
+        `slider__roller_${orientation}`, 'slider__roller_second',
+      );
+
+      slider.append(rollerFirst);
+      slider.append(rollerSecond);
+
+      this.moveRollersAtValue(options, rollerFirst, rollerSecond);
+      this.toggleRollers(options, rollerSecond);
+    } else {
+      const rollerFirst = slider.querySelector('.slider__roller_first')! as HTMLElement;
+
+      const rollerSecond = slider.querySelector('.slider__roller_second')! as HTMLElement;
+      this.moveRollersAtValue(options, rollerFirst, rollerSecond);
+      this.toggleRollers(options, rollerSecond);
+    }
   }
-  
-  private createRollerSecond(options: Options): HTMLElement{
-    let rollerSecond = document.createElement('div');
 
-    rollerSecond.classList.add(
-      'slider__roller',
-      'slider__roller_horizontal', 'slider__roller_second',);
-      
-    document.querySelector(options.className)!.append(rollerSecond)
-    
-    return rollerSecond
+  private moveRollersAtValue(options: ViewState, rollerFirst: HTMLElement,
+    rollerSecond: HTMLElement): void {
+    const {
+      to,
+      from, orientation,
+    } = options;
+
+    const pxTo = this.convertValueToPx(to, options);
+    const pxFrom = this.convertValueToPx(from, options);
+
+    const positionTo = this.convertPxToProcent(pxTo, options);
+    const positionFrom = this.convertPxToProcent(pxFrom, options);
+
+    if (orientation === 'horizontal') {
+      rollerFirst.style.left = `${positionFrom}%`;
+      rollerSecond.style.left = `${positionTo}%`;
+    } else {
+      rollerFirst.style.bottom = `${positionFrom}%`;
+      rollerSecond.style.bottom = `${positionTo}%`;
+    }
+
+    this.updateOutValue(options, rollerFirst, rollerSecond);
   }
-  
-  
-  private moveRollersAtValue(value: number, element: HTMLElement, options: Options): void {
 
-    const position = this.convertValueToProcent(value,options);
-    
-   element.style.left = `${position}%`;
+  private updateOutValue(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
+    const {
+      to,
+      from,
+      marker,
+    } = options;
 
+    rollerFirst.setAttribute('data-text', `${from.toLocaleString()}${marker}`);
+
+    rollerSecond.setAttribute('data-text', `${to.toLocaleString()}${marker}`);
   }
-  
-  private convertValueToProcent(value: number,options: Options): number {
 
-    const {  min, max,step, className} = options
-    
-    const slider = document.querySelector(className)!
+  private convertValueToPx(value: number, options: ViewState): number {
+    const {
+      min,
+      max,
+      step,
+      size,
+      oneStep,
+    } = options;
 
-   const size = slider.getBoundingClientRect().width
+    if (value === max) return size;
 
-    const result = Math.ceil((max - min) / step);
-    
-    const oneStep = size / result;
-
-    if (value === max) return size
-
-    const pxValue = Math.round((value - min) / step) * oneStep
-
-  return (pxValue * 100) / size
+    return Math.round((value - min) / step) * oneStep;
   }
-  
-  
+
+  private convertPxToProcent(value: number, options: ViewState): number {
+    const {
+      size,
+    } = options;
+    return (value * 100) / size;
+  }
+
+  private toggleRollers(options: ViewState, element: HTMLElement): void {
+    const { type } = options;
+
+    if (type === 'single') {
+      element.style.display = 'none';
+    } else {
+      element.style.display = 'block';
+    }
+  }
 }
 
-export { Roller }
+export { Roller };
