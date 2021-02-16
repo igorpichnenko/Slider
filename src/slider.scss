@@ -34,13 +34,14 @@
   cursor: pointer;
   z-index: 3;
   transition: transform 0.25s;
-  background: -webkit-gradient(linear, left top, left bottom, from(#6fcf97), to(#66d2ea));
-  background: -o-linear-gradient(top, #6fcf97 0%, #66d2ea 100%);
-  background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffe39c), to(#ffba9c));
+  background: -o-linear-gradient(top, #ffe39c 0%, #ffba9c 100%);
+  background: linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);
   border: 2px solid #fff;
   border-radius: 10px;
   width: 12px;
   height: 12px
+  
 }
 
 .slider__roller_first:before {
@@ -101,9 +102,7 @@
    z-index: 1;
   position: absolute;
 	border-radius: 5px;
-	background: -webkit-gradient(linear, left top, left bottom, from(#6fcf97), to(#66d2ea));
-    background: -o-linear-gradient(top, #6fcf97 0%, #66d2ea 100%);
-    background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+	background:linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);
 }
 .slider__bar_horizontal {
   height: 5px;
@@ -148,7 +147,7 @@
 }
 
 .slider__scale-value:hover {
-  color: #6fcf97;
+  color: #ffe39c;
 }
 
 .slider__scale-value_horizontal {
