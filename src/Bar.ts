@@ -6,31 +6,24 @@ class Bar {
   }
 
   public updateState(options: ViewState) {
-    const { slider } = options
-    
+    const { slider } = options;
+
     const bar = slider.querySelector('.slider__bar')! as HTMLElement;
-      
-      
-      this.updateBar(options, bar);
+
+    this.updateBar(options, bar);
   }
 
   private create(options: ViewState): void{
     const { slider, orientation } = options;
 
-    
-      const bar = document.createElement('div');
+    const bar = document.createElement('div');
 
-      bar.className = `slider__bar slider__bar_${orientation}`
+    bar.className = `slider__bar slider__bar_${orientation}`;
 
-      slider.append(bar);
-      
-      
-      this.updateBar(options, bar);
-      
+    slider.append(bar);
 
+    this.updateBar(options, bar);
   }
-
-   
 
   private getRollerPositions(options: ViewState): number[] {
     const { slider, orientation } = options;

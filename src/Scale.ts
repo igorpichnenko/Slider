@@ -6,16 +6,14 @@ class Scale {
   }
 
   private create(options: ViewState): void{
-    
     const { slider, orientation } = options;
     const scale = document.createElement('div');
     scale.className = `slider__scale slider__scale_${orientation}`;
-  
+
     slider.append(scale);
-    
+
     this.addEventListeners(scale);
     this.addScaleMarker(options, scale);
-
   }
 
   private addEventListeners(scale: HTMLElement) {
@@ -59,7 +57,7 @@ class Scale {
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
     fragment.append(scaleMarker);
     scaleMarker.innerHTML = value.toString();
-    
+
     const offset = this.convertPxToPercent(position, options);
     if (orientation === 'horizontal') {
       scaleMarker.style.left = `${offset}%`;
@@ -78,7 +76,7 @@ class Scale {
 
     if (!(target instanceof HTMLElement)) return;
     if (!target.classList.contains('slider__scale-value')) return;
-    
+
     const value = Number(target.innerHTML);
 
     const scaleEvent = new CustomEvent('scaleclick', { bubbles: true, detail: { event, value } });

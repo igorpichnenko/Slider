@@ -6,51 +6,40 @@ class Roller {
   }
 
   public updateState(options: ViewState) {
-    const { slider } = options
-    
-    
+    const { slider } = options;
+
     const rollerFirst = slider.querySelector('.slider__roller_first')! as HTMLElement;
 
-      const rollerSecond = slider.querySelector('.slider__roller_second')! as HTMLElement;
-      
-      this.moveRollersAtValue(options, rollerFirst, rollerSecond);
-      this.toggleRollers(options, rollerSecond)
+    const rollerSecond = slider.querySelector('.slider__roller_second')! as HTMLElement;
+
+    this.moveRollersAtValue(options, rollerFirst, rollerSecond);
+    this.toggleRollers(options, rollerSecond);
   }
 
   private create(options: ViewState) {
     const { slider, orientation } = options;
-    
-    
 
-  
-      const rollerFirst = document.createElement('div');
-      rollerFirst.classList.add(
-        'slider__roller',
-        'slider__roller_first',
-        `slider__roller_${orientation}`,
-      );
-      const rollerSecond = document.createElement('div');
+    const rollerFirst = document.createElement('div');
+    rollerFirst.classList.add(
+      'slider__roller',
+      'slider__roller_first',
+      `slider__roller_${orientation}`,
+    );
+    const rollerSecond = document.createElement('div');
 
-      rollerSecond.classList.add(
-       'slider__roller_second',
-       'slider__roller',
-        `slider__roller_${orientation}`,
-      );
-    
-      slider.append(rollerFirst);
-      slider.append(rollerSecond);
+    rollerSecond.classList.add(
+      'slider__roller_second',
+      'slider__roller',
+      `slider__roller_${orientation}`,
+    );
 
-      this.moveRollersAtValue(options, rollerFirst, rollerSecond);
-      this.toggleRollers(options, rollerSecond);
-      
-      
+    slider.append(rollerFirst);
+    slider.append(rollerSecond);
 
-    
-    
+    this.moveRollersAtValue(options, rollerFirst, rollerSecond);
+    this.toggleRollers(options, rollerSecond);
   }
-  
-  
-  
+
   private moveRollersAtValue(options: ViewState, rollerFirst: HTMLElement,
     rollerSecond: HTMLElement): void {
     const {
@@ -65,35 +54,35 @@ class Roller {
     const positionFrom = this.convertPxToProcent(pxFrom, options);
 
     if (orientation === 'horizontal') {
-      
       rollerFirst.style.left = `${positionFrom}%`;
       rollerSecond.style.left = `${positionTo}%`;
     } else {
-      
       rollerFirst.style.bottom = `${positionFrom}%`;
       rollerSecond.style.bottom = `${positionTo}%`;
     }
 
     this.updateOutValue(options, rollerFirst, rollerSecond);
   }
+
   private updateOutValue(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
     const {
       to,
       from,
       marker,
-      isLabel
+      isLabel,
     } = options;
-    
-    if (isLabel === false){
-    rollerFirst.setAttribute('data-text', `${from.toLocaleString()}${marker}`);
 
-    rollerSecond.setAttribute('data-text', `${to.toLocaleString()}${marker}`);
-    }else{
+    if (isLabel === false) {
+      rollerFirst.setAttribute('data-text', `${from.toLocaleString()}${marker}`);
+
+      rollerSecond.setAttribute('data-text', `${to.toLocaleString()}${marker}`);
+    } else {
       rollerFirst.setAttribute('data-text', '');
 
-    rollerSecond.setAttribute('data-text', '');
+      rollerSecond.setAttribute('data-text', '');
     }
   }
+
   private convertValueToPx(value: number, options: ViewState): number {
     const {
       min,
@@ -107,12 +96,14 @@ class Roller {
 
     return Math.round((value - min) / step) * oneStep;
   }
+
   private convertPxToProcent(value: number, options: ViewState): number {
     const {
       size,
     } = options;
     return (value * 100) / size;
   }
+
   private toggleRollers(options: ViewState, element: HTMLElement): void {
     const { type } = options;
 

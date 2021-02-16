@@ -13,15 +13,8 @@ class Model {
   }
 
   public setData(options: Options): void {
-    
-   
-    
-    
     const validateOptions: Options = this.validateOptions(options);
-    
-    
-    
-    
+
     this.state = { ...validateOptions };
 
     this.observable.notify('newModelState', this.state);
@@ -34,13 +27,6 @@ class Model {
   }
 
   private validateOptions(options: Options): Options {
-    
-    
-    
-   
-    
-  
-    
     return options;
   }
 }

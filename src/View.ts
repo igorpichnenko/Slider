@@ -13,32 +13,28 @@ class View {
   private slider: HTMLElement;
 
   private bar: Bar;
+
   private rollers: Roller;
 
   constructor(options: Options) {
-    
     this.observable = new Observable();
     this.slider = this.createSlider(options);
     this.state = this.init(options);
-    
 
     this.createScale(this.state);
     this.createTrack(this.state);
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
     this.addEventListeners();
-    this.setState(this.state)
-  
-}
-  
+    this.setState(this.state);
+  }
+
   private init(options: Options): ViewState {
     const size = this.getSliderSize(options);
     const sliderPos = this.getSliderPosition(options);
     const oneStep = this.getOneStep(options);
-    const slider = this.slider;
-    
-   
-   
+    const { slider } = this;
+
     return {
       ...options, size, sliderPos, oneStep, slider,
     };
@@ -53,28 +49,19 @@ class View {
   }
 
   public setState(newState: Partial<Options>): void{
-    
     const updatedState: ViewState = { ...this.state, ...newState };
-    
-    
-     
-    
-    
 
     this.rollers.updateState(updatedState);
     this.bar.updateState(updatedState);
-    
 
     this.state = {
       ...updatedState,
     };
- 
   }
-  
-  public upDateSlider(){
-    
-    this.slider.remove() 
-    
+
+  public upDateSlider() {
+    this.slider.remove();
+
     this.slider = this.createSlider(this.state);
     this.state = this.init(this.state);
     this.createScale(this.state);
@@ -82,34 +69,35 @@ class View {
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
     this.addEventListeners();
-    
   }
-  private createTrack(options: ViewState):void{
+
+  private createTrack(options: ViewState): void{
     new Track(options);
   }
+
   private createBar(options: ViewState): Bar {
     return new Bar(options);
   }
+
   private createRollers(options: ViewState): Roller {
     return new Roller(options);
   }
+
   private createScale(options: ViewState): void{
     new Scale(options);
   }
+
   private createSlider(options: Options): HTMLElement {
-    
-    const { className } = options
+    const { className } = options;
     const slider = document.createElement('div');
 
     slider.className = 'slider slider_horizontal';
     document.querySelector(className)!.append(slider);
-   
-   
-   
+
     return slider;
   }
+
   private addEventListeners() {
-  
     const bindMouseDown = this.dragStart.bind(this);
     this.slider.addEventListener('touchstart', bindMouseDown);
     this.slider.addEventListener('mousedown', bindMouseDown);
@@ -120,6 +108,7 @@ class View {
     this.onScaleClick = this.onScaleClick.bind(this);
     this.slider.addEventListener('scaleclick', this.onScaleClick);
   }
+
   private dragStart(event: any) {
     const { target } = event;
 
@@ -139,6 +128,7 @@ class View {
       document.addEventListener('touchend', handleUp);
     }
   }
+
   private drag(target: HTMLElement, event: any): void {
     const {
       to, from, max, orientation,
@@ -161,7 +151,7 @@ class View {
     let mouseValue = 0;
 
     if (!/roller/.test(target.className)) return;
-    
+
     if (orientation === 'horizontal') {
       if (event.type === 'touchmove') {
         mouseValue = this.convertPxToValue(event.touches[0].clientX);
@@ -175,6 +165,7 @@ class View {
     }
     this.updatePosition(mouseValue, target);
   }
+
   private getTargetType(target: HTMLElement): string {
     const rollers = this.slider.querySelectorAll('.slider__roller');
 
@@ -186,10 +177,12 @@ class View {
     }
     return 'undefined';
   }
+
   private onScaleClick(event: any): void {
     const { value } = event.detail;
     this.updatePosition(value);
   }
+
   private onTrackClick(event: any): void {
     event.preventDefault();
     const { target } = event;
@@ -205,6 +198,7 @@ class View {
     const value = this.convertPxToValue(coordinate);
     this.updatePosition(value);
   }
+
   private updatePosition(value: number, target?: HTMLElement): void{
     const { from, to, type } = this.state;
 
@@ -241,6 +235,7 @@ class View {
       }
     }
   }
+
   private convertPxToValue(coordinate: number): number {
     const {
       min, max, step, oneStep, sliderPos, size, orientation,
@@ -262,6 +257,7 @@ class View {
 
     return value;
   }
+
   private getSliderPosition(options: Options): number {
     const { orientation } = options;
     let position = 0;
@@ -270,9 +266,10 @@ class View {
     } else {
       position = this.slider.getBoundingClientRect().top;
     }
-    
+
     return position;
   }
+
   private getSliderSize(options: Options): number {
     const { orientation } = options;
     let size = 0;
@@ -283,8 +280,6 @@ class View {
     }
     return size;
   }
-  
-  
 }
 
 export { View };
