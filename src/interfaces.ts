@@ -8,6 +8,9 @@ interface Options {
   from: number,
   to: number,
   marker: string,
+  isLabel: boolean,
+  isScale: boolean,
+  isOrientation: boolean,
 }
 
 interface ViewState extends Options{

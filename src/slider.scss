@@ -13,7 +13,16 @@
 }
 .slider {
   position: relative;
+ 
+}
+.slider_horizontal{
   height: 100%;
+  width: 100%;
+}
+
+.slider_vertical{
+  height: 100%;
+  width: 100%;
 }
 
 .slider__roller {
@@ -56,6 +65,7 @@
 
 .slider__roller_horizontal {
   transform: translateX(-50%)
+  //transform: translateY(50%)
 }
 
 .slider__roller_vertical {
@@ -94,15 +104,22 @@
 .slider__bar_horizontal {
   height: 5px;
   top: 4px;
+  
 }
 .slider__bar_vertical {
   width: 5px;
   left: 5px;
+ 
 }
 
 .slider__scale {
   position: relative
 }
+
+.slider__scale_none{
+  display: none;
+}
+
 
 .slider__scale_horizontal {
   top: 30px

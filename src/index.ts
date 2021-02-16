@@ -1,6 +1,14 @@
 import { standardOptions } from './standardOptions';
 import { Presenter } from './Presenter';
+import { Options, ViewState } from './interfaces';
 
-$('.js-btn').click(() => {
-  new Presenter(standardOptions);
-});
+
+$(document).ready(()=>{
+  
+  new Presenter( standardOptions);
+  
+  
+})
+
+
+
