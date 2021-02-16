@@ -11,9 +11,8 @@ const standardOptions: Options = {
   from: 5000,
   to: 10000,
   marker: '₽',
-  isLabel: false,
-  isScale: false,
-  isOrientation: false,
+  isLabel: true,
+  isScale: true,
 };
 
 export { standardOptions };

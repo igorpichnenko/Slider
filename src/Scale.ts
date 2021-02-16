@@ -5,7 +5,7 @@ class Scale {
     this.create(options);
   }
 
-  private create(options: ViewState): void{
+  private create(options: ViewState): void {
     const { slider, orientation } = options;
     const scale = document.createElement('div');
     scale.className = `slider__scale slider__scale_${orientation}`;
@@ -14,6 +14,22 @@ class Scale {
 
     this.addEventListeners(scale);
     this.addScaleMarker(options, scale);
+    this.checkScale(options, scale);
+  }
+
+  public updateState(options: ViewState) {
+    const { slider } = options;
+    const scale = slider.querySelector('.slider__scale')! as HTMLElement;
+    this.checkScale(options, scale);
+  }
+
+  private checkScale(options: ViewState, scale: HTMLElement) {
+    const { isScale } = options;
+    if (isScale === false) {
+      scale.style.display = 'none';
+    } if (isScale === true) {
+      scale.style.display = '';
+    }
   }
 
   private addEventListeners(scale: HTMLElement) {

@@ -72,7 +72,7 @@ class Roller {
       isLabel,
     } = options;
 
-    if (isLabel === false) {
+    if (isLabel === true) {
       rollerFirst.setAttribute('data-text', `${from.toLocaleString()}${marker}`);
 
       rollerSecond.setAttribute('data-text', `${to.toLocaleString()}${marker}`);

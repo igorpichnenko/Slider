@@ -16,12 +16,14 @@ class View {
 
   private rollers: Roller;
 
+  private scale: Scale;
+
   constructor(options: Options) {
     this.observable = new Observable();
     this.slider = this.createSlider(options);
     this.state = this.init(options);
 
-    this.createScale(this.state);
+    this.scale = this.createScale(this.state);
     this.createTrack(this.state);
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
@@ -48,11 +50,12 @@ class View {
     return this.getSliderSize(options) / result;
   }
 
-  public setState(newState: Partial<Options>): void{
+  public setState(newState: Partial<Options>): void {
     const updatedState: ViewState = { ...this.state, ...newState };
 
     this.rollers.updateState(updatedState);
     this.bar.updateState(updatedState);
+    this.scale.updateState(updatedState);
 
     this.state = {
       ...updatedState,
@@ -64,14 +67,14 @@ class View {
 
     this.slider = this.createSlider(this.state);
     this.state = this.init(this.state);
-    this.createScale(this.state);
+    this.scale = this.createScale(this.state);
     this.createTrack(this.state);
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
     this.addEventListeners();
   }
 
-  private createTrack(options: ViewState): void{
+  private createTrack(options: ViewState): void {
     new Track(options);
   }
 
@@ -83,8 +86,8 @@ class View {
     return new Roller(options);
   }
 
-  private createScale(options: ViewState): void{
-    new Scale(options);
+  private createScale(options: ViewState): Scale {
+    return new Scale(options);
   }
 
   private createSlider(options: Options): HTMLElement {
@@ -199,7 +202,7 @@ class View {
     this.updatePosition(value);
   }
 
-  private updatePosition(value: number, target?: HTMLElement): void{
+  private updatePosition(value: number, target?: HTMLElement): void {
     const { from, to, type } = this.state;
 
     const fromDistance = Math.abs(from - value);

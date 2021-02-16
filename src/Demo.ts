@@ -38,10 +38,22 @@ class Demo {
   }
 
   private initTools() {
-    const { orientation, isScale, type } = this.state;
-
-    const isOrientation = document.querySelector('.js-orientation')! as HTMLElement;
+    let {
+      orientation, isScale, type, isLabel,from, to, min, max, marker, step
+    } = this.state;
     
+    
+    const isOrientation = document.querySelector('.js-orientation')! as HTMLElement;
+    const changeScale = document.querySelector('.js-isScale')! as HTMLElement;
+    const label = document.querySelector('.js-isLabel')! as HTMLElement;
+    const isDouble = document.querySelector('.js-isDouble')! as HTMLElement;
+    const inputFrom = document.querySelector('.js-from')! as HTMLInputElement
+    const inputTo = document.querySelector('.js-to')! as HTMLInputElement
+    const inputMin = document.querySelector('.js-min')! as HTMLInputElement
+    const inputMax = document.querySelector('.js-max')! as HTMLInputElement
+    let inputMarker = document.querySelector('.js-marker')! as HTMLInputElement
+    let inputStep = document.querySelector('.js-step')! as HTMLInputElement
+
     isOrientation.onchange = () => {
       if (orientation === 'horizontal') {
         this.setState({ orientation: 'vertical' });
@@ -52,22 +64,84 @@ class Demo {
         this.slider.upDateView();
       }
     };
-    /*
-    const changeScale = document.querySelector('.js-isScale')! as HTMLElement
+
+    
     changeScale.onchange = () => {
-      if (isScale === false){
+      if (isScale === false) {
         this.setState({ isScale: true });
-      }else {
+      } else {
         this.setState({ isScale: false });
       }
-      
-    }
-    const isDouble = document.querySelector('.js-isDouble')! as HTMLElement
-    if (type === "single"){
-      this.setState({ type: "double" });
-    }else{
-       this.setState({ type: "single" });
-    }*/
+    };
+
+    
+    label.onchange = () => {
+      if (isLabel === true) {
+        this.setState({ isLabel: false });
+      } if (isLabel === false) {
+        this.setState({ isLabel: true });
+      }
+    };
+
+    
+    isDouble.onchange = () => {
+      if (type === 'single') {
+        this.setState({ type: 'double' });
+      } else {
+        this.setState({ type: 'single' });
+      }
+    };
+    
+    inputMarker.value = marker
+
+   inputMarker.onchange = () =>{
+     
+     let value = inputMarker.value
+     
+     this.setState({ marker: value });
+ 
+   }
+   
+    inputFrom.value = String(from)
+    
+    inputFrom.onchange = () =>{
+    let value = parseInt(inputFrom.value)
+    
+    this.setState({ from: value });
+  }
+  
+    inputTo.value = String(to)
+    
+    inputTo.onchange = () =>{
+    let value = parseInt(inputTo.value)
+    
+    this.setState({ to: value });
+  }
+    
+    inputMin.value = String(min)
+    
+    inputMin.onchange = () =>{
+    let value = parseInt(inputMin.value)
+    
+    this.setState({ min: value });
+  }
+  
+    inputMax.value = String(max)
+    
+    inputMax.onchange = () =>{
+    let value = parseInt(inputMax.value)
+    console.log(value)
+    this.setState({ max: value });
+    this.slider.upDateView();
+  }
+    inputStep.value = String(step)
+    
+    inputStep.onchange = () =>{
+    let value = parseInt(inputStep.value)
+    
+    this.setState({ step: value });
+    this.slider.upDateView();
+  }
   }
 
   private setState(newOptions: Partial<Options>) {

@@ -13,7 +13,7 @@ class Bar {
     this.updateBar(options, bar);
   }
 
-  private create(options: ViewState): void{
+  private create(options: ViewState): void {
     const { slider, orientation } = options;
 
     const bar = document.createElement('div');
