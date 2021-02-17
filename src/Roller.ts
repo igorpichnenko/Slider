@@ -14,6 +14,7 @@ class Roller {
 
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);
+    this.updateColor(options, rollerFirst, rollerSecond);
   }
 
   private create(options: ViewState) {
@@ -38,6 +39,13 @@ class Roller {
 
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);
+    this.updateColor(options, rollerFirst, rollerSecond);
+  }
+
+  private updateColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
+    const { color } = options;
+    rollerFirst.style.background = `${color}`;
+    rollerSecond.style.background = `${color}`;
   }
 
   private moveRollersAtValue(options: ViewState, rollerFirst: HTMLElement,

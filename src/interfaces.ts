@@ -1,5 +1,5 @@
 interface Options {
-  className: string,
+  selector: string,
   orientation: string,
   type: string,
   min: number,
@@ -10,6 +10,9 @@ interface Options {
   marker: string,
   isLabel: boolean,
   isScale: boolean,
+  color: string,
+  isScalePrefix: boolean,
+  scalePrefix: string,
 }
 
 interface ViewState extends Options{

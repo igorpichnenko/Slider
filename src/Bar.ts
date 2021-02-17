@@ -10,6 +10,7 @@ class Bar {
 
     const bar = slider.querySelector('.slider__bar')! as HTMLElement;
 
+    this.updateColor(options, bar);
     this.updateBar(options, bar);
   }
 
@@ -22,7 +23,13 @@ class Bar {
 
     slider.append(bar);
 
+    this.updateColor(options, bar);
     this.updateBar(options, bar);
+  }
+
+  private updateColor(options: ViewState, bar: HTMLElement) {
+    const { color } = options;
+    bar.style.background = `${color}`;
   }
 
   private getRollerPositions(options: ViewState): number[] {

@@ -91,11 +91,11 @@ class View {
   }
 
   private createSlider(options: Options): HTMLElement {
-    const { className } = options;
+    const { selector, orientation } = options;
     const slider = document.createElement('div');
 
-    slider.className = 'slider slider_horizontal';
-    document.querySelector(className)!.append(slider);
+    slider.className = `slider slider_${orientation}`;
+    document.querySelector(selector)!.append(slider);
 
     return slider;
   }
@@ -184,6 +184,7 @@ class View {
   private onScaleClick(event: any): void {
     const { value } = event.detail;
     this.updatePosition(value);
+    
   }
 
   private onTrackClick(event: any): void {

@@ -1,43 +1,69 @@
 const demoTemplate = `
-   <label >Orientation
-   <input type="checkbox" class="js-orientation" name="orientation" />
+  <div class="js-items">
+   <label class="js-labels js-label_checkbox">V/H Вид
+   <input type="checkbox" class="js-checkbox js-inputs js-orientation" name="orientation" />
    </label>
-   <br>
-   <label >IsScale
-   <input type="checkbox" class="js-isScale" name="scale"/>
-   <br>
+   </div>
+   <div class="js-items">
+   <label class="js-labels js-label_checkbox">Шкала
+   <input type="checkbox" class="js-checkbox js-inputs js-isScale" name="scale"/>
    </label>
-   <label>isRange
-   <input type="checkbox" class="js-isDouble" name="double"/>
-   <br>
+     </div>
+     <div class="js-items">
+   <label class="js-labels js-label_checkbox">Range/Single
+   <input type="checkbox" class="js-checkbox js-inputs js-isDouble" name="double"/>
    </label>
-   <label>isMarker
-   <input type="checkbox" class="js-isLabel" name="label"/>
+   </div>
+   <div class="js-items">
+   <label class="js-labels js-label_checkbox">Тултип
+   <input type="checkbox" class="js-checkbox js-inputs js-isLabel" name="label"/>
    </label>
-   <br>
-   <label>From
-   <input type="number" class="js-from" name="from" />
+   </div>
+   <div class="js-items">
+   <label class="js-labels js-label_checkbox">Скрыть префикс шкалы
+   <input type="checkbox" class="js-checkbox js-inputs js-isPrefix" name="label"/>
    </label>
-   <br>
-   <label>To
-   <input type="number" class="js-to" name="to"/>
+   </div>
+   <div class="js-items">
+   <label class="js-labels">From
+   <input type="number" class="js-inputs js-from" name="from" />
    </label>
-   <br>
-   <label>Min
-   <input type="number" class="js-min" name="min"/>
+   </div>
+   <div class="js-items">
+   <label class="js-labels">To
+   <input type="number" class="js-inputs js-to" name="to"/>
    </label>
-   <br>
-   <label>Max
-   <input type="number" class="js-max" name="max"/>
+   </div>
+   <div class="js-items">
+   <label class="js-labels">Min
+   <input type="number" class="js-inputs js-min" name="min"/>
    </label>
-   <br>
-   <label>Marker
-   <input type="text" class="js-marker" name="marker"/>
+   </div>
+   <div class="js-items">
+   <label class="js-labels">Max
+   <input type="number" class="js-inputs js-max" name="max"/>
    </label>
-   <br>
-   <label>Step
-   <input type="text" class="js-step" name="step"/>
+   </div>
+   <div class="js-items">
+   <label class="js-labels">Префикс
+   <input type="text" class="js-inputs js-marker" name="marker"/>
    </label>
+   </div>
+   <div class="js-items">
+   <label class="js-labels">Шаг
+   <input type="text" class="js-inputs js-step" name="step"/>
+   </label>
+   </div>
+   <div class="js-items">
+   <label class="js-labels">Цвет
+<input type="text" class="js-inputs js-color" name="color"/>
+   </label>
+   </div>
+      <div class="js-items">
+   <label class="js-labels">Префикс шкалы
+<input type="text" class="js-inputs js-scale-prifix" name="color"/>
+   </label>
+   </div>
   `;
 
 export { demoTemplate };
