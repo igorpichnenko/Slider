@@ -53,7 +53,7 @@ class Model {
       options.max = min;
       options.min = min;
     }
-    
+
     return options;
   }
 
@@ -85,8 +85,8 @@ class Model {
         options.from = min;
       }
     }
-    if ( max < min){
-      options.to = min + step
+    if (max < min) {
+      options.to = min + step;
     }
     return options;
   }

@@ -22,7 +22,6 @@ class Bar {
     bar.className = `slider__bar slider__bar_${orientation}`;
 
     slider.append(bar);
-
   }
 
   private updateColor(options: ViewState, bar: HTMLElement) {
@@ -40,7 +39,6 @@ class Bar {
       const width = Number.parseInt(getComputedStyle(element).width, 10);
 
       return element.getBoundingClientRect()[side] + width / 2;
-      
     };
 
     const rollersPositions = [calculatePosition(rollers[0]),
@@ -50,8 +48,7 @@ class Bar {
   }
 
   private updateBar(options: ViewState, bar: HTMLElement) {
-    const {
-      sliderPos, type, orientation } = options;
+    const { sliderPos, type, orientation } = options;
 
     const isHorizontal = orientation === 'horizontal';
 
@@ -72,7 +69,7 @@ class Bar {
       } else {
         const from = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
         const to = 100 - from;
-        
+
         bar.style[side] = `${from}%`;
         bar.style[direction] = `${to}%`;
       }

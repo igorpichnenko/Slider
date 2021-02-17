@@ -113,7 +113,6 @@ class Demo {
     inputFrom.onchange = () => {
       const value = Number(inputFrom.value);
       this.setState({ from: value });
-      
     };
 
     inputTo.value = String(to);
@@ -121,7 +120,6 @@ class Demo {
     inputTo.onchange = () => {
       const value = Number(inputTo.value);
       this.setState({ to: value });
-    
     };
 
     inputMin.value = String(min);
@@ -129,7 +127,6 @@ class Demo {
     inputMin.onchange = () => {
       const value = Number(inputMin.value);
       this.setState({ min: value });
-    
     };
 
     inputMax.value = String(max);
@@ -137,21 +134,18 @@ class Demo {
     inputMax.onchange = () => {
       const value = Number(inputMax.value);
       this.setState({ max: value });
-   
     };
     inputStep.value = String(step);
 
     inputStep.onchange = () => {
       const value = Number(inputStep.value);
       this.setState({ step: value });
-    
     };
     inputColor.value = String(color);
 
-   inputColor.onchange = () => {
+    inputColor.onchange = () => {
       const { value } = inputColor;
       this.setState({ color: value });
-    
     };
 
     inputScalePrefix.value = scalePrefix;
@@ -165,7 +159,7 @@ class Demo {
   private setState(newOptions: Partial<Options>) {
     this.state = { ...this.state, ...newOptions };
     this.slider.setOptions(this.state);
-    this.slider.upDateView()
+    this.slider.upDateView();
   }
 }
 

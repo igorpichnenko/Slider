@@ -106,9 +106,8 @@ class Scale {
   }
 
   private onScaleClick(event: Event): void {
-    
     const { target } = event;
-    
+
     if (!(target instanceof HTMLElement)) return;
     if (!target.classList.contains('slider__scale-value')) return;
 

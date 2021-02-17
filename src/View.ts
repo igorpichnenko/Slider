@@ -13,14 +13,16 @@ class View {
   private slider: HTMLElement;
 
   private bar: Bar;
-  private options: Options
+
+  private options: Options;
+
   private rollers: Roller;
 
   private scale: Scale;
 
   constructor(options: Options) {
     this.observable = new Observable();
-    this.options = options
+    this.options = options;
     this.slider = this.createSlider(options);
     this.state = this.init(options);
 
@@ -28,7 +30,7 @@ class View {
     this.createTrack(this.state);
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
-    
+
     this.setState(this.state);
     this.addEventListeners();
   }
@@ -53,14 +55,15 @@ class View {
   }
 
   public setState(newState: Partial<Options>): void {
-    const { orientation } = newState
-    this.options.orientation = orientation as string
-    const sliderPos = this.getSliderPosition(this.options)
+    const { orientation } = newState;
+    this.options.orientation = orientation as string;
+    const sliderPos = this.getSliderPosition(this.options);
 
-    const updatedState: ViewState = { 
-      ...this.state, 
-      ...newState,  
-      ...{ sliderPos} };
+    const updatedState: ViewState = {
+      ...this.state,
+      ...newState,
+      ...{ sliderPos },
+    };
 
     this.rollers.updateState(updatedState);
     this.bar.updateState(updatedState);
@@ -252,9 +255,9 @@ class View {
     const {
       min, max, step, oneStep, size, orientation,
     } = this.state;
-   
-   const sliderPos = this.getSliderPosition(this.options)
-   
+
+    const sliderPos = this.getSliderPosition(this.options);
+
     const sliderEndPos = sliderPos + size;
 
     let px = 0;
@@ -275,12 +278,11 @@ class View {
   private getSliderPosition(options: Options): number {
     const { orientation } = options;
     let position = 0;
-    
+
     if (orientation === 'horizontal') {
       position = this.slider.getBoundingClientRect().left;
     } else {
       position = this.slider.getBoundingClientRect().top;
-      
     }
 
     return position;
