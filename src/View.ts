@@ -27,8 +27,9 @@ class View {
     this.createTrack(this.state);
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
-    this.addEventListeners();
+    
     this.setState(this.state);
+    this.addEventListeners();
   }
 
   private init(options: Options): ViewState {
@@ -67,10 +68,11 @@ class View {
 
     this.slider = this.createSlider(this.state);
     this.state = this.init(this.state);
+    this.rollers = this.createRollers(this.state);
     this.scale = this.createScale(this.state);
     this.createTrack(this.state);
-    this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
+    this.setState(this.state);
     this.addEventListeners();
   }
 
@@ -184,7 +186,6 @@ class View {
   private onScaleClick(event: any): void {
     const { value } = event.detail;
     this.updatePosition(value);
-    
   }
 
   private onTrackClick(event: any): void {
@@ -263,12 +264,13 @@ class View {
   }
 
   private getSliderPosition(options: Options): number {
-    const { orientation } = options;
+    const { orientation, selector } = options;
     let position = 0;
+    let wrap = document.querySelector(selector)! as HTMLElement
     if (orientation === 'horizontal') {
       position = this.slider.getBoundingClientRect().left;
     } else {
-      position = this.slider.getBoundingClientRect().top;
+      position = wrap.getBoundingClientRect().top;
     }
 
     return position;

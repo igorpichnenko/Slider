@@ -23,8 +23,6 @@ class Bar {
 
     slider.append(bar);
 
-    this.updateColor(options, bar);
-    this.updateBar(options, bar);
   }
 
   private updateColor(options: ViewState, bar: HTMLElement) {
@@ -52,8 +50,7 @@ class Bar {
 
   private updateBar(options: ViewState, bar: HTMLElement) {
     const {
-      sliderPos, type, orientation,
-    } = options;
+      sliderPos, type, orientation } = options;
 
     const isHorizontal = orientation === 'horizontal';
 
@@ -74,7 +71,7 @@ class Bar {
       } else {
         const from = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
         const to = 100 - from;
-
+        
         bar.style[side] = `${from}%`;
         bar.style[direction] = `${to}%`;
       }

@@ -15,36 +15,29 @@ class Scale {
     this.addEventListeners(scale);
     this.addScaleMarker(options, scale);
     this.checkScale(options, scale);
-    
   }
 
   public updateState(options: ViewState) {
     const { slider } = options;
     const scale = slider.querySelector('.slider__scale')! as HTMLElement;
-    
 
- 
     this.checkScale(options, scale);
-   this.updateScaleMarker(options)
+    this.updateScaleMarker(options);
   }
- 
- private updateScaleMarker(options: ViewState){
-   const { scalePrefix, isScalePrefix, slider} = options
-const scaleMarkers = slider.querySelectorAll('.slider__scale-value')! as NodeListOf<Element>
 
-scaleMarkers.forEach(function (scaleMarker){
-  
-  console.log(scaleMarker)
+  private updateScaleMarker(options: ViewState) {
+    const { scalePrefix, isScalePrefix, slider } = options;
+    const scaleMarkers = slider.querySelectorAll('.slider__scale-value')! as NodeListOf<Element>;
 
-  if (isScalePrefix === true){
-   scaleMarker.setAttribute('data-text', `${scalePrefix}`);
-  }else{
-    scaleMarker.setAttribute('data-text', '');
+    scaleMarkers.forEach((scaleMarker) => {
+      if (isScalePrefix === true) {
+        scaleMarker.setAttribute('data-text', `${scalePrefix}`);
+      } else {
+        scaleMarker.setAttribute('data-text', '');
+      }
+    });
   }
-})
 
- }
- 
   private checkScale(options: ViewState, scale: HTMLElement) {
     const { isScale } = options;
     if (isScale === false) {
@@ -78,6 +71,7 @@ scaleMarkers.forEach(function (scaleMarker){
     }
 
     this.createScaleMarker(fragment, max, size, options);
+
     scale.append(fragment);
   }
 
@@ -94,8 +88,9 @@ scaleMarkers.forEach(function (scaleMarker){
     const scaleMarker = document.createElement('span');
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
     fragment.append(scaleMarker);
-    scaleMarker.innerHTML = value.toString()
-    this.updateScaleMarker(options)
+
+    scaleMarker.innerHTML = value.toString();
+    this.updateScaleMarker(options);
 
     const offset = this.convertPxToPercent(position, options);
     if (orientation === 'horizontal') {
@@ -111,8 +106,9 @@ scaleMarkers.forEach(function (scaleMarker){
   }
 
   private onScaleClick(event: Event): void {
+    
     const { target } = event;
-
+    
     if (!(target instanceof HTMLElement)) return;
     if (!target.classList.contains('slider__scale-value')) return;
 

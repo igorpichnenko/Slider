@@ -28,23 +28,23 @@ class Demo {
   }
 
   private createTools(): HTMLElement {
-    let demoTools = document.createElement('div')
-    demoTools.className = 'demoTools'
+    const demoTools = document.createElement('div');
+    demoTools.className = 'demoTools';
     return demoTools;
   }
 
   private createSettings() {
-    
-    const { selector } = this.state
-    
+    const { selector } = this.state;
+
     const slider = document.querySelector(selector)! as HTMLElement;
-    slider.append(this.demoTools)
+    slider.after(this.demoTools);
     this.demoTools.insertAdjacentHTML('beforeend', demoTemplate);
   }
 
   private initTools() {
     const {
-      orientation, isScale, type, isLabel, from, to, min, max, marker, step, color,isScalePrefix, scalePrefix
+      orientation, isScale, type, isLabel, from, to, min, max, prefix, step,
+      color, isScalePrefix, scalePrefix,
     } = this.state;
 
     const isOrientation = this.demoTools.querySelector('.js-orientation')! as HTMLElement;
@@ -60,26 +60,26 @@ class Demo {
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
     const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
     const inputScalePrefix = this.demoTools.querySelector('.js-scale-prifix')! as HTMLInputElement;
-    
 
     isOrientation.onchange = () => {
       if (orientation === 'horizontal') {
         this.setState({ orientation: 'vertical' });
-        this.slider.upDateView();
+        
+
       }
       if (orientation === 'vertical') {
         this.setState({ orientation: 'horizontal' });
-        this.slider.upDateView();
+          
       }
     };
-    inputIsPrefix.onchange = () =>{
-      if (isScalePrefix === true){
-       this.setState({ isScalePrefix: false });
+    inputIsPrefix.onchange = () => {
+      if (isScalePrefix === true) {
+        this.setState({ isScalePrefix: false });
       }
-      if (isScalePrefix === false){
-       this.setState({ isScalePrefix: true });
+      if (isScalePrefix === false) {
+        this.setState({ isScalePrefix: true });
       }
-    }
+    };
     changeScale.onchange = () => {
       if (isScale === false) {
         this.setState({ isScale: true });
@@ -104,75 +104,71 @@ class Demo {
       }
     };
 
-    inputMarker.value = marker;
+    inputMarker.value = prefix;
 
     inputMarker.onchange = () => {
       const { value } = inputMarker;
-
-      this.setState({ marker: value });
+      this.setState({ prefix: value });
     };
 
     inputFrom.value = String(from);
 
     inputFrom.onchange = () => {
       const value = Number(inputFrom.value);
-
       this.setState({ from: value });
+      
     };
 
     inputTo.value = String(to);
 
     inputTo.onchange = () => {
       const value = Number(inputTo.value);
-
       this.setState({ to: value });
+    
     };
 
     inputMin.value = String(min);
 
     inputMin.onchange = () => {
       const value = Number(inputMin.value);
-
       this.setState({ min: value });
-      this.slider.upDateView();
+    
     };
 
     inputMax.value = String(max);
 
     inputMax.onchange = () => {
       const value = Number(inputMax.value);
-
       this.setState({ max: value });
-      this.slider.upDateView();
+   
     };
     inputStep.value = String(step);
 
     inputStep.onchange = () => {
       const value = Number(inputStep.value);
-
       this.setState({ step: value });
-      this.slider.upDateView();
+    
     };
     inputColor.value = String(color);
 
-    inputColor.onchange = () => {
+   inputColor.onchange = () => {
       const { value } = inputColor;
-      this.slider.upDateView();
       this.setState({ color: value });
+    
     };
-    
-    inputScalePrefix.value = marker
-    
+
+    inputScalePrefix.value = scalePrefix;
+
     inputScalePrefix.onchange = () => {
       const { value } = inputScalePrefix;
       this.setState({ scalePrefix: value });
-      //this.slider.upDateView();
     };
   }
 
   private setState(newOptions: Partial<Options>) {
     this.state = { ...this.state, ...newOptions };
     this.slider.setOptions(this.state);
+    this.slider.upDateView()
   }
 }
 

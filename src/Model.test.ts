@@ -1,3 +1,4 @@
+import { Model } from './Model';
 import { Options } from './interfaces';
 
 const standardOptions: Options = {
@@ -17,4 +18,3 @@ const standardOptions: Options = {
   scalePrefix: '₽',
 };
 
-export { standardOptions };

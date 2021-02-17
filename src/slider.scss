@@ -7,7 +7,9 @@
 .js-checkbox{
  
 }
-
+.js-title{
+  margin-bottom: 10px;
+}
 .js-inputs{
   margin-left: 5px;
   width: 50px;
@@ -15,8 +17,9 @@
 }
 .demoTools{
   padding-left: 30px;
+  padding-right: 10px;
   border-radius: 5px;
-  padding-top: 40px;
+  padding-top: 20px;
   padding-bottom: 20px;
   background-color: #b0adda;
   position: absolute;
@@ -181,7 +184,7 @@
 }
 
 .slider__scale_vertical {
-  left: 60px;
+  left: 50px;
   height: 100%
 }
 
@@ -196,7 +199,7 @@
   line-height: 15px;
   font-weight: normal;
   color: rgba(31,32,65,0.5);
-  z-index: 3;
+  
 }
 
 
@@ -254,8 +257,7 @@
 }
 
 .slider_vertical .slider__scale-value:before{
-  right: 58.5px;
-  transform: rotate(90deg);
+  transform: translateX(-42.8px) rotate(90deg);
   
 }
     

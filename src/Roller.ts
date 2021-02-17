@@ -76,14 +76,14 @@ class Roller {
     const {
       to,
       from,
-      marker,
+      prefix,
       isLabel,
     } = options;
 
     if (isLabel === true) {
-      rollerFirst.setAttribute('data-text', `${from.toLocaleString()}${marker}`);
+      rollerFirst.setAttribute('data-text', `${from.toLocaleString()}${prefix}`);
 
-      rollerSecond.setAttribute('data-text', `${to.toLocaleString()}${marker}`);
+      rollerSecond.setAttribute('data-text', `${to.toLocaleString()}${prefix}`);
     } else {
       rollerFirst.setAttribute('data-text', '');
 

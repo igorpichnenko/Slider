@@ -7,7 +7,7 @@ interface Options {
   step: number,
   from: number,
   to: number,
-  marker: string,
+  prefix: string,
   isLabel: boolean,
   isScale: boolean,
   color: string,

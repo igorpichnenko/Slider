@@ -35,18 +35,31 @@ class Model {
     const { min, max, step } = options;
 
     if (step < 1) options.step = 1;
-    // временое решение ограничить максимальный шаг
-    
-    if (min > max) options.min = max
-      const maxStep = max  / 2;
+
+    const maxStep = Math.abs(max) / 2;
 
     if (step > maxStep) options.step = maxStep;
+
+    if (max === min) {
+      options.max = min + step;
+    }
+
+    if (min >= max && max > 0) {
+      options.min = min;
+      options.max = min + step;
+    }
+
+    if (max < 0 && max < min) {
+      options.max = min;
+      options.min = min;
+    }
+    
     return options;
   }
 
   private validateFromTo(options: Options): Options {
     const {
-      from, to, max, min, type,
+      from, to, max, min, type, step,
     } = options;
     if (type === 'single') {
       options.to = max;
@@ -54,25 +67,41 @@ class Model {
 
     if (min > from) options.from = min;
     if (to > max) options.to = max;
-    if (from > max) options.from = max;
-    if (from > to) options.from = to;
-    if (to < min) {
-      options.to = min;
+    if (from >= to && from !== min) options.from = to;
+
+    if (type === 'double') {
+      if (from >= to && to === max) {
+        options.from = to - step;
+      }
+    }
+
+    if (to <= min) {
+      options.to = min + step;
       options.from = min;
     }
-   if (min > max){
-     options.from = max
-     options.to = max
-   }
+
+    if (from > 0) {
+      if (min < 0 && max < 0) {
+        options.from = min;
+      }
+    }
+    if ( max < min){
+      options.to = min + step
+    }
     return options;
   }
 
   private validateOptions(options: Options): Options {
     const {
-      selector, orientation, type, min, max, step, from, to, marker, isLabel, isScale, color,
+      selector, orientation, type, min, max, step, from, to, prefix, isLabel,
+      isScale, color, isScalePrefix, scalePrefix,
     } = options;
 
-    if (marker === undefined) options.marker = standardOptions.marker;
+    if (isScalePrefix === undefined) options.isScalePrefix = standardOptions.isScalePrefix;
+
+    if (scalePrefix === undefined) options.scalePrefix = standardOptions.scalePrefix;
+
+    if (prefix === undefined) options.prefix = standardOptions.prefix;
 
     if (to === undefined) options.to = standardOptions.to;
 

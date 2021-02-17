@@ -1,11 +1,12 @@
 const demoTemplate = `
+  <h4  class="js-title">Панель управления</h4>
   <div class="js-items">
    <label class="js-labels js-label_checkbox">V/H Вид
    <input type="checkbox" class="js-checkbox js-inputs js-orientation" name="orientation" />
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels js-label_checkbox">Шкала
+   <label class="js-labels js-label_checkbox">Показать/Скрыть Шкалу
    <input type="checkbox" class="js-checkbox js-inputs js-isScale" name="scale"/>
    </label>
      </div>
@@ -15,18 +16,18 @@ const demoTemplate = `
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels js-label_checkbox">Тултип
+   <label class="js-labels js-label_checkbox">Показать/Скрыть Тултип
    <input type="checkbox" class="js-checkbox js-inputs js-isLabel" name="label"/>
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels js-label_checkbox">Скрыть префикс шкалы
+   <label class="js-labels js-label_checkbox">Показать/Скрыть префикс шкалы
    <input type="checkbox" class="js-checkbox js-inputs js-isPrefix" name="label"/>
    </label>
    </div>
-   <div class="js-items">
-   <label class="js-labels">From
-   <input type="number" class="js-inputs js-from" name="from" />
+    <div class="js-items">
+   <label class="js-labels">Max
+   <input type="number" class="js-inputs js-max" name="max"/>
    </label>
    </div>
    <div class="js-items">
@@ -35,13 +36,13 @@ const demoTemplate = `
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels">Min
-   <input type="number" class="js-inputs js-min" name="min"/>
+   <label class="js-labels">From
+   <input type="number" class="js-inputs js-from" name="from" />
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels">Max
-   <input type="number" class="js-inputs js-max" name="max"/>
+   <label class="js-labels">Min
+   <input type="number" class="js-inputs js-min" name="min"/>
    </label>
    </div>
    <div class="js-items">
