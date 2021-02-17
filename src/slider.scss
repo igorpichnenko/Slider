@@ -16,6 +16,7 @@
   border-radius: 4px;
 }
 .demoTools{
+//  display: none;
   padding-left: 30px;
   padding-right: 10px;
   border-radius: 5px;
@@ -23,7 +24,7 @@
   padding-bottom: 20px;
   background-color: #b0adda;
   position: absolute;
-  top: 30%;
+  top: 20%;
   left: 40%;
   width: 150px;
   z-index: 3;
@@ -53,7 +54,7 @@
 .slider {
   position: relative;
  height: 100%;
-  width: 100%;
+//  width: 100%;
 }
 .slider_horizontal{
   

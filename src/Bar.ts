@@ -40,6 +40,7 @@ class Bar {
       const width = Number.parseInt(getComputedStyle(element).width, 10);
 
       return element.getBoundingClientRect()[side] + width / 2;
+      
     };
 
     const rollersPositions = [calculatePosition(rollers[0]),

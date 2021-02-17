@@ -13,13 +13,14 @@ class View {
   private slider: HTMLElement;
 
   private bar: Bar;
-
+  private options: Options
   private rollers: Roller;
 
   private scale: Scale;
 
   constructor(options: Options) {
     this.observable = new Observable();
+    this.options = options
     this.slider = this.createSlider(options);
     this.state = this.init(options);
 
@@ -52,7 +53,14 @@ class View {
   }
 
   public setState(newState: Partial<Options>): void {
-    const updatedState: ViewState = { ...this.state, ...newState };
+    const { orientation } = newState
+    this.options.orientation = orientation as string
+    const sliderPos = this.getSliderPosition(this.options)
+
+    const updatedState: ViewState = { 
+      ...this.state, 
+      ...newState,  
+      ...{ sliderPos} };
 
     this.rollers.updateState(updatedState);
     this.bar.updateState(updatedState);
@@ -65,7 +73,6 @@ class View {
 
   public upDateSlider() {
     this.slider.remove();
-
     this.slider = this.createSlider(this.state);
     this.state = this.init(this.state);
     this.rollers = this.createRollers(this.state);
@@ -243,9 +250,11 @@ class View {
 
   private convertPxToValue(coordinate: number): number {
     const {
-      min, max, step, oneStep, sliderPos, size, orientation,
+      min, max, step, oneStep, size, orientation,
     } = this.state;
-
+   
+   const sliderPos = this.getSliderPosition(this.options)
+   
     const sliderEndPos = sliderPos + size;
 
     let px = 0;
@@ -264,13 +273,14 @@ class View {
   }
 
   private getSliderPosition(options: Options): number {
-    const { orientation, selector } = options;
+    const { orientation } = options;
     let position = 0;
-    let wrap = document.querySelector(selector)! as HTMLElement
+    
     if (orientation === 'horizontal') {
       position = this.slider.getBoundingClientRect().left;
     } else {
-      position = wrap.getBoundingClientRect().top;
+      position = this.slider.getBoundingClientRect().top;
+      
     }
 
     return position;

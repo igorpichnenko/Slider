@@ -64,12 +64,9 @@ class Demo {
     isOrientation.onchange = () => {
       if (orientation === 'horizontal') {
         this.setState({ orientation: 'vertical' });
-        
-
       }
       if (orientation === 'vertical') {
         this.setState({ orientation: 'horizontal' });
-          
       }
     };
     inputIsPrefix.onchange = () => {

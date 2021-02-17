@@ -2,7 +2,7 @@ import { Options } from './interfaces';
 
 const standardOptions: Options = {
   selector: '.js-toxin-slider',
-  orientation: 'horizontal',
+  orientation: 'vertical',
   type: 'double',
   min: 0,
   max: 10,
