@@ -23,7 +23,7 @@ class View {
   constructor(options: Options) {
     this.observable = new Observable();
     this.slider = this.createSlider(options);
-    this.options = options
+    this.options = options;
     this.state = this.init(options);
 
     this.scale = this.createScale(this.state);
@@ -53,7 +53,8 @@ class View {
 
     return this.getSliderSize(options) / result;
   }
-private createTrack(options: ViewState): void {
+
+  private createTrack(options: ViewState): void {
     new Track(options);
   }
 
@@ -78,18 +79,17 @@ private createTrack(options: ViewState): void {
 
     return slider;
   }
+
   public upData(newState: Partial<Options>): void {
-  
-    const { orientation } = newState;
-    this.options.orientation = String(orientation)
+
+    this.options.orientation = String(newState.orientation)
     const sliderPos = this.getSliderPosition(this.options);
 
     const updatedState: ViewState = {
       ...this.state,
       ...newState,
-      ...{ sliderPos },
+      ...{ sliderPos }
     };
-
 
     this.rollers.updateState(updatedState);
     this.bar.updateState(updatedState);
@@ -199,7 +199,9 @@ private createTrack(options: ViewState): void {
   }
 
   private updatePosition(value: number, target?: HTMLElement): void {
-    const { from, to, type, step} = this.state;
+    const {
+      from, to, type, step,
+    } = this.state;
 
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
@@ -207,7 +209,6 @@ private createTrack(options: ViewState): void {
 
     if (isSingle && fromDistance) {
       this.observable.notify('newPosition', { from: value });
-
       return;
     }
 
@@ -222,10 +223,10 @@ private createTrack(options: ViewState): void {
     } else {
       const targets = this.getTargetType(target);
       if (targets === 'from') {
-       if (value > to - step) value = from ;
+        if (value > to - step) value = from;
         this.observable.notify('newPosition', { from: value });
       } else {
-        if (value < from + step) value = to ;
+        if (value < from + step) value = to;
         this.observable.notify('newPosition', { to: value });
       }
     }
@@ -233,10 +234,10 @@ private createTrack(options: ViewState): void {
 
   private convertPxToValue(coordinate: number): number {
     const {
-      min, max, step, oneStep, size, orientation
+      min, max, step, oneStep, size, orientation,
     } = this.state;
-    
-const sliderPos = this.getSliderPosition(this.options);
+
+    const sliderPos = this.getSliderPosition(this.options);
 
     const sliderEndPos = sliderPos + size;
 

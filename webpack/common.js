@@ -46,8 +46,7 @@ const commonConfig = {
   target: 'web',
   context: path.resolve(__dirname, '..', 'src'),
   entry: {
-    preview: './index.ts',
-    slider: ['./slider.ts', './slider.scss'],
+      slider: ['./slider.ts', './slider.scss'],
   },
   output: {
     filename: '[name].js',

@@ -65,13 +65,10 @@ class Model {
 
     if (min > from) options.from = min;
     if (to > max) options.to = max;
-   
-   if (max < 0 && min === 0) {
-     options.from = min
-     options.to = min
-   }
-    if (from >= to){
-      options.from = to - step
+
+    if (max < 0 && min === 0) {
+      options.from = min;
+      options.to = min;
     }
     if (type === 'double') {
       if (from >= to && to === max) {
