@@ -48,23 +48,23 @@ class Presenter {
   }
 
   private addSubscribtions(): void {
-    this.handleNewModelState = this.handleNewModelState.bind(this);
+    this.getNewData = this.getNewData.bind(this);
 
-    this.handleNewFromTo = this.handleNewFromTo.bind(this);
+    this.sendNewPosition = this.sendNewPosition.bind(this);
 
-    this.model.observable.subscribe('newModelState', this.handleNewModelState);
-    this.view.observable.subscribe('newFromTo', this.handleNewFromTo);
+    this.model.observable.subscribe('newData', this.getNewData);
+    this.view.observable.subscribe('newPosition', this.sendNewPosition);
   }
 
-  private handleNewModelState(modelState: Options): void {
-    this.view.setState(modelState);
-    this.observable.notify('newModelState', modelState);
+  private getNewData(newData: Options): void {
+    this.view.upData(newData);
+    this.observable.notify('newData', newData);
   }
 
-  private handleNewFromTo(newFromTo: Partial<Options>): void {
+  private sendNewPosition(newPosition: Partial<Options>): void {
     const modelState: Options = this.model.state;
-    const newModelState: Options = { ...modelState, ...newFromTo };
-    this.model.setData(newModelState);
+    const newData: Options = { ...modelState, ...newPosition };
+    this.model.setData(newData);
   }
 }
 

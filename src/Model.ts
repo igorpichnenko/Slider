@@ -22,11 +22,10 @@ class Model {
     this.state = { ...validateFromTo };
     this.state = { ...validateMinMaxStep };
 
-    this.observable.notify('newModelState', this.state);
+    this.observable.notify('newData', this.state);
   }
 
   private init(options: Options): Options {
-    this.setData = this.setData.bind(this);
     this.setData(options);
     return this.state;
   }
@@ -40,8 +39,8 @@ class Model {
 
     if (step > maxStep) options.step = maxStep;
 
-    if (max === min) {
-      options.max = min + step;
+    if (max <= min && max < 0) {
+      options.min = min - step;
     }
 
     if (min >= max && max > 0) {
@@ -50,10 +49,9 @@ class Model {
     }
 
     if (max < 0 && max < min) {
-      options.max = min;
+      options.max = min + step;
       options.min = min;
     }
-
     return options;
   }
 
@@ -67,8 +65,14 @@ class Model {
 
     if (min > from) options.from = min;
     if (to > max) options.to = max;
-    if (from >= to && from !== min) options.from = to;
-
+   
+   if (max < 0 && min === 0) {
+     options.from = min
+     options.to = min
+   }
+    if (from >= to){
+      options.from = to - step
+    }
     if (type === 'double') {
       if (from >= to && to === max) {
         options.from = to - step;

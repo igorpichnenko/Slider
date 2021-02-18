@@ -24,7 +24,7 @@ class Demo {
 
     this.update = this.update.bind(this);
 
-    this.slider.observable.subscribe('newModelState', this.update);
+    this.slider.observable.subscribe('newData', this.update);
   }
 
   private createTools(): HTMLElement {

@@ -88,7 +88,7 @@ class Scale {
     const scaleMarker = document.createElement('span');
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
     fragment.append(scaleMarker);
-
+    
     scaleMarker.innerHTML = value.toString();
     this.updateScaleMarker(options);
 

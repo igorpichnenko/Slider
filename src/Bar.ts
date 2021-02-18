@@ -22,6 +22,8 @@ class Bar {
     bar.className = `slider__bar slider__bar_${orientation}`;
 
     slider.append(bar);
+    this.updateColor(options, bar);
+    this.updateBar(options, bar);
   }
 
   private updateColor(options: ViewState, bar: HTMLElement) {

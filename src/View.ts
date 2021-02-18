@@ -22,8 +22,8 @@ class View {
 
   constructor(options: Options) {
     this.observable = new Observable();
-    this.options = options;
     this.slider = this.createSlider(options);
+    this.options = options
     this.state = this.init(options);
 
     this.scale = this.createScale(this.state);
@@ -31,7 +31,7 @@ class View {
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
 
-    this.setState(this.state);
+    this.upData(this.state);
     this.addEventListeners();
   }
 
@@ -53,40 +53,7 @@ class View {
 
     return this.getSliderSize(options) / result;
   }
-
-  public setState(newState: Partial<Options>): void {
-    const { orientation } = newState;
-    this.options.orientation = orientation as string;
-    const sliderPos = this.getSliderPosition(this.options);
-
-    const updatedState: ViewState = {
-      ...this.state,
-      ...newState,
-      ...{ sliderPos },
-    };
-
-    this.rollers.updateState(updatedState);
-    this.bar.updateState(updatedState);
-    this.scale.updateState(updatedState);
-
-    this.state = {
-      ...updatedState,
-    };
-  }
-
-  public upDateSlider() {
-    this.slider.remove();
-    this.slider = this.createSlider(this.state);
-    this.state = this.init(this.state);
-    this.rollers = this.createRollers(this.state);
-    this.scale = this.createScale(this.state);
-    this.createTrack(this.state);
-    this.bar = this.createBar(this.state);
-    this.setState(this.state);
-    this.addEventListeners();
-  }
-
-  private createTrack(options: ViewState): void {
+private createTrack(options: ViewState): void {
     new Track(options);
   }
 
@@ -110,6 +77,39 @@ class View {
     document.querySelector(selector)!.append(slider);
 
     return slider;
+  }
+  public upData(newState: Partial<Options>): void {
+  
+    const { orientation } = newState;
+    this.options.orientation = String(orientation)
+    const sliderPos = this.getSliderPosition(this.options);
+
+    const updatedState: ViewState = {
+      ...this.state,
+      ...newState,
+      ...{ sliderPos },
+    };
+
+
+    this.rollers.updateState(updatedState);
+    this.bar.updateState(updatedState);
+    this.scale.updateState(updatedState);
+
+    this.state = {
+      ...updatedState,
+    };
+  }
+
+  public upDateSlider() {
+    this.slider.remove();
+    this.slider = this.createSlider(this.state);
+    this.state = this.init(this.state);
+    this.rollers = this.createRollers(this.state);
+    this.scale = this.createScale(this.state);
+    this.createTrack(this.state);
+    this.bar = this.createBar(this.state);
+    this.upData(this.state);
+    this.addEventListeners();
   }
 
   private addEventListeners() {
@@ -145,23 +145,7 @@ class View {
   }
 
   private drag(target: HTMLElement, event: any): void {
-    const {
-      to, from, max, orientation,
-    } = this.state;
-    // фикс залипание с права
-    const rollerSecond = this.slider.querySelector('.slider__roller_second')! as HTMLElement;
-
-    let active = true;
-    if (to === max) {
-      active = false;
-    }
-    if (active) {
-      rollerSecond.style.zIndex = '3';
-      active = !active;
-    } else if (from === max) {
-      rollerSecond.style.zIndex = '2';
-      active = !active;
-    }
+    const { orientation } = this.state;
 
     let mouseValue = 0;
 
@@ -215,14 +199,14 @@ class View {
   }
 
   private updatePosition(value: number, target?: HTMLElement): void {
-    const { from, to, type } = this.state;
+    const { from, to, type, step} = this.state;
 
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
     const isSingle = type === 'single';
 
     if (isSingle && fromDistance) {
-      this.observable.notify('newFromTo', { from: value });
+      this.observable.notify('newPosition', { from: value });
 
       return;
     }
@@ -231,32 +215,28 @@ class View {
       const isFrom = (fromDistance < toDistance) ? 'from' : 'to';
 
       if (isFrom === 'from') {
-        this.observable.notify('newFromTo', { from: value });
+        this.observable.notify('newPosition', { from: value });
       } else {
-        this.observable.notify('newFromTo', { to: value });
+        this.observable.notify('newPosition', { to: value });
       }
     } else {
       const targets = this.getTargetType(target);
       if (targets === 'from') {
-        if (value > to) {
-          value = from;
-        }
-        this.observable.notify('newFromTo', { from: value });
+       if (value > to - step) value = from ;
+        this.observable.notify('newPosition', { from: value });
       } else {
-        if (value < from) {
-          value = to;
-        }
-        this.observable.notify('newFromTo', { to: value });
+        if (value < from + step) value = to ;
+        this.observable.notify('newPosition', { to: value });
       }
     }
   }
 
   private convertPxToValue(coordinate: number): number {
     const {
-      min, max, step, oneStep, size, orientation,
+      min, max, step, oneStep, size, orientation
     } = this.state;
-
-    const sliderPos = this.getSliderPosition(this.options);
+    
+const sliderPos = this.getSliderPosition(this.options);
 
     const sliderEndPos = sliderPos + size;
 
