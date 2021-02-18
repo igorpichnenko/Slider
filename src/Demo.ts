@@ -37,7 +37,7 @@ class Demo {
     const { selector } = this.state;
 
     const slider = document.querySelector(selector)! as HTMLElement;
-    slider.after(this.demoTools);
+    slider.append(this.demoTools);
     this.demoTools.insertAdjacentHTML('beforeend', demoTemplate);
   }
 

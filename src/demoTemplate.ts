@@ -22,7 +22,7 @@ const demoTemplate = `
    </div>
    <div class="js-items">
    <label class="js-labels js-label_checkbox">Показать/Скрыть префикс шкалы
-   <input type="checkbox" class="js-checkbox js-inputs js-isPrefix" name="label"/>
+   <input type="checkbox" class="js-checkbox js-inputs js-isPrefix" name="isPrefix"/>
    </label>
    </div>
     <div class="js-items">
@@ -52,7 +52,7 @@ const demoTemplate = `
    </div>
    <div class="js-items">
    <label class="js-labels">Шаг
-   <input type="text" class="js-inputs js-step" name="step"/>
+   <input type="number" class="js-inputs js-step" name="step"/>
    </label>
    </div>
    <div class="js-items">
@@ -62,7 +62,7 @@ const demoTemplate = `
    </div>
       <div class="js-items">
    <label class="js-labels">Префикс шкалы
-<input type="text" class="js-inputs js-scale-prifix" name="color"/>
+<input type="text" class="js-inputs js-scale-prifix" name="js-prefix"/>
    </label>
    </div>
   `;
