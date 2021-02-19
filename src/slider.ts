@@ -1,4 +1,5 @@
 import { standardOptions } from './standardOptions';
+import { Demo } from './Demo';
 // import { Options } from './interfaces';
 import { Presenter } from './Presenter';
 
@@ -13,5 +14,6 @@ const newOptions: Options = {
 */
 
 $(document).ready(() => {
-  new Presenter(standardOptions);
+  const presenter = new Presenter(standardOptions);
+  new Demo(presenter);
 });

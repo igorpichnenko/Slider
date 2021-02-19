@@ -70,7 +70,7 @@ class View {
     return new Scale(options);
   }
 
-  private createSlider(options: Options): HTMLElement {
+  public createSlider(options: Options): HTMLElement {
     const { selector, orientation } = options;
     const slider = document.createElement('div');
 
@@ -80,15 +80,14 @@ class View {
     return slider;
   }
 
-  public upData(newState: Partial<Options>): void {
-
-    this.options.orientation = String(newState.orientation)
+  public upData(newState: Partial<ViewState>) {
+    this.options.orientation = String(newState.orientation);
     const sliderPos = this.getSliderPosition(this.options);
 
     const updatedState: ViewState = {
       ...this.state,
       ...newState,
-      ...{ sliderPos }
+      ...{ sliderPos },
     };
 
     this.rollers.updateState(updatedState);
@@ -232,7 +231,7 @@ class View {
     }
   }
 
-  private convertPxToValue(coordinate: number): number {
+  public convertPxToValue(coordinate: number): number {
     const {
       min, max, step, oneStep, size, orientation,
     } = this.state;

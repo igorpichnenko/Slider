@@ -18,9 +18,7 @@ class Model {
     const validateFromTo: Options = this.validateFromTo(options);
     const validateMinMaxStep: Options = this.validateMinMaxStep(options);
 
-    this.state = { ...validateOptions };
-    this.state = { ...validateFromTo };
-    this.state = { ...validateMinMaxStep };
+    this.state = { ...validateOptions, ...validateFromTo, ...validateMinMaxStep };
 
     this.observable.notify('newData', this.state);
   }
@@ -70,8 +68,9 @@ class Model {
       options.from = min;
       options.to = min;
     }
+
     if (type === 'double') {
-      if (from >= to && to === max) {
+      if (from >= to) {
         options.from = to - step;
       }
     }

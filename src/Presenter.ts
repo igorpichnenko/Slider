@@ -3,31 +3,23 @@ import { View } from './View';
 import { Options } from './interfaces';
 import { Observable } from './Observable';
 import { standardOptions } from './standardOptions';
-import { Demo } from './Demo';
 
 class Presenter {
   public observable: Observable;
 
-  private view: View;
+  public view: View;
 
-  private demo: Demo;
-
-  private model: Model;
+  public model: Model;
 
   constructor(options: Options) {
     this.observable = new Observable();
     this.model = this.createModel(options);
     this.view = this.createView(this.model.state);
-    this.demo = this.createDemo();
-    this.addSubscribtions();
+    this.bindSubscribe();
   }
 
   public upDateView() {
     this.view.upDateSlider();
-  }
-
-  private createDemo() {
-    return new Demo(this);
   }
 
   public setOptions(options: Partial<Options>): void {
@@ -39,19 +31,21 @@ class Presenter {
     return this.model.state;
   }
 
-  private createModel(options: Options): Model {
+  public createModel(options: Options): Model {
     return new Model(options);
   }
 
-  private createView(options: Options): View {
+  public createView(options: Options): View {
     return new View(options);
   }
 
-  private addSubscribtions(): void {
+  private bindSubscribe(): void {
     this.getNewData = this.getNewData.bind(this);
-
     this.sendNewPosition = this.sendNewPosition.bind(this);
+    this.addSubscribtions();
+  }
 
+  private addSubscribtions(): void {
     this.model.observable.subscribe('newData', this.getNewData);
     this.view.observable.subscribe('newPosition', this.sendNewPosition);
   }
