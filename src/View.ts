@@ -6,13 +6,13 @@ import { Scale } from './Scale';
 import { Bar } from './Bar';
 
 class View {
-  public observable: Observable;
+  public observable: Observable
 
-  private state: ViewState;
+  public state: ViewState;
 
   public element: HTMLElement;
 
-  private slider: HTMLElement;
+  public slider: HTMLElement;
 
   private bar: Bar;
 
@@ -36,7 +36,8 @@ class View {
     this.bar = this.createBar(this.state);
 
     this.upData(this.state);
-    this.addEventListeners();
+    
+    this.bindEventListeners()
   }
 
   private init(options: Options): ViewState {
@@ -84,22 +85,22 @@ class View {
   }
 
   public upData(newState: Partial<ViewState>) {
-    const updatedState: ViewState = {
+    const updataState: ViewState = {
       ...this.state,
       ...newState,
     };
 
-    this.rollers.updateState(updatedState);
-    this.bar.updateState(updatedState);
-    this.scale.updateState(updatedState);
-    this.track.updateState(updatedState);
+    this.rollers.upData(updataState);
+    this.bar.upData(updataState);
+    this.scale.upData(updataState);
+    this.track.upData(updataState);
 
     this.state = {
-      ...updatedState,
+      ...updataState,
     };
   }
 
-  public upDateSlider() {
+  public upDataSlider() {
     this.slider.remove();
     this.slider = this.createSlider(this.state, this.element);
     this.state = this.init(this.state);
@@ -108,18 +109,23 @@ class View {
     this.createTrack(this.state);
     this.bar = this.createBar(this.state);
     this.upData(this.state);
+    this.bindEventListeners()
+  }
+  
+  private bindEventListeners(){
+    
+    this.onTrackClick = this.onTrackClick.bind(this);
+    this.onScaleClick = this.onScaleClick.bind(this);
     this.addEventListeners();
   }
-
+  
   private addEventListeners() {
     const bindMouseDown = this.dragStart.bind(this);
     this.slider.addEventListener('touchstart', bindMouseDown);
     this.slider.addEventListener('mousedown', bindMouseDown);
 
-    this.onTrackClick = this.onTrackClick.bind(this);
+    
     this.slider.addEventListener('click', this.onTrackClick);
-
-    this.onScaleClick = this.onScaleClick.bind(this);
     this.slider.addEventListener('scaleclick', this.onScaleClick);
   }
 
@@ -175,7 +181,6 @@ class View {
     }
     return 'undefined';
   }
-
   private onScaleClick(event: any): void {
     const { value } = event.detail;
     this.updatePosition(value);
@@ -232,7 +237,6 @@ class View {
       }
     }
   }
-
   public convertPxToValue(coordinate: number): number {
     const {
       min, max, step, oneStep, size, orientation,

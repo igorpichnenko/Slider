@@ -17,15 +17,15 @@ class Scale {
     this.checkScale(options, scale);
   }
 
-  public updateState(options: ViewState) {
+  public upData(options: ViewState) {
     const { slider } = options;
     const scale = slider.querySelector('.slider__scale')! as HTMLElement;
 
     this.checkScale(options, scale);
-    this.updateScaleMarker(options);
+    this.updataScaleMarker(options);
   }
 
-  private updateScaleMarker(options: ViewState) {
+  private updataScaleMarker(options: ViewState) {
     const { scalePrefix, isScalePrefix, slider } = options;
     const scaleMarkers = slider.querySelectorAll('.slider__scale-value')! as NodeListOf<Element>;
 
@@ -90,7 +90,7 @@ class Scale {
     fragment.append(scaleMarker);
 
     scaleMarker.innerHTML = value.toString();
-    this.updateScaleMarker(options);
+    this.updataScaleMarker(options);
 
     const offset = this.convertPxToPercent(position, options);
 

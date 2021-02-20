@@ -46,7 +46,7 @@ class Track {
     }
   }
 
-  public updateState(options: ViewState) {
+  public upData(options: ViewState) {
     const { slider } = options;
 
     const outStart = slider.querySelector('.slider__out_start')! as HTMLElement;

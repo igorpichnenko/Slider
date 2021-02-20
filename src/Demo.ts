@@ -16,7 +16,7 @@ class Demo {
     this.init();
   }
 
-  public update(newSetting: Partial<Options>) {
+  public upData(newSetting: Partial<Options>) {
     this.state = { ...this.state, ...newSetting };
     this.initTools();
   }
@@ -25,9 +25,9 @@ class Demo {
     this.createSettings();
     this.initTools();
 
-    this.update = this.update.bind(this);
+    this.upData = this.upData.bind(this);
 
-    this.slider.observable.subscribe('newData', this.update);
+    this.slider.observable.subscribe('newData', this.upData);
   }
 
   private createTools(): HTMLElement {
@@ -206,7 +206,7 @@ class Demo {
         slider.css({ height: `${value}px` });
       }
 
-      this.slider.upDateView();
+      this.slider.upDataView();
     };
 
     inputFrom.value = String(from);
@@ -278,7 +278,7 @@ class Demo {
   private setState(newOptions: Partial<Options>) {
     this.state = { ...this.state, ...newOptions };
     this.slider.setOptions(this.state);
-    this.slider.upDateView();
+    this.slider.upDataView();
   }
 }
 

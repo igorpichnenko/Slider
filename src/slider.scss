@@ -3,11 +3,13 @@
   margin: 0;
   padding: 0;
 }
+body{
+  background-color:  #f8f8f7;
+}
 
 .demo-pages{
   display: flex;
   justify-content: center;
- // align-items: center;
   padding-top: 40px;
 }
 .js-title{
@@ -175,14 +177,12 @@
   color: rgba(31,32,65,0.5);
 }
 .slider_vertical .slider__roller_first:before{
-  //transform: translateX(50%);
   left: 110%;
   top: 150%;
   
 }
 
 .slider_vertical .slider__roller_second:before{
- // transform: translateX(50%);
   left: 110%;
   top: 150%;
 }

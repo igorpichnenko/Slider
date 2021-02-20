@@ -5,13 +5,13 @@ class Bar {
     this.create(options);
   }
 
-  public updateState(options: ViewState) {
+  public upData(options: ViewState) {
     const { slider } = options;
 
     const bar = slider.querySelector('.slider__bar')! as HTMLElement;
 
-    this.updateColor(options, bar);
-    this.updateBar(options, bar);
+    this.updataColor(options, bar);
+    this.updataBar(options, bar);
   }
 
   private create(options: ViewState): void {
@@ -22,11 +22,11 @@ class Bar {
     bar.className = `slider__bar slider__bar_${orientation}`;
 
     slider.append(bar);
-    this.updateColor(options, bar);
-    this.updateBar(options, bar);
+    this.updataColor(options, bar);
+    this.updataBar(options, bar);
   }
 
-  private updateColor(options: ViewState, bar: HTMLElement) {
+  private updataColor(options: ViewState, bar: HTMLElement) {
     const {
       color, isGradient, gradient, gradientDeg,
     } = options;
@@ -64,7 +64,7 @@ class Bar {
     return (value * 100) / size;
   }
 
-  private updateBar(options: ViewState, bar: HTMLElement) {
+  private updataBar(options: ViewState, bar: HTMLElement) {
     const { type, orientation } = options;
 
     const isHorizontal = orientation === 'horizontal';

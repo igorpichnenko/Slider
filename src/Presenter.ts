@@ -18,8 +18,8 @@ class Presenter {
     this.bindSubscribe();
   }
 
-  public upDateView() {
-    this.view.upDateSlider();
+  public upDataView() {
+    this.view.upDataSlider();
   }
 
   public setOptions(options: Partial<Options>): void {
@@ -42,7 +42,7 @@ class Presenter {
   private bindSubscribe(): void {
     this.getNewData = this.getNewData.bind(this);
     this.sendNewPosition = this.sendNewPosition.bind(this);
-    this.addSubscribtions();
+    this.addSubscribtions()
   }
 
   private addSubscribtions(): void {

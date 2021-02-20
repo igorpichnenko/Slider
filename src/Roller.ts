@@ -27,10 +27,10 @@ class Roller {
 
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);
-    this.updateColor(options, rollerFirst, rollerSecond);
+    this.updataColor(options, rollerFirst, rollerSecond);
   }
 
-  private updateColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
+  private updataColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
     const {
       color, isGradient, gradient, gradientDeg,
     } = options;
@@ -64,10 +64,10 @@ class Roller {
       rollerSecond.style.bottom = `${positionTo}%`;
     }
 
-    this.updateOutValue(options, rollerFirst, rollerSecond);
+    this.updataOutValue(options, rollerFirst, rollerSecond);
   }
 
-  public updateState(options: ViewState) {
+  public upData(options: ViewState) {
     const { slider } = options;
 
     const rollerFirst = slider.querySelector('.slider__roller_first')! as HTMLElement;
@@ -76,10 +76,10 @@ class Roller {
 
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);
-    this.updateColor(options, rollerFirst, rollerSecond);
+    this.updataColor(options, rollerFirst, rollerSecond);
   }
 
-  private updateOutValue(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
+  private updataOutValue(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
     const {
       to,
       from,
@@ -104,9 +104,10 @@ class Roller {
       rollerSecond.setAttribute('data-text', '');
     }
     // костыльный метод, в реальной жизни я бы его не использовал
-    const styleFirst = document.head.appendChild(document.createElement('style'));
-    const styleSecond = document.head.appendChild(document.createElement('style'));
+    
     if (isColorOut === true) {
+      const styleFirst = document.head.appendChild(document.createElement('style'));
+    const styleSecond = document.head.appendChild(document.createElement('style'));
       styleFirst.innerHTML = `.slider__roller_first:before {background: ${color}; color: #fff}`;
 
       styleSecond.innerHTML = `.slider__roller_second:before {background: ${gradient}; color: #fff}`;
