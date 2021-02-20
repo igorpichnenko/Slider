@@ -27,9 +27,11 @@ class Bar {
   }
 
   private updateColor(options: ViewState, bar: HTMLElement) {
-    const { color, isGradient, gradient } = options;
+    const {
+      color, isGradient, gradient, gradientDeg,
+    } = options;
     if (isGradient === true) {
-      bar.style.background = `linear-gradient(${color}, ${gradient})`;
+      bar.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
     } else {
       bar.style.background = color;
     }

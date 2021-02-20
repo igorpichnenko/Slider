@@ -45,14 +45,23 @@ class Demo {
     const {
       orientation, isScale, type, isLabel, from, to, min, max, prefix, step,
       color, isScalePrefix, scalePrefix, minMax,
-      fromTo, isTrackPrefix, trackPrefix, isColor,
-      changeColor, isGradient,
+      fromTo, isTrackPrefix, trackPrefix, isColor, gradient, isColorOut,
+      changeColor, isGradient, gradientDeg,
     } = this.state;
 
     const btn = this.demoTools.querySelector('.js-btn')! as HTMLElement;
+    const btnNav = this.demoTools.querySelector('.js-btn-navigate')! as HTMLElement;
+    const btnView = this.demoTools.querySelector('.js-btn-view')! as HTMLElement;
+    const btnPrefix = this.demoTools.querySelector('.js-btn-prefix')! as HTMLElement;
+    const btnColor = this.demoTools.querySelector('.js-btn-color')! as HTMLElement;
     const menu = this.demoTools.querySelector('.js-menu')! as HTMLElement;
+    const menuNav = this.demoTools.querySelector('.js-menu-navigate')! as HTMLElement;
+    const menuView = this.demoTools.querySelector('.js-menu-view')! as HTMLElement;
+    const menuPrefix = this.demoTools.querySelector('.js-menu-prefix')! as HTMLElement;
+    const menuColor = this.demoTools.querySelector('.js-color-setting')! as HTMLElement;
     const isOrientation = this.demoTools.querySelector('.js-orientation')! as HTMLElement;
     const changeScale = this.demoTools.querySelector('.js-isScale')! as HTMLElement;
+    const inputColorOut = this.demoTools.querySelector('.js-isColorOut')! as HTMLElement;
     const label = this.demoTools.querySelector('.js-isLabel')! as HTMLElement;
     const isDouble = this.demoTools.querySelector('.js-isDouble')! as HTMLElement;
     const inputFrom = this.demoTools.querySelector('.js-from')! as HTMLInputElement;
@@ -71,11 +80,25 @@ class Demo {
     const inputIsColor = this.demoTools.querySelector('.js-isColor')! as HTMLInputElement;
     const inputChangeColor = this.demoTools.querySelector('.js-changeColor')! as HTMLInputElement;
     const inputGradient = this.demoTools.querySelector('.js-gradient')! as HTMLInputElement;
+    const inputGradientOut = this.demoTools.querySelector('.js-gradient-out')! as HTMLInputElement;
+    const inputGradientDeg = this.demoTools.querySelector('.js-gradient-deg')! as HTMLInputElement;
+    const inputChangeSize = this.demoTools.querySelector('.js-slider-size')! as HTMLInputElement;
 
     btn.onclick = () => {
       menu.classList.toggle('js-close-menu');
     };
-
+    btnView.onclick = () => {
+      menuView.classList.toggle('js-close-menu');
+    };
+    btnNav.onclick = () => {
+      menuNav.classList.toggle('js-close-menu');
+    };
+    btnColor.onclick = () => {
+      menuColor.classList.toggle('js-close-menu');
+    };
+    btnPrefix.onclick = () => {
+      menuPrefix.classList.toggle('js-close-menu');
+    };
     isOrientation.onchange = () => {
       if (orientation === 'horizontal') {
         this.setState({ orientation: 'vertical' });
@@ -99,6 +122,14 @@ class Demo {
       }
       if (isGradient === false) {
         this.setState({ isGradient: true });
+      }
+    };
+    inputColorOut.onchange = () => {
+      if (isColorOut === true) {
+        this.setState({ isColorOut: false });
+      }
+      if (isColorOut === false) {
+        this.setState({ isColorOut: true });
       }
     };
     changeScale.onchange = () => {
@@ -166,6 +197,18 @@ class Demo {
       this.setState({ prefix: value });
     };
 
+    inputChangeSize.onchange = () => {
+      const value = Number(inputChangeSize.value);
+      const slider = $('.js-toxin-slider');
+      if (orientation === 'horizontal') {
+        slider.css({ width: `${value}px` });
+      } if (orientation === 'vertical') {
+        slider.css({ height: `${value}px` });
+      }
+
+      this.slider.upDateView();
+    };
+
     inputFrom.value = String(from);
 
     inputFrom.onchange = () => {
@@ -204,6 +247,18 @@ class Demo {
     inputColor.onchange = () => {
       const { value } = inputColor;
       this.setState({ color: value });
+    };
+    inputGradientOut.value = String(gradient);
+
+    inputGradientOut.onchange = () => {
+      const { value } = inputGradientOut;
+      this.setState({ gradient: value });
+    };
+    inputGradientDeg.value = String(gradientDeg);
+
+    inputGradientDeg.onchange = () => {
+      const value = Number(inputGradientDeg.value);
+      this.setState({ gradientDeg: value });
     };
 
     inputScalePrefix.value = scalePrefix;

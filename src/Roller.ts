@@ -31,10 +31,12 @@ class Roller {
   }
 
   private updateColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
-    const { color, isGradient, gradient } = options;
+    const {
+      color, isGradient, gradient, gradientDeg,
+    } = options;
     if (isGradient === true) {
-      rollerFirst.style.background = `linear-gradient(${color}, ${gradient})`;
-      rollerSecond.style.background = `linear-gradient(${color}, ${gradient})`;
+      rollerFirst.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+      rollerSecond.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
     } else {
       rollerFirst.style.background = color;
       rollerSecond.style.background = color;
@@ -82,17 +84,32 @@ class Roller {
       to,
       from,
       prefix,
-      isLabel,
+      isLabel, color, gradient,
+      isColorOut,
     } = options;
 
     if (isLabel === true) {
       rollerFirst.setAttribute('data-text', `${from.toLocaleString()}${prefix}`);
 
       rollerSecond.setAttribute('data-text', `${to.toLocaleString()}${prefix}`);
-    } else {
+    }
+    if (isColorOut === true) {
+      rollerFirst.setAttribute('data-text', `${color.toLocaleString()}`);
+
+      rollerSecond.setAttribute('data-text', `${gradient.toLocaleString()}`);
+    }
+    if (isLabel === false) {
       rollerFirst.setAttribute('data-text', '');
 
       rollerSecond.setAttribute('data-text', '');
+    }
+    // костыльный метод, в реальной жизни я бы его не использовал
+    const styleFirst = document.head.appendChild(document.createElement('style'));
+    const styleSecond = document.head.appendChild(document.createElement('style'));
+    if (isColorOut === true) {
+      styleFirst.innerHTML = `.slider__roller_first:before {background: ${color}; color: #fff}`;
+
+      styleSecond.innerHTML = `.slider__roller_second:before {background: ${gradient}; color: #fff}`;
     }
   }
 

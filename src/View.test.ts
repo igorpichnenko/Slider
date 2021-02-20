@@ -28,6 +28,8 @@ describe('View', () => {
     changeColor: true,
     isGradient: true,
     gradient: 'purple',
+    gradientDeg: 45,
+    isColorOut: false,
   };
 
   beforeEach(() => {

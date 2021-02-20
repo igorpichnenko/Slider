@@ -32,7 +32,7 @@ class Track {
       min, max, from, to, minMax, fromTo, isTrackPrefix,
     } = options;
     let { trackPrefix } = options;
-    if (isTrackPrefix === true) {
+    if (isTrackPrefix === false) {
       trackPrefix = '';
     }
 

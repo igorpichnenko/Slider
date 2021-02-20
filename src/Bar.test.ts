@@ -26,6 +26,8 @@ describe('Bar', () => {
     changeColor: true,
     isGradient: true,
     gradient: 'purple',
+    gradientDeg: 45,
+    isColorOut: false,
   };
 
   const wrap: HTMLElement = document.createElement('div');

@@ -20,6 +20,8 @@ interface Options {
   changeColor: boolean,
   isGradient: boolean,
   gradient: string,
+  gradientDeg: number,
+  isColorOut: boolean,
 }
 
 interface ViewState extends Options{

@@ -1,11 +1,14 @@
 
-
 *{
   margin: 0;
   padding: 0;
 }
-.js-checkbox{
- 
+
+.demo-pages{
+  display: flex;
+  justify-content: center;
+ // align-items: center;
+  padding-top: 40px;
 }
 .js-title{
   margin-bottom: 10px;
@@ -40,8 +43,51 @@
   outline: unset;
   margin-left: 100px;
 }
-.js-menu{
+
+ .js-btn-color, .js-btn-prefix, .js-btn-view, .js-btn-top,.js-btn-right, .js-btn-bottom, .js-btn-left, .js-btn-navigate {
+   border: unset;
+   margin-top: 10px;
+  font-family: Montserrat,Arial, sans-serif;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: normal;
+  color: rgba(31,32,65,0.5);
+  background-color: transparent;
+  outline: unset;
+  margin-left: 40px;
+   
+ }
+.js-btn-view{
+  margin-left: 0px;
+}
+.js-menu, .js-color-setting, .js-menu-prefix, .js-menu-view ,.js-menu-navigate{
   display: none;
+ 
+}
+.js-menu-navigate{
+  position: relative;
+  height: 60px;
+  padding-top: 20px;
+}
+
+.js-btn-top,.js-btn-right, .js-btn-bottom, .js-btn-left{
+  position: absolute;
+}
+
+.js-btn-left{
+  top: 50%;
+  left: -40%;
+}
+.js-btn-bottom{
+  bottom: 0;
+}
+
+.js-btn-right{
+  top: 50%;
+  right: 10%;
+
+
 }
 .js-close-menu{
   display: block;
@@ -51,8 +97,7 @@
 }
 
 .js-toxin-slider{
-  margin-top: 40px;
-  margin-left: 30px;
+
   width: 266px;
   height: 266px;
   position: relative;
@@ -64,11 +109,14 @@
 .js-scale-prefix, .js-track-prefix{
   width: 30px;
 }
-
+.js-gradient-deg{
+  width: 20px;
+}
 .js-label_checkbox{
   display: flex;
 }
 .slider {
+ 
   position: relative;
  height: 100%;
 //  width: 100%;
@@ -104,19 +152,19 @@
   content: attr(data-text);
   position: absolute;
   transform: translateY(-125%);
-  
   font-family: Montserrat,Arial, sans-serif;
   font-style: normal;
   font-size: 12px;
   line-height: 15px;
   font-weight: normal;
   color: rgba(31,32,65,0.5);
+  border-radius: 5px;
 }
 
 .slider__roller_second:before {
   content: attr(data-text);
   position: absolute;
-  
+  border-radius: 5px;
   transform: translateY(-125%);
   
   font-family: Montserrat,Arial, sans-serif;
@@ -170,18 +218,18 @@
 
 .slider__out_start{
   left: -5px;
-  bottom: 12px;
+  bottom: 22px;
 }
 .slider__out_end{
   right: -5px;
-  bottom: 12px;
+  bottom: 22px;
 }
 .slider_vertical .slider__out_start{
-  bottom: -15px;
+  bottom: -22px;
   left: -2px;
 }
 .slider_vertical .slider__out_end{
-  top: -15px;
+  top: -22px;
   left: -2px;
 }
 

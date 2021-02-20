@@ -22,6 +22,8 @@ const standardOptions: Options = {
   changeColor: true,
   isGradient: true,
   gradient: 'purple',
+  gradientDeg: 45,
+  isColorOut: false,
 };
 
 export { standardOptions };
