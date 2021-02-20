@@ -2,8 +2,7 @@ import { Model } from './Model';
 import { Options } from './interfaces';
 
 const standardOptions: Options = {
-  selector: '.js-toxin-slider',
-  orientation: 'horizontal',
+  orientation: 'vertical',
   type: 'double',
   min: 0,
   max: 10,
@@ -16,12 +15,19 @@ const standardOptions: Options = {
   color: 'orange',
   isScalePrefix: true,
   scalePrefix: '₽',
+  minMax: false,
+  fromTo: false,
+  isTrackPrefix: true,
+  trackPrefix: '₽',
+  isColor: true,
+  changeColor: true,
+  isGradient: true,
+  gradient: 'purple',
 };
 
 describe('Model', () => {
   test('Model is created with default options', () => {
     const model: Model = new Model(standardOptions);
-    expect(model.state.selector).toBe(standardOptions.selector);
     expect(model.state.orientation).toBe(standardOptions.orientation);
     expect(model.state.type).toBe(standardOptions.type);
     expect(model.state.min).toBe(standardOptions.min);

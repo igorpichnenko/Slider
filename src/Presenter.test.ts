@@ -4,9 +4,10 @@ import { Options } from './interfaces';
 import { Presenter } from './Presenter';
 
 describe('Presenter', () => {
+  let wrap: HTMLElement;
+  let presenter: Presenter;
   const standardOptions: Options = {
-    selector: '.js-toxin-slider',
-    orientation: 'horizontal',
+    orientation: 'vertical',
     type: 'double',
     min: 0,
     max: 10,
@@ -19,16 +20,21 @@ describe('Presenter', () => {
     color: 'orange',
     isScalePrefix: true,
     scalePrefix: '₽',
+    minMax: false,
+    fromTo: false,
+    isTrackPrefix: true,
+    trackPrefix: '₽',
+    isColor: true,
+    changeColor: true,
+    isGradient: true,
+    gradient: 'purple',
   };
 
-  let presenter: Presenter;
-
   beforeEach(() => {
-    const wrap: HTMLElement = document.createElement('div');
+    wrap = document.createElement('div');
     wrap.className = 'js-toxin-slider';
     document.body.append(wrap);
-
-    presenter = new Presenter(standardOptions);
+    presenter = new Presenter(standardOptions, wrap);
   });
 
   afterEach(() => {
@@ -41,7 +47,7 @@ describe('Presenter', () => {
   });
 
   test('should create a view', () => {
-    presenter.createView(standardOptions);
+    presenter.createView(standardOptions, wrap);
     expect(presenter.view.upData).toBeDefined();
   });
 
@@ -106,10 +112,5 @@ describe('Presenter', () => {
     const isScale = true;
     presenter.setOptions({ isScale });
     expect(presenter.getOptions().isScale).toBe(isScale);
-  });
-  test('should get a new one selector the model', () => {
-    const selector = '.js-toxin-slider';
-    presenter.setOptions({ selector });
-    expect(presenter.getOptions().selector).toBe(selector);
   });
 });

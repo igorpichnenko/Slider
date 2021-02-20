@@ -93,6 +93,7 @@ class Scale {
     this.updateScaleMarker(options);
 
     const offset = this.convertPxToPercent(position, options);
+
     if (orientation === 'horizontal') {
       scaleMarker.style.left = `${offset}%`;
     } else {

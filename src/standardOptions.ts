@@ -1,7 +1,6 @@
 import { Options } from './interfaces';
 
 const standardOptions: Options = {
-  selector: '.js-toxin-slider',
   orientation: 'vertical',
   type: 'double',
   min: 0,
@@ -15,6 +14,14 @@ const standardOptions: Options = {
   color: 'orange',
   isScalePrefix: true,
   scalePrefix: '₽',
+  minMax: false,
+  fromTo: false,
+  isTrackPrefix: true,
+  trackPrefix: '₽',
+  isColor: true,
+  changeColor: true,
+  isGradient: true,
+  gradient: 'purple',
 };
 
 export { standardOptions };

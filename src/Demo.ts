@@ -5,11 +5,14 @@ import { demoTemplate } from './demoTemplate';
 class Demo {
   public state: Options;
 
+  private element: JQuery<HTMLElement>;
+
   private demoTools: HTMLElement;
 
-  constructor(private slider: Presenter) {
+  constructor(private slider: Presenter, element: JQuery<HTMLElement>) {
     this.state = slider.getOptions();
     this.demoTools = this.createTools();
+    this.element = element;
     this.init();
   }
 
@@ -34,19 +37,20 @@ class Demo {
   }
 
   private createSettings() {
-    const { selector } = this.state;
-
-    const slider = document.querySelector(selector)! as HTMLElement;
-    slider.append(this.demoTools);
+    this.element.append(this.demoTools);
     this.demoTools.insertAdjacentHTML('beforeend', demoTemplate);
   }
 
   private initTools() {
     const {
       orientation, isScale, type, isLabel, from, to, min, max, prefix, step,
-      color, isScalePrefix, scalePrefix,
+      color, isScalePrefix, scalePrefix, minMax,
+      fromTo, isTrackPrefix, trackPrefix, isColor,
+      changeColor, isGradient,
     } = this.state;
 
+    const btn = this.demoTools.querySelector('.js-btn')! as HTMLElement;
+    const menu = this.demoTools.querySelector('.js-menu')! as HTMLElement;
     const isOrientation = this.demoTools.querySelector('.js-orientation')! as HTMLElement;
     const changeScale = this.demoTools.querySelector('.js-isScale')! as HTMLElement;
     const label = this.demoTools.querySelector('.js-isLabel')! as HTMLElement;
@@ -59,7 +63,18 @@ class Demo {
     const inputStep = this.demoTools.querySelector('.js-step')! as HTMLInputElement;
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
     const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
-    const inputScalePrefix = this.demoTools.querySelector('.js-scale-prifix')! as HTMLInputElement;
+    const inputScalePrefix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
+    const inputMinMax = this.demoTools.querySelector('.js-minMax')! as HTMLInputElement;
+    const inputFromTo = this.demoTools.querySelector('.js-fromTo')! as HTMLInputElement;
+    const inputIsTrackPrefix = this.demoTools.querySelector('.js-isTrackPrefix')! as HTMLInputElement;
+    const inputTrackPrefix = this.demoTools.querySelector('.js-track-prefix')! as HTMLInputElement;
+    const inputIsColor = this.demoTools.querySelector('.js-isColor')! as HTMLInputElement;
+    const inputChangeColor = this.demoTools.querySelector('.js-changeColor')! as HTMLInputElement;
+    const inputGradient = this.demoTools.querySelector('.js-gradient')! as HTMLInputElement;
+
+    btn.onclick = () => {
+      menu.classList.toggle('js-close-menu');
+    };
 
     isOrientation.onchange = () => {
       if (orientation === 'horizontal') {
@@ -69,12 +84,21 @@ class Demo {
         this.setState({ orientation: 'horizontal' });
       }
     };
+
     inputIsPrefix.onchange = () => {
       if (isScalePrefix === true) {
         this.setState({ isScalePrefix: false });
       }
       if (isScalePrefix === false) {
         this.setState({ isScalePrefix: true });
+      }
+    };
+    inputGradient.onchange = () => {
+      if (isGradient === true) {
+        this.setState({ isGradient: false });
+      }
+      if (isGradient === false) {
+        this.setState({ isGradient: true });
       }
     };
     changeScale.onchange = () => {
@@ -100,7 +124,41 @@ class Demo {
         this.setState({ type: 'single' });
       }
     };
-
+    inputMinMax.onchange = () => {
+      if (minMax === false) {
+        this.setState({ minMax: true });
+      } else {
+        this.setState({ minMax: false });
+      }
+    };
+    inputFromTo.onchange = () => {
+      if (fromTo === false) {
+        this.setState({ fromTo: true });
+      } else {
+        this.setState({ fromTo: false });
+      }
+    };
+    inputIsTrackPrefix.onchange = () => {
+      if (isTrackPrefix === false) {
+        this.setState({ isTrackPrefix: true });
+      } else {
+        this.setState({ isTrackPrefix: false });
+      }
+    };
+    inputIsColor.onchange = () => {
+      if (isColor === true) {
+        this.setState({ isColor: false });
+      } else {
+        this.setState({ isColor: true });
+      }
+    };
+    inputChangeColor.onchange = () => {
+      if (changeColor === true) {
+        this.setState({ changeColor: false });
+      } else {
+        this.setState({ changeColor: true });
+      }
+    };
     inputMarker.value = prefix;
 
     inputMarker.onchange = () => {
@@ -153,6 +211,12 @@ class Demo {
     inputScalePrefix.onchange = () => {
       const { value } = inputScalePrefix;
       this.setState({ scalePrefix: value });
+    };
+    inputTrackPrefix.value = trackPrefix;
+
+    inputTrackPrefix.onchange = () => {
+      const { value } = inputTrackPrefix;
+      this.setState({ trackPrefix: value });
     };
   }
 

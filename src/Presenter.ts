@@ -11,10 +11,10 @@ class Presenter {
 
   public model: Model;
 
-  constructor(options: Options) {
+  constructor(options: Options, element: HTMLElement) {
     this.observable = new Observable();
     this.model = this.createModel(options);
-    this.view = this.createView(this.model.state);
+    this.view = this.createView(this.model.state, element);
     this.bindSubscribe();
   }
 
@@ -35,8 +35,8 @@ class Presenter {
     return new Model(options);
   }
 
-  public createView(options: Options): View {
-    return new View(options);
+  public createView(options: Options, element: HTMLElement): View {
+    return new View(options, element);
   }
 
   private bindSubscribe(): void {

@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { View } from './View';
 import { Options } from './interfaces';
 
-describe('Track', () => {
+describe('Bar', () => {
   const standardOptions: Options = {
     orientation: 'horizontal',
     type: 'double',
@@ -39,17 +39,9 @@ describe('Track', () => {
     document.body.innerHTML = '';
   });
 
-  test('track horizontal is initialized and visible', () => {
-    const track = element.querySelector('.slider__track_horizontal');
-    expect(track).toBeVisible();
-    expect(view.convertPxToValue).toBeDefined();
-  });
+  test('bar horizontal is initialized and visible visible', () => {
+    const bar = element.querySelector('.slider__bar_horizontal');
 
-  test('clicking on the scale should update the coordinates', () => {
-    const spy = jest.spyOn(view, 'convertPxToValue');
-    const track = element.querySelector('.slider__track') as HTMLElement;
-    track.click();
-
-    expect(spy).toBeCalled();
+    expect(bar).toBeVisible();
   });
 });

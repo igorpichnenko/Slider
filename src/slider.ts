@@ -1,19 +1,26 @@
 import { standardOptions } from './standardOptions';
 import { Demo } from './Demo';
-// import { Options } from './interfaces';
+import { Options } from './interfaces';
 import { Presenter } from './Presenter';
 
-/*
-const newOptions: Options = {
-  min: 0,
-  max: 10,
-  step: 1,
-  from: 3,
-  to: 7,
+declare global {
+  interface Window {
+    $: JQuery;
+  }
+
+  interface JQuery {
+    slider(options: Options): Presenter
+  }
+}
+
+$.fn.slider = function init(options: Options): Presenter {
+  const presenter = new Presenter(options, this.get(0));
+
+  return presenter;
 };
-*/
 
 $(document).ready(() => {
-  const presenter = new Presenter(standardOptions);
-  new Demo(presenter);
+  const wrapper = $('.js-toxin-slider');
+
+  new Demo($('.js-toxin-slider').slider(standardOptions), wrapper);
 });

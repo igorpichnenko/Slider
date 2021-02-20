@@ -1,5 +1,4 @@
 interface Options {
-  selector: string,
   orientation: string,
   type: string,
   min: number,
@@ -13,13 +12,20 @@ interface Options {
   color: string,
   isScalePrefix: boolean,
   scalePrefix: string,
+  minMax: boolean,
+  fromTo: boolean,
+  isTrackPrefix: boolean,
+  trackPrefix: string,
+  isColor: boolean,
+  changeColor: boolean,
+  isGradient: boolean,
+  gradient: string,
 }
 
 interface ViewState extends Options{
 
   size: number,
   oneStep: number,
-  sliderPos: number,
   slider: HTMLElement,
 
 }

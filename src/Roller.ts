@@ -5,18 +5,6 @@ class Roller {
     this.create(options);
   }
 
-  public updateState(options: ViewState) {
-    const { slider } = options;
-
-    const rollerFirst = slider.querySelector('.slider__roller_first')! as HTMLElement;
-
-    const rollerSecond = slider.querySelector('.slider__roller_second')! as HTMLElement;
-
-    this.moveRollersAtValue(options, rollerFirst, rollerSecond);
-    this.toggleRollers(options, rollerSecond);
-    this.updateColor(options, rollerFirst, rollerSecond);
-  }
-
   private create(options: ViewState) {
     const { slider, orientation } = options;
 
@@ -43,9 +31,14 @@ class Roller {
   }
 
   private updateColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
-    const { color } = options;
-    rollerFirst.style.background = `${color}`;
-    rollerSecond.style.background = `${color}`;
+    const { color, isGradient, gradient } = options;
+    if (isGradient === true) {
+      rollerFirst.style.background = `linear-gradient(${color}, ${gradient})`;
+      rollerSecond.style.background = `linear-gradient(${color}, ${gradient})`;
+    } else {
+      rollerFirst.style.background = color;
+      rollerSecond.style.background = color;
+    }
   }
 
   private moveRollersAtValue(options: ViewState, rollerFirst: HTMLElement,
@@ -70,6 +63,18 @@ class Roller {
     }
 
     this.updateOutValue(options, rollerFirst, rollerSecond);
+  }
+
+  public updateState(options: ViewState) {
+    const { slider } = options;
+
+    const rollerFirst = slider.querySelector('.slider__roller_first')! as HTMLElement;
+
+    const rollerSecond = slider.querySelector('.slider__roller_second')! as HTMLElement;
+
+    this.moveRollersAtValue(options, rollerFirst, rollerSecond);
+    this.toggleRollers(options, rollerSecond);
+    this.updateColor(options, rollerFirst, rollerSecond);
   }
 
   private updateOutValue(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {

@@ -93,7 +93,7 @@ class Model {
 
   private validateOptions(options: Options): Options {
     const {
-      selector, orientation, type, min, max, step, from, to, prefix, isLabel,
+      orientation, type, min, max, step, from, to, prefix, isLabel,
       isScale, color, isScalePrefix, scalePrefix,
     } = options;
 
@@ -116,8 +116,6 @@ class Model {
     if (type === undefined) options.type = standardOptions.type;
 
     if (orientation === undefined) options.orientation = standardOptions.orientation;
-
-    if (selector === undefined) options.selector = standardOptions.selector;
 
     if (isScale === undefined) options.isScale = standardOptions.isScale;
 

@@ -27,30 +27,43 @@ class Bar {
   }
 
   private updateColor(options: ViewState, bar: HTMLElement) {
-    const { color } = options;
-    bar.style.background = `${color}`;
+    const { color, isGradient, gradient } = options;
+    if (isGradient === true) {
+      bar.style.background = `linear-gradient(${color}, ${gradient})`;
+    } else {
+      bar.style.background = color;
+    }
   }
 
   private getRollerPositions(options: ViewState): number[] {
-    const { slider, orientation } = options;
+    const { slider } = options;
 
     const rollers = slider.querySelectorAll('.slider__roller');
 
-    const calculatePosition = (element: Element): number => {
-      const side: 'left' | 'top' = orientation === 'horizontal' ? 'left' : 'top';
-      const width = Number.parseInt(getComputedStyle(element).width, 10);
-
-      return element.getBoundingClientRect()[side] + width / 2;
-    };
-
-    const rollersPositions = [calculatePosition(rollers[0]),
-      calculatePosition(rollers[1])];
+    const rollersPositions = [this.calculatePosition(rollers[0], options),
+      this.calculatePosition(rollers[1], options)];
 
     return rollersPositions.sort((a, b) => a - b);
   }
 
+  private calculatePosition(element: Element, options: ViewState): number {
+    const { orientation } = options;
+
+    const side: 'left' | 'top' = orientation === 'horizontal' ? 'left' : 'top';
+    const width = Number.parseInt(getComputedStyle(element).width, 10);
+
+    return element.getBoundingClientRect()[side] + width / 2;
+  }
+
+  private convertPxToProcent(value: number, options: ViewState): number {
+    const {
+      size,
+    } = options;
+    return (value * 100) / size;
+  }
+
   private updateBar(options: ViewState, bar: HTMLElement) {
-    const { sliderPos, type, orientation } = options;
+    const { type, orientation } = options;
 
     const isHorizontal = orientation === 'horizontal';
 
@@ -61,6 +74,8 @@ class Bar {
     const rollerPos = this.getRollerPositions(options);
 
     const isSingle = type === 'single';
+
+    const sliderPos = this.getNewSliderPos(options);
 
     if (isSingle) {
       if (isHorizontal) {
@@ -85,11 +100,17 @@ class Bar {
     }
   }
 
-  private convertPxToProcent(value: number, options: ViewState): number {
-    const {
-      size,
-    } = options;
-    return (value * 100) / size;
+  private getNewSliderPos(options: ViewState): number {
+    const { orientation, slider } = options;
+
+    let position = 0;
+
+    if (orientation === 'horizontal') {
+      position = slider.getBoundingClientRect().left;
+    } else {
+      position = slider.getBoundingClientRect().top;
+    }
+    return position;
   }
 }
 

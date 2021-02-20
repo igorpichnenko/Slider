@@ -10,24 +10,28 @@ class View {
 
   private state: ViewState;
 
+  public element: HTMLElement;
+
   private slider: HTMLElement;
 
   private bar: Bar;
-
-  private options: Options;
 
   private rollers: Roller;
 
   private scale: Scale;
 
-  constructor(options: Options) {
+  private track: Track;
+
+  constructor(options: Options, element: HTMLElement) {
     this.observable = new Observable();
-    this.slider = this.createSlider(options);
-    this.options = options;
+
+    this.element = element;
+
+    this.slider = this.createSlider(options, element);
     this.state = this.init(options);
 
     this.scale = this.createScale(this.state);
-    this.createTrack(this.state);
+    this.track = this.createTrack(this.state);
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
 
@@ -37,12 +41,11 @@ class View {
 
   private init(options: Options): ViewState {
     const size = this.getSliderSize(options);
-    const sliderPos = this.getSliderPosition(options);
     const oneStep = this.getOneStep(options);
     const { slider } = this;
 
     return {
-      ...options, size, sliderPos, oneStep, slider,
+      ...options, size, oneStep, slider,
     };
   }
 
@@ -54,8 +57,8 @@ class View {
     return this.getSliderSize(options) / result;
   }
 
-  private createTrack(options: ViewState): void {
-    new Track(options);
+  private createTrack(options: ViewState): Track {
+    return new Track(options);
   }
 
   private createBar(options: ViewState): Bar {
@@ -70,29 +73,26 @@ class View {
     return new Scale(options);
   }
 
-  public createSlider(options: Options): HTMLElement {
-    const { selector, orientation } = options;
+  public createSlider(options: Options, element: HTMLElement): HTMLElement {
+    const { orientation } = options;
     const slider = document.createElement('div');
 
     slider.className = `slider slider_${orientation}`;
-    document.querySelector(selector)!.append(slider);
+    element.append(slider);
 
     return slider;
   }
 
   public upData(newState: Partial<ViewState>) {
-    this.options.orientation = String(newState.orientation);
-    const sliderPos = this.getSliderPosition(this.options);
-
     const updatedState: ViewState = {
       ...this.state,
       ...newState,
-      ...{ sliderPos },
     };
 
     this.rollers.updateState(updatedState);
     this.bar.updateState(updatedState);
     this.scale.updateState(updatedState);
+    this.track.updateState(updatedState);
 
     this.state = {
       ...updatedState,
@@ -101,7 +101,7 @@ class View {
 
   public upDateSlider() {
     this.slider.remove();
-    this.slider = this.createSlider(this.state);
+    this.slider = this.createSlider(this.state, this.element);
     this.state = this.init(this.state);
     this.rollers = this.createRollers(this.state);
     this.scale = this.createScale(this.state);
@@ -202,6 +202,8 @@ class View {
       from, to, type, step,
     } = this.state;
 
+    this.convertValueToColor(value);
+
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
     const isSingle = type === 'single';
@@ -236,7 +238,7 @@ class View {
       min, max, step, oneStep, size, orientation,
     } = this.state;
 
-    const sliderPos = this.getSliderPosition(this.options);
+    const sliderPos = this.getSliderPosition();
 
     const sliderEndPos = sliderPos + size;
 
@@ -255,14 +257,40 @@ class View {
     return value;
   }
 
-  private getSliderPosition(options: Options): number {
-    const { orientation } = options;
+  private convertValueToColor(value: number) {
+    let { color, gradient } = this.state;
+    const { max, isColor, changeColor } = this.state;
+    const val = value / max;
+    if (isColor === true) {
+      let palitra = 0;
+      let grPalitra = 0;
+      if (changeColor === false) {
+        palitra = Math.round(val * 255 * 255 * 255);
+        grPalitra = Math.round(val * 255 * 254 * 254);
+      } else {
+        palitra = Math.round(val * 256 * 256 * 255);
+        grPalitra = Math.round(val * 254 * 254 * 254);
+      }
+      const correctGradient = Math.abs(grPalitra);
+      const correct = Math.abs(palitra);
+      const setColor = correct.toString(16);
+      const setGradient = correctGradient.toString(16);
+      color = `#${setColor}`;
+      gradient = `#${setGradient}`;
+
+      this.observable.notify('newPosition', { color });
+      this.observable.notify('newPosition', { gradient });
+    }
+  }
+
+  private getSliderPosition(): number {
+    const { orientation, slider } = this.state;
     let position = 0;
 
     if (orientation === 'horizontal') {
-      position = this.slider.getBoundingClientRect().left;
+      position = slider.getBoundingClientRect().left;
     } else {
-      position = this.slider.getBoundingClientRect().top;
+      position = slider.getBoundingClientRect().top;
     }
 
     return position;
