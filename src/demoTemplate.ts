@@ -1,6 +1,6 @@
 const demoTemplate = `
-   <button class="js-btn" type="button">Menu</button>
-  <div class="js-menu">
+   <button class="js-btn js-btn-main" type="button">Menu</button>
+  <div class="js-menu js-menu-main">
   <h4  class="js-title">Панель управления</h4>
   <div class="js-items">
    <label class="js-labels js-label_checkbox">V/H Вид
@@ -13,13 +13,9 @@ const demoTemplate = `
    </label>
    </div>
    
-   <button class="js-btn-view">Настройки отображения</button>
-   <div class="js-menu-view">
-   <div class="js-items">
-   <label class="js-labels js-label_checkbox">Показать/Скрыть Шкалу
-   <input type="checkbox" class="js-checkbox js-inputs js-isScale" name="scale"/>
-   </label>
-     </div>
+   <button class="js-btn js-btn-view">Настройки отображения</button>
+   <div class="js-menu js-menu-view">
+
    <div class="js-items">
    <label class="js-labels js-label_checkbox">Показать/Скрыть Тултип
    <input type="checkbox" class="js-checkbox js-inputs js-isLabel" name="label"/>
@@ -35,13 +31,36 @@ const demoTemplate = `
    <input type="checkbox" class="js-checkbox js-inputs js-fromTo" name="fromTo"/>
    </label>
    </div>
+
     <div class="js-items">
    <label class="js-labels js-label_checkbox">Выводить цвета
-   <input type="checkbox" class="js-checkbox js-inputs js-isColorOut" name="fromTo"/>
+   <input type="checkbox" class="js-checkbox js-inputs js-isColorOut" name="color"/>
+   </label>
+   </div>
+  
+   
+   
+   <button type="button" class="js-btn js-btn-scale">Управление шкалой</button>
+   <div class="js-menu js-menu-scale">
+       <div class="js-items">
+   <label class="js-labels js-label_checkbox">Оставить только деления
+   <input type="checkbox" class="js-checkbox js-inputs js-division" name="division"/>
+   </label>
+   </div>
+      <div class="js-items">
+   <label class="js-labels js-label_checkbox">Показать/Скрыть Шкалу
+   <input type="checkbox" class="js-checkbox js-inputs js-isScale" name="scale"/>
+   </label>
+     </div>
+    <div class="js-items">
+   <label class="js-labels js-label_checkbox">Показать/скрыть деления
+   <input type="checkbox" class="js-checkbox js-inputs js-isDivision" name="division"/>
    </label>
    </div>
    </div>
    
+   
+   </div>
     <div class="js-items">
    <label class="js-labels">Max
    <input type="number" class="js-inputs js-max" name="max"/>
@@ -69,8 +88,8 @@ const demoTemplate = `
    </div>
    
    
-   <button class="js-btn-color" type="button">Настройки цвета</button>
-   <div class="js-color-setting">
+   <button class="js-btn js-btn-color" type="button">Настройки цвета</button>
+   <div class="js-menu js-color-setting">
      <div class="js-items">
    <label class="js-labels js-label_checkbox">Откл/Вкл изменение цвета
    <input type="checkbox" class="js-checkbox js-inputs js-isColor" name="isColor"/>
@@ -104,8 +123,8 @@ const demoTemplate = `
    </div>
    
    
-   <button type="button" class="js-btn-prefix">Настройки Prefix</button>
-   <div class="js-menu-prefix">
+   <button type="button" class="js-btn js-btn-prefix">Настройки Prefix</button>
+   <div class="js-menu js-menu-prefix">
       <div class="js-items">
    <label class="js-labels js-label_checkbox">Показать/Скрыть префикс шкалы
    <input type="checkbox" class="js-checkbox js-inputs js-isPrefix" name="isPrefix"/>
@@ -132,11 +151,13 @@ const demoTemplate = `
    </label>
    </div>
    </div>
-   <button type="button" class="js-btn-navigate">Меню навигации</button>
-   <div class="js-menu-navigate">
+   
+   <button type="button" class="js-btn js-btn-navigate">Доп. инструменты</button>
+   <div class="js-menu js-menu-navigate">
     <div class="js-items">
    <label class="js-labels">Размер
-<input type="number" class="js-inputs js-slider-size" name="js-size"/>
+<input value="250" type="range" min="250" max="800" class="js-inputs js-slider-size" name="js-size"/>
+
    </label>
    </div>
    

@@ -11,7 +11,7 @@ class Presenter {
 
   public model: Model;
 
-  constructor(options: Options, element: HTMLElement) {
+  constructor(options: Options, public element: HTMLElement) {
     this.observable = new Observable();
     this.model = this.createModel(options);
     this.view = this.createView(this.model.state, element);
@@ -42,7 +42,7 @@ class Presenter {
   private bindSubscribe(): void {
     this.getNewData = this.getNewData.bind(this);
     this.sendNewPosition = this.sendNewPosition.bind(this);
-    this.addSubscribtions()
+    this.addSubscribtions();
   }
 
   private addSubscribtions(): void {

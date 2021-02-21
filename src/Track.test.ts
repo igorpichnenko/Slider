@@ -28,6 +28,9 @@ describe('Track', () => {
     gradient: 'purple',
     gradientDeg: 45,
     isColorOut: false,
+    onlyDivisions: false,
+    isDivision: true,
+    allColors: {},
   };
 
   const wrap: HTMLElement = document.createElement('div');

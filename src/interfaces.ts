@@ -22,6 +22,9 @@ interface Options {
   gradient: string,
   gradientDeg: number,
   isColorOut: boolean,
+  onlyDivisions: boolean,
+  isDivision: boolean,
+  allColors: {[index: string]: string}
 }
 
 interface ViewState extends Options{
@@ -29,7 +32,6 @@ interface ViewState extends Options{
   size: number,
   oneStep: number,
   slider: HTMLElement,
-
 }
 
 export { Options, ViewState };

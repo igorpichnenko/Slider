@@ -20,7 +20,7 @@ $.fn.slider = function init(options: Options): Presenter {
 };
 
 $(document).ready(() => {
-  const wrapper = $('.js-toxin-slider');
+  const $wrapper = $('.js-toxin-slider');
 
-  new Demo($('.js-toxin-slider').slider(standardOptions), wrapper);
+  new Demo($wrapper.slider(standardOptions));
 });

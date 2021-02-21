@@ -1,6 +1,6 @@
 import { ViewState } from './interfaces';
 
-class Roller {
+class Rollers {
   constructor(options: ViewState) {
     this.create(options);
   }
@@ -84,33 +84,42 @@ class Roller {
       to,
       from,
       prefix,
-      isLabel, color, gradient,
-      isColorOut,
+      isLabel, gradient,
+      isColorOut, allColors,
     } = options;
+    const { color } = options;
 
     if (isLabel === true) {
       rollerFirst.setAttribute('data-text', `${from.toLocaleString()}${prefix}`);
 
       rollerSecond.setAttribute('data-text', `${to.toLocaleString()}${prefix}`);
     }
-    if (isColorOut === true) {
-      rollerFirst.setAttribute('data-text', `${color.toLocaleString()}`);
 
-      rollerSecond.setAttribute('data-text', `${gradient.toLocaleString()}`);
+    let newColor = allColors[color];
+    let newGradient = allColors[gradient];
+
+    if (newGradient === undefined) {
+      newGradient = gradient;
+    }
+    if (newColor === undefined) {
+      newColor = color;
+    }
+
+    if (isColorOut === true) {
+      rollerFirst.setAttribute('data-text', `${newColor.toLocaleString()}`);
+
+      rollerSecond.setAttribute('data-text', `${newGradient.toLocaleString()}`);
     }
     if (isLabel === false) {
       rollerFirst.setAttribute('data-text', '');
 
       rollerSecond.setAttribute('data-text', '');
     }
-    // костыльный метод, в реальной жизни я бы его не использовал
-    
-    if (isColorOut === true) {
-      const styleFirst = document.head.appendChild(document.createElement('style'));
-    const styleSecond = document.head.appendChild(document.createElement('style'));
-      styleFirst.innerHTML = `.slider__roller_first:before {background: ${color}; color: #fff}`;
 
-      styleSecond.innerHTML = `.slider__roller_second:before {background: ${gradient}; color: #fff}`;
+    if (isColorOut === true) {
+      document.documentElement.style.setProperty('--first-bg', ` ${color}`);
+      document.documentElement.style.setProperty('--second-bg', ` ${gradient}`);
+      document.documentElement.style.setProperty('--before-color', '#fff');
     }
   }
 
@@ -146,4 +155,4 @@ class Roller {
   }
 }
 
-export { Roller };
+export { Rollers };

@@ -26,16 +26,32 @@ class Scale {
   }
 
   private updataScaleMarker(options: ViewState) {
-    const { scalePrefix, isScalePrefix, slider } = options;
-    const scaleMarkers = slider.querySelectorAll('.slider__scale-value')! as NodeListOf<Element>;
-
+    const {
+      scalePrefix, isScalePrefix, onlyDivisions, slider,color,isDivision
+    } = options;
+  
+    const scaleMarkers = slider.querySelectorAll<HTMLElement>('.slider__scale-value')!;
     scaleMarkers.forEach((scaleMarker) => {
       if (isScalePrefix === true) {
         scaleMarker.setAttribute('data-text', `${scalePrefix}`);
       } else {
         scaleMarker.setAttribute('data-text', '');
       }
+
+      if (onlyDivisions === true) {
+        scaleMarker.setAttribute('data-text', '');
+        scaleMarker.style.fontSize = '0';
+      } else {
+        
+        scaleMarker.style.fontSize = '12px';
+      }
     });
+    document.documentElement.style.setProperty('--scale-color', ` ${color}`);
+    if (isDivision === true){
+    document.documentElement.style.setProperty('--scale-before', "");
+    }else {
+      document.documentElement.style.setProperty('--scale-before', "none");
+    }
   }
 
   private checkScale(options: ViewState, scale: HTMLElement) {

@@ -30,6 +30,9 @@ describe('Presenter', () => {
     gradient: 'purple',
     gradientDeg: 45,
     isColorOut: false,
+    onlyDivisions: false,
+    isDivision: true,
+    allColors: {},
   };
 
   beforeEach(() => {

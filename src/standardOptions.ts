@@ -1,4 +1,5 @@
 import { Options } from './interfaces';
+import { allColors } from './color';
 
 const standardOptions: Options = {
   orientation: 'vertical',
@@ -24,6 +25,9 @@ const standardOptions: Options = {
   gradient: 'purple',
   gradientDeg: 45,
   isColorOut: false,
+  onlyDivisions: false,
+  isDivision: true,
+  allColors,
 };
 
 export { standardOptions };

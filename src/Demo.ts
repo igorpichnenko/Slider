@@ -3,16 +3,13 @@ import { Options } from './interfaces';
 import { demoTemplate } from './demoTemplate';
 
 class Demo {
-  public state: Options;
+  public state: Options
 
-  private element: JQuery<HTMLElement>;
+  public demoTools: HTMLElement;
 
-  private demoTools: HTMLElement;
-
-  constructor(private slider: Presenter, element: JQuery<HTMLElement>) {
+  constructor(private slider: Presenter) {
     this.state = slider.getOptions();
     this.demoTools = this.createTools();
-    this.element = element;
     this.init();
   }
 
@@ -37,7 +34,7 @@ class Demo {
   }
 
   private createSettings() {
-    this.element.append(this.demoTools);
+    this.slider.element.append(this.demoTools);
     this.demoTools.insertAdjacentHTML('beforeend', demoTemplate);
   }
 
@@ -47,14 +44,17 @@ class Demo {
       color, isScalePrefix, scalePrefix, minMax,
       fromTo, isTrackPrefix, trackPrefix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
+      onlyDivisions, isDivision,
     } = this.state;
 
-    const btn = this.demoTools.querySelector('.js-btn')! as HTMLElement;
+    const btn = this.demoTools.querySelector('.js-btn-main')! as HTMLElement;
+    const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLElement;
     const btnNav = this.demoTools.querySelector('.js-btn-navigate')! as HTMLElement;
     const btnView = this.demoTools.querySelector('.js-btn-view')! as HTMLElement;
     const btnPrefix = this.demoTools.querySelector('.js-btn-prefix')! as HTMLElement;
     const btnColor = this.demoTools.querySelector('.js-btn-color')! as HTMLElement;
-    const menu = this.demoTools.querySelector('.js-menu')! as HTMLElement;
+    const menu = this.demoTools.querySelector('.js-menu-main')! as HTMLElement;
+    const menuScale = this.demoTools.querySelector('.js-menu-scale')! as HTMLElement;
     const menuNav = this.demoTools.querySelector('.js-menu-navigate')! as HTMLElement;
     const menuView = this.demoTools.querySelector('.js-menu-view')! as HTMLElement;
     const menuPrefix = this.demoTools.querySelector('.js-menu-prefix')! as HTMLElement;
@@ -75,6 +75,8 @@ class Demo {
     const inputScalePrefix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
     const inputMinMax = this.demoTools.querySelector('.js-minMax')! as HTMLInputElement;
     const inputFromTo = this.demoTools.querySelector('.js-fromTo')! as HTMLInputElement;
+    const inputDivision = this.demoTools.querySelector('.js-division')! as HTMLInputElement;
+    const inputIsDivision = this.demoTools.querySelector('.js-isDivision')! as HTMLInputElement;
     const inputIsTrackPrefix = this.demoTools.querySelector('.js-isTrackPrefix')! as HTMLInputElement;
     const inputTrackPrefix = this.demoTools.querySelector('.js-track-prefix')! as HTMLInputElement;
     const inputIsColor = this.demoTools.querySelector('.js-isColor')! as HTMLInputElement;
@@ -92,6 +94,9 @@ class Demo {
     };
     btnNav.onclick = () => {
       menuNav.classList.toggle('js-close-menu');
+    };
+    btnScale.onclick = () => {
+      menuScale.classList.toggle('js-close-menu');
     };
     btnColor.onclick = () => {
       menuColor.classList.toggle('js-close-menu');
@@ -158,8 +163,10 @@ class Demo {
     inputMinMax.onchange = () => {
       if (minMax === false) {
         this.setState({ minMax: true });
+        
       } else {
         this.setState({ minMax: false });
+        
       }
     };
     inputFromTo.onchange = () => {
@@ -167,6 +174,20 @@ class Demo {
         this.setState({ fromTo: true });
       } else {
         this.setState({ fromTo: false });
+      }
+    };
+    inputDivision.onchange = () => {
+      if (onlyDivisions === false) {
+        this.setState({ onlyDivisions: true });
+      } else {
+        this.setState({ onlyDivisions: false });
+      }
+    };
+    inputIsDivision.onchange = () => {
+      if (isDivision === false) {
+        this.setState({ isDivision: true });
+      } else {
+        this.setState({ isDivision: false });
       }
     };
     inputIsTrackPrefix.onchange = () => {
@@ -197,8 +218,10 @@ class Demo {
       this.setState({ prefix: value });
     };
 
+    // временые инпуты меняющие размер
     inputChangeSize.onchange = () => {
       const value = Number(inputChangeSize.value);
+
       const slider = $('.js-toxin-slider');
       if (orientation === 'horizontal') {
         slider.css({ width: `${value}px` });

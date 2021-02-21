@@ -1,12 +1,12 @@
 import { Options, ViewState } from './interfaces';
 import { Observable } from './Observable';
-import { Roller } from './Roller';
+import { Rollers } from './Rollers';
 import { Track } from './Track';
 import { Scale } from './Scale';
 import { Bar } from './Bar';
 
 class View {
-  public observable: Observable
+  public observable: Observable;
 
   public state: ViewState;
 
@@ -16,7 +16,7 @@ class View {
 
   private bar: Bar;
 
-  private rollers: Roller;
+  private rollers: Rollers;
 
   private scale: Scale;
 
@@ -30,14 +30,14 @@ class View {
     this.slider = this.createSlider(options, element);
     this.state = this.init(options);
 
-    this.scale = this.createScale(this.state);
-    this.track = this.createTrack(this.state);
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
+    this.track = this.createTrack(this.state);
+    this.scale = this.createScale(this.state);
 
     this.upData(this.state);
-    
-    this.bindEventListeners()
+
+    this.bindEventListeners();
   }
 
   private init(options: Options): ViewState {
@@ -66,8 +66,8 @@ class View {
     return new Bar(options);
   }
 
-  private createRollers(options: ViewState): Roller {
-    return new Roller(options);
+  private createRollers(options: ViewState): Rollers {
+    return new Rollers(options);
   }
 
   private createScale(options: ViewState): Scale {
@@ -106,25 +106,23 @@ class View {
     this.state = this.init(this.state);
     this.rollers = this.createRollers(this.state);
     this.scale = this.createScale(this.state);
-    this.createTrack(this.state);
+    this.track = this.createTrack(this.state);
     this.bar = this.createBar(this.state);
     this.upData(this.state);
-    this.bindEventListeners()
+    this.bindEventListeners();
   }
-  
-  private bindEventListeners(){
-    
+
+  private bindEventListeners() {
     this.onTrackClick = this.onTrackClick.bind(this);
     this.onScaleClick = this.onScaleClick.bind(this);
     this.addEventListeners();
   }
-  
+
   private addEventListeners() {
     const bindMouseDown = this.dragStart.bind(this);
     this.slider.addEventListener('touchstart', bindMouseDown);
     this.slider.addEventListener('mousedown', bindMouseDown);
 
-    
     this.slider.addEventListener('click', this.onTrackClick);
     this.slider.addEventListener('scaleclick', this.onScaleClick);
   }
@@ -181,18 +179,18 @@ class View {
     }
     return 'undefined';
   }
+
   private onScaleClick(event: any): void {
     const { value } = event.detail;
     this.updatePosition(value);
   }
 
   private onTrackClick(event: any): void {
-    event.preventDefault();
-    const { target } = event;
     const { orientation } = this.state;
-
-    if (!/track|bar/.test(target.className)) return;
+    const { target } = event;
     let coordinate = 0;
+    if (/scale/.test(target.className)) return;
+
     if (orientation === 'horizontal') {
       coordinate = event.clientX;
     } else {
@@ -237,6 +235,7 @@ class View {
       }
     }
   }
+
   public convertPxToValue(coordinate: number): number {
     const {
       min, max, step, oneStep, size, orientation,
