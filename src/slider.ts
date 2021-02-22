@@ -1,5 +1,4 @@
 import { standardOptions } from './standardOptions';
-import { Demo } from './Demo';
 import { Options } from './interfaces';
 import { Presenter } from './Presenter';
 
@@ -9,18 +8,14 @@ declare global {
   }
 
   interface JQuery {
-    slider(options: Options): Presenter
+    slider(options?: Partial<Options>): Presenter
   }
 }
 
-$.fn.slider = function init(options: Options): Presenter {
-  const presenter = new Presenter(options, this.get(0));
+$.fn.slider = function init(options?: Partial<Options>): Presenter {
+  const newOptions: Options = { ...standardOptions, ...options };
 
-  return presenter;
+  const slider: Presenter = new Presenter(newOptions, this.get(0));
+
+  return slider;
 };
-
-$(document).ready(() => {
-  const $wrapper = $('.js-toxin-slider');
-
-  new Demo($wrapper.slider(standardOptions));
-});

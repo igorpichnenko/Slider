@@ -2,7 +2,7 @@ import { Options } from './interfaces';
 import { allColors } from './color';
 
 const standardOptions: Options = {
-  orientation: 'vertical',
+  orientation: 'horizontal',
   type: 'double',
   min: 0,
   max: 10,
@@ -10,6 +10,7 @@ const standardOptions: Options = {
   from: 3,
   to: 7,
   prefix: '₽',
+  isPrefix: true,
   isLabel: true,
   isScale: true,
   color: 'orange',
@@ -26,7 +27,6 @@ const standardOptions: Options = {
   gradientDeg: 45,
   isColorOut: false,
   onlyDivisions: false,
-  isDivision: true,
   allColors,
 };
 

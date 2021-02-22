@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for demoTemplate.ts</title>
+    <title>Code coverage report for color.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> demoTemplate.ts</h1>
+        <h1><a href="index.html">All files</a> color.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -214,7 +214,26 @@
 <a name='L155'></a><a href='#L155'>155</a>
 <a name='L156'></a><a href='#L156'>156</a>
 <a name='L157'></a><a href='#L157'>157</a>
-<a name='L158'></a><a href='#L158'>158</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -371,163 +390,201 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const demoTemplate = `
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const allColors = {
+  '#f0f8ff': 'aliceblue',
+  '#faebd7': 'antiquewhite',
+  '#00ffff': 'aqua',
+  '#7fffd4': 'aquamarine',
+  '#f0ffff': 'azure',
+  '#f5f5dc': 'beige',
+  '#ffe4c4': 'bisque',
+  '#000000': 'black',
+  '#ffebcd': 'blanchedalmond',
+  '#0000ff': 'blue',
+  '#8a2be2': 'blueviolet',
+  '#a52a2a': 'brown',
+  '#deb887': 'burlywood',
+  '#5f9ea0': 'cadetblue',
+  '#7fff00': 'chartreuse',
+  '#d2691e': 'chocolate',
+  '#ff7f50': 'coral',
+  '#6495ed': 'cornflowerblue',
+  '#fff8dc': 'cornsilk',
+  '#dc143c': 'crimson',
+  '#00008b': 'darkblue',
+  '#008b8b': 'darkcyan',
+  '#b8860b': 'darkgoldenrod',
+  '#a9a9a9': 'darkgray',
+  '#006400': 'darkgreen',
+  '#bdb76b': 'darkkhaki',
+  '#8b008b': 'darkmagenta',
+  '#556b2f': 'darkolivegreen',
+  '#ff8c00': 'darkorange',
+  '#9932cc': 'darkorchid',
+  '#8b0000': 'darkred',
+  '#e9967a': 'darksalmon',
+  '#8fbc8f': 'darkseagreen',
+  '#483d8b': 'darkslateblue',
+  '#5ddfbe': 'aquamarine',
+  '#198000': 'green',
+  '#2f4f4f': 'darkslategray',
+  '#00ced1': 'darkturquoise',
+  '#9400d3': 'darkviolet',
+  '#ff1493': 'deeppink',
+  '#00bfff': 'deepskyblue',
+  '#696969': 'dimgray',
+  '#1e90ff': 'dodgerblue',
+  '#b22222': 'firebrick',
+  '#fffaf0': 'floralwhite',
+  '#228b22': 'forestgreen',
+  '#ff00ff': 'fuchsia',
+  '#dcdcdc': 'gainsboro',
+  '#f8f8ff': 'ghostwhite',
+  '#daa520': 'goldenrod',
+  '#ffd700': 'gold',
+  '#808080': 'gray',
+  '#008000': 'green',
+  '#adff2f': 'greenyellow',
+  '#f0fff0': 'honeydew',
+  '#ff69b4': 'hotpink',
+  '#cd5c5c': 'indianred',
+  '#4b0082': 'indigo',
+  '#fffff0': 'ivory',
+  '#f0e68c': 'khaki',
+  '#fff0f5': 'lavenderblush',
+  '#e6e6fa': 'lavender',
+  '#7cfc00': 'lawngreen',
+  '#fffacd': 'lemonchiffon',
+  '#add8e6': 'lightblue',
+  '#f08080': 'lightcoral',
+  '#e0ffff': 'lightcyan',
+  '#fafad2': 'lightgoldenrodyellow',
+  '#d3d3d3': 'lightgray',
+  '#90ee90': 'lightgreen',
+  '#ffb6c1': 'lightpink',
+  '#ffa07a': 'lightsalmon',
+  '#20b2aa': 'lightseagreen',
+  '#87cefa': 'lightskyblue',
+  '#778899': 'lightslategray',
+  '#b0c4de': 'lightsteelblue',
+  '#ffffe0': 'lightyellow',
+  '#00ff00': 'lime',
+  '#32cd32': 'limegreen',
+  '#faf0e6': 'linen',
+  '#800000': 'maroon',
+  '#66cdaa': 'mediumaquamarine',
+  '#0000cd': 'mediumblue',
+  '#ba55d3': 'mediumorchid',
+  '#9370db': 'mediumpurple',
+  '#3cb371': 'mediumseagreen',
+  '#7b68ee': 'mediumslateblue',
+  '#00fa9a': 'mediumspringgreen',
+  '#48d1cc': 'mediumturquoise',
+  '#c71585': 'mediumvioletred',
+  '#191970': 'midnightblue',
+  '#f5fffa': 'mintcream',
+  '#ffe4e1': 'mistyrose',
+  '#ffe4b5': 'moccasin',
+  '#ffdead': 'navajowhite',
+  '#000080': 'navy',
+  '#fdf5e6': 'oldlace',
+  '#808000': 'olive',
+  '#6b8e23': 'olivedrab',
+  '#ffa500': 'orange',
+  '#ff4500': 'orangered',
+  '#da70d6': 'orchid',
+  '#eee8aa': 'palegoldenrod',
+  '#98fb98': 'palegreen',
+  '#afeeee': 'paleturquoise',
+  '#db7093': 'palevioletred',
+  '#ffefd5': 'papayawhip',
+  '#ffdab9': 'peachpuff',
+  '#cd853f': 'peru',
+  '#ffc0cb': 'pink',
+  '#dda0dd': 'plum',
+  '#b0e0e6': 'powderblue',
+  '#800080': 'purple',
+  '#663399': 'rebeccapurple',
+  '#ff0000': 'red',
+  '#bc8f8f': 'rosybrown',
+  '#4169e1': 'royalblue',
+  '#8b4513': 'saddlebrown',
+  '#fa8072': 'salmon',
+  '#f4a460': 'sandybrown',
+  '#2e8b57': 'seagreen',
+  '#fff5ee': 'seashell',
+  '#a0522d': 'sienna',
+  '#c0c0c0': 'silver',
+  '#87ceeb': 'skyblue',
+  '#6a5acd': 'slateblue',
+  '#708090': 'slategray',
+  '#fffafa': 'snow',
+  '#00ff7f': 'springgreen',
+  '#4682b4': 'steelblue',
+  '#d2b48c': 'tan',
+  '#008080': 'teal',
+  '#d8bfd8': 'thistle',
+  '#ff6347': 'tomato',
+  '#40e0d0': 'turquoise',
+  '#ee82ee': 'violet',
+  '#f5deb3': 'wheat',
+  '#ffffff': 'white',
+  '#f5f5f5': 'whitesmoke',
+  '#ffff00': 'yellow',
+  '#9acd32': 'yellowgreen',
+  '#e58000': 'orange',
+  '#cc0000': 'bostonred',
+  '#330000': 'sealbrown',
+  '#7f8000': 'olive',
+  '#990000': 'crimsonred',
+  '#b28000': 'pirategold',
+  '#4c8000': 'limeade',
+  '#660000': 'maroon',
+  '#6c6000': 'olive',
+  '#6a55c3': 'slateblue',
+  '#67c8f6': 'lightskyblue',
+  '#492f5c': 'grayishpurple',
+  '#5cd1ec': 'turquoiseblue',
+  '#13ff42': 'electricgreen',
+  '#1da426': 'vinegreen',
+  '#2fdbc0': 'turquoise',
+  '#386748': 'pokergreen',
+  '#59a9c1': 'maximum blue',
+  '#146666': 'bluestone',
+  '#c80993': 'strongpink',
+  '#fa0bf8': 'vividmagenta',
+  '#190132': 'verydark',
+  '#320262': 'verydarkviolet',
+  '#4b0397': 'darkviolet',
+  '#af0861': 'darkpink',
+  '#e10ac6': 'vividmagenta',
+  '#96072e': 'darkpink',
+  '#6404ca': 'strongviolet',
+  '#7d05fc': 'vividviolet',
+  '#320265': 'verydarkviolet',
+  '#0': "default",
+};
 &nbsp;
-&nbsp;
-  &lt;h4  class="js-title"&gt;Панель управления&lt;/h4&gt;
-  &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;V/H Вид
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-orientation" name="orientation" /&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-     &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Range/Single
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isDouble" name="double"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   
-   &lt;button class="js-btn js-btn-view"&gt;Настройки отображения&lt;/button&gt;
-   &lt;div class="js-menu js-menu-view"&gt;
-&nbsp;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать/Скрыть Tooltip
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isLabel" name="label"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать min/max
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-minMax" name="minMax"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать from/to
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-fromTo" name="fromTo"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-&nbsp;
-    &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Выводить цвета/значения
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isColorOut" name="color"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-  
-   
-   
-   &lt;button type="button" class="js-btn js-btn-scale"&gt;Управление шкалой&lt;/button&gt;
-   &lt;div class="js-menu js-menu-scale"&gt;
-       &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Оставить только деления
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-division" name="division"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-      &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать/Скрыть Шкалу
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isScale" name="scale"/&gt;
-   &lt;/label&gt;
-     &lt;/div&gt;
-   &lt;/div&gt;
-   
-   
-   &lt;/div&gt;
-    &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Max
-   &lt;input type="number" class="js-inputs js-max" name="max"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;To
-   &lt;input type="number" class="js-inputs js-to" name="to"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;From
-   &lt;input type="number" class="js-inputs js-from" name="from" /&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Min
-   &lt;input type="number" class="js-inputs js-min" name="min"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Шаг
-   &lt;input type="number" class="js-inputs js-step" name="step"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   
-   
-   &lt;button class="js-btn js-btn-color" type="button"&gt;Настройки цвета&lt;/button&gt;
-   &lt;div class="js-menu js-color-setting"&gt;
-     &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Откл/Вкл изменение цвета
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isColor" name="isColor"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Сменить оттенок
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-changeColor" name="isColor"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Градиент вкл/откл
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-gradient" name="isColor"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Цвет
-&lt;input type="text" class="js-inputs js-color" name="color"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Градиент
-&lt;input type="text" class="js-inputs js-gradient-out" name="gradient"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Угол градиента
-&lt;input type="number" class="js-inputs js-gradient-deg" name="gradient"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;/div&gt;
-   
-   
-   &lt;button type="button" class="js-btn js-btn-prefix"&gt;Настройки Prefix&lt;/button&gt;
-   &lt;div class="js-menu js-menu-prefix"&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать/Скрыть префикс tooltip
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isPrefixTool" name="isPrefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-      &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать/Скрыть префикс шкалы
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isPrefix" name="isPrefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать/Скрыть префикс track
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isTrackPrefix" name="isPrefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Префикс tooltip
-   &lt;input type="text" class="js-inputs js-marker" name="marker"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-      &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Префикс шкалы
-&lt;input type="text" class="js-inputs js-scale-prefix" name="js-prefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-    &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Префикс track
-&lt;input type="text" class="js-inputs js-track-prefix" name="js-prefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;/div&gt;
-  
-  `;
-&nbsp;
-export { demoTemplate };
+export { allColors };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

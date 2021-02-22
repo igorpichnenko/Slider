@@ -9,25 +9,81 @@ class Rollers {
     const { slider, orientation } = options;
 
     const rollerFirst = document.createElement('div');
-    rollerFirst.classList.add(
-      'slider__roller',
-      'slider__roller_first',
-      `slider__roller_${orientation}`,
-    );
+    rollerFirst.className = `slider__roller slider__roller_first slider__roller_${orientation}`;
+
     const rollerSecond = document.createElement('div');
 
-    rollerSecond.classList.add(
-      'slider__roller_second',
-      'slider__roller',
-      `slider__roller_${orientation}`,
-    );
+    rollerSecond.className = `slider__roller_second
+      slider__roller
+      slider__roller_${orientation}`;
 
     slider.append(rollerFirst);
     slider.append(rollerSecond);
 
+    this.createTooltip(rollerFirst, rollerSecond, options);
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);
     this.updataColor(options, rollerFirst, rollerSecond);
+  }
+
+  private createTooltip(rollerFirst: HTMLElement, rollerSecond: HTMLElement, options: ViewState) {
+    const { orientation } = options;
+
+    const fistTooltip = document.createElement('div');
+    fistTooltip.className = `slider__tooltip_first slider__tooltip slider__tooltip_${orientation}`;
+    const secondTooltip = document.createElement('div');
+    secondTooltip.className = `slider__tooltip_second slider__tooltip slider__tooltip_${orientation}`;
+
+    rollerFirst.append(fistTooltip);
+    rollerSecond.append(secondTooltip);
+
+    this.updataOutTooltip(fistTooltip, secondTooltip, options);
+  }
+
+  private updataOutTooltip(fistTooltip: HTMLElement,
+    secondTooltip: HTMLElement, options: ViewState) {
+    const {
+      to,
+      from, color,
+      prefix, isPrefix,
+      isLabel, gradient,
+      isColorOut, allColors,
+    } = options;
+
+    if (isLabel === true) {
+      if (isPrefix === true) {
+        fistTooltip.innerText = `${from.toLocaleString()}${prefix}`;
+        secondTooltip.innerText = `${to.toLocaleString()}${prefix}`;
+      } if (isPrefix === false) {
+        fistTooltip.innerText = from.toLocaleString();
+        secondTooltip.innerText = to.toLocaleString();
+      }
+    }
+
+    let newColor = allColors[color];
+    let newGradient = allColors[gradient];
+
+    if (newGradient === undefined) {
+      newGradient = gradient;
+    }
+
+    if (newColor === undefined) {
+      newColor = color;
+    }
+
+    if (isColorOut === true) {
+      fistTooltip.innerText = newColor.toLocaleString();
+      secondTooltip.innerText = newGradient.toLocaleString();
+
+      fistTooltip.style.backgroundColor = `${color}`;
+      secondTooltip.style.backgroundColor = `${gradient}`;
+      fistTooltip.style.color = 'white';
+      secondTooltip.style.color = 'white';
+    }
+    if (isLabel === false) {
+      fistTooltip.innerText = '';
+      secondTooltip.innerText = '';
+    }
   }
 
   private updataColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
@@ -63,64 +119,20 @@ class Rollers {
       rollerFirst.style.bottom = `${positionFrom}%`;
       rollerSecond.style.bottom = `${positionTo}%`;
     }
-
-    this.updataOutValue(options, rollerFirst, rollerSecond);
   }
 
   public upData(options: ViewState) {
     const { slider } = options;
 
     const rollerFirst = slider.querySelector('.slider__roller_first')! as HTMLElement;
-
     const rollerSecond = slider.querySelector('.slider__roller_second')! as HTMLElement;
+    const fistTooltip = slider.querySelector('.slider__tooltip_first')! as HTMLElement;
+    const secondTooltip = slider.querySelector('.slider__tooltip_second')! as HTMLElement;
 
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);
     this.updataColor(options, rollerFirst, rollerSecond);
-  }
-
-  private updataOutValue(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
-    const {
-      to,
-      from,
-      prefix,
-      isLabel, gradient,
-      isColorOut, allColors,
-    } = options;
-    const { color } = options;
-
-    if (isLabel === true) {
-      rollerFirst.setAttribute('data-text', `${from.toLocaleString()}${prefix}`);
-
-      rollerSecond.setAttribute('data-text', `${to.toLocaleString()}${prefix}`);
-    }
-
-    let newColor = allColors[color];
-    let newGradient = allColors[gradient];
-
-    if (newGradient === undefined) {
-      newGradient = gradient;
-    }
-    if (newColor === undefined) {
-      newColor = color;
-    }
-
-    if (isColorOut === true) {
-      rollerFirst.setAttribute('data-text', `${newColor.toLocaleString()}`);
-
-      rollerSecond.setAttribute('data-text', `${newGradient.toLocaleString()}`);
-    }
-    if (isLabel === false) {
-      rollerFirst.setAttribute('data-text', '');
-
-      rollerSecond.setAttribute('data-text', '');
-    }
-
-    if (isColorOut === true) {
-      document.documentElement.style.setProperty('--first-bg', ` ${color}`);
-      document.documentElement.style.setProperty('--second-bg', ` ${gradient}`);
-      document.documentElement.style.setProperty('--before-color', '#fff');
-    }
+    this.updataOutTooltip(fistTooltip, secondTooltip, options);
   }
 
   private convertValueToPx(value: number, options: ViewState): number {

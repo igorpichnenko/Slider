@@ -27,9 +27,9 @@ class Scale {
 
   private updataScaleMarker(options: ViewState) {
     const {
-      scalePrefix, isScalePrefix, onlyDivisions, slider,color,isDivision
+      scalePrefix, isScalePrefix, onlyDivisions, slider, color,
     } = options;
-  
+
     const scaleMarkers = slider.querySelectorAll<HTMLElement>('.slider__scale-value')!;
     scaleMarkers.forEach((scaleMarker) => {
       if (isScalePrefix === true) {
@@ -42,16 +42,10 @@ class Scale {
         scaleMarker.setAttribute('data-text', '');
         scaleMarker.style.fontSize = '0';
       } else {
-        
         scaleMarker.style.fontSize = '12px';
       }
     });
     document.documentElement.style.setProperty('--scale-color', ` ${color}`);
-    if (isDivision === true){
-    document.documentElement.style.setProperty('--scale-before', "");
-    }else {
-      document.documentElement.style.setProperty('--scale-before', "none");
-    }
   }
 
   private checkScale(options: ViewState, scale: HTMLElement) {

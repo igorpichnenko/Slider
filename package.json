@@ -5,7 +5,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack/prod.config.js",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack/dev.config.js --open",
-    "test": "jest --watch",
+    "test": "jest --watch --collect-coverage",
     "deploy": "gh-pages -d dist",
     "lint": "eslint src/**.ts --fix"
   },

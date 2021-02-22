@@ -2,8 +2,9 @@ import { Presenter } from './Presenter';
 import { Options } from './interfaces';
 import { demoTemplate } from './demoTemplate';
 
+
 class Demo {
-  public state: Options
+  public state: Options;
 
   public demoTools: HTMLElement;
 
@@ -30,11 +31,18 @@ class Demo {
   private createTools(): HTMLElement {
     const demoTools = document.createElement('div');
     demoTools.className = 'demoTools';
+
     return demoTools;
   }
 
   private createSettings() {
-    this.slider.element.append(this.demoTools);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'js-wrapper';
+    const pages = document.querySelector('.js-demo-pages') as HTMLElement;
+    pages.append(wrapper);
+    wrapper.append(this.slider.element);
+
+    wrapper.append(this.demoTools);
     this.demoTools.insertAdjacentHTML('beforeend', demoTemplate);
   }
 
@@ -44,57 +52,81 @@ class Demo {
       color, isScalePrefix, scalePrefix, minMax,
       fromTo, isTrackPrefix, trackPrefix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
-      onlyDivisions, isDivision,
+      onlyDivisions, isPrefix,
     } = this.state;
 
-    const btn = this.demoTools.querySelector('.js-btn-main')! as HTMLElement;
-    const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLElement;
-    const btnNav = this.demoTools.querySelector('.js-btn-navigate')! as HTMLElement;
-    const btnView = this.demoTools.querySelector('.js-btn-view')! as HTMLElement;
-    const btnPrefix = this.demoTools.querySelector('.js-btn-prefix')! as HTMLElement;
-    const btnColor = this.demoTools.querySelector('.js-btn-color')! as HTMLElement;
-    const menu = this.demoTools.querySelector('.js-menu-main')! as HTMLElement;
+    const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
+    
+    const btnView = this.demoTools.querySelector('.js-btn-view')! as HTMLButtonElement;
+    
+    const btnPrefix = this.demoTools.querySelector('.js-btn-prefix')! as HTMLButtonElement;
+    
+    const btnColor = this.demoTools.querySelector('.js-btn-color')! as HTMLButtonElement
+    
     const menuScale = this.demoTools.querySelector('.js-menu-scale')! as HTMLElement;
-    const menuNav = this.demoTools.querySelector('.js-menu-navigate')! as HTMLElement;
+    
     const menuView = this.demoTools.querySelector('.js-menu-view')! as HTMLElement;
+   
     const menuPrefix = this.demoTools.querySelector('.js-menu-prefix')! as HTMLElement;
+    
     const menuColor = this.demoTools.querySelector('.js-color-setting')! as HTMLElement;
+    
     const isOrientation = this.demoTools.querySelector('.js-orientation')! as HTMLElement;
+    
     const changeScale = this.demoTools.querySelector('.js-isScale')! as HTMLElement;
+    
     const inputColorOut = this.demoTools.querySelector('.js-isColorOut')! as HTMLElement;
+    
     const label = this.demoTools.querySelector('.js-isLabel')! as HTMLElement;
+    
     const isDouble = this.demoTools.querySelector('.js-isDouble')! as HTMLElement;
+    
     const inputFrom = this.demoTools.querySelector('.js-from')! as HTMLInputElement;
+    
     const inputTo = this.demoTools.querySelector('.js-to')! as HTMLInputElement;
+    
     const inputMin = this.demoTools.querySelector('.js-min')! as HTMLInputElement;
+    
     const inputMax = this.demoTools.querySelector('.js-max')! as HTMLInputElement;
+    
     const inputMarker = this.demoTools.querySelector('.js-marker')! as HTMLInputElement;
+    
     const inputStep = this.demoTools.querySelector('.js-step')! as HTMLInputElement;
+    
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
+    
     const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
+    
     const inputScalePrefix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
+    
     const inputMinMax = this.demoTools.querySelector('.js-minMax')! as HTMLInputElement;
+    
     const inputFromTo = this.demoTools.querySelector('.js-fromTo')! as HTMLInputElement;
+    
     const inputDivision = this.demoTools.querySelector('.js-division')! as HTMLInputElement;
-    const inputIsDivision = this.demoTools.querySelector('.js-isDivision')! as HTMLInputElement;
+    
     const inputIsTrackPrefix = this.demoTools.querySelector('.js-isTrackPrefix')! as HTMLInputElement;
+    
+    const inputIsToolPrefix = this.demoTools.querySelector('.js-isPrefixTool')! as HTMLInputElement;
+    
     const inputTrackPrefix = this.demoTools.querySelector('.js-track-prefix')! as HTMLInputElement;
+    
     const inputIsColor = this.demoTools.querySelector('.js-isColor')! as HTMLInputElement;
+    
     const inputChangeColor = this.demoTools.querySelector('.js-changeColor')! as HTMLInputElement;
+    
     const inputGradient = this.demoTools.querySelector('.js-gradient')! as HTMLInputElement;
+    
     const inputGradientOut = this.demoTools.querySelector('.js-gradient-out')! as HTMLInputElement;
+    
     const inputGradientDeg = this.demoTools.querySelector('.js-gradient-deg')! as HTMLInputElement;
+    
     const inputChangeSize = this.demoTools.querySelector('.js-slider-size')! as HTMLInputElement;
 
-    btn.onclick = () => {
-      menu.classList.toggle('js-close-menu');
-    };
     btnView.onclick = () => {
       menuView.classList.toggle('js-close-menu');
     };
-    btnNav.onclick = () => {
-      menuNav.classList.toggle('js-close-menu');
-    };
+    
     btnScale.onclick = () => {
       menuScale.classList.toggle('js-close-menu');
     };
@@ -104,6 +136,9 @@ class Demo {
     btnPrefix.onclick = () => {
       menuPrefix.classList.toggle('js-close-menu');
     };
+    
+    /**     чекбоксы    **/
+    
     isOrientation.onchange = () => {
       if (orientation === 'horizontal') {
         this.setState({ orientation: 'vertical' });
@@ -121,6 +156,16 @@ class Demo {
         this.setState({ isScalePrefix: true });
       }
     };
+    
+    inputIsToolPrefix.onchange = () => {
+      if (isPrefix === true) {
+        this.setState({ isPrefix: false });
+      }
+      if (isPrefix === false) {
+        this.setState({ isPrefix: true });
+      }
+    };
+    
     inputGradient.onchange = () => {
       if (isGradient === true) {
         this.setState({ isGradient: false });
@@ -128,7 +173,8 @@ class Demo {
       if (isGradient === false) {
         this.setState({ isGradient: true });
       }
-    };
+    }
+    
     inputColorOut.onchange = () => {
       if (isColorOut === true) {
         this.setState({ isColorOut: false });
@@ -137,6 +183,7 @@ class Demo {
         this.setState({ isColorOut: true });
       }
     };
+    
     changeScale.onchange = () => {
       if (isScale === false) {
         this.setState({ isScale: true });
@@ -160,15 +207,15 @@ class Demo {
         this.setState({ type: 'single' });
       }
     };
+    
     inputMinMax.onchange = () => {
       if (minMax === false) {
         this.setState({ minMax: true });
-        
       } else {
         this.setState({ minMax: false });
-        
       }
     };
+    
     inputFromTo.onchange = () => {
       if (fromTo === false) {
         this.setState({ fromTo: true });
@@ -176,6 +223,7 @@ class Demo {
         this.setState({ fromTo: false });
       }
     };
+    
     inputDivision.onchange = () => {
       if (onlyDivisions === false) {
         this.setState({ onlyDivisions: true });
@@ -183,13 +231,7 @@ class Demo {
         this.setState({ onlyDivisions: false });
       }
     };
-    inputIsDivision.onchange = () => {
-      if (isDivision === false) {
-        this.setState({ isDivision: true });
-      } else {
-        this.setState({ isDivision: false });
-      }
-    };
+    
     inputIsTrackPrefix.onchange = () => {
       if (isTrackPrefix === false) {
         this.setState({ isTrackPrefix: true });
@@ -197,6 +239,7 @@ class Demo {
         this.setState({ isTrackPrefix: false });
       }
     };
+    
     inputIsColor.onchange = () => {
       if (isColor === true) {
         this.setState({ isColor: false });
@@ -204,6 +247,7 @@ class Demo {
         this.setState({ isColor: true });
       }
     };
+    
     inputChangeColor.onchange = () => {
       if (changeColor === true) {
         this.setState({ changeColor: false });
@@ -211,27 +255,16 @@ class Demo {
         this.setState({ changeColor: true });
       }
     };
-    inputMarker.value = prefix;
+    
+    //**     инпуты    **/
+    
+     inputMarker.value = prefix;
 
     inputMarker.onchange = () => {
       const { value } = inputMarker;
       this.setState({ prefix: value });
     };
-
-    // временые инпуты меняющие размер
-    inputChangeSize.onchange = () => {
-      const value = Number(inputChangeSize.value);
-
-      const slider = $('.js-toxin-slider');
-      if (orientation === 'horizontal') {
-        slider.css({ width: `${value}px` });
-      } if (orientation === 'vertical') {
-        slider.css({ height: `${value}px` });
-      }
-
-      this.slider.upDataView();
-    };
-
+    
     inputFrom.value = String(from);
 
     inputFrom.onchange = () => {
@@ -277,6 +310,7 @@ class Demo {
       const { value } = inputGradientOut;
       this.setState({ gradient: value });
     };
+    
     inputGradientDeg.value = String(gradientDeg);
 
     inputGradientDeg.onchange = () => {
@@ -290,6 +324,7 @@ class Demo {
       const { value } = inputScalePrefix;
       this.setState({ scalePrefix: value });
     };
+    
     inputTrackPrefix.value = trackPrefix;
 
     inputTrackPrefix.onchange = () => {
@@ -298,7 +333,7 @@ class Demo {
     };
   }
 
-  private setState(newOptions: Partial<Options>) {
+  public setState(newOptions: Partial<Options>) {
     this.state = { ...this.state, ...newOptions };
     this.slider.setOptions(this.state);
     this.slider.upDataView();

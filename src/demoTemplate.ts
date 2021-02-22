@@ -1,6 +1,6 @@
 const demoTemplate = `
-   <button class="js-btn js-btn-main" type="button">Menu</button>
-  <div class="js-menu js-menu-main">
+
+
   <h4  class="js-title">Панель управления</h4>
   <div class="js-items">
    <label class="js-labels js-label_checkbox">V/H Вид
@@ -17,7 +17,7 @@ const demoTemplate = `
    <div class="js-menu js-menu-view">
 
    <div class="js-items">
-   <label class="js-labels js-label_checkbox">Показать/Скрыть Тултип
+   <label class="js-labels js-label_checkbox">Показать/Скрыть Tooltip
    <input type="checkbox" class="js-checkbox js-inputs js-isLabel" name="label"/>
    </label>
    </div>
@@ -33,7 +33,7 @@ const demoTemplate = `
    </div>
 
     <div class="js-items">
-   <label class="js-labels js-label_checkbox">Выводить цвета
+   <label class="js-labels js-label_checkbox">Выводить цвета/значения
    <input type="checkbox" class="js-checkbox js-inputs js-isColorOut" name="color"/>
    </label>
    </div>
@@ -52,11 +52,6 @@ const demoTemplate = `
    <input type="checkbox" class="js-checkbox js-inputs js-isScale" name="scale"/>
    </label>
      </div>
-    <div class="js-items">
-   <label class="js-labels js-label_checkbox">Показать/скрыть деления
-   <input type="checkbox" class="js-checkbox js-inputs js-isDivision" name="division"/>
-   </label>
-   </div>
    </div>
    
    
@@ -125,6 +120,11 @@ const demoTemplate = `
    
    <button type="button" class="js-btn js-btn-prefix">Настройки Prefix</button>
    <div class="js-menu js-menu-prefix">
+   <div class="js-items">
+   <label class="js-labels js-label_checkbox">Показать/Скрыть префикс tooltip
+   <input type="checkbox" class="js-checkbox js-inputs js-isPrefixTool" name="isPrefix"/>
+   </label>
+   </div>
       <div class="js-items">
    <label class="js-labels js-label_checkbox">Показать/Скрыть префикс шкалы
    <input type="checkbox" class="js-checkbox js-inputs js-isPrefix" name="isPrefix"/>
@@ -136,7 +136,7 @@ const demoTemplate = `
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels">Префикс
+   <label class="js-labels">Префикс tooltip
    <input type="text" class="js-inputs js-marker" name="marker"/>
    </label>
    </div>
@@ -151,18 +151,7 @@ const demoTemplate = `
    </label>
    </div>
    </div>
-   
-   <button type="button" class="js-btn js-btn-navigate">Доп. инструменты</button>
-   <div class="js-menu js-menu-navigate">
-    <div class="js-items">
-   <label class="js-labels">Размер
-<input value="250" type="range" min="250" max="800" class="js-inputs js-slider-size" name="js-size"/>
-
-   </label>
-   </div>
-   
-   </div>
-   </div>
+  
   `;
 
 export { demoTemplate };

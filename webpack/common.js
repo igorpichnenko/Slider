@@ -46,6 +46,7 @@ const commonConfig = {
   target: 'web',
   context: path.resolve(__dirname, '..', 'src'),
   entry: {
+      demo: './index.ts',
       slider: ['./slider.ts', './slider.scss'],
   },
   output: {
@@ -53,7 +54,7 @@ const commonConfig = {
     path: path.resolve(__dirname, '..', 'dist'),
   },
   resolve: {
-    extensions: ['.js', '.ts', '.json'],
+    extensions: ['.js', '.ts', '.json', '.scss'],
   },
 }
 

@@ -5,6 +5,7 @@ import { Track } from './Track';
 import { Scale } from './Scale';
 import { Bar } from './Bar';
 
+
 class View {
   public observable: Observable;
 
@@ -127,31 +128,31 @@ class View {
     this.slider.addEventListener('scaleclick', this.onScaleClick);
   }
 
-  private dragStart(event: any) {
-    const { target } = event;
+  private dragStart(event: MouseEvent | TouchEvent) {
+    const target = event.target as HTMLElement
 
     if (this.getTargetType(target)) {
       const drag = this.drag.bind(this, target);
 
       const handleUp = () => {
-        this.slider.removeEventListener('mousemove', drag);
-        this.slider.removeEventListener('touchmove', drag);
+        document.removeEventListener('mousemove', drag);
+        target.removeEventListener('touchmove', drag);
         document.removeEventListener('mouseup', handleUp);
-        document.removeEventListener('touchend', handleUp);
+        target.removeEventListener('touchend', handleUp);
       };
 
-      this.slider.addEventListener('mousemove', drag);
-      this.slider.addEventListener('touchmove', drag);
+      document.addEventListener('mousemove', drag);
+      target.addEventListener('touchmove', drag);
       document.addEventListener('mouseup', handleUp);
-      document.addEventListener('touchend', handleUp);
+      target.addEventListener('touchend', handleUp);
     }
   }
 
-  private drag(target: HTMLElement, event: any): void {
+  private drag(target: HTMLElement, event:any) {
     const { orientation } = this.state;
 
     let mouseValue = 0;
-
+    event.preventDefault();
     if (!/roller/.test(target.className)) return;
 
     if (orientation === 'horizontal') {
@@ -189,6 +190,7 @@ class View {
     const { orientation } = this.state;
     const { target } = event;
     let coordinate = 0;
+
     if (/scale/.test(target.className)) return;
 
     if (orientation === 'horizontal') {

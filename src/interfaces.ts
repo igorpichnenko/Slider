@@ -7,6 +7,7 @@ interface Options {
   from: number,
   to: number,
   prefix: string,
+  isPrefix: boolean,
   isLabel: boolean,
   isScale: boolean,
   color: string,
@@ -23,7 +24,6 @@ interface Options {
   gradientDeg: number,
   isColorOut: boolean,
   onlyDivisions: boolean,
-  isDivision: boolean,
   allColors: {[index: string]: string}
 }
 
