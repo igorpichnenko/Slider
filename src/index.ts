@@ -1,7 +1,7 @@
 import { Demo } from './Demo';
 import './slider';
 import { Options } from './interfaces';
-import './demo';
+import './demo.scss';
 
 const firstOptions: Partial<Options> = {
   orientation: 'vertical',

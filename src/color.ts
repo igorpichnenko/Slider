@@ -170,7 +170,7 @@ const allColors = {
   '#6404ca': 'strongviolet',
   '#7d05fc': 'vividviolet',
   '#320265': 'verydarkviolet',
-  '#0': "default",
+  '#0': '#000',
 };
 
 export { allColors };

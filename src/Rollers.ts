@@ -52,11 +52,11 @@ class Rollers {
 
     if (isLabel === true) {
       if (isPrefix === true) {
-        fistTooltip.innerText = `${from.toLocaleString()}${prefix}`;
-        secondTooltip.innerText = `${to.toLocaleString()}${prefix}`;
+        fistTooltip.innerHTML = `${from.toLocaleString()}${prefix}`;
+        secondTooltip.innerHTML = `${to.toLocaleString()}${prefix}`;
       } if (isPrefix === false) {
-        fistTooltip.innerText = from.toLocaleString();
-        secondTooltip.innerText = to.toLocaleString();
+        fistTooltip.innerHTML = from.toLocaleString();
+        secondTooltip.innerHTML = to.toLocaleString();
       }
     }
 
@@ -72,8 +72,8 @@ class Rollers {
     }
 
     if (isColorOut === true) {
-      fistTooltip.innerText = newColor.toLocaleString();
-      secondTooltip.innerText = newGradient.toLocaleString();
+      fistTooltip.innerHTML = newColor.toLocaleString();
+      secondTooltip.innerHTML = newGradient.toLocaleString();
 
       fistTooltip.style.backgroundColor = `${color}`;
       secondTooltip.style.backgroundColor = `${gradient}`;
@@ -81,8 +81,8 @@ class Rollers {
       secondTooltip.style.color = 'white';
     }
     if (isLabel === false) {
-      fistTooltip.innerText = '';
-      secondTooltip.innerText = '';
+      fistTooltip.style.display = 'none';
+      secondTooltip.style.display = 'none';
     }
   }
 

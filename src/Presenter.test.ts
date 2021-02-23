@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-
+import { allColors } from './color';
 import { Options } from './interfaces';
 import { Presenter } from './Presenter';
 
@@ -7,7 +7,7 @@ describe('Presenter', () => {
   let wrap: HTMLElement;
   let presenter: Presenter;
   const standardOptions: Options = {
-    orientation: 'vertical',
+    orientation: 'horizontal',
     type: 'double',
     min: 0,
     max: 10,
@@ -15,6 +15,7 @@ describe('Presenter', () => {
     from: 3,
     to: 7,
     prefix: '₽',
+    isPrefix: true,
     isLabel: true,
     isScale: true,
     color: 'orange',
@@ -31,8 +32,7 @@ describe('Presenter', () => {
     gradientDeg: 45,
     isColorOut: false,
     onlyDivisions: false,
-    isDivision: true,
-    allColors: {},
+    allColors,
   };
 
   beforeEach(() => {

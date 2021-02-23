@@ -17,10 +17,11 @@ class Track {
   }
 
   private createOutElement(track: HTMLElement, options: ViewState) {
+    const { orientation } = options;
     const startValue = document.createElement('div');
     const endValue = document.createElement('div');
-    startValue.className = 'slider__out slider__out_start';
-    endValue.className = 'slider__out slider__out_end';
+    startValue.className = `slider__out slider__out-start slider__out-start_${orientation}`;
+    endValue.className = `slider__out slider__out-end slider__out-end_${orientation}`;
     track.append(startValue);
     track.append(endValue);
 
@@ -37,20 +38,20 @@ class Track {
     }
 
     if (minMax === true) {
-      outStart.innerText = `${min.toLocaleString()}${trackPrefix}`;
-      outEnd.innerText = `${max.toLocaleString()}${trackPrefix}`;
+      outStart.innerHTML = `${min.toLocaleString()}${trackPrefix}`;
+      outEnd.innerHTML = `${max.toLocaleString()}${trackPrefix}`;
     }
     if (fromTo === true) {
-      outStart.innerText = `${from.toLocaleString()}${trackPrefix}`;
-      outEnd.innerText = `${to.toLocaleString()}${trackPrefix}`;
+      outStart.innerHTML = `${from.toLocaleString()}${trackPrefix}`;
+      outEnd.innerHTML = `${to.toLocaleString()}${trackPrefix}`;
     }
   }
 
   public upData(options: ViewState) {
     const { slider } = options;
 
-    const outStart = slider.querySelector('.slider__out_start')! as HTMLElement;
-    const outEnd = slider.querySelector('.slider__out_end')! as HTMLElement;
+    const outStart = slider.querySelector('.slider__out-start')! as HTMLElement;
+    const outEnd = slider.querySelector('.slider__out-end')! as HTMLElement;
 
     this.setStartEndTrackOut(outStart, outEnd, options);
   }

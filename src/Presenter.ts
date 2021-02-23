@@ -1,18 +1,19 @@
 import { Model } from './Model';
 import { View } from './View';
 import { Options } from './interfaces';
-import { Observable } from './Observable';
+import { EventEmitter } from './EventEmitter';
 import { standardOptions } from './standardOptions';
 
 class Presenter {
-  public observable: Observable;
+  public emitter: EventEmitter;
 
   public view: View;
 
   public model: Model;
 
   constructor(options: Options, public element: HTMLElement) {
-    this.observable = new Observable();
+    this.emitter = new EventEmitter();
+
     this.model = this.createModel(options);
     this.view = this.createView(this.model.state, element);
     this.bindSubscribe();
@@ -46,13 +47,13 @@ class Presenter {
   }
 
   private addSubscribtions(): void {
-    this.model.observable.subscribe('newData', this.getNewData);
-    this.view.observable.subscribe('newPosition', this.sendNewPosition);
+    this.model.emitter.subscribe('newData', this.getNewData);
+    this.view.emitter.subscribe('newPosition', this.sendNewPosition);
   }
 
   private getNewData(newData: Options): void {
     this.view.upData(newData);
-    this.observable.notify('newData', newData);
+    this.emitter.emit('newData', newData);
   }
 
   private sendNewPosition(newPosition: Partial<Options>): void {

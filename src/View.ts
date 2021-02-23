@@ -1,13 +1,12 @@
 import { Options, ViewState } from './interfaces';
-import { Observable } from './Observable';
+import { EventEmitter } from './EventEmitter';
 import { Rollers } from './Rollers';
 import { Track } from './Track';
 import { Scale } from './Scale';
 import { Bar } from './Bar';
 
-
 class View {
-  public observable: Observable;
+  public emitter: EventEmitter;
 
   public state: ViewState;
 
@@ -24,7 +23,7 @@ class View {
   private track: Track;
 
   constructor(options: Options, element: HTMLElement) {
-    this.observable = new Observable();
+    this.emitter = new EventEmitter();
 
     this.element = element;
 
@@ -129,7 +128,7 @@ class View {
   }
 
   private dragStart(event: MouseEvent | TouchEvent) {
-    const target = event.target as HTMLElement
+    const target = event.target as HTMLElement;
 
     if (this.getTargetType(target)) {
       const drag = this.drag.bind(this, target);
@@ -148,7 +147,7 @@ class View {
     }
   }
 
-  private drag(target: HTMLElement, event:any) {
+  private drag(target: HTMLElement, event: any) {
     const { orientation } = this.state;
 
     let mouseValue = 0;
@@ -214,7 +213,7 @@ class View {
     const isSingle = type === 'single';
 
     if (isSingle && fromDistance) {
-      this.observable.notify('newPosition', { from: value });
+      this.emitter.emit('newPosition', { from: value });
       return;
     }
 
@@ -222,18 +221,18 @@ class View {
       const isFrom = (fromDistance < toDistance) ? 'from' : 'to';
 
       if (isFrom === 'from') {
-        this.observable.notify('newPosition', { from: value });
+        this.emitter.emit('newPosition', { from: value });
       } else {
-        this.observable.notify('newPosition', { to: value });
+        this.emitter.emit('newPosition', { to: value });
       }
     } else {
       const targets = this.getTargetType(target);
       if (targets === 'from') {
         if (value > to - step) value = from;
-        this.observable.notify('newPosition', { from: value });
+        this.emitter.emit('newPosition', { from: value });
       } else {
         if (value < from + step) value = to;
-        this.observable.notify('newPosition', { to: value });
+        this.emitter.emit('newPosition', { to: value });
       }
     }
   }
@@ -242,7 +241,6 @@ class View {
     const {
       min, max, step, oneStep, size, orientation,
     } = this.state;
-
     const sliderPos = this.getSliderPosition();
 
     const sliderEndPos = sliderPos + size;
@@ -262,7 +260,7 @@ class View {
     return value;
   }
 
-  private convertValueToColor(value: number) {
+  public convertValueToColor(value: number) {
     let { color, gradient } = this.state;
     const { max, isColor, changeColor } = this.state;
     const val = value / max;
@@ -283,8 +281,8 @@ class View {
       color = `#${setColor}`;
       gradient = `#${setGradient}`;
 
-      this.observable.notify('newPosition', { color });
-      this.observable.notify('newPosition', { gradient });
+      this.emitter.emit('newPosition', { color });
+      this.emitter.emit('newPosition', { gradient });
     }
   }
 

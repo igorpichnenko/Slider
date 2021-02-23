@@ -1,14 +1,14 @@
 import { Options } from './interfaces';
-import { Observable } from './Observable';
+import { EventEmitter } from './EventEmitter';
 import { standardOptions } from './standardOptions';
 
 class Model {
   public state: Options;
 
-  public observable: Observable;
+  public emitter: EventEmitter;
 
   constructor(options: Options) {
-    this.observable = new Observable();
+    this.emitter = new EventEmitter();
 
     this.state = this.init(options);
   }
@@ -20,7 +20,7 @@ class Model {
 
     this.state = { ...validateOptions, ...validateFromTo, ...validateMinMaxStep };
 
-    this.observable.notify('newData', this.state);
+    this.emitter.emit('newData', this.state);
   }
 
   private init(options: Options): Options {

@@ -8,50 +8,48 @@ import { allColors } from './color';
 describe('Demo', () => {
   let demo: Demo;
   let wrap: HTMLElement;
- 
+
   const standardOptions: Options = {
-  orientation: 'horizontal',
-  type: 'double',
-  min: 0,
-  max: 10,
-  step: 1,
-  from: 3,
-  to: 7,
-  prefix: '₽',
-  isPrefix: true,
-  isLabel: true,
-  isScale: true,
-  color: 'orange',
-  isScalePrefix: true,
-  scalePrefix: '₽',
-  minMax: false,
-  fromTo: false,
-  isTrackPrefix: true,
-  trackPrefix: '₽',
-  isColor: true,
-  changeColor: true,
-  isGradient: true,
-  gradient: 'purple',
-  gradientDeg: 45,
-  isColorOut: false,
-  onlyDivisions: false,
-  allColors,
-};
+    orientation: 'horizontal',
+    type: 'double',
+    min: 0,
+    max: 10,
+    step: 1,
+    from: 3,
+    to: 7,
+    prefix: '₽',
+    isPrefix: true,
+    isLabel: true,
+    isScale: true,
+    color: 'orange',
+    isScalePrefix: true,
+    scalePrefix: '₽',
+    minMax: false,
+    fromTo: false,
+    isTrackPrefix: true,
+    trackPrefix: '₽',
+    isColor: true,
+    changeColor: true,
+    isGradient: true,
+    gradient: 'purple',
+    gradientDeg: 45,
+    isColorOut: false,
+    onlyDivisions: false,
+    allColors,
+  };
 
   beforeEach(() => {
-    
     wrap = document.createElement('div');
     wrap.className = 'js-toxin-slider';
 
     const pages = document.createElement('div');
-    pages.className = 'js-demo-pages'
+    pages.className = 'js-demo-pages';
 
     document.body.append(pages);
     pages.append(wrap);
 
     const presenter = new Presenter(standardOptions, wrap);
     demo = new Demo(presenter);
-
   });
 
   afterEach(() => {
@@ -81,7 +79,7 @@ describe('Demo', () => {
 
     expect(demo.state.step).toBe(1);
   });
-  
+
   test('step must change', () => {
     const stepInput = demo.demoTools.querySelector('.js-step') as HTMLInputElement;
     stepInput.value = '5';
@@ -96,14 +94,14 @@ describe('Demo', () => {
 
     expect(demo.state.min).toBe(0);
   });
-  
+
   test('should change the max value to a new one ', () => {
     const maxInput = demo.demoTools.querySelector('.js-max') as HTMLInputElement;
     maxInput.value = '1000';
     maxInput.dispatchEvent(new InputEvent('change'));
     expect(demo.state.max).toBe(1000);
   });
-  
+
   test('should change the minimum value to a new one', () => {
     const minInput = demo.demoTools.querySelector('.js-min') as HTMLInputElement;
     minInput.value = '-50';
@@ -134,12 +132,12 @@ describe('Demo', () => {
   });
   test('must change orientation', () => {
     const inputIsOrientation = demo.demoTools.querySelector('.js-orientation')! as HTMLElement;
-    
+
     inputIsOrientation.dispatchEvent(new InputEvent('change'));
-    
+
     expect(demo.state.orientation).toBe('vertical');
   });
-  
+
   test('should change isScale parameter', () => {
     const changeScale = demo.demoTools.querySelector('.js-isScale')! as HTMLInputElement;
 
@@ -151,7 +149,7 @@ describe('Demo', () => {
     changeScale.dispatchEvent(new InputEvent('change'));
     expect(demo.state.isScale).toBe(true);
   });
-  
+
   test('parameter update should work', () => {
     demo.upData({ from: -5 });
     expect(demo.state.from).toBe(-5);
@@ -163,7 +161,7 @@ describe('Demo', () => {
     expect(demo.state.to).toBe(4);
     expect(demo.state.from).toBe(0);
   });
- 
+
   test('should change isScalePrefix parameter', () => {
     const inputIsPrefix = demo.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
 
@@ -175,7 +173,7 @@ describe('Demo', () => {
     inputIsPrefix.dispatchEvent(new InputEvent('change'));
     expect(demo.state.isScalePrefix).toBe(true);
   });
-  
+
   test('should change isPrefix parameter', () => {
     const inputIsToolPrefix = demo.demoTools.querySelector('.js-isPrefixTool')! as HTMLInputElement;
 
@@ -222,9 +220,9 @@ describe('Demo', () => {
   });
   test('must change type double/single', () => {
     const isDouble = demo.demoTools.querySelector('.js-isDouble')! as HTMLElement;
-    
+
     isDouble.dispatchEvent(new InputEvent('change'));
-    
+
     expect(demo.state.type).toBe('single');
   });
   test('should change minMax parameter', () => {
@@ -309,7 +307,7 @@ describe('Demo', () => {
 
     expect(demo.state.color).toBe('green');
   });
-  
+
   test('the gradient should change', () => {
     const inputGradientOut = demo.demoTools.querySelector('.js-gradient-out') as HTMLInputElement;
 
@@ -342,6 +340,4 @@ describe('Demo', () => {
 
     expect(demo.state.trackPrefix).toBe('¢');
   });
-  
-  
 });

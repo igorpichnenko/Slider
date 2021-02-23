@@ -33,6 +33,7 @@
   color: rgba(31,32,65,0.5);
   border-radius: 10px;
   padding: 0 2px;
+  white-space: nowrap;
 }
 
 .slider__tooltip_horizontal{
@@ -70,19 +71,19 @@ transform: translateY(-125%);
   position: absolute;
 }
 
-.slider__out_start{
+.slider__out-start_horizontal{
   left: -5px;
   bottom: 22px;
 }
-.slider__out_end{
+.slider__out-end_horizontal{
   right: -5px;
   bottom: 22px;
 }
-.slider_vertical .slider__out_start{
+.slider__out-start_vertical{
   bottom: -22px;
   left: -2px;
 }
-.slider_vertical .slider__out_end{
+ .slider__out-end_vertical{
   top: -22px;
   left: -2px;
 }

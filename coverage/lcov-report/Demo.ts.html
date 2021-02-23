@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.49% </span>
+                <span class="strong">96.47% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>165/171</span>
+                <span class='fraction'>164/170</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.49% </span>
+                <span class="strong">96.47% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>165/171</span>
+                <span class='fraction'>164/170</span>
             </div>
         
             
@@ -397,11 +397,7 @@
 <a name='L338'></a><a href='#L338'>338</a>
 <a name='L339'></a><a href='#L339'>339</a>
 <a name='L340'></a><a href='#L340'>340</a>
-<a name='L341'></a><a href='#L341'>341</a>
-<a name='L342'></a><a href='#L342'>342</a>
-<a name='L343'></a><a href='#L343'>343</a>
-<a name='L344'></a><a href='#L344'>344</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L341'></a><a href='#L341'>341</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -454,8 +450,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">75x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">75x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -747,7 +741,6 @@
 import { Options } from './interfaces';
 import { demoTemplate } from './demoTemplate';
 &nbsp;
-&nbsp;
 class Demo {
   public state: Options;
 &nbsp;
@@ -770,7 +763,7 @@ class Demo {
 &nbsp;
     this.upData = this.upData.bind(this);
 &nbsp;
-    this.slider.observable.subscribe('newData', this.upData);
+    this.slider.emitter.subscribe('newData', this.upData);
   }
 &nbsp;
   private createTools(): HTMLElement {
@@ -801,77 +794,75 @@ class Demo {
     } = this.state;
 &nbsp;
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
-    
+&nbsp;
     const btnView = this.demoTools.querySelector('.js-btn-view')! as HTMLButtonElement;
-    
+&nbsp;
     const btnPrefix = this.demoTools.querySelector('.js-btn-prefix')! as HTMLButtonElement;
-    
-    const btnColor = this.demoTools.querySelector('.js-btn-color')! as HTMLButtonElement
-    
+&nbsp;
+    const btnColor = this.demoTools.querySelector('.js-btn-color')! as HTMLButtonElement;
+&nbsp;
     const menuScale = this.demoTools.querySelector('.js-menu-scale')! as HTMLElement;
-    
+&nbsp;
     const menuView = this.demoTools.querySelector('.js-menu-view')! as HTMLElement;
-   
+&nbsp;
     const menuPrefix = this.demoTools.querySelector('.js-menu-prefix')! as HTMLElement;
-    
+&nbsp;
     const menuColor = this.demoTools.querySelector('.js-color-setting')! as HTMLElement;
-    
+&nbsp;
     const isOrientation = this.demoTools.querySelector('.js-orientation')! as HTMLElement;
-    
+&nbsp;
     const changeScale = this.demoTools.querySelector('.js-isScale')! as HTMLElement;
-    
+&nbsp;
     const inputColorOut = this.demoTools.querySelector('.js-isColorOut')! as HTMLElement;
-    
+&nbsp;
     const label = this.demoTools.querySelector('.js-isLabel')! as HTMLElement;
-    
+&nbsp;
     const isDouble = this.demoTools.querySelector('.js-isDouble')! as HTMLElement;
-    
+&nbsp;
     const inputFrom = this.demoTools.querySelector('.js-from')! as HTMLInputElement;
-    
+&nbsp;
     const inputTo = this.demoTools.querySelector('.js-to')! as HTMLInputElement;
-    
+&nbsp;
     const inputMin = this.demoTools.querySelector('.js-min')! as HTMLInputElement;
-    
+&nbsp;
     const inputMax = this.demoTools.querySelector('.js-max')! as HTMLInputElement;
-    
+&nbsp;
     const inputMarker = this.demoTools.querySelector('.js-marker')! as HTMLInputElement;
-    
+&nbsp;
     const inputStep = this.demoTools.querySelector('.js-step')! as HTMLInputElement;
-    
+&nbsp;
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
-    
+&nbsp;
     const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
-    
+&nbsp;
     const inputScalePrefix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
-    
+&nbsp;
     const inputMinMax = this.demoTools.querySelector('.js-minMax')! as HTMLInputElement;
-    
+&nbsp;
     const inputFromTo = this.demoTools.querySelector('.js-fromTo')! as HTMLInputElement;
-    
+&nbsp;
     const inputDivision = this.demoTools.querySelector('.js-division')! as HTMLInputElement;
-    
+&nbsp;
     const inputIsTrackPrefix = this.demoTools.querySelector('.js-isTrackPrefix')! as HTMLInputElement;
-    
+&nbsp;
     const inputIsToolPrefix = this.demoTools.querySelector('.js-isPrefixTool')! as HTMLInputElement;
-    
+&nbsp;
     const inputTrackPrefix = this.demoTools.querySelector('.js-track-prefix')! as HTMLInputElement;
-    
+&nbsp;
     const inputIsColor = this.demoTools.querySelector('.js-isColor')! as HTMLInputElement;
-    
+&nbsp;
     const inputChangeColor = this.demoTools.querySelector('.js-changeColor')! as HTMLInputElement;
-    
+&nbsp;
     const inputGradient = this.demoTools.querySelector('.js-gradient')! as HTMLInputElement;
-    
+&nbsp;
     const inputGradientOut = this.demoTools.querySelector('.js-gradient-out')! as HTMLInputElement;
-    
+&nbsp;
     const inputGradientDeg = this.demoTools.querySelector('.js-gradient-deg')! as HTMLInputElement;
-    
-    const inputChangeSize = this.demoTools.querySelector('.js-slider-size')! as HTMLInputElement;
 &nbsp;
     btnView.onclick = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >      menuView.classList.toggle('js-close-menu');</span>
     };
-    
+&nbsp;
     btnScale.onclick = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >      menuScale.classList.toggle('js-close-menu');</span>
     };
@@ -881,9 +872,9 @@ class Demo {
     btnPrefix.onclick = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >      menuPrefix.classList.toggle('js-close-menu');</span>
     };
-    
-    /**     чекбоксы    **/
-    
+&nbsp;
+    /**     чекбоксы    * */
+&nbsp;
     isOrientation.onchange = () =&gt; {
       <span class="missing-if-branch" title="else path not taken" >E</span>if (orientation === 'horizontal') {
         this.setState({ orientation: 'vertical' });
@@ -901,7 +892,7 @@ class Demo {
         this.setState({ isScalePrefix: true });
       }
     };
-    
+&nbsp;
     inputIsToolPrefix.onchange = () =&gt; {
       if (isPrefix === true) {
         this.setState({ isPrefix: false });
@@ -910,7 +901,7 @@ class Demo {
         this.setState({ isPrefix: true });
       }
     };
-    
+&nbsp;
     inputGradient.onchange = () =&gt; {
       if (isGradient === true) {
         this.setState({ isGradient: false });
@@ -918,8 +909,8 @@ class Demo {
       if (isGradient === false) {
         this.setState({ isGradient: true });
       }
-    }
-    
+    };
+&nbsp;
     inputColorOut.onchange = () =&gt; {
       if (isColorOut === true) {
         this.setState({ isColorOut: false });
@@ -928,7 +919,7 @@ class Demo {
         this.setState({ isColorOut: true });
       }
     };
-    
+&nbsp;
     changeScale.onchange = () =&gt; {
       if (isScale === false) {
         this.setState({ isScale: true });
@@ -952,7 +943,7 @@ class Demo {
         this.setState({ type: 'single' });
       }
     };
-    
+&nbsp;
     inputMinMax.onchange = () =&gt; {
       if (minMax === false) {
         this.setState({ minMax: true });
@@ -960,7 +951,7 @@ class Demo {
         this.setState({ minMax: false });
       }
     };
-    
+&nbsp;
     inputFromTo.onchange = () =&gt; {
       if (fromTo === false) {
         this.setState({ fromTo: true });
@@ -968,7 +959,7 @@ class Demo {
         this.setState({ fromTo: false });
       }
     };
-    
+&nbsp;
     inputDivision.onchange = () =&gt; {
       if (onlyDivisions === false) {
         this.setState({ onlyDivisions: true });
@@ -976,7 +967,7 @@ class Demo {
         this.setState({ onlyDivisions: false });
       }
     };
-    
+&nbsp;
     inputIsTrackPrefix.onchange = () =&gt; {
       if (isTrackPrefix === false) {
         this.setState({ isTrackPrefix: true });
@@ -984,7 +975,7 @@ class Demo {
         this.setState({ isTrackPrefix: false });
       }
     };
-    
+&nbsp;
     inputIsColor.onchange = () =&gt; {
       if (isColor === true) {
         this.setState({ isColor: false });
@@ -992,7 +983,7 @@ class Demo {
         this.setState({ isColor: true });
       }
     };
-    
+&nbsp;
     inputChangeColor.onchange = () =&gt; {
       if (changeColor === true) {
         this.setState({ changeColor: false });
@@ -1000,16 +991,16 @@ class Demo {
         this.setState({ changeColor: true });
       }
     };
-    
-    //**     инпуты    **/
-    
-     inputMarker.value = prefix;
+&nbsp;
+    //* *     инпуты    **/
+&nbsp;
+    inputMarker.value = prefix;
 &nbsp;
     inputMarker.onchange = () =&gt; {
       const { value } = inputMarker;
       this.setState({ prefix: value });
     };
-    
+&nbsp;
     inputFrom.value = String(from);
 &nbsp;
     inputFrom.onchange = () =&gt; {
@@ -1055,7 +1046,7 @@ class Demo {
       const { value } = inputGradientOut;
       this.setState({ gradient: value });
     };
-    
+&nbsp;
     inputGradientDeg.value = String(gradientDeg);
 &nbsp;
     inputGradientDeg.onchange = () =&gt; {
@@ -1069,7 +1060,7 @@ class Demo {
       const { value } = inputScalePrefix;
       this.setState({ scalePrefix: value });
     };
-    
+&nbsp;
     inputTrackPrefix.value = trackPrefix;
 &nbsp;
     inputTrackPrefix.onchange = () =&gt; {
@@ -1093,7 +1084,7 @@ export { Demo };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Feb 22 2021 20:43:39 GMT+0600 (GMT+06:00)
+                at Tue Feb 23 2021 11:25:09 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="prettify.js"></script>
