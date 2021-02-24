@@ -3,4 +3,6 @@ https://igorpichnenko.github.io/Slider/
 
 
 
-![Uml](http://imgur.com/gallery/QoiDUos)
+
+
+![UML](https://i.imgur.com/W0GArw5.jpg)
