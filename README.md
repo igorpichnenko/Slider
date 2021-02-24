@@ -1,5 +1,9 @@
-Color slider
-https://igorpichnenko.github.io/Slider/
+# Color slider
+
+
+## [Demo color slider](https://igorpichnenko.github.io/Slider/)
+
+
 ![Slider](https://i.imgur.com/1Qu6emO.jpg)
  
 
