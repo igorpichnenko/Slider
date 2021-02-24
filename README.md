@@ -1,4 +1,4 @@
-# Slider
+Color slider
 https://igorpichnenko.github.io/Slider/
 
 
