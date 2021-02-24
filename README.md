@@ -30,11 +30,11 @@ npm run test
 
 Для создания слайдера c настройками "по умолчанию" выполните:
 ```
-$('.element').slider();
+$('.element').colorSlider();
 ```
 Для создания слайдера с пользовательскими настройками:
 ```
-$('.element').slider({
+$('.element').colorSlider({
     gradient: 'blue',
     color: 'yellow',
     orientation: "vertical",
