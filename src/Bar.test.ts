@@ -53,7 +53,7 @@ describe('Bar', () => {
   });
 
   test('if isGradient = false then the background of the bar must be the color of the variable', () => {
-    const bar = view.slider.querySelector('.slider__bar') as HTMLElement
+    const bar = view.slider.querySelector('.slider__bar') as HTMLElement;
 
     view.upData({ isGradient: false });
 

@@ -77,12 +77,12 @@ class Rollers {
 
       fistTooltip.style.backgroundColor = `${color}`;
       secondTooltip.style.backgroundColor = `${gradient}`;
-      fistTooltip.style.color = 'white';
-      secondTooltip.style.color = 'white';
+      fistTooltip.classList.add('slider__tooltip_bg');
+      secondTooltip.classList.add('slider__tooltip_bg');
     }
     if (isLabel === false) {
-      fistTooltip.style.display = 'none';
-      secondTooltip.style.display = 'none';
+      fistTooltip.classList.add('slider__tooltip_display-none');
+      secondTooltip.classList.add('slider__tooltip_display-none');
     }
   }
 

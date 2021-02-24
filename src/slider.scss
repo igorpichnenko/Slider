@@ -44,8 +44,13 @@ transform: translateY(-125%);
   top: -2px;
   left: 14px;
 }
+.slider__tooltip_display-none{
+  display: none;
+}
 
-
+.slider__tooltip_bg{
+  color: white;
+}
 .slider__roller_horizontal {
   transform: translateX(-50%)
 }
@@ -147,8 +152,12 @@ transform: translateY(-125%);
   color: rgba(31,32,65,0.5);
    z-index: 2;
 }
-
-
+.slider__scale-value_fs-0{
+  font-size: 0;
+}
+.slider__scale-value_fs-normal{
+  font-size: 12px;
+}
 .slider__scale-value:before{
   content: '';
   position: absolute;

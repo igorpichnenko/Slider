@@ -201,7 +201,7 @@ class View {
     this.updatePosition(value);
   }
 
-  private updatePosition(value: number, target?: HTMLElement): void {
+  public updatePosition(value: number, target?: HTMLElement): void {
     const {
       from, to, type, step,
     } = this.state;
@@ -262,8 +262,11 @@ class View {
 
   public convertValueToColor(value: number) {
     let { color, gradient } = this.state;
+
     const { max, isColor, changeColor } = this.state;
+
     const val = value / max;
+
     if (isColor === true) {
       let palitra = 0;
       let grPalitra = 0;
@@ -278,6 +281,7 @@ class View {
       const correct = Math.abs(palitra);
       const setColor = correct.toString(16);
       const setGradient = correctGradient.toString(16);
+
       color = `#${setColor}`;
       gradient = `#${setGradient}`;
 

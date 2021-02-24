@@ -97,8 +97,8 @@ describe('Rollers', () => {
 
     view.upData({ isLabel: false });
 
-    expect(tooltips[0]).not.toBeVisible();
-    expect(tooltips[1]).not.toBeVisible();
+    expect(tooltips[0].classList.contains('slider__tooltip_display-none')).toBe(true);
+    expect(tooltips[1].classList.contains('slider__tooltip_display-none')).toBe(true);
   });
 
   test('when type = single then only the first roller should be visible', () => {
@@ -143,14 +143,14 @@ describe('Rollers', () => {
     expect(secondTooltip.style.backgroundColor).toBe(view.state.gradient);
   });
 
-  test('if isColorOut is true, then the text color of tooltips should be white', () => {
+  test('if isColorOut = "true" then tolltips should change background', () => {
     const firstTooltip = view.slider.querySelector('.slider__tooltip_first') as HTMLElement;
     const secondTooltip = view.slider.querySelector('.slider__tooltip_second') as HTMLElement;
 
     view.upData({ isColorOut: true });
 
-    expect(firstTooltip.style.color).toBe('white');
-    expect(secondTooltip.style.color).toBe('white');
+    expect(firstTooltip.classList.contains('slider__tooltip_bg')).toBe(true);
+    expect(secondTooltip.classList.contains('slider__tooltip_bg')).toBe(true);
   });
 
   test('when isGradient = false then the background of the rollers is colored with variable color', () => {

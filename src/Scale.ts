@@ -40,9 +40,9 @@ class Scale {
 
       if (onlyDivisions === true) {
         scaleMarker.setAttribute('data-text', '');
-        scaleMarker.style.fontSize = '0';
+        scaleMarker.classList.add('slider__scale-value_fs-0');
       } else {
-        scaleMarker.style.fontSize = '12px';
+        scaleMarker.classList.add('slider__scale-value_fs-normal');
       }
     });
     document.documentElement.style.setProperty('--scale-color', ` ${color}`);
