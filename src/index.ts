@@ -1,29 +1,82 @@
 import { Demo } from './Demo';
-import './slider';
+import { Presenter } from './Presenter';
 import { Options } from './interfaces';
+import { allColors } from './color';
 import './demo.scss';
 
-const firstOptions: Partial<Options> = {
+const firstOptions: Options = {
+  min: 0,
+  max: 10,
+  step: 1,
+  from: 3,
+  to: 7,
+  prefix: '₽',
+  isPrefix: true,
+  isLabel: true,
+  isScale: true,
+  color: 'orange',
+  isScalePrefix: true,
+  scalePrefix: '₽',
+  minMax: false,
+  fromTo: false,
+  isTrackPrefix: true,
+  trackPrefix: '₽',
+  isColor: true,
+  changeColor: true,
+  isGradient: true,
+  gradient: 'purple',
+  gradientDeg: 45,
+  allColors,
   orientation: 'vertical',
   type: 'double',
   isColorOut: true,
   onlyDivisions: true,
 };
-const twoOptions: Partial<Options> = {
+const twoOptions: Options = {
   orientation: 'horizontal',
   type: 'double',
+  min: 0,
+  step: 1,
+  prefix: '₽',
+  isPrefix: true,
+  isLabel: true,
+  isScale: true,
+  isScalePrefix: true,
+  scalePrefix: '₽',
+  minMax: false,
+  isTrackPrefix: true,
+  trackPrefix: '₽',
+  isColor: true,
+  changeColor: true,
+  isGradient: true,
+  gradientDeg: 45,
+  isColorOut: false,
+  onlyDivisions: false,
+  allColors,
   gradient: 'red',
   color: 'white',
-  min: 0,
   max: 15000,
-  step: 1,
   from: 5000,
   to: 10000,
   fromTo: true,
 };
-const threeOptions: Partial<Options> = {
-  orientation: 'vertical',
+const threeOptions: Options = {
   type: 'double',
+  isPrefix: true,
+  isLabel: true,
+  isScale: true,
+  isScalePrefix: true,
+  minMax: false,
+  fromTo: false,
+  isTrackPrefix: true,
+  trackPrefix: '₽',
+  isColor: true,
+  isGradient: true,
+  gradientDeg: 45,
+  isColorOut: false,
+  onlyDivisions: false,
+  allColors,
+  orientation: 'vertical',
   gradient: 'blue',
   color: 'yellow',
   scalePrefix: '$',
@@ -36,7 +89,28 @@ const threeOptions: Partial<Options> = {
   changeColor: false,
 
 };
-const fourOptions: Partial<Options> = {
+const fourOptions: Options = {
+  min: 0,
+  max: 10,
+  step: 1,
+  from: 3,
+  to: 7,
+  prefix: '₽',
+  isPrefix: true,
+  isScalePrefix: true,
+  scalePrefix: '₽',
+  minMax: false,
+  fromTo: false,
+  isTrackPrefix: true,
+  trackPrefix: '₽',
+  isColor: true,
+  changeColor: true,
+  isGradient: true,
+  gradient: 'purple',
+  gradientDeg: 45,
+  isColorOut: false,
+  onlyDivisions: false,
+  allColors,
   orientation: 'horizontal',
   type: 'single',
   isScale: false,
@@ -48,8 +122,8 @@ const options = [firstOptions, twoOptions, threeOptions, fourOptions];
 
 $(document).ready(() => {
   const $wrappers = $('.js-toxin-slider');
-
-  $.each($wrappers, (key, wrapper) => (
-    new Demo($(wrapper).slider(options[key]))
-  ));
+  $wrappers.each((index, element) => {
+    const slider = new Presenter(options[index], element);
+    new Demo(slider);
+  });
 });

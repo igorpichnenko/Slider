@@ -1,15 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1614145304177" clover="3.2.0">
-  <project timestamp="1614145304177" name="All files">
-    <metrics statements="158" coveredstatements="144" conditionals="54" coveredconditionals="33" methods="29" coveredmethods="27" elements="241" coveredelements="204" complexity="0" loc="158" ncloc="158" packages="1" files="3" classes="3"/>
-    <file name="EventEmitter.ts" path="/data/data/com.termux/files/home/slider/src/EventEmitter.ts">
-      <metrics statements="6" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="4"/>
-      <line num="13" count="217" type="stmt"/>
-      <line num="17" count="125" type="cond" truecount="2" falsecount="0"/>
-      <line num="19" count="125" type="stmt"/>
-      <line num="23" count="0" type="stmt"/>
-      <line num="27" count="176" type="stmt"/>
-      <line num="29" count="176" type="cond" truecount="2" falsecount="0"/>
+<coverage generated="1614155422347" clover="3.2.0">
+  <project timestamp="1614155422347" name="All files">
+    <metrics statements="202" coveredstatements="189" conditionals="64" coveredconditionals="43" methods="33" coveredmethods="33" elements="299" coveredelements="265" complexity="0" loc="202" ncloc="202" packages="1" files="2" classes="2"/>
+    <file name="Bar.ts" path="/data/data/com.termux/files/home/slider/src/Bar.ts">
+      <metrics statements="51" coveredstatements="51" conditionals="14" coveredconditionals="14" methods="10" coveredmethods="10"/>
+      <line num="5" count="152" type="stmt"/>
+      <line num="9" count="152" type="stmt"/>
+      <line num="11" count="152" type="stmt"/>
+      <line num="13" count="152" type="stmt"/>
+      <line num="15" count="152" type="stmt"/>
+      <line num="16" count="152" type="stmt"/>
+      <line num="17" count="152" type="stmt"/>
+      <line num="21" count="255" type="stmt"/>
+      <line num="23" count="255" type="stmt"/>
+      <line num="25" count="255" type="stmt"/>
+      <line num="26" count="255" type="stmt"/>
+      <line num="32" count="407" type="stmt"/>
+      <line num="33" count="407" type="cond" truecount="2" falsecount="0"/>
+      <line num="34" count="402" type="stmt"/>
+      <line num="36" count="5" type="stmt"/>
+      <line num="41" count="407" type="stmt"/>
+      <line num="43" count="407" type="stmt"/>
+      <line num="45" count="407" type="stmt"/>
+      <line num="48" count="407" type="stmt"/>
+      <line num="52" count="814" type="stmt"/>
+      <line num="54" count="814" type="cond" truecount="2" falsecount="0"/>
+      <line num="55" count="814" type="stmt"/>
+      <line num="57" count="814" type="stmt"/>
+      <line num="63" count="805" type="stmt"/>
+      <line num="64" count="805" type="stmt"/>
+      <line num="68" count="407" type="stmt"/>
+      <line num="70" count="407" type="stmt"/>
+      <line num="72" count="407" type="cond" truecount="2" falsecount="0"/>
+      <line num="74" count="407" type="cond" truecount="2" falsecount="0"/>
+      <line num="76" count="407" type="stmt"/>
+      <line num="78" count="407" type="stmt"/>
+      <line num="80" count="407" type="stmt"/>
+      <line num="82" count="407" type="cond" truecount="2" falsecount="0"/>
+      <line num="83" count="9" type="cond" truecount="2" falsecount="0"/>
+      <line num="84" count="7" type="stmt"/>
+      <line num="86" count="7" type="stmt"/>
+      <line num="87" count="7" type="stmt"/>
+      <line num="89" count="2" type="stmt"/>
+      <line num="90" count="2" type="stmt"/>
+      <line num="92" count="2" type="stmt"/>
+      <line num="93" count="2" type="stmt"/>
+      <line num="96" count="398" type="stmt"/>
+      <line num="98" count="398" type="stmt"/>
+      <line num="100" count="398" type="stmt"/>
+      <line num="101" count="398" type="stmt"/>
+      <line num="106" count="407" type="stmt"/>
+      <line num="108" count="407" type="stmt"/>
+      <line num="110" count="407" type="cond" truecount="2" falsecount="0"/>
+      <line num="111" count="315" type="stmt"/>
+      <line num="113" count="92" type="stmt"/>
+      <line num="115" count="407" type="stmt"/>
     </file>
     <file name="View.ts" path="/data/data/com.termux/files/home/slider/src/View.ts">
       <metrics statements="151" coveredstatements="138" conditionals="50" coveredconditionals="29" methods="23" coveredmethods="23"/>
@@ -28,32 +73,32 @@
       <line num="46" count="152" type="stmt"/>
       <line num="48" count="152" type="stmt"/>
       <line num="54" count="152" type="stmt"/>
-      <line num="56" count="152" type="stmt"/>
+      <line num="55" count="152" type="stmt"/>
+      <line num="57" count="152" type="stmt"/>
       <line num="58" count="152" type="stmt"/>
-      <line num="62" count="152" type="stmt"/>
-      <line num="66" count="152" type="stmt"/>
-      <line num="70" count="152" type="stmt"/>
-      <line num="74" count="152" type="stmt"/>
-      <line num="78" count="152" type="stmt"/>
-      <line num="79" count="152" type="stmt"/>
-      <line num="81" count="152" type="stmt"/>
-      <line num="82" count="152" type="stmt"/>
-      <line num="84" count="152" type="stmt"/>
+      <line num="60" count="152" type="stmt"/>
+      <line num="64" count="152" type="stmt"/>
+      <line num="68" count="152" type="stmt"/>
+      <line num="72" count="152" type="stmt"/>
+      <line num="76" count="152" type="stmt"/>
+      <line num="80" count="255" type="stmt"/>
+      <line num="85" count="255" type="stmt"/>
+      <line num="86" count="255" type="stmt"/>
+      <line num="87" count="255" type="stmt"/>
       <line num="88" count="255" type="stmt"/>
-      <line num="93" count="255" type="stmt"/>
-      <line num="94" count="255" type="stmt"/>
-      <line num="95" count="255" type="stmt"/>
-      <line num="96" count="255" type="stmt"/>
-      <line num="98" count="255" type="stmt"/>
+      <line num="90" count="255" type="stmt"/>
+      <line num="96" count="41" type="stmt"/>
+      <line num="97" count="41" type="stmt"/>
+      <line num="98" count="41" type="stmt"/>
+      <line num="99" count="41" type="stmt"/>
+      <line num="100" count="41" type="stmt"/>
+      <line num="101" count="41" type="stmt"/>
+      <line num="102" count="41" type="stmt"/>
+      <line num="103" count="41" type="stmt"/>
       <line num="104" count="41" type="stmt"/>
-      <line num="105" count="41" type="stmt"/>
-      <line num="106" count="41" type="stmt"/>
-      <line num="107" count="41" type="stmt"/>
-      <line num="108" count="41" type="stmt"/>
-      <line num="109" count="41" type="stmt"/>
-      <line num="110" count="41" type="stmt"/>
-      <line num="111" count="41" type="stmt"/>
-      <line num="112" count="41" type="stmt"/>
+      <line num="108" count="152" type="stmt"/>
+      <line num="110" count="152" type="stmt"/>
+      <line num="112" count="152" type="stmt"/>
       <line num="116" count="152" type="stmt"/>
       <line num="117" count="152" type="stmt"/>
       <line num="118" count="152" type="stmt"/>
@@ -164,10 +209,6 @@
       <line num="310" count="246" type="stmt"/>
       <line num="312" count="58" type="stmt"/>
       <line num="314" count="304" type="stmt"/>
-    </file>
-    <file name="color.ts" path="/data/data/com.termux/files/home/slider/src/color.ts">
-      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <line num="1" count="8" type="stmt"/>
     </file>
   </project>
 </coverage>

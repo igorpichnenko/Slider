@@ -5,15 +5,6 @@ class Bar {
     this.create(options);
   }
 
-  public upData(options: ViewState) {
-    const { slider } = options;
-
-    const bar = slider.querySelector('.slider__bar')! as HTMLElement;
-
-    this.updataColor(options, bar);
-    this.updataBar(options, bar);
-  }
-
   private create(options: ViewState): void {
     const { slider, orientation } = options;
 
@@ -22,6 +13,15 @@ class Bar {
     bar.className = `slider__bar slider__bar_${orientation}`;
 
     slider.append(bar);
+    this.updataColor(options, bar);
+    this.updataBar(options, bar);
+  }
+
+  public upData(options: ViewState) {
+    const { slider } = options;
+
+    const bar = slider.querySelector('.slider__bar')! as HTMLElement;
+
     this.updataColor(options, bar);
     this.updataBar(options, bar);
   }

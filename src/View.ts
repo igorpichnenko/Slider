@@ -50,12 +50,14 @@ class View {
     };
   }
 
-  private getOneStep(options: Options): number {
-    const { min, max, step } = options;
+  public createSlider(options: Options, element: HTMLElement): HTMLElement {
+    const { orientation } = options;
+    const slider = document.createElement('div');
 
-    const result = Math.ceil((max - min) / step);
+    slider.className = `slider slider_${orientation}`;
+    element.append(slider);
 
-    return this.getSliderSize(options) / result;
+    return slider;
   }
 
   private createTrack(options: ViewState): Track {
@@ -72,16 +74,6 @@ class View {
 
   private createScale(options: ViewState): Scale {
     return new Scale(options);
-  }
-
-  public createSlider(options: Options, element: HTMLElement): HTMLElement {
-    const { orientation } = options;
-    const slider = document.createElement('div');
-
-    slider.className = `slider slider_${orientation}`;
-    element.append(slider);
-
-    return slider;
   }
 
   public upData(newState: Partial<ViewState>) {
@@ -110,6 +102,14 @@ class View {
     this.bar = this.createBar(this.state);
     this.upData(this.state);
     this.bindEventListeners();
+  }
+
+  private getOneStep(options: Options): number {
+    const { min, max, step } = options;
+
+    const result = Math.ceil((max - min) / step);
+
+    return this.getSliderSize(options) / result;
   }
 
   private bindEventListeners() {

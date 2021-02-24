@@ -8,17 +8,14 @@ declare global {
   }
 
   interface JQuery {
-    slider(options?: Partial<Options>): Presenter
+    colorSlider(options?: Partial<Options>): Presenter
 
   }
 }
 
-
-  $.fn.slider = function init(options?: Partial<Options>): Presenter {
+$.fn.colorSlider = function init(options?: Partial<Options>): Presenter {
+  
     const newOptions: Options = { ...standardOptions, ...options };
-
-    const slider: Presenter = new Presenter(newOptions, this.get(0));
-
-    return slider;
+    
+  return new Presenter(newOptions, this.get(0));
   };
-
