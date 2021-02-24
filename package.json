@@ -1,5 +1,6 @@
 {
-  "name": "range-slider",
+  "name": "colorSlider",
+  "author": "Igor Pichnenko <igorpichnenko@gmail.com> (https://github.com/igorpichnenko/Slider),
   "version": "1.0.0",
   "description": "range-slider",
   "scripts": {
