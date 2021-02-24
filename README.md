@@ -47,7 +47,7 @@ $('.slider').colorSlider();
 ```
 Для создания слайдера с пользовательскими настройками:
 ```
-$('.element').colorSlider({
+$('.slider').colorSlider({
     gradient: 'blue',
     color: 'yellow',
     orientation: "vertical",
