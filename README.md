@@ -47,17 +47,33 @@ $('.element').colorSlider({
 ### Доступные настройки
 | Название свойства | По умолчанию | Описание | Типы |
 | ------ | ------ | ------ | ------ |
-| type | double | Один бегунок либо диапазон | single/double|
-| orientation | horizontal | Вертикальный/Горизонтальный вид | vertical/horizontal |
+| type | double | Один бегунок либо диапазон | string "single"/"double"|
+| orientation | horizontal | Вертикальный/Горизонтальный вид | string "vertical"/"horizontal" |
 | min | 0 | Минимальное значение | number,все number могут быть -, или дробными |
 | max | 10 | Максимальное значение | number |
 | step | 1 | шаг может быть дробным | number |
 | from | 3 | начальная позиция первого бегунка | number |
 | to | 7 | начальная позиция второго бегунка | number |
-| prefix | $ | префикс для tooltip | любое значение |
-| isPrefix | true | показать/скрыть префикс для tooltip | false/true |
-| isLabel | true | показать/скрыть сами tooltips над бегунками | false/true |
-| isScale | true | показать/скрыть шкалу | false/true |
+| prefix | ₽ | префикс для tooltip | любое значение |
+| isPrefix | true | показать/скрыть префикс для tooltip | boolean |
+| isLabel | true | показать/скрыть сами tooltips над бегунками | boolean |
+| isScale | true | показать/скрыть шкалу | boolean |
+| color | 'orange' | цвет первого бегунка, части бара если включен градиент, либо цвет всего слайдера | цвет в 16-ом формате #fff, либо например green/red |
+| isScalePrefix | true | показать/скрыть префикс шкалы | boolean |
+| scalePrefix | ₽ | префикс шкалы | любое значение |
+| minMax | false | показать/скрыть min и max по краям слайдера | boolean |
+| fromTo | false | показать/скрыть from и to по краям слайдера | boolean |
+| isTrackPrefix | true | показать/скрыть префикс minNax,fromTo | boolean |
+| trackPrefix | ₽ | префикс minMax,fromTo | любое значение | 
+| isColor | true | изменять цвет или нет | boolean |
+| changeColor | true | сменить оттенок | boolean |
+| isGradient | true | включить/выключить градиент | boolean |
+| gradient | 'purple' | второй цвет для создания градиента | #fff, green/red и.т.д | 
+| gradientDeg | 45 | градус направление градиента | number |
+| isColorOut | false | выводить значение текущего цвета вместо значений | boolean |
+| onlyDivisions | false | оставить только деления шкалы | boolean | 
+
+
 
 ## Архитектура
 
