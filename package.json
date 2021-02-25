@@ -1,15 +1,27 @@
 {
-  "name": "colorSlider",
-  "author": "Igor Pichnenko <igorpichnenko@gmail.com> (https://github.com/igorpichnenko/Slider),
-  "version": "1.0.0",
+  "name": "color-range-slider",
+  "version": "1.0.3",
   "description": "range-slider",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack/prod.config.js",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack/dev.config.js --open",
     "test": "jest --watch --collect-coverage",
     "deploy": "gh-pages -d dist",
-    "lint": "eslint src/**.ts --fix"
+    "lint": "eslint src/**/**.ts --fix"
   },
+  
+    "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igorpichnenko/Slider.git"
+  },
+  "author": "igorpichnenko igorpichnenko@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/igorpichnenko/Slider/issues"
+  },
+  "homepage": "https://github.com/igorpichnenko/Slider#readme",
+
+    
   "devDependencies": {
     "@babel/core": "^7.10.4",
     "@babel/plugin-proposal-decorators": "^7.10.5",

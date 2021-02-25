@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -9,17 +8,12 @@ function getPlugins(config) {
     new HTMLWebpackPlugin({
       currentEnv: process.env.NODE_ENV,
       filename: 'index.html',
-      template: './index.html',
-    }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
+      template: 'preview/index.html',
     }),
     new CleanWebpackPlugin(),
   ].concat(config === 'prod' ? (
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: 'slider/[name].css',
     })
   ) : []);
 }
@@ -46,11 +40,11 @@ const commonConfig = {
   target: 'web',
   context: path.resolve(__dirname, '..', 'src'),
   entry: {
-      demo: './index.ts',
-      slider: ['./slider.ts', './slider.scss'],
+      preview: './preview/index.ts',
+      slider: ['./slider/slider.ts', './slider/slider.scss'],
   },
   output: {
-    filename: '[name].js',
+    filename: 'slider/[name].js',
     path: path.resolve(__dirname, '..', 'dist'),
   },
   resolve: {
