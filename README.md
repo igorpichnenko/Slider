@@ -36,6 +36,7 @@ npm run lint
   * Подключить файлы **slider.js** и **slider.css** к своему проекту
 
 Для установки через npm 
+  * https://www.npmjs.com/package/color-range-slider
   * Выполнить **npm i color-range-slider**
   * Сделать импорт из node_modules например:
   * import '../../../node_modules/color-range-slider/dist/slider/slider.js'
