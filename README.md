@@ -35,9 +35,21 @@ npm run lint
   * Подключить **jquery** к своему проекту
   * Подключить файлы **slider.js** и **slider.css** к своему проекту
 
+Для установки через npm 
+  * Выполнить npm i color-range-slider
+  * Сделать импорт из node_modules например:
+  * import '../../../node_modules/color-range-slider/dist/slider/slider.js'
+  * import '../../../node_modules/color-range-slider/dist/slider/slider.css'
+  * Задать размер для оболочки для корректного отображения
+  * Классы для переоформления стилей:
+    .slider, .slider_horizontal, .slider_vertical, .slider__roller,.slider__roller_horizontal,.slider__roller_vertical, .slider__tooltip, .slider__tooltip_horizontal, .slider__tooltip_vertical, .slider__track, .slider__track_horizontal, .slider__track_vertical, .slider__out,
+    .slider__out-start_horizontal, .slider__out-end_horizontal, .slider__track_horizontal, .slider__track_vertical, .slider__bar, .slider__bar_horizontal, .slider__bar_vertical, .slider__scale, .slider__scale_horizontal, .slider__scale_vertical, .slider__scale-value, .slider__scale-value_horizontal,
+    .slider__scale-value_vertical, .slider__scale-value:after, .slider_vertical .slider__scale-value:before
+
+
 Для создания слайдера c настройками "по умолчанию" выполните:
 
-html
+создать в html
 ```
 <div class='slider'></div>
 ```
@@ -56,7 +68,6 @@ $('.slider').colorSlider({
     to: 70
 });
 ```
-
 ### Доступные настройки
 | Название свойства | По умолчанию | Описание | Типы |
 | ------ | ------ | ------ | ------ |
