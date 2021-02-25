@@ -35,9 +35,16 @@ npm run lint
   * Подключить **jquery** к своему проекту
   * Подключить файлы **slider.js** и **slider.css** к своему проекту
 
+Для установки через npm 
+  * Выполнить **npm i color-range-slider**
+  * Сделать импорт из node_modules например:
+  * import '../../../node_modules/color-range-slider/dist/slider/slider.js'
+  * import '../../../node_modules/color-range-slider/dist/slider/slider.css'
+  
+
 Для создания слайдера c настройками "по умолчанию" выполните:
 
-html
+создать в html
 ```
 <div class='slider'></div>
 ```
@@ -56,7 +63,6 @@ $('.slider').colorSlider({
     to: 70
 });
 ```
-
 ### Доступные настройки
 | Название свойства | По умолчанию | Описание | Типы |
 | ------ | ------ | ------ | ------ |
