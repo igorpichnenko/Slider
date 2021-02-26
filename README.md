@@ -87,6 +87,7 @@ $('.slider').colorSlider({
 | trackPrefix | ₽ | префикс minMax,fromTo | любое значение | 
 | isColor | true | изменять цвет или нет | boolean |
 | changeColor | true | сменить оттенок | boolean |
+| isChangeColor | true | использовать только css цвета | boolean |
 | isGradient | true | включить/выключить градиент | boolean |
 | gradient | 'purple' | второй цвет для создания градиента | #fff, green/red и.т.д | 
 | gradientDeg | 45 | градус направление градиента | number |
