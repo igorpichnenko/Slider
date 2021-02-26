@@ -96,38 +96,35 @@ $('.slider').colorSlider({
 
 # API Методы
 
+| название | описание |
+| ------ | ------- |
+| change | Позволяет сменить любой параметр |
+| getValue | Позволяет получить любой актуальный параметр |
+
+
  #### Результат примера на дэмо странице сверху
 
- * Для управления своей custom button
- * Записываем слайдер в переменную
- * Обновляем параметр методом setOptions({})
- * Пересобираем слайдер методом upDataView()
-```
-const slider = $('.js-test-slider').colorSlider({
-  isChangeColor: false,
-  onlyDivisions: true,
-})
+ * Для изменения слайдера например через custom-button
+ * Вызыать метод change с необходимыми параметрами
 
-$('.js-custom-btn').click(() => {
+```
+$('.js-test-slider').click(() => {
+
+  $wrap.colorSlider('change', {color: "red", gradient: "blue", max: 1000, from: 200, to: 800, onlyDivisions: true, fromTo: true})
   
-slider.setOptions({color: "red", gradient: "blue", max: 1000, from: 200, to: 800, isScale:false, fromTo: true})
-slider.upDataView()
-}
+})
 ```
 ### Для вывода информации в свои инпуты нужно:
-   * Создать инпуты
-   * Создать функцию upData()
-   * Подписаться на получение актуальных параметров из слайдера
-   * slider.emitter.subscribe('newData', upData);
+ * Создать инпуты
+ * Вызвать метод getValue
+   с функцией и выводить любой параметр из 27
+ * Обратившись через точку, например: values.from 
 ```
-let from = document.querySelector('.custom-from')
-let to = document.querySelector('.custom-to')
+$('.js-test-slider').colorSlider('getValue',(values: Options) => {   
+    $('.js-custom-from').val(values.from);    
+    $('.js-custom-to').val(values.to); 
+});    
 
-function upData(upData){
-from.value = String(upData.from)
-to.value = String(upData.to)
-}
-slider.emitter.subscribe('newData', upData);
 ```
 
 ## Архитектура

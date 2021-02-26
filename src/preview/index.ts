@@ -1,52 +1,40 @@
-import { Options } from '../slider/interfaces/interfaces';
 import { Demo } from './Demo/Demo';
+import { Options } from '../slider/interfaces/interfaces';
 import './index.scss';
 import '../slider/slider';
 
+let $wrap  = $('.js-test-slider')
 
-/** 
- * Для управления своей custom button
- * Записываем слайдер с переменную и потом обновляем тот параметр который нужно
- * пересобираем слайдер
-**/
-const slider = $('.js-test-slider').colorSlider({
+$wrap.colorSlider({
+  isScale: false,
   isChangeColor: false,
-  onlyDivisions: true,
+  
 })
+
+/**
+ * Для вывода в свои инпуты
+ * Создать инпуты, и вызвать метод getValue
+   с функцией и выводить любой параметр из 27 обратившись через точку values.from 
+**/
+
+$wrap.colorSlider('getValue',(values: Options) => {   
+    $('.js-custom-from').val(values.from);        
+    $('.js-custom-to').val(values.to); 
+});     
+
+/**
+ * Для изменения на custom-button
+ * Вызыать метод change с необходимыми параметрами
+**/
 
 $('.js-custom-btn').click(() => {
-  
-slider.setOptions({color: "red", gradient: "blue", max: 1000, from: 200, to: 800, isScale:false, fromTo: true})
-slider.upDataView()
 
+  $wrap.colorSlider('change', {color: "red", gradient: "blue", max: 1000, from: 200, to: 800, onlyDivisions: true, fromTo: true})
+                    
 })
-
-/** для вывода информации в свои инпуты нужно:
-   * создать инпуты
-   * создать функцию
-   * подписаться на получение актуальных параметров из слайдера
-   * slider.emitter.subscribe('newData', upData);
-**/
-
-let from = document.querySelector('.custom-from')! as HTMLInputElement
-let to = document.querySelector('.custom-to')! as HTMLInputElement 
-
-function upData(upData: Options){
- 
-from.value = String(upData.from)
-to.value = String(upData.to)
-}
-
-slider.emitter.subscribe('newData', upData);
-
-
-
-
-/** 
- * Для класса Дэмо создаем 4 набора параметров
- * И передаем в Дэмо результат функции colorSlider
-**/
-
+  
+  //      ***  Дэмо станица   ***
+  
 const firstOptions: Partial<Options> = {
   orientation: 'vertical',
   type: 'double',
@@ -85,12 +73,10 @@ const fourOptions: Partial<Options> = {
 
 
 const options = [firstOptions, twoOptions, threeOptions, fourOptions];
-
+  
 const $wrappers = $('.js-toxin-slider');
 
-$.each($wrappers, (key: number, wrap: Element) => (
-  new Demo($(wrap).colorSlider(options[key]))
-));
+$wrappers.each((index, element) => {
 
-
-
+  new Demo($(element).colorSlider(options[index]).colorSlider('change'))
+});

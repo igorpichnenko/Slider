@@ -1,23 +1,24 @@
 import '@testing-library/jest-dom';
+import $ from 'jquery';
 import { Presenter } from '../../slider/Presenter/Presenter';
 import { Demo } from './Demo';
 import { standardOptions } from '../../slider/interfaces/standardOptions';
 
 describe('Demo', () => {
   let demo: Demo;
-  let wrap: HTMLElement;
+  let wrap: JQuery<HTMLElement>;;
 
   
 
   beforeEach(() => {
-    wrap = document.createElement('div');
-    wrap.className = 'js-toxin-slider';
+    wrap = $("<div class='js-toxin-slider' ></div>")
+    
 
     const pages = document.createElement('div');
     pages.className = 'js-demo-pages';
 
     document.body.append(pages);
-    pages.append(wrap);
+    wrap.appendTo( "pages" )
 
     const presenter = new Presenter(standardOptions, wrap);
     demo = new Demo(presenter);

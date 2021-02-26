@@ -11,7 +11,7 @@ class Presenter {
 
   public model: Model;
 
-  constructor(options: Options, public element: HTMLElement) {
+  constructor(options: Options, public element: JQuery<HTMLElement>) {
     this.emitter = new EventEmitter();
 
     this.model = this.createModel(options);
@@ -37,7 +37,7 @@ class Presenter {
     return new Model(options);
   }
 
-  public createView(options: Options, element: HTMLElement): View {
+  public createView(options: Options, element: JQuery<HTMLElement>): View {
     return new View(options, element);
   }
 

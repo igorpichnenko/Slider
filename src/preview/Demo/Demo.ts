@@ -37,13 +37,10 @@ class Demo {
   }
 
   private createSettings() {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'js-wrapper';
-    const pages = document.querySelector('.js-demo-pages') as HTMLElement;
-    pages.append(wrapper);
-    wrapper.append(this.slider.element);
+    
+   
+   this.slider.element.after(this.demoTools)
 
-    wrapper.append(this.demoTools);
     this.demoTools.insertAdjacentHTML('beforeend', demoTemplate);
   }
 

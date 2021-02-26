@@ -7,7 +7,7 @@
   width: 266px;
 }
 
-.custom-from, .custom-to{
+.js-custom-from, .js-custom-to{
   margin-left: 5px;
   width: 50px;
   border-radius: 4px;
@@ -41,12 +41,11 @@
   width: 320px;
   height: 500px;
   position: relative;
-  //margin-top: 100px;
 }
 
 .js-demo-pages {
   padding: 10%;
-  overflow: hidden;
+ overflow: hidden;
   display: flex;
   flex-wrap: wrap;
   gap: 100px;

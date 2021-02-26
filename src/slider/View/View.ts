@@ -12,7 +12,7 @@ class View {
 
   public state: ViewState;
 
-  public element: HTMLElement;
+  public element: JQuery<HTMLElement>;
 
   public slider: HTMLElement;
 
@@ -20,11 +20,11 @@ class View {
 
   private rollers: Rollers;
 
-  private scale: Scale;
+  private scale: Scale;  
 
   private track: Track;
 
-  constructor(options: Options, element: HTMLElement) {
+  constructor(options: Options, element: JQuery<HTMLElement>) {
     this.emitter = new EventEmitter();
 
     this.element = element;
@@ -55,7 +55,7 @@ class View {
     };
   }
 
-  public createSlider(options: Options, element: HTMLElement): HTMLElement {
+  public createSlider(options: Options, element: JQuery<HTMLElement>): HTMLElement {
     const { orientation } = options;
     const slider = document.createElement('div');
 
