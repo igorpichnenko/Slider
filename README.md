@@ -94,7 +94,41 @@ $('.slider').colorSlider({
 | isColorOut | false | выводить значение текущего цвета вместо значений | boolean |
 | onlyDivisions | false | оставить только деления шкалы | boolean | 
 
+## API Методы
 
+ # Результат примера на дэмо странице сверху
+
+ * Для управления своей custom button
+ * Записываем слайдер с переменную
+ * обновляем параметр методом setOptions({})
+ * пересобираем слайдер методом upDataView()
+```
+const slider = $('.js-test-slider').colorSlider({
+  isChangeColor: false,
+  onlyDivisions: true,
+})
+
+$('.js-custom-btn').click(() => {
+  
+slider.setOptions({color: "red", gradient: "blue", max: 1000, from: 200, to: 800, isScale:false, fromTo: true})
+slider.upDataView()
+}
+```
+# Для вывода информации в свои инпуты нужно:
+   * создать инпуты
+   * создать функцию upData()
+   * подписаться на получение актуальных параметров из слайдера
+   * slider.emitter.subscribe('newData', upData);
+```
+let from = document.querySelector('.custom-from')
+let to = document.querySelector('.custom-to')
+
+function upData(upData){
+from.value = String(upData.from)
+to.value = String(upData.to)
+}
+slider.emitter.subscribe('newData', upData);
+```
 
 ## Архитектура
 

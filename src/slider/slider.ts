@@ -7,7 +7,11 @@ import './slider.scss';
   $.fn.colorSlider = function init(options?: Partial<Options>): Presenter {
     const newOptions: Options = { ...standardOptions, ...options };
 
-    const slider: Presenter = new Presenter(newOptions, this.get(0));
-    return slider;
+    const presenter: Presenter = new Presenter(newOptions, this.get(0));
+    return presenter;
   };
 }(jQuery));
+
+
+
+

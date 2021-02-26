@@ -115,7 +115,8 @@ class Scale {
     const { size } = options;
     return (value * 100) / size;
   }
-
+ 
+ // Кастомный Эвент для передачи значения в Вид
   private onScaleClick(event: Event): void {
     const { target } = event;
 

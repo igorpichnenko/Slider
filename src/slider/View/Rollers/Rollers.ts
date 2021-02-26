@@ -59,6 +59,10 @@ class Rollers {
         secondTooltip.innerHTML = to.toLocaleString();
       }
     }
+    /**
+     * Задумка сделать обратный конвектор из 16-ричного в обычный вид, например #fff в 
+    white, и в дальнейшем соьирался дополнять перевод 
+    **/
 
     let newColor = allColors[color];
     let newGradient = allColors[gradient];

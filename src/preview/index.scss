@@ -2,7 +2,35 @@
   margin: 0;
   padding: 0;
 }
-body {}
+.js-test-slider{
+  padding: 40px;
+  width: 266px;
+}
+
+.custom-from, .custom-to{
+  margin-left: 5px;
+  width: 50px;
+  border-radius: 4px;
+  outline: none;
+  
+}
+
+.js-custom-btn, {
+  margin: 20px;
+  border: unset;
+  background-color: #fff;
+  cursor: pointer;
+  outline: unset;
+}
+.js-custom-demo{
+  margin: 40px;
+  
+}
+.js-title{
+  margin-top: 40px;
+  text-align: center;
+}
+
 .js-toxin-slider {
   margin-top: 40px;
   margin-left: 20px;
