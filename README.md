@@ -168,4 +168,5 @@ subView класс который рисует 2 бегунка, и 2 tooltip д
 
 
 ##License
+
 ###Copyright (c) 2021 Igor Pichnenko
