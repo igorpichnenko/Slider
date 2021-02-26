@@ -1,6 +1,6 @@
 {
   "name": "color-range-slider",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "range-slider",
   "scripts": {
     "build": "webpack --mode production",

@@ -39,8 +39,8 @@ npm run lint
   * https://www.npmjs.com/package/color-range-slider
   * Выполнить **npm i color-range-slider**
   * Сделать импорт из node_modules например:
-  * import '../../../node_modules/color-range-slider/dist/slider/slider.js'
-  * import '../../../node_modules/color-range-slider/dist/slider/slider.css'
+  * import '../../../node_modules/color-range-slider/dist/slider.js'
+  * import '../../../node_modules/color-range-slider/dist/slider.css'
   
 
 Для создания слайдера c настройками "по умолчанию" выполните:
