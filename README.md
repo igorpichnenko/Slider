@@ -106,16 +106,16 @@ $('.slider').colorSlider({
  #### Результат примера на дэмо странице сверху
 
  * Для изменения слайдера например через custom-button
- * Вызыать метод change с необходимыми параметрами
+ * Вызвать метод change с необходимыми параметрами
 
 ```
-$('.js-test-slider').click(() => {
+$('.js-custom-button').click(() => {
 
-  $wrap.colorSlider('change', {color: "red", gradient: "blue", max: 1000, from: 200, to: 800, onlyDivisions: true, fromTo: true})
+  $('.js-test-slider').colorSlider('change', {color: "red", gradient: "blue", max: 1000, from: 200, to: 800, onlyDivisions: true, fromTo: true})
   
 })
 ```
-### Для вывода информации в свои инпуты нужно:
+### Для вывода информации в custom инпуты нужно:
  * Создать инпуты
  * Вызвать метод getValue
    с функцией и выводить любой параметр из 27
