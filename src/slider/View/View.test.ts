@@ -188,35 +188,35 @@ describe('View', () => {
   });
 
   test('upData should change the option prefix', () => {
-    view.upData({ prefix: '$' });
-    expect(view.state.prefix).toBe('$');
+    view.upData({ postfix: '$' });
+    expect(view.state.postfix).toBe('$');
 
-    view.upData({ prefix: '€' });
-    expect(view.state.prefix).toBe('€');
+    view.upData({ postfix: '€' });
+    expect(view.state.postfix).toBe('€');
 
-    view.upData({ prefix: '$' });
-    expect(view.state.prefix).toBe('$');
+    view.upData({ postfix: '$' });
+    expect(view.state.postfix).toBe('$');
   });
 
   test('upData should change the option trackPrefix', () => {
-    view.upData({ trackPrefix: '$' });
-    expect(view.state.trackPrefix).toBe('$');
+    view.upData({ trackPostfix: '$' });
+    expect(view.state.trackPostfix).toBe('$');
 
-    view.upData({ trackPrefix: '€' });
-    expect(view.state.trackPrefix).toBe('€');
+    view.upData({ trackPostfix: '€' });
+    expect(view.state.trackPostfix).toBe('€');
 
-    view.upData({ trackPrefix: '$' });
-    expect(view.state.trackPrefix).toBe('$');
+    view.upData({ trackPostfix: '$' });
+    expect(view.state.trackPostfix).toBe('$');
   });
 
   test('upData should change the option scalePrefix', () => {
-    view.upData({ scalePrefix: '$' });
-    expect(view.state.scalePrefix).toBe('$');
+    view.upData({ scalePostfix: '$' });
+    expect(view.state.scalePostfix).toBe('$');
 
-    view.upData({ scalePrefix: '€' });
-    expect(view.state.scalePrefix).toBe('€');
+    view.upData({ scalePostfix: '€' });
+    expect(view.state.scalePostfix).toBe('€');
 
-    view.upData({ scalePrefix: '$' });
-    expect(view.state.scalePrefix).toBe('$');
+    view.upData({ scalePostfix: '$' });
+    expect(view.state.scalePostfix).toBe('$');
   });
 });

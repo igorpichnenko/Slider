@@ -13,11 +13,11 @@ describe('Model', () => {
     expect(model.state.step).toBe(standardOptions.step);
     expect(model.state.from).toBe(standardOptions.from);
     expect(model.state.to).toBe(standardOptions.to);
-    expect(model.state.prefix).toBe(standardOptions.prefix);
+    expect(model.state.postfix).toBe(standardOptions.postfix);
     expect(model.state.isLabel).toBe(standardOptions.isLabel);
     expect(model.state.isScale).toBe(standardOptions.isScale);
-    expect(model.state.isScalePrefix).toBe(standardOptions.isScalePrefix);
-    expect(model.state.scalePrefix).toBe(standardOptions.scalePrefix);
+    expect(model.state.isScalePostfix).toBe(standardOptions.isScalePostfix);
+    expect(model.state.scalePostfix).toBe(standardOptions.scalePostfix);
     expect(model.state.color).toBe(standardOptions.color);
   });
 

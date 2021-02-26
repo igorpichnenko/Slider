@@ -128,35 +128,35 @@ const demoTemplate = `
    </div>
    
    
-   <button type="button" class="js-btn js-btn-prefix">Настройки Prefix</button>
+   <button type="button" class="js-btn js-btn-prefix">Настройки Postfix</button>
    <div class="js-menu js-menu-prefix">
    <div class="js-items">
-   <label class="js-labels js-label_checkbox">Показать/Скрыть префикс tooltip
+   <label class="js-labels js-label_checkbox">Показать/Скрыть постфикс tooltip
    <input type="checkbox" class="js-checkbox js-inputs js-isPrefixTool" name="isPrefix"/>
    </label>
    </div>
       <div class="js-items">
-   <label class="js-labels js-label_checkbox">Показать/Скрыть префикс шкалы
+   <label class="js-labels js-label_checkbox">Показать/Скрыть постфикс шкалы
    <input type="checkbox" class="js-checkbox js-inputs js-isPrefix" name="isPrefix"/>
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels js-label_checkbox">Показать/Скрыть префикс track
+   <label class="js-labels js-label_checkbox">Показать/Скрыть постфикс track
    <input type="checkbox" class="js-checkbox js-inputs js-isTrackPrefix" name="isPrefix"/>
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels">Префикс tooltip
+   <label class="js-labels">Постфикс tooltip
    <input type="text" class="js-inputs js-marker" name="marker"/>
    </label>
    </div>
       <div class="js-items">
-   <label class="js-labels">Префикс шкалы
+   <label class="js-labels">Постфикс шкалы
 <input type="text" class="js-inputs js-scale-prefix" name="js-prefix"/>
    </label>
    </div>
     <div class="js-items">
-   <label class="js-labels">Префикс track
+   <label class="js-labels">Постфикс track
 <input type="text" class="js-inputs js-track-prefix" name="js-prefix"/>
    </label>
    </div>

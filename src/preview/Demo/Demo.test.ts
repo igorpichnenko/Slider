@@ -134,16 +134,16 @@ describe('Demo', () => {
     expect(demo.state.from).toBe(0);
   });
 
-  test('should change isScalePrefix parameter', () => {
+  test('should change isScalePostfix parameter', () => {
     const inputIsPrefix = demo.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
 
     inputIsPrefix.checked = true;
     inputIsPrefix.dispatchEvent(new InputEvent('change'));
-    expect(demo.state.isScalePrefix).toBe(false);
+    expect(demo.state.isScalePostfix).toBe(false);
 
     inputIsPrefix.checked = false;
     inputIsPrefix.dispatchEvent(new InputEvent('change'));
-    expect(demo.state.isScalePrefix).toBe(true);
+    expect(demo.state.isScalePostfix).toBe(true);
   });
 
   test('should change isPrefix parameter', () => {
@@ -151,11 +151,11 @@ describe('Demo', () => {
 
     inputIsToolPrefix.checked = true;
     inputIsToolPrefix.dispatchEvent(new InputEvent('change'));
-    expect(demo.state.isPrefix).toBe(false);
+    expect(demo.state.isPostfix).toBe(false);
 
     inputIsToolPrefix.checked = false;
     inputIsToolPrefix.dispatchEvent(new InputEvent('change'));
-    expect(demo.state.isPrefix).toBe(true);
+    expect(demo.state.isPostfix).toBe(true);
   });
   test('should change isGradient parameter', () => {
     const inputGradient = demo.demoTools.querySelector('.js-gradient')! as HTMLInputElement;
@@ -235,11 +235,11 @@ describe('Demo', () => {
 
     inputIsTrackPrefix.checked = true;
     inputIsTrackPrefix.dispatchEvent(new InputEvent('change'));
-    expect(demo.state.isTrackPrefix).toBe(false);
+    expect(demo.state.isTrackPostfix).toBe(false);
 
     inputIsTrackPrefix.checked = false;
     inputIsTrackPrefix.dispatchEvent(new InputEvent('change'));
-    expect(demo.state.isTrackPrefix).toBe(true);
+    expect(demo.state.isTrackPostfix).toBe(true);
   });
   test('should change isColor parameter', () => {
     const inputIsColor = demo.demoTools.querySelector('.js-isColor')! as HTMLInputElement;
@@ -269,7 +269,7 @@ describe('Demo', () => {
     inputMarker.value = '$';
     inputMarker.dispatchEvent(new InputEvent('change'));
 
-    expect(demo.state.prefix).toBe('$');
+    expect(demo.state.postfix).toBe('$');
   });
   test('the color should change', () => {
     const inputColor = demo.demoTools.querySelector('.js-color') as HTMLInputElement;
@@ -302,7 +302,7 @@ describe('Demo', () => {
     inputScalePrefix.value = '#';
     inputScalePrefix.dispatchEvent(new InputEvent('change'));
 
-    expect(demo.state.scalePrefix).toBe('#');
+    expect(demo.state.scalePostfix).toBe('#');
   });
   test('the prefix track should change', () => {
     const inputTrackPrefix = demo.demoTools.querySelector('.js-track-prefix') as HTMLInputElement;
@@ -310,6 +310,6 @@ describe('Demo', () => {
     inputTrackPrefix.value = '¢';
     inputTrackPrefix.dispatchEvent(new InputEvent('change'));
 
-    expect(demo.state.trackPrefix).toBe('¢');
+    expect(demo.state.trackPostfix).toBe('¢');
   });
 });

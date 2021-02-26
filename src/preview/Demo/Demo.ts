@@ -2,7 +2,7 @@ import { Presenter } from '../../slider/Presenter/Presenter';
 import { Options } from '../../slider/interfaces/interfaces';
 import { demoTemplate } from './demoTemplate';
 
-
+ 
 
 class Demo {
   public state: Options;
@@ -46,11 +46,11 @@ class Demo {
 
   private initTools() {
     const {
-      orientation, isScale, type, isLabel, from, to, min, max, prefix, step,
-      color, isScalePrefix, scalePrefix, minMax,
-      fromTo, isTrackPrefix, trackPrefix, isColor, gradient, isColorOut,
+      orientation, isScale, type, isLabel, from, to, min, max, postfix, step,
+      color, isScalePostfix, scalePostfix, minMax,
+      fromTo, isTrackPostfix, trackPostfix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
-      onlyDivisions, isPrefix, isChangeColor,
+      onlyDivisions, isPostfix, isChangeColor,
       prettify
     } = this.state;
 
@@ -137,7 +137,7 @@ class Demo {
     btnPrefix.onclick = () => {
       menuPrefix.classList.toggle('js-close-menu');
     };
-
+ 
     /**     чекбоксы    * */
 
     isOrientation.onchange = () => {
@@ -150,20 +150,20 @@ class Demo {
     };
 
     inputIsPrefix.onchange = () => {
-      if (isScalePrefix === true) {
-        this.setState({ isScalePrefix: false });
+      if (isScalePostfix === true) {
+        this.setState({ isScalePostfix: false });
       }
-      if (isScalePrefix === false) {
-        this.setState({ isScalePrefix: true });
+      if (isScalePostfix === false) {
+        this.setState({ isScalePostfix: true });
       }
     };
 
     inputIsToolPrefix.onchange = () => {
-      if (isPrefix === true) {
-        this.setState({ isPrefix: false });
+      if (isPostfix === true) {
+        this.setState({ isPostfix: false });
       }
-      if (isPrefix === false) {
-        this.setState({ isPrefix: true });
+      if (isPostfix === false) {
+        this.setState({ isPostfix: true });
       }
     };
 
@@ -252,10 +252,10 @@ class Demo {
     };
 
     inputIsTrackPrefix.onchange = () => {
-      if (isTrackPrefix === false) {
-        this.setState({ isTrackPrefix: true });
+      if (isTrackPostfix === false) {
+        this.setState({ isTrackPostfix: true });
       } else {
-        this.setState({ isTrackPrefix: false });
+        this.setState({ isTrackPostfix: false });
       }
     };
 
@@ -264,8 +264,8 @@ class Demo {
         this.setState({ isColor: false });
       } else {
         this.setState({ isColor: true });
-      }
-    };
+      }  
+    }; 
 
     inputChangeColor.onchange = () => {
       if (changeColor === true) {
@@ -277,11 +277,11 @@ class Demo {
 
     //* *     инпуты    **/
 
-    inputMarker.value = prefix;
+    inputMarker.value = postfix;
 
     inputMarker.onchange = () => {
       const { value } = inputMarker;
-      this.setState({ prefix: value });
+      this.setState({ postfix: value });
     };
 
     inputFrom.value = String(from);
@@ -337,18 +337,18 @@ class Demo {
       this.setState({ gradientDeg: value });
     };
 
-    inputScalePrefix.value = scalePrefix;
+    inputScalePrefix.value = scalePostfix;
 
     inputScalePrefix.onchange = () => {
       const { value } = inputScalePrefix;
-      this.setState({ scalePrefix: value });
+      this.setState({ scalePostfix: value });
     };
 
-    inputTrackPrefix.value = trackPrefix;
+    inputTrackPrefix.value = trackPostfix;
 
     inputTrackPrefix.onchange = () => {
       const { value } = inputTrackPrefix;
-      this.setState({ trackPrefix: value });
+      this.setState({ trackPostfix: value });
     };
   }
 

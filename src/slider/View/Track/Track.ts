@@ -30,30 +30,30 @@ class Track {
 
   private setStartEndTrackOut(outStart: HTMLElement, outEnd: HTMLElement, options: ViewState) {
     const {
-      min, max, from, to, minMax, fromTo, isTrackPrefix,prettify
+      min, max, from, to, minMax, fromTo, isTrackPostfix,prettify
     } = options;
-    let { trackPrefix } = options;
-    if (isTrackPrefix === false) {
-      trackPrefix = '';
+    let { trackPostfix } = options;
+    if (isTrackPostfix === false) {
+      trackPostfix = '';
     }
 
     if (prettify === true){
     if (minMax === true) {
-      outStart.innerHTML = `${min.toLocaleString()}${trackPrefix}`;
-      outEnd.innerHTML = `${max.toLocaleString()}${trackPrefix}`;
+      outStart.innerHTML = `${min.toLocaleString()}${trackPostfix}`;
+      outEnd.innerHTML = `${max.toLocaleString()}${trackPostfix}`;
     }
     if (fromTo === true) {
-      outStart.innerHTML = `${from.toLocaleString()}${trackPrefix}`;
-      outEnd.innerHTML = `${to.toLocaleString()}${trackPrefix}`;
+      outStart.innerHTML = `${from.toLocaleString()}${trackPostfix}`;
+      outEnd.innerHTML = `${to.toLocaleString()}${trackPostfix}`;
     }
     }else {
       if (minMax === true) {
-      outStart.innerHTML = `${String(min)}${trackPrefix}`;
-      outEnd.innerHTML = `${String(max)}${trackPrefix}`;
+      outStart.innerHTML = `${String(min)}${trackPostfix}`;
+      outEnd.innerHTML = `${String(max)}${trackPostfix}`;
     }
     if (fromTo === true) {
-      outStart.innerHTML = `${String(from)}${trackPrefix}`;
-      outEnd.innerHTML = `${String(to)}${trackPrefix}`;
+      outStart.innerHTML = `${String(from)}${trackPostfix}`;
+      outEnd.innerHTML = `${String(to)}${trackPostfix}`;
     }
       
     }

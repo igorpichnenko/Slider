@@ -25,7 +25,7 @@ class Model {
 
   private init(options: Options): Options {
     this.setData(options);
-    return this.state;
+    return this.state; 
   }
 
   private validateMinMaxStep(options: Options): Options {

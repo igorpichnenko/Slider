@@ -65,20 +65,20 @@ describe('Presenter', () => {
     presenter.setOptions({ color });
     expect(presenter.getOptions().color).toBe(color);
   });
-  test('should get a new one prefix the model', () => {
-    const prefix = '₽';
-    presenter.setOptions({ prefix });
-    expect(presenter.getOptions().prefix).toBe(prefix);
+  test('should get a new one postfix the model', () => {
+    const postfix = '₽';
+    presenter.setOptions({ postfix });
+    expect(presenter.getOptions().postfix).toBe(postfix);
   });
   test('should get a new one isScalePrefix the model', () => {
-    const isScalePrefix = true;
-    presenter.setOptions({ isScalePrefix });
-    expect(presenter.getOptions().isScalePrefix).toBe(isScalePrefix);
+    const isScalePostfix = true;
+    presenter.setOptions({ isScalePostfix });
+    expect(presenter.getOptions().isScalePostfix).toBe(isScalePostfix);
   });
   test('should get a new one scalePrefix the model', () => {
-    const scalePrefix = '₽';
-    presenter.setOptions({ scalePrefix });
-    expect(presenter.getOptions().scalePrefix).toBe(scalePrefix);
+    const scalePostfix = '₽';
+    presenter.setOptions({ scalePostfix });
+    expect(presenter.getOptions().scalePostfix).toBe(scalePostfix);
   });
   test('should get a new one isLabel the model', () => {
     const isLabel = true;

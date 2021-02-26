@@ -93,15 +93,15 @@ describe('Scale', () => {
   test('division must have a prefix', () => {
     const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
 
-    expect(scaleMarker.getAttribute('data-text')).toBe(view.state.scalePrefix);
+    expect(scaleMarker.getAttribute('data-text')).toBe(view.state.scalePostfix);
   });
 
   test('divisions must not have a prefix', () => {
-    view.upData({ isScalePrefix: false });
+    view.upData({ isScalePostfix: false });
 
     const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
 
-    expect(scaleMarker.getAttribute('data-text')).not.toBe(view.state.scalePrefix);
+    expect(scaleMarker.getAttribute('data-text')).not.toBe(view.state.scalePostfix);
   });
 
   test('clicking on the scale should return the scale value', () => {

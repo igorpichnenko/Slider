@@ -27,13 +27,13 @@ class Scale {
 
   private updataScaleMarker(options: ViewState) {
     const {
-      scalePrefix, isScalePrefix, onlyDivisions, slider, color,
+      scalePostfix, isScalePostfix, onlyDivisions, slider, color,
     } = options;
 
     const scaleMarkers = slider.querySelectorAll<HTMLElement>('.slider__scale-value')!;
     scaleMarkers.forEach((scaleMarker) => {
-      if (isScalePrefix === true) {
-        scaleMarker.setAttribute('data-text', `${scalePrefix}`);
+      if (isScalePostfix === true) {
+        scaleMarker.setAttribute('data-text', `${scalePostfix}`);
       } else {
         scaleMarker.setAttribute('data-text', '');
       }
@@ -115,7 +115,7 @@ class Scale {
     const { size } = options;
     return (value * 100) / size;
   }
- 
+  
  // Кастомный Эвент для передачи значения в Вид
   private onScaleClick(event: Event): void {
     const { target } = event;

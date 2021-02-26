@@ -45,7 +45,7 @@ class Rollers {
     const {
       to,
       from,
-      prefix, isPrefix,
+      postfix, isPostfix,
       isLabel, 
       isColorOut, prettify
     } = options;
@@ -53,20 +53,20 @@ class Rollers {
    if (prettify === true){
 
     if (isLabel === true) {
-      if (isPrefix === true) {
-        fistTooltip.innerHTML = `${from.toLocaleString()}${prefix}`;
-        secondTooltip.innerHTML = `${to.toLocaleString()}${prefix}`;
-      } if (isPrefix === false) {
+      if (isPostfix === true) {
+        fistTooltip.innerHTML = `${from.toLocaleString()}${postfix}`;
+        secondTooltip.innerHTML = `${to.toLocaleString()}${postfix}`;
+      } if (isPostfix === false) {
         fistTooltip.innerHTML = from.toLocaleString();
         secondTooltip.innerHTML = to.toLocaleString();
       }
     }
    }else{
      if (isLabel === true) {
-      if (isPrefix === true) {
-        fistTooltip.innerHTML = `${String(from)}${prefix}`;
-        secondTooltip.innerHTML = `${String(to)}${prefix}`;
-      } if (isPrefix === false) {
+      if (isPostfix === true) {
+        fistTooltip.innerHTML = `${String(from)}${postfix}`;
+        secondTooltip.innerHTML = `${String(to)}${postfix}`;
+      } if (isPostfix === false) {
         fistTooltip.innerHTML = String(from)
         secondTooltip.innerHTML = String(to)
       }

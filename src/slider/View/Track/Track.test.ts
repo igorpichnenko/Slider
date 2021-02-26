@@ -65,16 +65,16 @@ describe('Rollers', () => {
 
     view.upData({ minMax: true });
 
-    expect(out[0].innerHTML).toBe(`${view.state.min.toLocaleString()}${view.state.trackPrefix}`);
-    expect(out[1].innerHTML).toBe(`${view.state.max.toLocaleString()}${view.state.trackPrefix}`);
+    expect(out[0].innerHTML).toBe(`${view.state.min.toLocaleString()}${view.state.trackPostfix}`);
+    expect(out[1].innerHTML).toBe(`${view.state.max.toLocaleString()}${view.state.trackPostfix}`);
   });
   test('if fromTo = true, then the out element should display the from, to and trackPrefix values', () => {
     const out = view.slider.querySelectorAll('.slider__out');
 
     view.upData({ fromTo: true });
 
-    expect(out[0].innerHTML).toBe(`${view.state.from.toLocaleString()}${view.state.trackPrefix}`);
-    expect(out[1].innerHTML).toBe(`${view.state.to.toLocaleString()}${view.state.trackPrefix}`);
+    expect(out[0].innerHTML).toBe(`${view.state.from.toLocaleString()}${view.state.trackPostfix}`);
+    expect(out[1].innerHTML).toBe(`${view.state.to.toLocaleString()}${view.state.trackPostfix}`);
   });
 
   test('if fromTo=true, isTrackPrefix=false, then the out element should display from, to values', () => {
@@ -82,7 +82,7 @@ describe('Rollers', () => {
 
     view.upData({
       fromTo: true,
-      isTrackPrefix: false,
+      isTrackPostfix: false,
     });
 
     expect(out[0].innerHTML).toBe(`${view.state.from.toLocaleString()}`);
@@ -93,7 +93,7 @@ describe('Rollers', () => {
 
     view.upData({
       minMax: true,
-      isTrackPrefix: false,
+      isTrackPostfix: false,
     });
 
     expect(out[0].innerHTML).toBe(`${view.state.min.toLocaleString()}`);

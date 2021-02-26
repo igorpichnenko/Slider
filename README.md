@@ -74,17 +74,17 @@ $('.slider').colorSlider({
 | step | 1 | шаг может быть дробным | number |
 | from | 3 | начальная позиция первого бегунка | number |
 | to | 7 | начальная позиция второго бегунка | number |
-| prefix | ₽ | префикс для tooltip | любое значение |
-| isPrefix | true | показать/скрыть префикс для tooltip | boolean |
+| postfix | ₽ | постфикс для tooltip | любое значение |
+| isPostfix | true | показать/скрыть постфикс для tooltip | boolean |
 | isLabel | true | показать/скрыть сами tooltips над бегунками | boolean |
 | isScale | true | показать/скрыть шкалу | boolean |
 | color | 'orange' | цвет первого бегунка, части бара если включен градиент, либо цвет всего слайдера | цвет в 16-ом формате #fff, либо например green/red |
-| isScalePrefix | true | показать/скрыть префикс шкалы | boolean |
-| scalePrefix | ₽ | префикс шкалы | любое значение |
+| isScalePostfix | true | показать/скрыть постфикс шкалы | boolean |
+| scalePostfix | ₽ | постфикс шкалы | любое значение |
 | minMax | false | показать/скрыть min и max по краям слайдера | boolean |
 | fromTo | false | показать/скрыть from и to по краям слайдера | boolean |
-| isTrackPrefix | true | показать/скрыть префикс minNax,fromTo | boolean |
-| trackPrefix | ₽ | префикс minMax,fromTo | любое значение | 
+| isTrackPostfix | true | показать/скрыть постфикс minNax,fromTo | boolean |
+| trackPostfix | ₽ | постфикс minMax,fromTo | любое значение | 
 | isColor | true | изменять цвет или нет | boolean |
 | changeColor | true | сменить оттенок | boolean |
 | isChangeColor | true | использовать только css цвета | boolean |

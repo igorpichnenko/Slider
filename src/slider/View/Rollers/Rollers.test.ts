@@ -82,7 +82,7 @@ describe('Rollers', () => {
 
   test('tooltips should display options to and from', () => {
     
-    view.upData({ isPrefix: false });
+    view.upData({ isPostfix: false });
     
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');
   
@@ -93,10 +93,10 @@ describe('Rollers', () => {
 
   test('if the isPrefix = true parameter, the tooltips should display the parameters from and to the + prefix', () => {
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');
-    view.upData({ isPrefix: true });
+    view.upData({ isPostfix: true });
 
-    expect(tooltips[0].innerHTML).toBe(`${view.state.from}${view.state.prefix}`);
-    expect(tooltips[1].innerHTML).toBe(`${view.state.to}${view.state.prefix}`);
+    expect(tooltips[0].innerHTML).toBe(`${view.state.from}${view.state.postfix}`);
+    expect(tooltips[1].innerHTML).toBe(`${view.state.to}${view.state.postfix}`);
   });
 
   test('if isColorOut = true, then the default color and gradient name is displayed in tooltips', () => {
