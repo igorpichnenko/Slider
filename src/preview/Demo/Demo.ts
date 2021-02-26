@@ -2,6 +2,8 @@ import { Presenter } from '../../slider/Presenter/Presenter';
 import { Options } from '../../slider/interfaces/interfaces';
 import { demoTemplate } from './demoTemplate';
 
+
+
 class Demo {
   public state: Options;
 

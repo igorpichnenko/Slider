@@ -1,7 +1,7 @@
 import { Options } from '../slider/interfaces/interfaces';
 import { Demo } from './Demo/Demo';
 import './index.scss';
-
+import '../slider/slider';
 
 const firstOptions: Partial<Options> = {
   orientation: 'vertical',
@@ -39,15 +39,14 @@ const fourOptions: Partial<Options> = {
   color: 'green',
 };
 
-const fiveOptions: Partial<Options> ={
-  isChangeColor: false
-}
+const fiveOptions: Partial<Options> = {
+  isChangeColor: false,
+};
 
 const options = [firstOptions, twoOptions, threeOptions, fourOptions, fiveOptions];
 
-
 const $wrappers = $('.js-toxin-slider');
 
-$.each($wrappers, (key, wrap) => (
+$.each($wrappers, (key: number, wrap: Element) => (
   new Demo($(wrap).colorSlider(options[key]))
 ));

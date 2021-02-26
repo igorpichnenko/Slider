@@ -1,16 +1,7 @@
 import { Presenter } from './Presenter/Presenter';
 import { Options } from './interfaces/interfaces';
 import { standardOptions } from './interfaces/standardOptions';
-
-declare global {
-  interface Window {
-    $: JQuery;
-  }
-
-  interface JQuery {
-    colorSlider(options?: Partial<Options>): Presenter
-  }
-}
+import './slider.scss';
 
 (function ($) {
   $.fn.colorSlider = function init(options?: Partial<Options>): Presenter {

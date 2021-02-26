@@ -67,8 +67,8 @@ $('.slider').colorSlider({
 ### Доступные настройки
 | Название свойства | По умолчанию | Описание | Типы |
 | ------ | ------ | ------ | ------ |
-| type | double | Один бегунок либо диапазон | single/double|
-| orientation | horizontal | Вертикальный/Горизонтальный вид | vertical/horizontal |
+| type | double | Один бегунок либо диапазон | string "single"/"double"|
+| orientation | horizontal | Вертикальный/Горизонтальный вид | string "vertical"/"horizontal" |
 | min | 0 | Минимальное значение | number,все number могут быть -, или дробными |
 | max | 10 | Максимальное значение | number |
 | step | 1 | шаг может быть дробным | number |

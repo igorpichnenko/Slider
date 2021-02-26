@@ -5,6 +5,8 @@ import { Track } from './Track/Track';
 import { Scale } from './Scale/Scale';
 import { Bar } from './Bar/Bar';
 
+
+
 class View {
   public emitter: EventEmitter;
 
