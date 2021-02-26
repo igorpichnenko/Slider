@@ -23,7 +23,8 @@
   outline: unset;
 }
 .js-custom-demo{
-  margin: 40px;
+ 
+  margin: 20px;
   
 }
 .js-title{
@@ -32,8 +33,6 @@
 }
 
 .js-toxin-slider {
-  margin-top: 40px;
-  margin-left: 20px;
   width: 266px;
   height: 266px;
 }
@@ -42,12 +41,15 @@
   width: 320px;
   height: 500px;
   position: relative;
-
+  //margin-top: 100px;
 }
 
 .js-demo-pages {
   padding: 10%;
-
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
 }
 .js-title {
   margin-bottom: 10px;
@@ -61,7 +63,7 @@
 .demoTools {
   top: 15%;
   left: 35%;
-  margin-left: 50px;
+  margin-left: 60px;
   padding-left: 30px;
   padding-right: 10px;
   border-radius: 5px;
