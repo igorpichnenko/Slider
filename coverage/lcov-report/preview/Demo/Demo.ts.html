@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.47% </span>
+                <span class="strong">94.32% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>164/170</span>
+                <span class='fraction'>166/176</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.5% </span>
+                <span class="strong">84.09% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>37/40</span>
+                <span class='fraction'>37/44</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.89% </span>
+                <span class="strong">86.49% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>32/36</span>
+                <span class='fraction'>32/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.47% </span>
+                <span class="strong">94.32% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>164/170</span>
+                <span class='fraction'>166/176</span>
             </div>
         
             
@@ -397,7 +397,18 @@
 <a name='L338'></a><a href='#L338'>338</a>
 <a name='L339'></a><a href='#L339'>339</a>
 <a name='L340'></a><a href='#L340'>340</a>
-<a name='L341'></a><a href='#L341'>341</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L341'></a><a href='#L341'>341</a>
+<a name='L342'></a><a href='#L342'>342</a>
+<a name='L343'></a><a href='#L343'>343</a>
+<a name='L344'></a><a href='#L344'>344</a>
+<a name='L345'></a><a href='#L345'>345</a>
+<a name='L346'></a><a href='#L346'>346</a>
+<a name='L347'></a><a href='#L347'>347</a>
+<a name='L348'></a><a href='#L348'>348</a>
+<a name='L349'></a><a href='#L349'>349</a>
+<a name='L350'></a><a href='#L350'>350</a>
+<a name='L351'></a><a href='#L351'>351</a>
+<a name='L352'></a><a href='#L352'>352</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -520,19 +531,21 @@
 <span class="cline-any cline-yes">75x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">75x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">75x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">75x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">75x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">75x</span>
@@ -568,6 +581,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -750,7 +772,7 @@ class Demo {
     this.state = slider.getOptions();
     this.demoTools = this.createTools();
     this.init();
-  } 
+  }   
 &nbsp;
   public upData(newSetting: Partial&lt;Options&gt;) {
     this.state = { ...this.state, ...newSetting };
@@ -790,7 +812,7 @@ class Demo {
       color, isScalePrefix, scalePrefix, minMax,
       fromTo, isTrackPrefix, trackPrefix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
-      onlyDivisions, isPrefix,
+      onlyDivisions, isPrefix, isChangeColor,
     } = this.state;
 &nbsp;
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
@@ -836,6 +858,8 @@ class Demo {
     const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
 &nbsp;
     const inputScalePrefix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
+    
+    const inputIsChangeColor = this.demoTools.querySelector('.js-isChangeColor')! as HTMLInputElement;
 &nbsp;
     const inputMinMax = this.demoTools.querySelector('.js-minMax')! as HTMLInputElement;
 &nbsp;
@@ -908,6 +932,15 @@ class Demo {
       }
       if (isGradient === false) {
         this.setState({ isGradient: true });
+      }
+    };
+    
+    inputIsChangeColor.onchange = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      if (isChangeColor === true) {</span>
+<span class="cstat-no" title="statement not covered" >        this.setState({ isChangeColor: false });</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (isChangeColor === false) {</span>
+<span class="cstat-no" title="statement not covered" >        this.setState({ isChangeColor: true });</span>
       }
     };
 &nbsp;
@@ -1084,7 +1117,7 @@ export { Demo };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Feb 25 2021 15:27:34 GMT+0600 (GMT+06:00)
+                at Fri Feb 26 2021 08:36:54 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

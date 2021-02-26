@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.61% </span>
+                <span class="strong">86.08% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>140/158</span>
+                <span class='fraction'>136/158</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>29/50</span>
+                <span class='fraction'>25/50</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.39% </span>
+                <span class="strong">88.74% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>138/151</span>
+                <span class='fraction'>134/151</span>
             </div>
         
             
@@ -454,17 +454,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">255x</span>
+<span class="cline-any cline-yes">256x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">255x</span>
-<span class="cline-any cline-yes">255x</span>
-<span class="cline-any cline-yes">255x</span>
-<span class="cline-any cline-yes">255x</span>
+<span class="cline-any cline-yes">256x</span>
+<span class="cline-any cline-yes">256x</span>
+<span class="cline-any cline-yes">256x</span>
+<span class="cline-any cline-yes">256x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">255x</span>
+<span class="cline-any cline-yes">256x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -532,15 +532,15 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -624,9 +624,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -672,9 +672,9 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -684,9 +684,9 @@
 <span class="cline-any cline-yes">304x</span>
 <span class="cline-any cline-yes">304x</span>
 <span class="cline-any cline-yes">304x</span>
-<span class="cline-any cline-yes">246x</span>
+<span class="cline-any cline-yes">288x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">58x</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">304x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -849,16 +849,16 @@ class View {
     event.preventDefault();
     <span class="missing-if-branch" title="if path not taken" >I</span>if (!/roller/.test(target.className)) <span class="cstat-no" title="statement not covered" >return;</span>
 &nbsp;
-    if (orientation === 'horizontal') {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (orientation === 'horizontal') {
       <span class="missing-if-branch" title="if path not taken" >I</span>if (event.type === 'touchmove') {
 <span class="cstat-no" title="statement not covered" >        mouseValue = this.convertPxToValue(event.touches[0].clientX);</span>
       } else {
         mouseValue = this.convertPxToValue(event.clientX);
       }
-    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (event.type === 'touchmove') {
+    } else <span class="cstat-no" title="statement not covered" >if (event.type === 'touchmove') {</span>
 <span class="cstat-no" title="statement not covered" >      mouseValue = this.convertPxToValue(event.touches[0].clientY);</span>
     } else {
-      mouseValue = this.convertPxToValue(event.clientY);
+<span class="cstat-no" title="statement not covered" >      mouseValue = this.convertPxToValue(event.clientY);</span>
     }
     this.updatePosition(mouseValue, target);
   }
@@ -941,10 +941,10 @@ class View {
     const sliderEndPos = sliderPos + size;
 &nbsp;
     let px = 0;
-    if (orientation === 'horizontal') {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (orientation === 'horizontal') {
       px = coordinate - sliderPos;
     } else {
-      px = sliderEndPos - coordinate;
+<span class="cstat-no" title="statement not covered" >      px = sliderEndPos - coordinate;</span>
     }
     <span class="missing-if-branch" title="if path not taken" >I</span>if (px &gt; size) <span class="cstat-no" title="statement not covered" >return max;</span>
 &nbsp;
@@ -989,10 +989,10 @@ class View {
     const { orientation, slider } = this.state;
     let position = 0;
 &nbsp;
-    if (orientation === 'horizontal') {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (orientation === 'horizontal') {
       position = slider.getBoundingClientRect().left;
     } else {
-      position = slider.getBoundingClientRect().top;
+<span class="cstat-no" title="statement not covered" >      position = slider.getBoundingClientRect().top;</span>
     }
 &nbsp;
     return position;
@@ -1018,7 +1018,7 @@ export { View };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Feb 25 2021 15:27:34 GMT+0600 (GMT+06:00)
+                at Fri Feb 26 2021 08:36:54 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

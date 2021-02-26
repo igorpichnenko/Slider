@@ -1,39 +1,11 @@
 import '@testing-library/jest-dom';
-import { allColors } from '../interfaces/color';
-import { Options } from '../interfaces/interfaces';
 import { Presenter } from './Presenter';
+import { standardOptions } from '../interfaces/standardOptions';
 
 describe('Presenter', () => {
   let wrap: HTMLElement;
   let presenter: Presenter;
-  const standardOptions: Options = {
-    orientation: 'horizontal',
-    type: 'double',
-    min: 0,
-    max: 10,
-    step: 1,
-    from: 3,
-    to: 7,
-    prefix: '₽',
-    isPrefix: true,
-    isLabel: true,
-    isScale: true,
-    color: 'orange',
-    isScalePrefix: true,
-    scalePrefix: '₽',
-    minMax: false,
-    fromTo: false,
-    isTrackPrefix: true,
-    trackPrefix: '₽',
-    isColor: true,
-    changeColor: true,
-    isGradient: true,
-    gradient: 'purple',
-    gradientDeg: 45,
-    isColorOut: false,
-    onlyDivisions: false,
-    allColors,
-  };
+  
 
   beforeEach(() => {
     wrap = document.createElement('div');

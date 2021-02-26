@@ -47,7 +47,7 @@ class Rollers {
       from, color,
       prefix, isPrefix,
       isLabel, gradient,
-      isColorOut, allColors,
+      isColorOut, allColors,isChangeColor
     } = options;
 
     if (isLabel === true) {
@@ -62,7 +62,8 @@ class Rollers {
 
     let newColor = allColors[color];
     let newGradient = allColors[gradient];
-
+//console.log(color)
+//console.log(newColor)
     if (newGradient === undefined) {
       newGradient = gradient;
     }
@@ -70,7 +71,8 @@ class Rollers {
     if (newColor === undefined) {
       newColor = color;
     }
-
+    if(isChangeColor === true){
+   
     if (isColorOut === true) {
       fistTooltip.innerHTML = newColor.toLocaleString();
       secondTooltip.innerHTML = newGradient.toLocaleString();
@@ -80,16 +82,21 @@ class Rollers {
       fistTooltip.classList.add('slider__tooltip_bg');
       secondTooltip.classList.add('slider__tooltip_bg');
     }
+    }
     if (isLabel === false) {
       fistTooltip.classList.add('slider__tooltip_display-none');
       secondTooltip.classList.add('slider__tooltip_display-none');
     }
+    
+    
   }
 
   private updataColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
     const {
-      color, isGradient, gradient, gradientDeg,
+      color, isGradient, gradient, isChangeColor,gradientDeg,
     } = options;
+     if (isChangeColor === true){
+    
     if (isGradient === true) {
       rollerFirst.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
       rollerSecond.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
@@ -98,7 +105,7 @@ class Rollers {
       rollerSecond.style.background = color;
     }
   }
-
+}
   private moveRollersAtValue(options: ViewState, rollerFirst: HTMLElement,
     rollerSecond: HTMLElement): void {
     const {

@@ -19,6 +19,7 @@ interface Options {
   trackPrefix: string,
   isColor: boolean,
   changeColor: boolean,
+  isChangeColor: boolean,
   isGradient: boolean,
   gradient: string,
   gradientDeg: number,

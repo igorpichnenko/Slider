@@ -91,6 +91,11 @@ const demoTemplate = `
    </label>
    </div>
    <div class="js-items">
+   <label class="js-labels js-label_checkbox">Использовать только css цвет
+   <input type="checkbox" class="js-checkbox js-inputs js-isChangeColor" name="isColor"/>
+   </label>
+   </div>
+   <div class="js-items">
    <label class="js-labels js-label_checkbox">Сменить оттенок
    <input type="checkbox" class="js-checkbox js-inputs js-changeColor" name="isColor"/>
    </label>

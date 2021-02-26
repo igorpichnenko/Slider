@@ -11,7 +11,7 @@ class Demo {
     this.state = slider.getOptions();
     this.demoTools = this.createTools();
     this.init();
-  } 
+  }   
 
   public upData(newSetting: Partial<Options>) {
     this.state = { ...this.state, ...newSetting };
@@ -51,7 +51,7 @@ class Demo {
       color, isScalePrefix, scalePrefix, minMax,
       fromTo, isTrackPrefix, trackPrefix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
-      onlyDivisions, isPrefix,
+      onlyDivisions, isPrefix, isChangeColor,
     } = this.state;
 
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
@@ -97,6 +97,8 @@ class Demo {
     const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
 
     const inputScalePrefix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
+    
+    const inputIsChangeColor = this.demoTools.querySelector('.js-isChangeColor')! as HTMLInputElement;
 
     const inputMinMax = this.demoTools.querySelector('.js-minMax')! as HTMLInputElement;
 
@@ -169,6 +171,15 @@ class Demo {
       }
       if (isGradient === false) {
         this.setState({ isGradient: true });
+      }
+    };
+    
+    inputIsChangeColor.onchange = () => {
+      if (isChangeColor === true) {
+        this.setState({ isChangeColor: false });
+      }
+      if (isChangeColor === false) {
+        this.setState({ isChangeColor: true });
       }
     };
 

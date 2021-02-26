@@ -1,39 +1,11 @@
 import '@testing-library/jest-dom';
-import { allColors } from '../interfaces/color';
 import { View } from './View';
-import { Options } from '../interfaces/interfaces';
+import { standardOptions } from '../interfaces/standardOptions';
 
 describe('View', () => {
   let wrap: HTMLElement;
   let view: View;
-  const standardOptions: Options = {
-    orientation: 'vertical',
-    type: 'double',
-    min: 0,
-    max: 10,
-    step: 1,
-    from: 3,
-    to: 7,
-    prefix: '₽',
-    isPrefix: true,
-    isLabel: true,
-    isScale: true,
-    color: 'orange',
-    isScalePrefix: true,
-    scalePrefix: '₽',
-    minMax: false,
-    fromTo: false,
-    isTrackPrefix: true,
-    trackPrefix: '₽',
-    isColor: true,
-    changeColor: true,
-    isGradient: true,
-    gradient: 'purple',
-    gradientDeg: 45,
-    isColorOut: false,
-    onlyDivisions: false,
-    allColors,
-  };
+  
 
   beforeEach(() => {
     wrap = document.createElement('div');
@@ -66,7 +38,7 @@ describe('View', () => {
     const sliderClass = view.slider.className;
 
     expect(view.slider).toBeTruthy();
-    expect(sliderClass).toBe('slider slider_vertical');
+    expect(sliderClass).toBe('slider slider_horizontal');
   });
 
   test('should create 2 rollers', () => {
@@ -94,21 +66,21 @@ describe('View', () => {
   });
 
   test('should create a track', () => {
-    const track = view.slider.querySelector('.slider__track_vertical');
+    const track = view.slider.querySelector('.slider__track_horizontal');
 
     expect(track).toBeTruthy();
     expect(track).toBeVisible();
   });
 
   test('should create a bar', () => {
-    const bar = view.slider.querySelector('.slider__bar_vertical');
+    const bar = view.slider.querySelector('.slider__bar_horizontal');
 
     expect(bar).toBeTruthy();
     expect(bar).toBeVisible();
   });
 
   test('should create a scale', () => {
-    const scale = view.slider.querySelector('.slider__scale_vertical');
+    const scale = view.slider.querySelector('.slider__scale_horizontal');
 
     expect(scale).toBeTruthy();
     expect(scale).toBeVisible();

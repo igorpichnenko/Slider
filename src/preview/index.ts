@@ -40,7 +40,7 @@ const fourOptions: Partial<Options> = {
 };
 
 const fiveOptions: Partial<Options> ={
-  
+  isChangeColor: false
 }
 
 const options = [firstOptions, twoOptions, threeOptions, fourOptions, fiveOptions];

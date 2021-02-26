@@ -1,20 +1,18 @@
-.slider {
- position: relative;
-}
 .slider_horizontal{
   width: 100%;
 }
 .slider_vertical{
   height: 100%;
 }
-.slider__roller {
+.slider {
+ position: relative;
+
+&__roller {
   position: absolute;
   cursor: pointer;
   z-index: 3;
   transition: transform 0.25s;
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffe39c), to(#ffba9c));
-  background: -o-linear-gradient(top, #ffe39c 0%, #ffba9c 100%);
-  background: linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);
+  background-color: green;
   border: 2px solid #fff;
   border-radius: 10px;
   width: 12px;
@@ -23,7 +21,7 @@
   
 }
 
-.slider__tooltip{
+&__tooltip{
   position: absolute;
   font-family: Montserrat,Arial, sans-serif;
   font-style: normal;
@@ -36,29 +34,29 @@
   white-space: nowrap;
 }
 
-.slider__tooltip_horizontal{
+&__tooltip_horizontal{
 transform: translateY(-125%);
 }
 
-.slider__tooltip_vertical{
+&__tooltip_vertical{
   top: -2px;
   left: 14px;
 }
-.slider__tooltip_display-none{
+&__tooltip_display-none{
   display: none;
 }
 
-.slider__tooltip_bg{
+&__tooltip_bg{
   color: white;
 }
-.slider__roller_horizontal {
+&__roller_horizontal {
   transform: translateX(-50%)
 }
 
-.slider__roller_vertical {
+&__roller_vertical {
  transform: translateY(50%)
 }
-.slider__track {
+&__track {
   position: absolute;
   border-radius: 5px;
   cursor: default;
@@ -66,7 +64,7 @@ transform: translateY(-125%);
   box-sizing: border-box;
 }
 
-.slider__out{
+&__out{
   font-family: Montserrat,Arial, sans-serif;
   font-style: normal;
   font-size: 12px;
@@ -76,70 +74,70 @@ transform: translateY(-125%);
   position: absolute;
 }
 
-.slider__out-start_horizontal{
+&__out-start_horizontal{
   left: -5px;
   bottom: 22px;
 }
-.slider__out-end_horizontal{
+&__out-end_horizontal{
   right: -5px;
   bottom: 22px;
 }
-.slider__out-start_vertical{
+&__out-start_vertical{
   bottom: -22px;
   left: -2px;
 }
- .slider__out-end_vertical{
+ &__out-end_vertical{
   top: -22px;
   left: -2px;
 }
 
-.slider__track_horizontal {
+&__track_horizontal {
   top: 4px;
   width: 100%;
   height: 5px;
 }
 
-.slider__track_vertical {
+&__track_vertical {
   top: 0;
   left: 5px;
   width: 5px;
   height: 100%;
 }
 
-.slider__bar {
+&__bar {
    z-index: 1;
   position: absolute;
 	border-radius: 5px;
-	background:linear-gradient(180deg, #ffe39c 0%, #ffba9c 100%);
+	background-color: green;
 	opacity: .5;
 }
-.slider__bar_horizontal {
+&__bar_horizontal {
   height: 5px;
   top: 4px;
   
 }
-.slider__bar_vertical {
+&__bar_vertical {
   width: 5px;
   left: 5px;
 }
-.slider__scale {
+&__scale {
   position: relative
 }
 
-.slider__scale_none{
+&__scale_none{
   display: none;
 }
 
-.slider__scale_horizontal {
+&__scale_horizontal {
   top: 30px
 }
 
-.slider__scale_vertical {
+&__scale_vertical {
   left: 60px;
   height: 100%;
 }
 
-.slider__scale-value {
+&__scale-value {
   position: absolute;
   text-align: center;
   cursor: pointer;
@@ -152,13 +150,13 @@ transform: translateY(-125%);
   color: rgba(31,32,65,0.5);
    z-index: 2;
 }
-.slider__scale-value_fs-0{
+&__scale-value_fs-0{
   font-size: 0;
 }
-.slider__scale-value_fs-normal{
+&__scale-value_fs-normal{
   font-size: 12px;
 }
-.slider__scale-value:before{
+&__scale-value:before{
   content: '';
   position: absolute;
   width: 1px;
@@ -167,29 +165,29 @@ transform: translateY(-125%);
   cursor: pointer;
  transform: translateY( -26px) ;
 }
-.slider__scale-value:first-child:before{
+&__scale-value:first-child:before{
   width: 0;
   height: 0;
 }
-.slider__scale-value:last-child:before{
+&__scale-value:last-child:before{
   width: 0;
   height: 0;
 }
 
-.slider__scale-value:hover {
+&__scale-value:hover {
   color: var(--scale-color);
 }
 
-.slider__scale-value_horizontal {
+&__scale-value_horizontal {
   transform: translateX(-50%)
 }
 
-.slider__scale-value_vertical {
+&__scale-value_vertical {
   transform: translateY(50%)
 }
+ 
 
-
-.slider__scale-value:after{
+&__scale-value:after{
   content: attr(data-text);
   position: absolute;
   font-family: Montserrat,Arial, sans-serif;
@@ -200,10 +198,10 @@ transform: translateY(-125%);
   color: rgba(31,32,65,0.5);
 }
 
-.slider__scale-value:hover:after{
+&__scale-value:hover:after{
   color: var(--scale-color);
 }
-
+}
 .slider_vertical .slider__scale-value:before{
   transform: translate(-52.8px, 0px) rotate(90deg);
   

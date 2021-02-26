@@ -1,42 +1,13 @@
 import '@testing-library/jest-dom';
-
 import { Presenter } from '../../slider/Presenter/Presenter';
-import { Options } from '../../slider/interfaces/interfaces';
 import { Demo } from './Demo';
-import { allColors } from '../../slider/interfaces/color';
+import { standardOptions } from '../../slider/interfaces/standardOptions';
 
 describe('Demo', () => {
   let demo: Demo;
   let wrap: HTMLElement;
 
-  const standardOptions: Options = {
-    orientation: 'horizontal',
-    type: 'double',
-    min: 0,
-    max: 10,
-    step: 1,
-    from: 3,
-    to: 7,
-    prefix: '₽',
-    isPrefix: true,
-    isLabel: true,
-    isScale: true,
-    color: 'orange',
-    isScalePrefix: true,
-    scalePrefix: '₽',
-    minMax: false,
-    fromTo: false,
-    isTrackPrefix: true,
-    trackPrefix: '₽',
-    isColor: true,
-    changeColor: true,
-    isGradient: true,
-    gradient: 'purple',
-    gradientDeg: 45,
-    isColorOut: false,
-    onlyDivisions: false,
-    allColors,
-  };
+  
 
   beforeEach(() => {
     wrap = document.createElement('div');
@@ -60,7 +31,7 @@ describe('Demo', () => {
     expect(demo.state).toStrictEqual(standardOptions);
   });
   test('can be created with other parameters', () => {
-    const newOptions: Options = {
+    const newOptions = {
       ...standardOptions,
       orientation: 'horizontal',
       type: 'single',

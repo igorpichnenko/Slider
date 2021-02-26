@@ -1,39 +1,10 @@
 import '@testing-library/jest-dom';
-import { allColors } from '../../interfaces/color';
 import { View } from '../View';
-import { Options } from '../../interfaces/interfaces';
+import { standardOptions } from '../../interfaces/standardOptions';
 
 describe('Rollers', () => {
   let wrap: HTMLElement;
   let view: View;
-  const standardOptions: Options = {
-    orientation: 'horizontal',
-    type: 'double',
-    min: 0,
-    max: 10,
-    step: 1,
-    from: 3,
-    to: 7,
-    prefix: '₽',
-    isPrefix: false,
-    isLabel: true,
-    isScale: true,
-    color: 'orange',
-    isScalePrefix: true,
-    scalePrefix: '₽',
-    minMax: false,
-    fromTo: false,
-    isTrackPrefix: true,
-    trackPrefix: '₽',
-    isColor: true,
-    changeColor: true,
-    isGradient: true,
-    gradient: 'purple',
-    gradientDeg: 45,
-    isColorOut: false,
-    onlyDivisions: false,
-    allColors,
-  };
 
   beforeEach(() => {
     wrap = document.createElement('div');
@@ -110,8 +81,12 @@ describe('Rollers', () => {
   });
 
   test('tooltips should display options to and from', () => {
+    
+    view.upData({ isPrefix: false });
+    
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');
-
+  
+  
     expect(tooltips[0].innerHTML).toBe(String(view.state.from));
     expect(tooltips[1].innerHTML).toBe(String(view.state.to));
   });
@@ -124,13 +99,13 @@ describe('Rollers', () => {
     expect(tooltips[1].innerHTML).toBe(`${view.state.to}${view.state.prefix}`);
   });
 
-  test('if isColorOut = true then tooltips display color and gradient', () => {
+  test('if isColorOut = true, then the default color and gradient name is displayed in tooltips', () => {
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');
 
     view.upData({ isColorOut: true });
-
-    expect(tooltips[0].innerHTML).toBe(view.state.color);
-    expect(tooltips[1].innerHTML).toBe(view.state.gradient);
+  
+    expect(tooltips[0].innerHTML).toBe("Оранжевый");
+    expect(tooltips[1].innerHTML).toBe("Фиолетовый");
   });
 
   test('if isColorOut=true then tooltips should be colored with the variable color', () => {

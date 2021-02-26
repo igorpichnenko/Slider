@@ -23,6 +23,7 @@ const standardOptions: Options = {
   trackPrefix: '₽',
   isColor: true,
   changeColor: true,
+  isChangeColor: true,
   isGradient: true,
   gradient: 'purple',
   gradientDeg: 45,

@@ -1,6 +1,6 @@
 {
   "name": "color-range-slider",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "range-slider",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack/prod.config.js",
