@@ -44,11 +44,13 @@ class Rollers {
     secondTooltip: HTMLElement, options: ViewState) {
     const {
       to,
-      from, color,
+      from,
       prefix, isPrefix,
-      isLabel, gradient,
-      isColorOut, allColors,isChangeColor
+      isLabel, 
+      isColorOut, prettify
     } = options;
+
+   if (prettify === true){
 
     if (isLabel === true) {
       if (isPrefix === true) {
@@ -59,11 +61,31 @@ class Rollers {
         secondTooltip.innerHTML = to.toLocaleString();
       }
     }
+   }else{
+     if (isLabel === true) {
+      if (isPrefix === true) {
+        fistTooltip.innerHTML = `${String(from)}${prefix}`;
+        secondTooltip.innerHTML = `${String(to)}${prefix}`;
+      } if (isPrefix === false) {
+        fistTooltip.innerHTML = String(from)
+        secondTooltip.innerHTML = String(to)
+      }
+    }
+   }
+    this.setColor(fistTooltip, secondTooltip, options)
+
+}
+
+   private setColor(fistTooltip: HTMLElement,
+    secondTooltip: HTMLElement, options: ViewState){
+      
+      const { color,gradient,
+      isColorOut, allColors,isChangeColor, isLabel } = options
+      
     /**
      * Задумка сделать обратный конвектор из 16-ричного в обычный вид, например #fff в 
     white, и в дальнейшем соьирался дополнять перевод 
     **/
-
     let newColor = allColors[color];
     let newGradient = allColors[gradient];
 //console.log(color)
@@ -78,8 +100,8 @@ class Rollers {
     if(isChangeColor === true){
    
     if (isColorOut === true) {
-      fistTooltip.innerHTML = newColor.toLocaleString();
-      secondTooltip.innerHTML = newGradient.toLocaleString();
+      fistTooltip.innerHTML = String(newColor)
+      secondTooltip.innerHTML = String(newGradient)
 
       fistTooltip.style.backgroundColor = `${color}`;
       secondTooltip.style.backgroundColor = `${gradient}`;

@@ -22,6 +22,11 @@ const demoTemplate = `
    </label>
    </div>
    <div class="js-items">
+   <label class="js-labels js-label_checkbox">Доб./Убр. отступ для больших чисел
+   <input type="checkbox" class="js-checkbox js-inputs js-prettify" name="label"/>
+   </label>
+   </div>
+   <div class="js-items">
    <label class="js-labels js-label_checkbox">Показать min/max
    <input type="checkbox" class="js-checkbox js-inputs js-minMax" name="minMax"/>
    </label>

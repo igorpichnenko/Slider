@@ -30,13 +30,14 @@ class Track {
 
   private setStartEndTrackOut(outStart: HTMLElement, outEnd: HTMLElement, options: ViewState) {
     const {
-      min, max, from, to, minMax, fromTo, isTrackPrefix,
+      min, max, from, to, minMax, fromTo, isTrackPrefix,prettify
     } = options;
     let { trackPrefix } = options;
     if (isTrackPrefix === false) {
       trackPrefix = '';
     }
 
+    if (prettify === true){
     if (minMax === true) {
       outStart.innerHTML = `${min.toLocaleString()}${trackPrefix}`;
       outEnd.innerHTML = `${max.toLocaleString()}${trackPrefix}`;
@@ -44,6 +45,17 @@ class Track {
     if (fromTo === true) {
       outStart.innerHTML = `${from.toLocaleString()}${trackPrefix}`;
       outEnd.innerHTML = `${to.toLocaleString()}${trackPrefix}`;
+    }
+    }else {
+      if (minMax === true) {
+      outStart.innerHTML = `${String(min)}${trackPrefix}`;
+      outEnd.innerHTML = `${String(max)}${trackPrefix}`;
+    }
+    if (fromTo === true) {
+      outStart.innerHTML = `${String(from)}${trackPrefix}`;
+      outEnd.innerHTML = `${String(to)}${trackPrefix}`;
+    }
+      
     }
   }
 

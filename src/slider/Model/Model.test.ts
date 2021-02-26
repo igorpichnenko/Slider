@@ -1,36 +1,7 @@
 import { Model } from './Model';
+import { standardOptions } from '../interfaces/standardOptions';
 import { Options } from '../interfaces/interfaces';
-import { allColors } from '../interfaces/color';
 
-const standardOptions: Options = {
-  orientation: 'horizontal',
-  type: 'double',
-  min: 0,
-  max: 10,
-  step: 1,
-  from: 3,
-  to: 7,
-  prefix: '₽',
-  isPrefix: true,
-  isLabel: true,
-  isScale: true,
-  color: 'orange',
-  isScalePrefix: true,
-  scalePrefix: '₽',
-  minMax: false,
-  fromTo: false,
-  isTrackPrefix: true,
-  trackPrefix: '₽',
-  isColor: true,
-  changeColor: true,
-  isChangeColor: true,
-  isGradient: true,
-  gradient: 'purple',
-  gradientDeg: 45,
-  isColorOut: false,
-  onlyDivisions: false,
-  allColors,
-};
 
 describe('Model', () => {
   test('Model is created with default options', () => {

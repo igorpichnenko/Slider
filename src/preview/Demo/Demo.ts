@@ -51,6 +51,7 @@ class Demo {
       fromTo, isTrackPrefix, trackPrefix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
       onlyDivisions, isPrefix, isChangeColor,
+      prettify
     } = this.state;
 
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
@@ -94,6 +95,8 @@ class Demo {
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
 
     const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
+    
+    const inputPrettify = this.demoTools.querySelector('.js-prettify')! as HTMLInputElement;
 
     const inputScalePrefix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
     
@@ -188,6 +191,15 @@ class Demo {
       }
       if (isColorOut === false) {
         this.setState({ isColorOut: true });
+      }
+    };
+    
+    inputPrettify.onchange = () => {
+      if (prettify === true) {
+        this.setState({ prettify: false });
+      }
+      if (prettify === false) {
+        this.setState({ prettify: true });
       }
     };
 

@@ -18,7 +18,7 @@ $wrap.colorSlider({
 **/
 
 $wrap.colorSlider('getValue',(values: Options) => {   
-    $('.js-custom-from').val(values.from);        
+    $('.js-custom-from').val(values.from);     
     $('.js-custom-to').val(values.to); 
 });     
 
