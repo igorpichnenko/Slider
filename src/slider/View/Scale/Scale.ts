@@ -93,6 +93,7 @@ class Scale {
     const { orientation, isSeparate, isScalePostfix,isPrefix} = options;
     let { scalePostfix } = options
     let { separate } = options
+    value = Math.floor(value)
     const scaleMarker = document.createElement('span');
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
  
