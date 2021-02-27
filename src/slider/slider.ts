@@ -12,8 +12,6 @@ import './slider.scss';
 
         $slider.data('presenter', new Presenter(options, $slider));
 
-        $slider.data('options', { ...options, ...$slider.data('presenter').getOptions() });
-
         return $slider;
       },
 

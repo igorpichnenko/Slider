@@ -47,7 +47,7 @@ class Demo {
       fromTo, isTrackPostfix, trackPostfix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
       onlyDivisions, isPostfix, isChangeColor,
-      separate, isSeparate
+      separate, isSeparate,
     } = this.state;
 
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
@@ -87,7 +87,7 @@ class Demo {
     const inputMarker = this.demoTools.querySelector('.js-marker')! as HTMLInputElement;
 
     const inputStep = this.demoTools.querySelector('.js-step')! as HTMLInputElement;
-    
+
     const inputSeparate = this.demoTools.querySelector('.js-separate')! as HTMLInputElement;
 
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
@@ -99,7 +99,7 @@ class Demo {
     const inputIsChangeColor = this.demoTools.querySelector('.js-isChangeColor')! as HTMLInputElement;
 
     const inputMinMax = this.demoTools.querySelector('.js-minMax')! as HTMLInputElement;
-    
+
     const inputIsSeparate = this.demoTools.querySelector('.js-isScaleDel')! as HTMLInputElement;
 
     const inputFromTo = this.demoTools.querySelector('.js-fromTo')! as HTMLInputElement;
@@ -182,7 +182,7 @@ class Demo {
         this.setState({ isChangeColor: true });
       }
     };
-    
+
     inputIsSeparate.onchange = () => {
       if (isSeparate === true) {
         this.setState({ isSeparate: false });
@@ -199,7 +199,7 @@ class Demo {
       if (isColorOut === false) {
         this.setState({ isColorOut: true });
       }
-    }
+    };
 
     changeScale.onchange = () => {
       if (isScale === false) {
@@ -315,26 +315,24 @@ class Demo {
       const value = Number(inputStep.value);
       this.setState({ step: value });
     };
-    
-    if (separate === undefined){
-    inputSeparate.value = ' '
-   } else if (separate === ' '){
-     inputSeparate.value = ' '
-   }
-   else{
-     inputSeparate.value = separate
-   }
+
+    if (separate === undefined) {
+      inputSeparate.value = ' ';
+    } else if (separate === ' ') {
+      inputSeparate.value = ' ';
+    } else {
+      inputSeparate.value = separate;
+    }
     inputSeparate.onchange = () => {
-      
-      let value = inputSeparate.value;
-      
-      if (value !== '.' && value !== ','){
-        value = ' '
+      let { value } = inputSeparate;
+
+      if (value !== '.' && value !== ',') {
+        value = ' ';
       }
-      
+
       this.setState({ separate: value });
     };
-   
+
     inputColor.value = String(color);
 
     inputColor.onchange = () => {

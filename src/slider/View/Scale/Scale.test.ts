@@ -106,8 +106,9 @@ describe('Scale', () => {
 
   test('clicking on the scale should return the scale value', () => {
     const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
-    const value = Number(scaleMarker.innerHTML);
 
+     const value = scaleMarker.innerHTML
+     
     const clickScale = jest.fn((event) => event.detail.value);
 
     view.slider.addEventListener('scaleclick', clickScale);
