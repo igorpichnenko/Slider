@@ -8,6 +8,7 @@ interface Options {
   to: number,
   postfix: string,
   isPostfix: boolean,
+  isPrefix: boolean,
   isLabel: boolean,
   isScale: boolean,
   isSeparate: boolean,

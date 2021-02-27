@@ -189,19 +189,19 @@ class View {
   }
 
   private onScaleClick(event: any): void {
-    const { separate } = this.state;
+    const { scalePostfix } = this.state;
+    let { separate } = this.state;
     const { value } = event.detail;
     let position = 0;
 
-    if (separate === '.') {
-      position = Math.floor(value.split('.').join(''));
-    }
-    if (separate === ',') {
-      position = Math.floor(value.split(',').join(''));
-    }
     if (separate === ' ') {
-      position = Number(value.split('&nbsp;').join(''));
+      separate = '&nbsp;';
     }
+
+    const del = value.split(scalePostfix).join('');
+
+    position = Math.floor(del.split(separate).join(''));
+
     this.updatePosition(position);
   }
 

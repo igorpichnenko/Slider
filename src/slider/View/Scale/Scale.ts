@@ -27,17 +27,13 @@ class Scale {
 
   private updataScaleMarker(options: ViewState) {
     const {
-      scalePostfix, isScalePostfix, onlyDivisions, slider, color,
+      onlyDivisions, slider, color
     } = options;
 
     const scaleMarkers = slider.querySelectorAll<HTMLElement>('.slider__scale-value')!;
+    
     scaleMarkers.forEach((scaleMarker) => {
-      if (isScalePostfix === true) {
-        scaleMarker.setAttribute('data-text', `${scalePostfix}`);
-      } else {
-        scaleMarker.setAttribute('data-text', '');
-      }
-
+    
       if (onlyDivisions === true) {
         scaleMarker.setAttribute('data-text', '');
         scaleMarker.classList.add('slider__scale-value_fs-0');
@@ -94,29 +90,23 @@ class Scale {
 
   private createScaleMarker(fragment: DocumentFragment,
     value: number, position: number, options: ViewState): void {
-    const { orientation, isSeparate} = options;
+    const { orientation, isSeparate, isScalePostfix,isPrefix} = options;
+    let { scalePostfix } = options
     let { separate } = options
     const scaleMarker = document.createElement('span');
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
+ 
     fragment.append(scaleMarker);
 
-    if (isSeparate === false){
-     scaleMarker.innerHTML = value.toString()
-    }
     
-    else{
-      if (separate === ','){
-      separate = "en-US"
-    }
-      if (separate === '.'){
-      separate = 'de-DE'
-    }
-      if (separate === ' '){
-      separate = undefined
-    }
+  if (isScalePostfix === false){
+    scalePostfix = ""
+  }
+    scaleMarker.innerHTML = `${this.separate(value,options)}${scalePostfix}`
     
-    scaleMarker.innerHTML = value.toLocaleString(separate)
-    }
+  if (isPrefix === true) {
+    scaleMarker.innerHTML = `${scalePostfix}${this.separate(value,options)}`
+  }   
     
     
     this.updataScaleMarker(options);
@@ -147,5 +137,28 @@ class Scale {
     const scaleEvent = new CustomEvent('scaleclick', { bubbles: true, detail: { event, value } });
     target.dispatchEvent(scaleEvent);
   }
+  private separate (value: number, options: ViewState): string{
+  const { isSeparate } = options
+    let { separate } = options
+   let val = ''
+   
+  if (isSeparate === false){
+     val = value.toString()
+  }else{
+    if (separate === ','){
+      separate = "en-US"
+    }
+    if (separate === '.'){
+      separate = 'de-DE'
+    }
+    if (separate === ' '){
+      separate = undefined
+    }
+     val = value.toLocaleString(separate)
+  }
+    return val
+  }
+  
+  
 }
 export { Scale };

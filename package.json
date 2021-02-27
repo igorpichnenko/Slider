@@ -1,13 +1,13 @@
 {
   "name": "color-range-slider",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "range-slider",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development",
     "test": "jest --collect-coverage",
     "deploy": "gh-pages -d dist",
-    "lint": "eslint src/**/*.ts --fix"
+    "lint": "eslint src/**/**/**.ts --fix"
   },
   "repository": {
     "type": "git",

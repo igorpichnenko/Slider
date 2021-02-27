@@ -77,9 +77,11 @@ describe('Scale', () => {
   });
 
   test('if the scale element is one, then by condition it is equal to max', () => {
+    
     const scaleMarker = view.slider.querySelector('.slider__scale-value')! as HTMLElement;
-
-    expect(scaleMarker.innerHTML).toBe(String(view.state.max));
+   
+    expect(scaleMarker.innerHTML).toBe(`${view.state.max}${view.state.scalePostfix}`);
+    
   });
 
   test('if onlyDivisions = true then the scale division must have the fs-0 modifier', () => {
@@ -88,12 +90,6 @@ describe('Scale', () => {
     const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
 
     expect(scaleMarker.classList.contains('slider__scale-value_fs-0')).toBe(true);
-  });
-
-  test('division must have a prefix', () => {
-    const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
-
-    expect(scaleMarker.getAttribute('data-text')).toBe(view.state.scalePostfix);
   });
 
   test('divisions must not have a prefix', () => {

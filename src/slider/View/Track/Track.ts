@@ -30,7 +30,7 @@ class Track {
 
   private setStartEndTrackOut(outStart: HTMLElement, outEnd: HTMLElement, options: ViewState) {
     const {
-      min, max, from, to, minMax, fromTo, isTrackPostfix
+      min, max, from, to, minMax, fromTo, isTrackPostfix,isPrefix
     } = options;
     
     let { trackPostfix } = options
@@ -38,7 +38,8 @@ class Track {
     if (isTrackPostfix === false) {
       trackPostfix = '';
     }
-    
+    // настройки для постфикса
+
     if (minMax === true) {
       outStart.innerHTML = `${this.separate(min,options)}${trackPostfix}`;
       outEnd.innerHTML = `${this.separate(max,options)}${trackPostfix}`;
@@ -46,6 +47,20 @@ class Track {
     if (fromTo === true) {
       outStart.innerHTML = `${this.separate(from,options)}${trackPostfix}`;
       outEnd.innerHTML = `${this.separate(to,options)}${trackPostfix}`;
+    }
+    
+ // настройки для префикса    
+    if (isPrefix === true){
+      
+      if (minMax === true) {
+      outStart.innerHTML = `${trackPostfix}${this.separate(min,options)}`;
+      outEnd.innerHTML = `${trackPostfix}${this.separate(max,options)}`;
+    }
+    if (fromTo === true) {
+      outStart.innerHTML = `${trackPostfix}${this.separate(from,options)}`;
+      outEnd.innerHTML = `${trackPostfix}${this.separate(to,options)}`;
+    }
+    
     }
     
   }

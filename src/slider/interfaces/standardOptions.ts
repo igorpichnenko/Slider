@@ -10,6 +10,7 @@ const standardOptions: Options = {
   from: 3,
   to: 7,
   postfix: '₽',
+  isPrefix: false,
   isPostfix: true,
   isLabel: true,
   isScale: true,

@@ -47,7 +47,7 @@ class Demo {
       fromTo, isTrackPostfix, trackPostfix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
       onlyDivisions, isPostfix, isChangeColor,
-      separate, isSeparate,
+      separate, isSeparate, isPrefix,
     } = this.state;
 
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
@@ -93,6 +93,8 @@ class Demo {
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
 
     const inputIsPostfix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
+
+    const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix-all')! as HTMLInputElement;
 
     const inputScalePostfix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
 
@@ -162,6 +164,15 @@ class Demo {
       }
       if (isPostfix === false) {
         this.setState({ isPostfix: true });
+      }
+    };
+
+    inputIsPrefix.onchange = () => {
+      if (isPrefix === true) {
+        this.setState({ isPrefix: false });
+      }
+      if (isPrefix === false) {
+        this.setState({ isPrefix: true });
       }
     };
 

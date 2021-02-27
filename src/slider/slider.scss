@@ -188,20 +188,6 @@ transform: translateY(-125%);
 }
  
 
-&__scale-value:after{
-  content: attr(data-text);
-  position: absolute;
-  font-family: Montserrat,Arial, sans-serif;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: normal;
-  color: rgba(31,32,65,0.5);
-}
-
-&__scale-value:hover:after{
-  color: var(--scale-color);
-}
 }
 .slider_vertical .slider__scale-value:before{
   transform: translate(-52.8px, 0px) rotate(90deg);

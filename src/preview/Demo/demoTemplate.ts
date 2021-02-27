@@ -138,35 +138,40 @@ const demoTemplate = `
    </div>
    
    
-   <button type="button" class="js-btn js-btn-prefix">Настройки Postfix</button>
+   <button type="button" class="js-btn js-btn-prefix">Postfix/Prefix</button>
    <div class="js-menu js-menu-prefix">
    <div class="js-items">
-   <label class="js-labels js-label_checkbox">Показать/Скрыть постфикс tooltip
+   <div class="js-items">
+   <label class="js-labels js-label_checkbox">Добавить/убрать Префикс tooltip
+   <input type="checkbox" class="js-checkbox js-inputs js-isPrefix-all" name="isPrefix"/>
+   </label>
+   </div>
+   <label class="js-labels js-label_checkbox js-label-postfix">Показать/Скрыть Pre/Postfix tooltip
    <input type="checkbox" class="js-checkbox js-inputs js-isPrefixTool" name="isPrefix"/>
    </label>
    </div>
       <div class="js-items">
-   <label class="js-labels js-label_checkbox">Показать/Скрыть постфикс шкалы
+   <label class="js-labels js-label_checkbox">Показать/Скрыть Pre/Postfix шкалы
    <input type="checkbox" class="js-checkbox js-inputs js-isPrefix" name="isPrefix"/>
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels js-label_checkbox">Показать/Скрыть постфикс track
+   <label class="js-labels js-label_checkbox">Показать/Скрыть Pre/Postfix track
    <input type="checkbox" class="js-checkbox js-inputs js-isTrackPrefix" name="isPrefix"/>
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels">Постфикс tooltip
+   <label class="js-labels">Pre/Postfix tooltip
    <input type="text" class="js-inputs js-marker" name="marker"/>
    </label>
    </div>
       <div class="js-items">
-   <label class="js-labels">Постфикс шкалы
+   <label class="js-labels">Pre/Postfix шкалы
 <input type="text" class="js-inputs js-scale-prefix" name="js-prefix"/>
    </label>
    </div>
     <div class="js-items">
-   <label class="js-labels">Постфикс track
+   <label class="js-labels">Pre/Postfix track
 <input type="text" class="js-inputs js-track-prefix" name="js-prefix"/>
    </label>
    </div>

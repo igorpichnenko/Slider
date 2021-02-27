@@ -45,18 +45,28 @@ class Rollers {
     const {
       to,
       from,
-      postfix, isPostfix,
-      isLabel
+      isPostfix,
+      isLabel, isPrefix
     } = options;
+    
+    let { postfix } = options
+
+    if (isPostfix === false ) {
+        postfix = ''
+      }
+      
+      // настройки постфикс
 
     if (isLabel === true) {
-      if (isPostfix === true) {
         fistTooltip.innerHTML = `${this.separate(from,options)}${postfix}`;
         secondTooltip.innerHTML = `${this.separate(to,options)}${postfix}`;
-      } if (isPostfix === false) {
-        fistTooltip.innerHTML = this.separate(from,options)
-        secondTooltip.innerHTML = this.separate(to,options)
+     
+      // настройки префикс   
+      if (isPrefix === true){
+        fistTooltip.innerHTML = `${postfix}${this.separate(from,options)}`;
+        secondTooltip.innerHTML = `${postfix}${this.separate(to,options)}`;
       }
+      
     }
    
     this.setColor(fistTooltip, secondTooltip, options)
