@@ -48,20 +48,21 @@ const twoOptions: Partial<Options> = {
   from: 5000,
   to: 10000,
   fromTo: true,
+  separate: '.',
 };
 const threeOptions: Partial<Options> = {
   orientation: 'vertical',
   gradient: 'blue',
   color: 'yellow',
-  scalePostfix: '$',
   postfix: '$',
+  scalePostfix: '$',
   min: -5000,
   max: -100,
   step: 2,
   from: -4000,
   to: -700,
   changeColor: false,
-
+  separate: ',',
 };
 const fourOptions: Partial<Options> = {
   orientation: 'horizontal',

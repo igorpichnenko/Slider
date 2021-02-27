@@ -47,7 +47,7 @@ class Demo {
       fromTo, isTrackPostfix, trackPostfix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
       onlyDivisions, isPostfix, isChangeColor,
-      separate
+      separate, isSeparate
     } = this.state;
 
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
@@ -99,6 +99,8 @@ class Demo {
     const inputIsChangeColor = this.demoTools.querySelector('.js-isChangeColor')! as HTMLInputElement;
 
     const inputMinMax = this.demoTools.querySelector('.js-minMax')! as HTMLInputElement;
+    
+    const inputIsSeparate = this.demoTools.querySelector('.js-isScaleDel')! as HTMLInputElement;
 
     const inputFromTo = this.demoTools.querySelector('.js-fromTo')! as HTMLInputElement;
 
@@ -178,6 +180,15 @@ class Demo {
       }
       if (isChangeColor === false) {
         this.setState({ isChangeColor: true });
+      }
+    };
+    
+    inputIsSeparate.onchange = () => {
+      if (isSeparate === true) {
+        this.setState({ isSeparate: false });
+      }
+      if (isSeparate === false) {
+        this.setState({ isSeparate: true });
       }
     };
 
@@ -305,13 +316,25 @@ class Demo {
       this.setState({ step: value });
     };
     
-    inputSeparate.value = separate
-
+    if (separate === undefined){
+    inputSeparate.value = ' '
+   } else if (separate === ' '){
+     inputSeparate.value = ' '
+   }
+   else{
+     inputSeparate.value = separate
+   }
     inputSeparate.onchange = () => {
-      const value = inputSeparate.value;
+      
+      let value = inputSeparate.value;
+      
+      if (value !== '.' && value !== ','){
+        value = ' '
+      }
+      
       this.setState({ separate: value });
     };
-    
+   
     inputColor.value = String(color);
 
     inputColor.onchange = () => {

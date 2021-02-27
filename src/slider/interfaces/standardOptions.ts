@@ -13,6 +13,7 @@ const standardOptions: Options = {
   isPostfix: true,
   isLabel: true,
   isScale: true,
+  isSeparate: true,
   color: 'orange',
   isScalePostfix: true,
   scalePostfix: '₽',
@@ -28,7 +29,7 @@ const standardOptions: Options = {
   gradientDeg: 45,
   isColorOut: false,
   onlyDivisions: false,
-  separate: '',
+  separate: ' ',
   allColors,
 };
 

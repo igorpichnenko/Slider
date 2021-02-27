@@ -94,12 +94,29 @@ class Scale {
 
   private createScaleMarker(fragment: DocumentFragment,
     value: number, position: number, options: ViewState): void {
-    const { orientation} = options;
+    const { orientation, isSeparate} = options;
+    let { separate } = options
     const scaleMarker = document.createElement('span');
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
     fragment.append(scaleMarker);
 
-    scaleMarker.innerHTML = value.toString()
+    if (isSeparate === false){
+     scaleMarker.innerHTML = value.toString()
+    }
+    
+    else{
+      if (separate === ','){
+      separate = "en-US"
+    }
+      if (separate === '.'){
+      separate = 'de-DE'
+    }
+      if (separate === ' '){
+      separate = undefined
+    }
+    
+    scaleMarker.innerHTML = value.toLocaleString(separate)
+    }
     
     
     this.updataScaleMarker(options);
@@ -124,9 +141,8 @@ class Scale {
 
     if (!(target instanceof HTMLElement)) return;
     if (!target.classList.contains('slider__scale-value')) return;
-   
-   
-    const value = Number(target.innerHTML)
+    
+    const value = target.innerHTML
 
     const scaleEvent = new CustomEvent('scaleclick', { bubbles: true, detail: { event, value } });
     target.dispatchEvent(scaleEvent);

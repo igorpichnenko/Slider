@@ -63,11 +63,28 @@ class Rollers {
 }
 
    private separate (value: number, options: ViewState): string{
-    
+    const { isSeparate } = options
     let { separate } = options
-
-
-    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, `${separate}`)
+   let val = ''
+   
+   
+  if (isSeparate === false){
+     val = value.toString()
+     
+  }else{
+    if (separate === ','){
+      separate = "en-US"
+    }
+    if (separate === '.'){
+      separate = 'de-DE'
+    }
+    if (separate === ' '){
+      separate = undefined
+    }
+     val = value.toLocaleString(separate)
+  }
+ 
+    return val
   }
 
    private setColor(fistTooltip: HTMLElement,

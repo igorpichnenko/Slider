@@ -10,6 +10,7 @@ interface Options {
   isPostfix: boolean,
   isLabel: boolean,
   isScale: boolean,
+  isSeparate: boolean,
   color: string,
   isScalePostfix: boolean,
   scalePostfix: string,
@@ -25,7 +26,7 @@ interface Options {
   gradientDeg: number,
   isColorOut: boolean,
   onlyDivisions: boolean,
-  separate: string,
+  separate: string | undefined,
   allColors: {[index: string]: string}
 }
 

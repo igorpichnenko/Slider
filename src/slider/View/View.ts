@@ -189,8 +189,21 @@ class View {
   }
 
   private onScaleClick(event: any): void {
+   const {  separate  } = this.state 
     const { value } = event.detail;
-    this.updatePosition(value);
+    let position = 0
+    
+    if (separate === '.'){
+    position =  Math.floor(value.split('.').join(''))
+   }
+   if (separate === ','){
+     position =  Math.floor(value.split(',').join(''))
+   }
+   if (separate === ' '){
+     position =  Number(value.split('&nbsp;').join(''))
+   }
+   console.log(position)
+    this.updatePosition(position);
   }
 
   private onTrackClick(event: any): void {

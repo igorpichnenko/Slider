@@ -34,7 +34,16 @@ const demoTemplate = `
    <input type="checkbox" class="js-checkbox js-inputs js-fromTo" name="fromTo"/>
    </label>
    </div>
-
+    <div class="js-items">
+   <label class="js-labels js-label_checkbox">Добавить/убрать разделитель
+   <input type="checkbox" class="js-checkbox js-inputs js-isScaleDel" name="scale"/>
+   </label>
+     </div>
+     <div class="js-items">
+   <label class="js-labels">Делитель
+   <input type="text" class="js-inputs js-separate" name="separate"/>
+   </label>
+   </div>
     <div class="js-items">
    <label class="js-labels js-label_checkbox">Выводить цвета/значения
    <input type="checkbox" class="js-checkbox js-inputs js-isColorOut" name="color"/>
@@ -55,6 +64,8 @@ const demoTemplate = `
    <input type="checkbox" class="js-checkbox js-inputs js-isScale" name="scale"/>
    </label>
      </div>
+   </div>
+     
    </div>
    
    
@@ -85,11 +96,7 @@ const demoTemplate = `
    </label>
    </div>
    </div>
-   <div class="js-items">
-   <label class="js-labels">Делитель
-   <input type="text" class="js-inputs js-separate" name="separate"/>
-   </label>
-   </div>
+   
    
    <button class="js-btn js-btn-color" type="button">Настройки цвета</button>
    <div class="js-menu js-color-setting">
