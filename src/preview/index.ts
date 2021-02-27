@@ -43,7 +43,7 @@ const firstOptions: Partial<Options> = {
 };
 const twoOptions: Partial<Options> = {
   gradient: 'red',
-  color: 'white',
+  color: '#6698db',
   max: 15000,
   from: 5000,
   to: 10000,
@@ -54,8 +54,8 @@ const threeOptions: Partial<Options> = {
   orientation: 'vertical',
   gradient: 'blue',
   color: 'yellow',
-  postfix: '$',
-  scalePostfix: '$',
+  postfix: '',
+  scalePostfix: '',
   min: -5000,
   max: -100,
   step: 2,
@@ -63,19 +63,11 @@ const threeOptions: Partial<Options> = {
   to: -700,
   changeColor: false,
   separate: ',',
-  
+
 };
+
 const fourOptions: Partial<Options> = {
-  orientation: 'horizontal',
-  type: 'single',
-  isScale: false,
-  isLabel: false,
-  color: 'green',
-};
 
-
-const fiveOptions: Partial<Options> = {
-  
   isGradient: false,
   color: 'black',
   max: 1500,
@@ -88,10 +80,19 @@ const fiveOptions: Partial<Options> = {
   trackPostfix: '$',
   isPrefix: true,
   isColor: false,
-}
+};
+
+const fiveOptions: Partial<Options> = {
+  orientation: 'horizontal',
+  type: 'single',
+  isScale: false,
+  isLabel: false,
+  color: 'green',
+};
+
 
 const sixOptions: Partial<Options> = {
-  
+
   gradient: 'black',
   color: '#900202',
   max: 1500.5,
@@ -104,13 +105,10 @@ const sixOptions: Partial<Options> = {
   scalePostfix: '€',
   trackPostfix: '€',
   isColor: false,
-  
-}
 
+};
 
 const options = [firstOptions, twoOptions, threeOptions, fourOptions, fiveOptions, sixOptions];
-
-
 
 const $wrappers = $('.js-toxin-slider');
 

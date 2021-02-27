@@ -54,7 +54,7 @@ class Demo {
 
     const btnView = this.demoTools.querySelector('.js-btn-view')! as HTMLButtonElement;
 
-    const btnPostfix = this.demoTools.querySelector('.js-btn-prefix')! as HTMLButtonElement;
+    const btnPostfix = this.demoTools.querySelector('.js-btn-postfix')! as HTMLButtonElement;
 
     const btnColor = this.demoTools.querySelector('.js-btn-color')! as HTMLButtonElement;
 
@@ -62,7 +62,7 @@ class Demo {
 
     const menuView = this.demoTools.querySelector('.js-menu-view')! as HTMLElement;
 
-    const menuPostfix = this.demoTools.querySelector('.js-menu-prefix')! as HTMLElement;
+    const menuPostfix = this.demoTools.querySelector('.js-menu-postfix')! as HTMLElement;
 
     const menuColor = this.demoTools.querySelector('.js-color-setting')! as HTMLElement;
 
@@ -92,11 +92,11 @@ class Demo {
 
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
 
-    const inputIsPostfix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
+    const inputIsPostfix = this.demoTools.querySelector('.js-isPostfix')! as HTMLInputElement;
 
     const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix-all')! as HTMLInputElement;
 
-    const inputScalePostfix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
+    const inputScalePostfix = this.demoTools.querySelector('.js-scale-postfix')! as HTMLInputElement;
 
     const inputIsChangeColor = this.demoTools.querySelector('.js-isChangeColor')! as HTMLInputElement;
 
@@ -108,11 +108,11 @@ class Demo {
 
     const inputDivision = this.demoTools.querySelector('.js-division')! as HTMLInputElement;
 
-    const inputIsTrackPostfix = this.demoTools.querySelector('.js-isTrackPrefix')! as HTMLInputElement;
+    const inputIsTrackPostfix = this.demoTools.querySelector('.js-isTrackPostfix')! as HTMLInputElement;
 
-    const inputIsToolPostfix = this.demoTools.querySelector('.js-isPrefixTool')! as HTMLInputElement;
+    const inputIsToolPostfix = this.demoTools.querySelector('.js-isPostfixTool')! as HTMLInputElement;
 
-    const inputTrackPostfix = this.demoTools.querySelector('.js-track-prefix')! as HTMLInputElement;
+    const inputTrackPostfix = this.demoTools.querySelector('.js-track-postfix')! as HTMLInputElement;
 
     const inputIsColor = this.demoTools.querySelector('.js-isColor')! as HTMLInputElement;
 
@@ -326,7 +326,9 @@ class Demo {
       const value = Number(inputStep.value);
       this.setState({ step: value });
     };
-
+    
+    
+    // валидация ввода
     if (separate === undefined) {
       inputSeparate.value = ' ';
     } else if (separate === ' ') {

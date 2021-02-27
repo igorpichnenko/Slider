@@ -138,8 +138,8 @@ const demoTemplate = `
    </div>
    
    
-   <button type="button" class="js-btn js-btn-prefix">Postfix/Prefix</button>
-   <div class="js-menu js-menu-prefix">
+   <button type="button" class="js-btn js-btn-postfix">Postfix/Prefix</button>
+   <div class="js-menu js-menu-postfix">
    <div class="js-items">
    <div class="js-items">
    <label class="js-labels js-label_checkbox">Добавить/убрать Префикс tooltip
@@ -147,17 +147,17 @@ const demoTemplate = `
    </label>
    </div>
    <label class="js-labels js-label_checkbox js-label-postfix">Показать/Скрыть Pre/Postfix tooltip
-   <input type="checkbox" class="js-checkbox js-inputs js-isPrefixTool" name="isPrefix"/>
+   <input type="checkbox" class="js-checkbox js-inputs js-isPostfixTool" name="isPrefix"/>
    </label>
    </div>
       <div class="js-items">
    <label class="js-labels js-label_checkbox">Показать/Скрыть Pre/Postfix шкалы
-   <input type="checkbox" class="js-checkbox js-inputs js-isPrefix" name="isPrefix"/>
+   <input type="checkbox" class="js-checkbox js-inputs js-isPostfix" name="isPrefix"/>
    </label>
    </div>
    <div class="js-items">
    <label class="js-labels js-label_checkbox">Показать/Скрыть Pre/Postfix track
-   <input type="checkbox" class="js-checkbox js-inputs js-isTrackPrefix" name="isPrefix"/>
+   <input type="checkbox" class="js-checkbox js-inputs js-isTrackPostfix" name="isPrefix"/>
    </label>
    </div>
    <div class="js-items">
@@ -167,12 +167,12 @@ const demoTemplate = `
    </div>
       <div class="js-items">
    <label class="js-labels">Pre/Postfix шкалы
-<input type="text" class="js-inputs js-scale-prefix" name="js-prefix"/>
+<input type="text" class="js-inputs js-scale-postfix" name="js-prefix"/>
    </label>
    </div>
     <div class="js-items">
    <label class="js-labels">Pre/Postfix track
-<input type="text" class="js-inputs js-track-prefix" name="js-prefix"/>
+<input type="text" class="js-inputs js-track-postfix" name="js-prefix"/>
    </label>
    </div>
    </div>
