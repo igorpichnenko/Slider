@@ -30,7 +30,7 @@ class Track {
 
   private setStartEndTrackOut(outStart: HTMLElement, outEnd: HTMLElement, options: ViewState) {
     const {
-      min, max, from, to, minMax, fromTo, isTrackPostfix,prettify
+      min, max, from, to, minMax, fromTo, isTrackPostfix
     } = options;
     
     let { trackPostfix } = options
@@ -51,12 +51,9 @@ class Track {
   }
   
   private separate (value: number, options: ViewState): string{
-    const { prettify } = options
+ 
     let { separate } = options
 
-    if (prettify === false){
-     separate = ''
-    }
     return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, `${separate}`)
   }
 

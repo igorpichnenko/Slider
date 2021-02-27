@@ -94,7 +94,7 @@ class Scale {
 
   private createScaleMarker(fragment: DocumentFragment,
     value: number, position: number, options: ViewState): void {
-    const { orientation, prettify} = options;
+    const { orientation} = options;
     const scaleMarker = document.createElement('span');
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
     fragment.append(scaleMarker);

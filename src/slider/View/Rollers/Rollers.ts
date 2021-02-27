@@ -63,12 +63,10 @@ class Rollers {
 }
 
    private separate (value: number, options: ViewState): string{
-    const { prettify } = options
+    
     let { separate } = options
 
-    if (prettify === false){
-     separate = ''
-    }
+
     return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, `${separate}`)
   }
 

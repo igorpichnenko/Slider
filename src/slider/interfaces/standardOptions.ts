@@ -28,8 +28,7 @@ const standardOptions: Options = {
   gradientDeg: 45,
   isColorOut: false,
   onlyDivisions: false,
-  prettify: true,
-  separate: ' ',
+  separate: '',
   allColors,
 };
 

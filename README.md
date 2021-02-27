@@ -92,8 +92,7 @@ $('.slider').colorSlider({
 | gradient | 'purple' | второй цвет для создания градиента | #fff, green/red и.т.д | 
 | gradientDeg | 45 | градус направление градиента | number |
 | isColorOut | false | выводить значение текущего цвета вместо значений | boolean |
-| prettify | true | Добавить/Убрать делитель 1000 или 1 000 | boolean |
-| separate | ' ' | делитель . , - и.т.д | любое значение |
+| separate | нет | делитель  ' ' . , - и.т.д 1.000 10 000 | любое значение |
 | onlyDivisions | false | оставить только деления шкалы | boolean | 
 
 # API Методы

@@ -47,14 +47,14 @@ class Demo {
       fromTo, isTrackPostfix, trackPostfix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
       onlyDivisions, isPostfix, isChangeColor,
-      prettify,separate
+      separate
     } = this.state;
 
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
 
     const btnView = this.demoTools.querySelector('.js-btn-view')! as HTMLButtonElement;
 
-    const btnPrefix = this.demoTools.querySelector('.js-btn-prefix')! as HTMLButtonElement;
+    const btnPostfix = this.demoTools.querySelector('.js-btn-prefix')! as HTMLButtonElement;
 
     const btnColor = this.demoTools.querySelector('.js-btn-color')! as HTMLButtonElement;
 
@@ -62,7 +62,7 @@ class Demo {
 
     const menuView = this.demoTools.querySelector('.js-menu-view')! as HTMLElement;
 
-    const menuPrefix = this.demoTools.querySelector('.js-menu-prefix')! as HTMLElement;
+    const menuPostfix = this.demoTools.querySelector('.js-menu-prefix')! as HTMLElement;
 
     const menuColor = this.demoTools.querySelector('.js-color-setting')! as HTMLElement;
 
@@ -92,11 +92,9 @@ class Demo {
 
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
 
-    const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
+    const inputIsPostfix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
 
-    const inputPrettify = this.demoTools.querySelector('.js-prettify')! as HTMLInputElement;
-
-    const inputScalePrefix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
+    const inputScalePostfix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
 
     const inputIsChangeColor = this.demoTools.querySelector('.js-isChangeColor')! as HTMLInputElement;
 
@@ -106,11 +104,11 @@ class Demo {
 
     const inputDivision = this.demoTools.querySelector('.js-division')! as HTMLInputElement;
 
-    const inputIsTrackPrefix = this.demoTools.querySelector('.js-isTrackPrefix')! as HTMLInputElement;
+    const inputIsTrackPostfix = this.demoTools.querySelector('.js-isTrackPrefix')! as HTMLInputElement;
 
-    const inputIsToolPrefix = this.demoTools.querySelector('.js-isPrefixTool')! as HTMLInputElement;
+    const inputIsToolPostfix = this.demoTools.querySelector('.js-isPrefixTool')! as HTMLInputElement;
 
-    const inputTrackPrefix = this.demoTools.querySelector('.js-track-prefix')! as HTMLInputElement;
+    const inputTrackPostfix = this.demoTools.querySelector('.js-track-prefix')! as HTMLInputElement;
 
     const inputIsColor = this.demoTools.querySelector('.js-isColor')! as HTMLInputElement;
 
@@ -132,8 +130,8 @@ class Demo {
     btnColor.onclick = () => {
       menuColor.classList.toggle('js-close-menu');
     };
-    btnPrefix.onclick = () => {
-      menuPrefix.classList.toggle('js-close-menu');
+    btnPostfix.onclick = () => {
+      menuPostfix.classList.toggle('js-close-menu');
     };
 
     /**     чекбоксы    * */
@@ -147,7 +145,7 @@ class Demo {
       }
     };
 
-    inputIsPrefix.onchange = () => {
+    inputIsPostfix.onchange = () => {
       if (isScalePostfix === true) {
         this.setState({ isScalePostfix: false });
       }
@@ -156,7 +154,7 @@ class Demo {
       }
     };
 
-    inputIsToolPrefix.onchange = () => {
+    inputIsToolPostfix.onchange = () => {
       if (isPostfix === true) {
         this.setState({ isPostfix: false });
       }
@@ -190,16 +188,7 @@ class Demo {
       if (isColorOut === false) {
         this.setState({ isColorOut: true });
       }
-    };
-
-    inputPrettify.onchange = () => {
-      if (prettify === true) {
-        this.setState({ prettify: false });
-      }
-      if (prettify === false) {
-        this.setState({ prettify: true });
-      }
-    };
+    }
 
     changeScale.onchange = () => {
       if (isScale === false) {
@@ -249,7 +238,7 @@ class Demo {
       }
     };
 
-    inputIsTrackPrefix.onchange = () => {
+    inputIsTrackPostfix.onchange = () => {
       if (isTrackPostfix === false) {
         this.setState({ isTrackPostfix: true });
       } else {
@@ -343,17 +332,17 @@ class Demo {
       this.setState({ gradientDeg: value });
     };
 
-    inputScalePrefix.value = scalePostfix;
+    inputScalePostfix.value = scalePostfix;
 
-    inputScalePrefix.onchange = () => {
-      const { value } = inputScalePrefix;
+    inputScalePostfix.onchange = () => {
+      const { value } = inputScalePostfix;
       this.setState({ scalePostfix: value });
     };
 
-    inputTrackPrefix.value = trackPostfix;
+    inputTrackPostfix.value = trackPostfix;
 
-    inputTrackPrefix.onchange = () => {
-      const { value } = inputTrackPrefix;
+    inputTrackPostfix.onchange = () => {
+      const { value } = inputTrackPostfix;
       this.setState({ trackPostfix: value });
     };
   }

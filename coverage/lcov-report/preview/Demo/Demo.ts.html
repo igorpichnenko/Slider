@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.15% </span>
+                <span class="strong">93.18% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>161/171</span>
+                <span class='fraction'>164/176</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.49% </span>
+                <span class="strong">84.21% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>32/37</span>
+                <span class='fraction'>32/38</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.15% </span>
+                <span class="strong">93.18% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>161/171</span>
+                <span class='fraction'>164/176</span>
             </div>
         
             
@@ -407,9 +407,14 @@
 <a name='L348'></a><a href='#L348'>348</a>
 <a name='L349'></a><a href='#L349'>349</a>
 <a name='L350'></a><a href='#L350'>350</a>
-<a name='L351'></a><a href='#L351'>351</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L351'></a><a href='#L351'>351</a>
+<a name='L352'></a><a href='#L352'>352</a>
+<a name='L353'></a><a href='#L353'>353</a>
+<a name='L354'></a><a href='#L354'>354</a>
+<a name='L355'></a><a href='#L355'>355</a>
+<a name='L356'></a><a href='#L356'>356</a>
+<a name='L357'></a><a href='#L357'>357</a>
+<a name='L358'></a><a href='#L358'>358</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -446,8 +451,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">32x</span>
@@ -460,6 +463,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">75x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">75x</span>
@@ -713,6 +719,14 @@
 <span class="cline-any cline-yes">75x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">75x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">75x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -761,8 +775,6 @@
 import { Options } from '../../slider/interfaces/interfaces';
 import { demoTemplate } from './demoTemplate';
 &nbsp;
-&nbsp;
-&nbsp;
 class Demo {
   public state: Options;
 &nbsp;
@@ -772,7 +784,7 @@ class Demo {
     this.state = slider.getOptions();
     this.demoTools = this.createTools();
     this.init();
-  }   
+  }
 &nbsp;
   public upData(newSetting: Partial&lt;Options&gt;) {
     this.state = { ...this.state, ...newSetting };
@@ -796,27 +808,26 @@ class Demo {
   }
 &nbsp;
   private createSettings() {
-    
-   
-   this.slider.element.after(this.demoTools)
+    this.slider.element.after(this.demoTools);
 &nbsp;
     this.demoTools.insertAdjacentHTML('beforeend', demoTemplate);
   }
 &nbsp;
   private initTools() {
     const {
-      orientation, isScale, type, isLabel, from, to, min, max, prefix, step,
-      color, isScalePrefix, scalePrefix, minMax,
-      fromTo, isTrackPrefix, trackPrefix, isColor, gradient, isColorOut,
+      orientation, isScale, type, isLabel, from, to, min, max, postfix, step,
+      color, isScalePostfix, scalePostfix, minMax,
+      fromTo, isTrackPostfix, trackPostfix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
-      onlyDivisions, isPrefix, isChangeColor,
+      onlyDivisions, isPostfix, isChangeColor,
+      separate
     } = this.state;
 &nbsp;
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
 &nbsp;
     const btnView = this.demoTools.querySelector('.js-btn-view')! as HTMLButtonElement;
 &nbsp;
-    const btnPrefix = this.demoTools.querySelector('.js-btn-prefix')! as HTMLButtonElement;
+    const btnPostfix = this.demoTools.querySelector('.js-btn-prefix')! as HTMLButtonElement;
 &nbsp;
     const btnColor = this.demoTools.querySelector('.js-btn-color')! as HTMLButtonElement;
 &nbsp;
@@ -824,7 +835,7 @@ class Demo {
 &nbsp;
     const menuView = this.demoTools.querySelector('.js-menu-view')! as HTMLElement;
 &nbsp;
-    const menuPrefix = this.demoTools.querySelector('.js-menu-prefix')! as HTMLElement;
+    const menuPostfix = this.demoTools.querySelector('.js-menu-prefix')! as HTMLElement;
 &nbsp;
     const menuColor = this.demoTools.querySelector('.js-color-setting')! as HTMLElement;
 &nbsp;
@@ -849,13 +860,15 @@ class Demo {
     const inputMarker = this.demoTools.querySelector('.js-marker')! as HTMLInputElement;
 &nbsp;
     const inputStep = this.demoTools.querySelector('.js-step')! as HTMLInputElement;
+    
+    const inputSeparate = this.demoTools.querySelector('.js-separate')! as HTMLInputElement;
 &nbsp;
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
 &nbsp;
-    const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
+    const inputIsPostfix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
 &nbsp;
-    const inputScalePrefix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
-    
+    const inputScalePostfix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
+&nbsp;
     const inputIsChangeColor = this.demoTools.querySelector('.js-isChangeColor')! as HTMLInputElement;
 &nbsp;
     const inputMinMax = this.demoTools.querySelector('.js-minMax')! as HTMLInputElement;
@@ -864,11 +877,11 @@ class Demo {
 &nbsp;
     const inputDivision = this.demoTools.querySelector('.js-division')! as HTMLInputElement;
 &nbsp;
-    const inputIsTrackPrefix = this.demoTools.querySelector('.js-isTrackPrefix')! as HTMLInputElement;
+    const inputIsTrackPostfix = this.demoTools.querySelector('.js-isTrackPrefix')! as HTMLInputElement;
 &nbsp;
-    const inputIsToolPrefix = this.demoTools.querySelector('.js-isPrefixTool')! as HTMLInputElement;
+    const inputIsToolPostfix = this.demoTools.querySelector('.js-isPrefixTool')! as HTMLInputElement;
 &nbsp;
-    const inputTrackPrefix = this.demoTools.querySelector('.js-track-prefix')! as HTMLInputElement;
+    const inputTrackPostfix = this.demoTools.querySelector('.js-track-prefix')! as HTMLInputElement;
 &nbsp;
     const inputIsColor = this.demoTools.querySelector('.js-isColor')! as HTMLInputElement;
 &nbsp;
@@ -890,8 +903,8 @@ class Demo {
     btnColor.onclick = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >      menuColor.classList.toggle('js-close-menu');</span>
     };
-    btnPrefix.onclick = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >      menuPrefix.classList.toggle('js-close-menu');</span>
+    btnPostfix.onclick = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >      menuPostfix.classList.toggle('js-close-menu');</span>
     };
 &nbsp;
     /**     чекбоксы    * */
@@ -905,21 +918,21 @@ class Demo {
       }
     };
 &nbsp;
-    inputIsPrefix.onchange = () =&gt; {
-      if (isScalePrefix === true) {
-        this.setState({ isScalePrefix: false });
+    inputIsPostfix.onchange = () =&gt; {
+      if (isScalePostfix === true) {
+        this.setState({ isScalePostfix: false });
       }
-      if (isScalePrefix === false) {
-        this.setState({ isScalePrefix: true });
+      if (isScalePostfix === false) {
+        this.setState({ isScalePostfix: true });
       }
     };
 &nbsp;
-    inputIsToolPrefix.onchange = () =&gt; {
-      if (isPrefix === true) {
-        this.setState({ isPrefix: false });
+    inputIsToolPostfix.onchange = () =&gt; {
+      if (isPostfix === true) {
+        this.setState({ isPostfix: false });
       }
-      if (isPrefix === false) {
-        this.setState({ isPrefix: true });
+      if (isPostfix === false) {
+        this.setState({ isPostfix: true });
       }
     };
 &nbsp;
@@ -931,7 +944,7 @@ class Demo {
         this.setState({ isGradient: true });
       }
     };
-    
+&nbsp;
     inputIsChangeColor.onchange = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >      if (isChangeColor === true) {</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({ isChangeColor: false });</span>
@@ -948,7 +961,7 @@ class Demo {
       if (isColorOut === false) {
         this.setState({ isColorOut: true });
       }
-    };
+    }
 &nbsp;
     changeScale.onchange = () =&gt; {
       if (isScale === false) {
@@ -998,11 +1011,11 @@ class Demo {
       }
     };
 &nbsp;
-    inputIsTrackPrefix.onchange = () =&gt; {
-      if (isTrackPrefix === false) {
-        this.setState({ isTrackPrefix: true });
+    inputIsTrackPostfix.onchange = () =&gt; {
+      if (isTrackPostfix === false) {
+        this.setState({ isTrackPostfix: true });
       } else {
-        this.setState({ isTrackPrefix: false });
+        this.setState({ isTrackPostfix: false });
       }
     };
 &nbsp;
@@ -1024,11 +1037,11 @@ class Demo {
 &nbsp;
     //* *     инпуты    **/
 &nbsp;
-    inputMarker.value = prefix;
+    inputMarker.value = postfix;
 &nbsp;
     inputMarker.onchange = () =&gt; {
       const { value } = inputMarker;
-      this.setState({ prefix: value });
+      this.setState({ postfix: value });
     };
 &nbsp;
     inputFrom.value = String(from);
@@ -1064,6 +1077,14 @@ class Demo {
       const value = Number(inputStep.value);
       this.setState({ step: value });
     };
+    
+    inputSeparate.value = separate
+&nbsp;
+    inputSeparate.onchange = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+      const value = <span class="cstat-no" title="statement not covered" >inputSeparate.value;</span>
+<span class="cstat-no" title="statement not covered" >      this.setState({ separate: value });</span>
+    };
+    
     inputColor.value = String(color);
 &nbsp;
     inputColor.onchange = () =&gt; {
@@ -1084,18 +1105,18 @@ class Demo {
       this.setState({ gradientDeg: value });
     };
 &nbsp;
-    inputScalePrefix.value = scalePrefix;
+    inputScalePostfix.value = scalePostfix;
 &nbsp;
-    inputScalePrefix.onchange = () =&gt; {
-      const { value } = inputScalePrefix;
-      this.setState({ scalePrefix: value });
+    inputScalePostfix.onchange = () =&gt; {
+      const { value } = inputScalePostfix;
+      this.setState({ scalePostfix: value });
     };
 &nbsp;
-    inputTrackPrefix.value = trackPrefix;
+    inputTrackPostfix.value = trackPostfix;
 &nbsp;
-    inputTrackPrefix.onchange = () =&gt; {
-      const { value } = inputTrackPrefix;
-      this.setState({ trackPrefix: value });
+    inputTrackPostfix.onchange = () =&gt; {
+      const { value } = inputTrackPostfix;
+      this.setState({ trackPostfix: value });
     };
   }
 &nbsp;
@@ -1114,7 +1135,7 @@ export { Demo };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Feb 26 2021 21:41:55 GMT+0600 (GMT+06:00)
+                at Sat Feb 27 2021 12:23:10 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

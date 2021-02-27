@@ -25,7 +25,6 @@ interface Options {
   gradientDeg: number,
   isColorOut: boolean,
   onlyDivisions: boolean,
-  prettify: boolean,
   separate: string,
   allColors: {[index: string]: string}
 }
