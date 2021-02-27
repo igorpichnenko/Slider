@@ -2,8 +2,6 @@ import { Presenter } from '../../slider/Presenter/Presenter';
 import { Options } from '../../slider/interfaces/interfaces';
 import { demoTemplate } from './demoTemplate';
 
- 
-
 class Demo {
   public state: Options;
 
@@ -13,7 +11,7 @@ class Demo {
     this.state = slider.getOptions();
     this.demoTools = this.createTools();
     this.init();
-  }   
+  }
 
   public upData(newSetting: Partial<Options>) {
     this.state = { ...this.state, ...newSetting };
@@ -37,9 +35,7 @@ class Demo {
   }
 
   private createSettings() {
-    
-   
-   this.slider.element.after(this.demoTools)
+    this.slider.element.after(this.demoTools);
 
     this.demoTools.insertAdjacentHTML('beforeend', demoTemplate);
   }
@@ -51,7 +47,7 @@ class Demo {
       fromTo, isTrackPostfix, trackPostfix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
       onlyDivisions, isPostfix, isChangeColor,
-      prettify
+      prettify,separate
     } = this.state;
 
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
@@ -91,15 +87,17 @@ class Demo {
     const inputMarker = this.demoTools.querySelector('.js-marker')! as HTMLInputElement;
 
     const inputStep = this.demoTools.querySelector('.js-step')! as HTMLInputElement;
+    
+    const inputSeparate = this.demoTools.querySelector('.js-separate')! as HTMLInputElement;
 
     const inputColor = this.demoTools.querySelector('.js-color')! as HTMLInputElement;
 
     const inputIsPrefix = this.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
-    
+
     const inputPrettify = this.demoTools.querySelector('.js-prettify')! as HTMLInputElement;
 
     const inputScalePrefix = this.demoTools.querySelector('.js-scale-prefix')! as HTMLInputElement;
-    
+
     const inputIsChangeColor = this.demoTools.querySelector('.js-isChangeColor')! as HTMLInputElement;
 
     const inputMinMax = this.demoTools.querySelector('.js-minMax')! as HTMLInputElement;
@@ -137,7 +135,7 @@ class Demo {
     btnPrefix.onclick = () => {
       menuPrefix.classList.toggle('js-close-menu');
     };
- 
+
     /**     чекбоксы    * */
 
     isOrientation.onchange = () => {
@@ -175,7 +173,7 @@ class Demo {
         this.setState({ isGradient: true });
       }
     };
-    
+
     inputIsChangeColor.onchange = () => {
       if (isChangeColor === true) {
         this.setState({ isChangeColor: false });
@@ -193,7 +191,7 @@ class Demo {
         this.setState({ isColorOut: true });
       }
     };
-    
+
     inputPrettify.onchange = () => {
       if (prettify === true) {
         this.setState({ prettify: false });
@@ -264,8 +262,8 @@ class Demo {
         this.setState({ isColor: false });
       } else {
         this.setState({ isColor: true });
-      }  
-    }; 
+      }
+    };
 
     inputChangeColor.onchange = () => {
       if (changeColor === true) {
@@ -317,6 +315,14 @@ class Demo {
       const value = Number(inputStep.value);
       this.setState({ step: value });
     };
+    
+    inputSeparate.value = separate
+
+    inputSeparate.onchange = () => {
+      const value = inputSeparate.value;
+      this.setState({ separate: value });
+    };
+    
     inputColor.value = String(color);
 
     inputColor.onchange = () => {

@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --mode development",
     "test": "jest --collect-coverage",
     "deploy": "gh-pages -d dist",
-    "lint": "eslint src/**/**.ts --fix"
+    "lint": "eslint src/**/*.ts --fix"
   },
   "repository": {
     "type": "git",

@@ -64,7 +64,7 @@ class Scale {
 
   private addScaleMarker(options: ViewState, scale: HTMLElement): void {
     const {
-      min, max, step, size, oneStep,
+      min, max, step, size, oneStep
     } = options;
 
     const inc = this.getIncrement(options);
@@ -94,12 +94,14 @@ class Scale {
 
   private createScaleMarker(fragment: DocumentFragment,
     value: number, position: number, options: ViewState): void {
-    const { orientation } = options;
+    const { orientation, prettify} = options;
     const scaleMarker = document.createElement('span');
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
     fragment.append(scaleMarker);
 
-    scaleMarker.innerHTML = value.toString();
+    scaleMarker.innerHTML = value.toString()
+    
+    
     this.updataScaleMarker(options);
 
     const offset = this.convertPxToPercent(position, options);
@@ -122,8 +124,9 @@ class Scale {
 
     if (!(target instanceof HTMLElement)) return;
     if (!target.classList.contains('slider__scale-value')) return;
-
-    const value = Number(target.innerHTML);
+   
+   
+    const value = Number(target.innerHTML)
 
     const scaleEvent = new CustomEvent('scaleclick', { bubbles: true, detail: { event, value } });
     target.dispatchEvent(scaleEvent);

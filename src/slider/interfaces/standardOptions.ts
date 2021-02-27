@@ -5,7 +5,7 @@ const standardOptions: Options = {
   orientation: 'horizontal',
   type: 'double',
   min: 0,
-  max: 10, 
+  max: 10,
   step: 1,
   from: 3,
   to: 7,
@@ -29,7 +29,8 @@ const standardOptions: Options = {
   isColorOut: false,
   onlyDivisions: false,
   prettify: true,
+  separate: ' ',
   allColors,
-}; 
+};
 
 export { standardOptions };

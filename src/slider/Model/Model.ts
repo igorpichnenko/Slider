@@ -1,6 +1,5 @@
 import { Options } from '../interfaces/interfaces';
 import { EventEmitter } from '../EventEmitter/EventEmitter';
-import { standardOptions } from '../interfaces/standardOptions';
 
 class Model {
   public state: Options;
@@ -14,7 +13,6 @@ class Model {
   }
 
   public setData(options: Options): void {
-    
     const validateFromTo: Options = this.validateFromTo(options);
     const validateMinMaxStep: Options = this.validateMinMaxStep(options);
 
@@ -25,7 +23,7 @@ class Model {
 
   private init(options: Options): Options {
     this.setData(options);
-    return this.state; 
+    return this.state;
   }
 
   private validateMinMaxStep(options: Options): Options {
@@ -90,8 +88,6 @@ class Model {
     }
     return options;
   }
-
-  
 }
 
 export { Model };

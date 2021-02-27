@@ -5,8 +5,6 @@ import { Track } from './Track/Track';
 import { Scale } from './Scale/Scale';
 import { Bar } from './Bar/Bar';
 
- 
-
 class View {
   public emitter: EventEmitter;
 
@@ -20,7 +18,7 @@ class View {
 
   private rollers: Rollers;
 
-  private scale: Scale;  
+  private scale: Scale;
 
   private track: Track;
 
@@ -42,9 +40,8 @@ class View {
     this.bindEventListeners();
   }
 
-  
-   // * Расширяю Options до ViewState
- 
+  // * Расширяю Options до ViewState
+
   private init(options: Options): ViewState {
     const size = this.getSliderSize(options);
     const oneStep = this.getOneStep(options);
@@ -84,7 +81,7 @@ class View {
   /**
    * Обновляю стостояние View
    * Обновляю состояние всех подвидов
-  **/
+  * */
   public upData(newState: Partial<ViewState>) {
     const updataState: ViewState = {
       ...this.state,
@@ -100,9 +97,9 @@ class View {
       ...updataState,
     };
   }
-  
+
   // Метод пересборки слайдера, им управляет Презентер
-  
+
   public upDataSlider() {
     this.slider.remove();
     this.slider = this.createSlider(this.state, this.element);
@@ -270,11 +267,11 @@ class View {
 
     return value;
   }
-  
-  /** 
+
+  /**
    * Вычесляем новый цвет в зависимости от положения бегунков
    * Переводим value в 16-ричный формат
-  **/
+  * */
 
   public convertValueToColor(value: number) {
     let { color, gradient } = this.state;

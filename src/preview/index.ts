@@ -3,38 +3,38 @@ import { Options } from '../slider/interfaces/interfaces';
 import './index.scss';
 import '../slider/slider';
 
-let $wrap  = $('.js-test-slider')
+const $wrap = $('.js-test-slider');
 
 $wrap.colorSlider({
   isScale: false,
   isChangeColor: false,
-  
-})
+
+});
 
 /**
  * Для вывода в свои инпуты
  * Создать инпуты, и вызвать метод getValue
-   с функцией и выводить любой параметр из 27 обратившись через точку values.from 
-**/
+   с функцией и выводить любой параметр из 27 обратившись через точку values.from
+* */
 
-$wrap.colorSlider('getValue',(values: Options) => {   
-    $('.js-custom-from').val(values.from);     
-    $('.js-custom-to').val(values.to); 
-});     
+$wrap.colorSlider('getValue', (values: Options) => {
+  $('.js-custom-from').val(values.from);
+  $('.js-custom-to').val(values.to);
+});
 
 /**
  * Для изменения на custom-button
  * Вызыать метод change с необходимыми параметрами
-**/
+* */
 
 $('.js-custom-btn').click(() => {
+  $wrap.colorSlider('change', {
+    color: 'red', gradient: 'blue', max: 1000, from: 200, to: 800, onlyDivisions: true, fromTo: true,
+  });
+});
 
-  $wrap.colorSlider('change', {color: "red", gradient: "blue", max: 1000, from: 200, to: 800, onlyDivisions: true, fromTo: true})
-                    
-})
-  
-  //      ***  Дэмо станица   ***
-  
+//      ***  Дэмо станица   ***
+
 const firstOptions: Partial<Options> = {
   orientation: 'vertical',
   type: 'double',
@@ -71,12 +71,10 @@ const fourOptions: Partial<Options> = {
   color: 'green',
 };
 
-
 const options = [firstOptions, twoOptions, threeOptions, fourOptions];
-  
+
 const $wrappers = $('.js-toxin-slider');
 
 $wrappers.each((index, element) => {
-
-  new Demo($(element).colorSlider(options[index]).colorSlider('change'))
+  new Demo($(element).colorSlider(options[index]).colorSlider('change'));
 });

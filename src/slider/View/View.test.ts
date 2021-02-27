@@ -1,16 +1,16 @@
 import '@testing-library/jest-dom';
 import $ from 'jquery';
+
 import { View } from './View';
 import { standardOptions } from '../interfaces/standardOptions';
 
 describe('View', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;
-  
 
   beforeEach(() => {
-    wrap = $("<div class='js-toxin-slider' ></div>")
-    wrap.appendTo( "body" )
+    wrap = $("<div class='js-toxin-slider' ></div>");
+    wrap.appendTo('body');
     view = new View(standardOptions, wrap);
   });
 

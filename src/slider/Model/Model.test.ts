@@ -2,7 +2,6 @@ import { Model } from './Model';
 import { standardOptions } from '../interfaces/standardOptions';
 import { Options } from '../interfaces/interfaces';
 
-
 describe('Model', () => {
   test('Model is created with default options', () => {
     const model: Model = new Model(standardOptions);

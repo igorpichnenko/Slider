@@ -46,35 +46,31 @@ class Rollers {
       to,
       from,
       postfix, isPostfix,
-      isLabel, 
-      isColorOut, prettify
+      isLabel
     } = options;
-
-   if (prettify === true){
 
     if (isLabel === true) {
       if (isPostfix === true) {
-        fistTooltip.innerHTML = `${from.toLocaleString()}${postfix}`;
-        secondTooltip.innerHTML = `${to.toLocaleString()}${postfix}`;
+        fistTooltip.innerHTML = `${this.separate(from,options)}${postfix}`;
+        secondTooltip.innerHTML = `${this.separate(to,options)}${postfix}`;
       } if (isPostfix === false) {
-        fistTooltip.innerHTML = from.toLocaleString();
-        secondTooltip.innerHTML = to.toLocaleString();
+        fistTooltip.innerHTML = this.separate(from,options)
+        secondTooltip.innerHTML = this.separate(to,options)
       }
     }
-   }else{
-     if (isLabel === true) {
-      if (isPostfix === true) {
-        fistTooltip.innerHTML = `${String(from)}${postfix}`;
-        secondTooltip.innerHTML = `${String(to)}${postfix}`;
-      } if (isPostfix === false) {
-        fistTooltip.innerHTML = String(from)
-        secondTooltip.innerHTML = String(to)
-      }
-    }
-   }
+   
     this.setColor(fistTooltip, secondTooltip, options)
-
 }
+
+   private separate (value: number, options: ViewState): string{
+    const { prettify } = options
+    let { separate } = options
+
+    if (prettify === false){
+     separate = ''
+    }
+    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, `${separate}`)
+  }
 
    private setColor(fistTooltip: HTMLElement,
     secondTooltip: HTMLElement, options: ViewState){

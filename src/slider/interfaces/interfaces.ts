@@ -26,6 +26,7 @@ interface Options {
   isColorOut: boolean,
   onlyDivisions: boolean,
   prettify: boolean,
+  separate: string,
   allColors: {[index: string]: string}
 }
 

@@ -128,7 +128,9 @@ transform: translateY(-125%);
 }
 
 &__scale_horizontal {
-  top: 30px
+  top: 30px;
+  width: 100%;
+ 
 }
 
 &__scale_vertical {
@@ -178,7 +180,7 @@ transform: translateY(-125%);
 }
 
 &__scale-value_horizontal {
-  transform: translateX(-50%)
+ transform: translateX(-50%)
 }
 
 &__scale-value_vertical {

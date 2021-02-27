@@ -32,31 +32,32 @@ class Track {
     const {
       min, max, from, to, minMax, fromTo, isTrackPostfix,prettify
     } = options;
-    let { trackPostfix } = options;
+    
+    let { trackPostfix } = options
+
     if (isTrackPostfix === false) {
       trackPostfix = '';
     }
-
-    if (prettify === true){
+    
     if (minMax === true) {
-      outStart.innerHTML = `${min.toLocaleString()}${trackPostfix}`;
-      outEnd.innerHTML = `${max.toLocaleString()}${trackPostfix}`;
+      outStart.innerHTML = `${this.separate(min,options)}${trackPostfix}`;
+      outEnd.innerHTML = `${this.separate(max,options)}${trackPostfix}`;
     }
     if (fromTo === true) {
-      outStart.innerHTML = `${from.toLocaleString()}${trackPostfix}`;
-      outEnd.innerHTML = `${to.toLocaleString()}${trackPostfix}`;
+      outStart.innerHTML = `${this.separate(from,options)}${trackPostfix}`;
+      outEnd.innerHTML = `${this.separate(to,options)}${trackPostfix}`;
     }
-    }else {
-      if (minMax === true) {
-      outStart.innerHTML = `${String(min)}${trackPostfix}`;
-      outEnd.innerHTML = `${String(max)}${trackPostfix}`;
+    
+  }
+  
+  private separate (value: number, options: ViewState): string{
+    const { prettify } = options
+    let { separate } = options
+
+    if (prettify === false){
+     separate = ''
     }
-    if (fromTo === true) {
-      outStart.innerHTML = `${String(from)}${trackPostfix}`;
-      outEnd.innerHTML = `${String(to)}${trackPostfix}`;
-    }
-      
-    }
+    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, `${separate}`)
   }
 
   public upData(options: ViewState) {

@@ -22,7 +22,7 @@ const demoTemplate = `
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels js-label_checkbox">Доб./Убр. отступ для больших чисел
+   <label class="js-labels js-label_checkbox">Доб./Убр. разделитель
    <input type="checkbox" class="js-checkbox js-inputs js-prettify" name="label"/>
    </label>
    </div>
@@ -86,7 +86,12 @@ const demoTemplate = `
    <input type="number" class="js-inputs js-step" name="step"/>
    </label>
    </div>
-   
+   </div>
+   <div class="js-items">
+   <label class="js-labels">Делитель
+   <input type="text" class="js-inputs js-separate" name="separate"/>
+   </label>
+   </div>
    
    <button class="js-btn js-btn-color" type="button">Настройки цвета</button>
    <div class="js-menu js-color-setting">

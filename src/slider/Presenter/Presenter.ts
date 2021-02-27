@@ -17,9 +17,8 @@ class Presenter {
     this.model = this.createModel(options);
     this.view = this.createView(this.model.state, element);
     this.bindSubscribe();
-    
   }
-  
+
   public upDataView() {
     this.view.upDataSlider();
   }
