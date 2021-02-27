@@ -121,7 +121,7 @@ $('.js-custom-button').click(() => {
    с функцией и выводить любой параметр
  * Обратившись через точку, например: values.from 
 ```
-$('.js-test-slider').colorSlider('getValue',(values: Options) => {   
+$('.js-test-slider').colorSlider('getValue',(values) => {   
     $('.js-custom-from').val(values.from);    
     $('.js-custom-to').val(values.to); 
 });    
