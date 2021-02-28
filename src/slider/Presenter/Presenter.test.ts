@@ -37,7 +37,7 @@ describe('Presenter', () => {
     presenter.setOptions({ max });
     expect(presenter.getOptions().max).not.toBe(max);
   });
-  
+
   test('must get correct parameters min', () => {
     const min = -80;
     presenter.setOptions({ min });
@@ -49,12 +49,14 @@ describe('Presenter', () => {
     presenter.setOptions({ from });
     expect(presenter.getOptions().from).toBe(from);
   });
-  
+
   test('should get from less to, to - step', () => {
     const from = 8;
-    
+
     presenter.setOptions({ from });
-    expect(presenter.getOptions().from).toBe(presenter.getOptions().to - presenter.getOptions().step );
+    expect(presenter.getOptions().from).toBe(
+      presenter.getOptions().to - presenter.getOptions().step,
+    );
   });
 
   test('should get a new one step the model', () => {
@@ -73,13 +75,13 @@ describe('Presenter', () => {
     presenter.setOptions({ type });
     expect(presenter.getOptions().type).toBe(type);
   });
-  
+
   test('should get a new one parameter the model', () => {
-    const  isPrefix = false;
+    const isPrefix = false;
     presenter.setOptions({ isPrefix });
     expect(presenter.getOptions().isPrefix).toBe(isPrefix);
   });
-  
+
   test('should get a new one color the model', () => {
     const color = 'red';
     presenter.setOptions({ color });
@@ -110,11 +112,10 @@ describe('Presenter', () => {
     presenter.setOptions({ isScale });
     expect(presenter.getOptions().isScale).toBe(isScale);
   });
-  
+
   test('should get a new one gradient the model', () => {
     const gradient = 'blue';
     presenter.setOptions({ gradient });
     expect(presenter.getOptions().gradient).toBe(gradient);
   });
-  
 });

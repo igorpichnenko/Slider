@@ -326,8 +326,7 @@ class Demo {
       const value = Number(inputStep.value);
       this.setState({ step: value });
     };
-    
-    
+
     // валидация ввода
     if (separate === undefined) {
       inputSeparate.value = ' ';

@@ -254,7 +254,7 @@ class View {
         if (value < from + step) value = to;
         this.emitter.emit('newPosition', { to: value });
       }
-    }
+    } 
   }
 
   public convertPxToValue(coordinate: number): number {
