@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development",
-    "test": "jest --coverage",
+    "test": "jest --collect-coverage",
+    "watch": "jest --collect-coverage --watch",
     "deploy": "gh-pages -d dist",
     "lint": "eslint src/**/**/*.ts --fix"
   },

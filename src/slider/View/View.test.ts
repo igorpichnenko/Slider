@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import $ from 'jquery';
 
 import { View } from './View';
+
 import { standardOptions } from '../interfaces/standardOptions';
 
 describe('View', () => {
@@ -219,4 +220,6 @@ describe('View', () => {
     view.upData({ scalePostfix: '$' });
     expect(view.state.scalePostfix).toBe('$');
   });
+  
+  
 });

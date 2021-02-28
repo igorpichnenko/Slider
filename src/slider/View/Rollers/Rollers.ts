@@ -71,7 +71,7 @@ class Rollers {
    
     this.setColor(fistTooltip, secondTooltip, options)
 }
-
+  
    private separate (value: number, options: ViewState): string{
     const { isSeparate } = options
     let { separate } = options
@@ -108,7 +108,7 @@ class Rollers {
     white, и в дальнейшем соьирался дополнять перевод 
     **/
     let newColor = allColors[color];
-    let newGradient = allColors[gradient];
+   let newGradient = allColors[gradient];
 //console.log(color)
 //console.log(newColor)
     if (newGradient === undefined) {

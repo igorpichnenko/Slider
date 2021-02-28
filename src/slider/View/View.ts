@@ -20,7 +20,7 @@ class View {
 
   private scale: Scale;
 
-  private track: Track;
+  private track: Track; 
 
   constructor(options: Options, element: JQuery<HTMLElement>) {
     this.emitter = new EventEmitter();

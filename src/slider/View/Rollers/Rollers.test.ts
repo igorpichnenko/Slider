@@ -3,6 +3,7 @@ import $ from 'jquery';
 import { View } from '../View';
 import { standardOptions } from '../../interfaces/standardOptions';
 
+
 describe('Rollers', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;
@@ -213,5 +214,6 @@ describe('Rollers', () => {
     expect(tooltips[0].innerHTML).toBe(`${view.state.from.toString()}${view.state.trackPostfix}`);
     expect(tooltips[1].innerHTML).toBe(`${view.state.to.toString()}${view.state.trackPostfix}`);
   });
+  
   
 });

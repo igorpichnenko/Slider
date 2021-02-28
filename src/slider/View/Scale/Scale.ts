@@ -79,9 +79,9 @@ class Scale {
     this.createScaleMarker(fragment, max, size, options);
 
     scale.append(fragment);
-  }
+  } 
 
-  private getIncrement(options: ViewState): number {
+  public getIncrement(options: ViewState): number {
     const { size, oneStep, step } = options;
     const value = Math.ceil(size / oneStep);
     const inc = Math.ceil(value / 5) * step;

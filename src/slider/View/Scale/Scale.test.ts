@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import $ from 'jquery';
 import { View } from '../View';
 import { standardOptions } from '../../interfaces/standardOptions';
+import { Scale } from './Scale';
 
 describe('Scale', () => {
   let wrap: JQuery<HTMLElement>;
@@ -12,6 +13,7 @@ describe('Scale', () => {
     wrap = $("<div class='js-toxin-slider' ></div>")
     wrap.appendTo( "body" )
     view = new View(standardOptions, wrap);
+    
   });
 
   afterEach(() => {
@@ -208,6 +210,19 @@ describe('Scale', () => {
   });
 
   
-  
-  
+  test('must read the incrimination', () => {
+    
+    let viewState = {
+      size: 266,
+      oneStep: 26.6,
+      slider: view.slider,
+      ...standardOptions
+    }
+    
+    let scale = new  Scale(viewState)
+    
+    let currentValue: number = scale.getIncrement(viewState);
+    expect(currentValue).toBe(2);
+    
+  })  
 })
