@@ -91,12 +91,20 @@ describe('Rollers', () => {
     expect(tooltips[1].innerHTML).toBe(String(view.state.to));
   });
 
-  test('if the isPrefix = true parameter, the tooltips should display the parameters from and to the + prefix', () => {
+  test('if the isPostfix = true parameter, the tooltips should display the parameters from and to the + postfix', () => {
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');
     view.upData({ isPostfix: true });
 
     expect(tooltips[0].innerHTML).toBe(`${view.state.from}${view.state.postfix}`);
     expect(tooltips[1].innerHTML).toBe(`${view.state.to}${view.state.postfix}`);
+  });
+  
+  test('if the isPrefix = true parameter, the tooltips should display the parameters from and to the + prefix', () => {
+    const tooltips = view.slider.querySelectorAll('.slider__tooltip');
+    view.upData({ isPrefix: true });
+
+    expect(tooltips[0].innerHTML).toBe(`${view.state.postfix}${view.state.from}`);
+    expect(tooltips[1].innerHTML).toBe(`${view.state.postfix}${view.state.to}`);
   });
 
   test('if isColorOut = true, then the default color and gradient name is displayed in tooltips', () => {
@@ -117,7 +125,18 @@ describe('Rollers', () => {
     expect(firstTooltip.style.backgroundColor).toBe(view.state.color);
     expect(secondTooltip.style.backgroundColor).toBe(view.state.gradient);
   });
+  
+  test('when the MouseEvent is fired on the roller, the color update method should be called', () => {
+    const spy = jest.spyOn(view, 'convertValueToColor');
+    const rollerFirst = view.slider.querySelector('.slider__roller_first') as HTMLElement;
 
+    rollerFirst.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+    document.dispatchEvent(new MouseEvent('mousemove'));
+    document.dispatchEvent(new MouseEvent('mouseup'));
+
+    expect(spy).toBeCalled();
+  });
+  
   test('if isColorOut = "true" then tolltips should change background', () => {
     const firstTooltip = view.slider.querySelector('.slider__tooltip_first') as HTMLElement;
     const secondTooltip = view.slider.querySelector('.slider__tooltip_second') as HTMLElement;
@@ -137,15 +156,62 @@ describe('Rollers', () => {
     expect(rollerFirst.style.background).toBe(view.state.color);
     expect(rollerSecond.style.background).toBe(view.state.color);
   });
+  
+  
+  test('if separate = ",", then the result should be equal to "en-US" of the locale', () => {
+    const tooltips = view.slider.querySelectorAll('.slider__tooltip');
 
-  test('when the MouseEvent is fired on the roller, the color update method should be called', () => {
-    const spy = jest.spyOn(view, 'convertValueToColor');
-    const rollerFirst = view.slider.querySelector('.slider__roller_first') as HTMLElement;
+    view.upData({
+      separate: ',',
+      max: 10000,
+      from: 1000,
+      to: 5000
+    });
 
-    rollerFirst.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
-    document.dispatchEvent(new MouseEvent('mousemove'));
-    document.dispatchEvent(new MouseEvent('mouseup'));
-
-    expect(spy).toBeCalled();
+    expect(tooltips[0].innerHTML).toBe(`${view.state.from.toLocaleString('en-US')}${view.state.postfix}`);
+    expect(tooltips[1].innerHTML).toBe(`${view.state.to.toLocaleString('en-US')}${view.state.postfix}`);
   });
+  test('if separate = ".", then the result should be equal to "de-DE" of the locale', () => {
+    const tooltips = view.slider.querySelectorAll('.slider__tooltip');
+
+    view.upData({
+      separate: '.',
+      max: 10000,
+      from: 1000,
+      to: 5000
+    });
+
+    expect(tooltips[0].innerHTML).toBe(`${view.state.from.toLocaleString('de-DE')}${view.state.postfix}`);
+    expect(tooltips[1].innerHTML).toBe(`${view.state.to.toLocaleString('de-DE')}${view.state.postfix}`);
+  });
+  test('if separate = " ", then the result should be equal to "undefined" of the locale', () => {
+    const tooltips = view.slider.querySelectorAll('.slider__tooltip');
+
+    view.upData({
+      separate: ' ',
+      max: 10000,
+      from: 1000,
+      to: 5000
+    });
+
+    expect(tooltips[0].innerHTML).toBe(`${view.state.from.toLocaleString(undefined)}${view.state.postfix}`);
+    expect(tooltips[1].innerHTML).toBe(`${view.state.to.toLocaleString(undefined)}${view.state.postfix}`);
+  });
+  
+  
+  
+  test('isSeparate = false then there should be no separator', () => {
+    const tooltips = view.slider.querySelectorAll('.slider__tooltip');
+
+    view.upData({
+      max: 10000,
+      from: 1000,
+      to: 5000,
+      isSeparate: false,
+    });
+
+    expect(tooltips[0].innerHTML).toBe(`${view.state.from.toString()}${view.state.trackPostfix}`);
+    expect(tooltips[1].innerHTML).toBe(`${view.state.to.toString()}${view.state.trackPostfix}`);
+  });
+  
 });

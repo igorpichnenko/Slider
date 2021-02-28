@@ -37,11 +37,24 @@ describe('Presenter', () => {
     presenter.setOptions({ max });
     expect(presenter.getOptions().max).not.toBe(max);
   });
+  
+  test('must get correct parameters min', () => {
+    const min = -80;
+    presenter.setOptions({ min });
+    expect(presenter.getOptions().min).toBe(min);
+  });
 
   test('should get a new one from the model', () => {
     const from = 3;
     presenter.setOptions({ from });
     expect(presenter.getOptions().from).toBe(from);
+  });
+  
+  test('should get from less to, to - step', () => {
+    const from = 8;
+    
+    presenter.setOptions({ from });
+    expect(presenter.getOptions().from).toBe(presenter.getOptions().to - presenter.getOptions().step );
   });
 
   test('should get a new one step the model', () => {
@@ -60,23 +73,30 @@ describe('Presenter', () => {
     presenter.setOptions({ type });
     expect(presenter.getOptions().type).toBe(type);
   });
+  
+  test('should get a new one parameter the model', () => {
+    const  isPrefix = false;
+    presenter.setOptions({ isPrefix });
+    expect(presenter.getOptions().isPrefix).toBe(isPrefix);
+  });
+  
   test('should get a new one color the model', () => {
-    const color = 'purple';
+    const color = 'red';
     presenter.setOptions({ color });
     expect(presenter.getOptions().color).toBe(color);
   });
   test('should get a new one postfix the model', () => {
-    const postfix = '₽';
+    const postfix = '$';
     presenter.setOptions({ postfix });
     expect(presenter.getOptions().postfix).toBe(postfix);
   });
-  test('should get a new one isScalePrefix the model', () => {
+  test('should get a new one isScalePostfix the model', () => {
     const isScalePostfix = true;
     presenter.setOptions({ isScalePostfix });
     expect(presenter.getOptions().isScalePostfix).toBe(isScalePostfix);
   });
-  test('should get a new one scalePrefix the model', () => {
-    const scalePostfix = '₽';
+  test('should get a new one scaleProstfix the model', () => {
+    const scalePostfix = '¢';
     presenter.setOptions({ scalePostfix });
     expect(presenter.getOptions().scalePostfix).toBe(scalePostfix);
   });
@@ -90,4 +110,11 @@ describe('Presenter', () => {
     presenter.setOptions({ isScale });
     expect(presenter.getOptions().isScale).toBe(isScale);
   });
+  
+  test('should get a new one gradient the model', () => {
+    const gradient = 'blue';
+    presenter.setOptions({ gradient });
+    expect(presenter.getOptions().gradient).toBe(gradient);
+  });
+  
 });

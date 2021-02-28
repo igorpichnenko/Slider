@@ -13,11 +13,28 @@ describe('Model', () => {
     expect(model.state.from).toBe(standardOptions.from);
     expect(model.state.to).toBe(standardOptions.to);
     expect(model.state.postfix).toBe(standardOptions.postfix);
+    expect(model.state.isPrefix).toBe(standardOptions.isPrefix);
+    expect(model.state.isPostfix).toBe(standardOptions.isPostfix);
     expect(model.state.isLabel).toBe(standardOptions.isLabel);
     expect(model.state.isScale).toBe(standardOptions.isScale);
+    expect(model.state.isSeparate).toBe(standardOptions.isSeparate);
+    expect(model.state.color).toBe(standardOptions.color);
     expect(model.state.isScalePostfix).toBe(standardOptions.isScalePostfix);
     expect(model.state.scalePostfix).toBe(standardOptions.scalePostfix);
-    expect(model.state.color).toBe(standardOptions.color);
+    expect(model.state.minMax).toBe(standardOptions.minMax);
+    expect(model.state.fromTo).toBe(standardOptions.fromTo);
+    expect(model.state.isTrackPostfix).toBe(standardOptions.isTrackPostfix);
+    expect(model.state.trackPostfix).toBe(standardOptions.trackPostfix);
+    expect(model.state.isColor).toBe(standardOptions.isColor);
+    expect(model.state.changeColor).toBe(standardOptions.changeColor);
+    expect(model.state.isChangeColor).toBe(standardOptions.isChangeColor);
+    expect(model.state.isGradient).toBe(standardOptions.isGradient);
+    expect(model.state.gradient).toBe(standardOptions.gradient);
+    expect(model.state.gradientDeg).toBe(standardOptions.gradientDeg);
+    expect(model.state.isColorOut).toBe(standardOptions.isColorOut);
+    expect(model.state.onlyDivisions).toBe(standardOptions.onlyDivisions);
+    expect(model.state.separate).toBe(standardOptions.separate);
+    expect(model.state.allColors).toBe(standardOptions.allColors);
   });
 
   test('Min is expected to be less than max. And min becomes = -20 and max = -15 + step', () => {

@@ -133,26 +133,26 @@ describe('Demo', () => {
   });
 
   test('should change isScalePostfix parameter', () => {
-    const inputIsPrefix = demo.demoTools.querySelector('.js-isPrefix')! as HTMLInputElement;
+    const inputIsPostfix = demo.demoTools.querySelector('.js-isPostfix')! as HTMLInputElement;
 
-    inputIsPrefix.checked = true;
-    inputIsPrefix.dispatchEvent(new InputEvent('change'));
+    inputIsPostfix.checked = true;
+    inputIsPostfix.dispatchEvent(new InputEvent('change'));
     expect(demo.state.isScalePostfix).toBe(false);
 
-    inputIsPrefix.checked = false;
-    inputIsPrefix.dispatchEvent(new InputEvent('change'));
+    inputIsPostfix.checked = false;
+    inputIsPostfix.dispatchEvent(new InputEvent('change'));
     expect(demo.state.isScalePostfix).toBe(true);
   });
 
-  test('should change isPrefix parameter', () => {
-    const inputIsToolPrefix = demo.demoTools.querySelector('.js-isPrefixTool')! as HTMLInputElement;
+  test('should change isPostfix parameter', () => {
+    const inputIsToolProstfix = demo.demoTools.querySelector('.js-isPostfixTool')! as HTMLInputElement;
 
-    inputIsToolPrefix.checked = true;
-    inputIsToolPrefix.dispatchEvent(new InputEvent('change'));
+    inputIsToolProstfix.checked = true;
+    inputIsToolProstfix.dispatchEvent(new InputEvent('change'));
     expect(demo.state.isPostfix).toBe(false);
 
-    inputIsToolPrefix.checked = false;
-    inputIsToolPrefix.dispatchEvent(new InputEvent('change'));
+    inputIsToolProstfix.checked = false;
+    inputIsToolProstfix.dispatchEvent(new InputEvent('change'));
     expect(demo.state.isPostfix).toBe(true);
   });
   test('should change isGradient parameter', () => {
@@ -228,15 +228,15 @@ describe('Demo', () => {
     inputDivision.dispatchEvent(new InputEvent('change'));
     expect(demo.state.onlyDivisions).toBe(false);
   });
-  test('should change isTrackPrefix parameter', () => {
-    const inputIsTrackPrefix = demo.demoTools.querySelector('.js-isTrackPrefix')! as HTMLInputElement;
+  test('should change isTrackPostfix parameter', () => {
+    const inputIsTrackPostfix = demo.demoTools.querySelector('.js-isTrackPostfix')! as HTMLInputElement;
 
-    inputIsTrackPrefix.checked = true;
-    inputIsTrackPrefix.dispatchEvent(new InputEvent('change'));
+    inputIsTrackPostfix.checked = true;
+    inputIsTrackPostfix.dispatchEvent(new InputEvent('change'));
     expect(demo.state.isTrackPostfix).toBe(false);
 
-    inputIsTrackPrefix.checked = false;
-    inputIsTrackPrefix.dispatchEvent(new InputEvent('change'));
+    inputIsTrackPostfix.checked = false;
+    inputIsTrackPostfix.dispatchEvent(new InputEvent('change'));
     expect(demo.state.isTrackPostfix).toBe(true);
   });
   test('should change isColor parameter', () => {
@@ -261,7 +261,7 @@ describe('Demo', () => {
     inputChangeColor.dispatchEvent(new InputEvent('change'));
     expect(demo.state.changeColor).toBe(true);
   });
-  test('the prefix should change', () => {
+  test('the postfix should change', () => {
     const inputMarker = demo.demoTools.querySelector('.js-marker') as HTMLInputElement;
 
     inputMarker.value = '$';
@@ -294,19 +294,19 @@ describe('Demo', () => {
 
     expect(demo.state.gradientDeg).toBe(90);
   });
-  test('the prefix scale should change', () => {
-    const inputScalePrefix = demo.demoTools.querySelector('.js-scale-prefix') as HTMLInputElement;
+  test('the postfix scale should change', () => {
+    const inputScalePostfix = demo.demoTools.querySelector('.js-scale-postfix') as HTMLInputElement;
 
-    inputScalePrefix.value = '#';
-    inputScalePrefix.dispatchEvent(new InputEvent('change'));
+    inputScalePostfix.value = '#';
+    inputScalePostfix.dispatchEvent(new InputEvent('change'));
 
     expect(demo.state.scalePostfix).toBe('#');
   });
-  test('the prefix track should change', () => {
-    const inputTrackPrefix = demo.demoTools.querySelector('.js-track-prefix') as HTMLInputElement;
+  test('the postfix track should change', () => {
+    const inputTrackPostfix = demo.demoTools.querySelector('.js-track-postfix') as HTMLInputElement;
 
-    inputTrackPrefix.value = '¢';
-    inputTrackPrefix.dispatchEvent(new InputEvent('change'));
+    inputTrackPostfix.value = '¢';
+    inputTrackPostfix.dispatchEvent(new InputEvent('change'));
 
     expect(demo.state.trackPostfix).toBe('¢');
   });

@@ -90,7 +90,6 @@ const fiveOptions: Partial<Options> = {
   color: 'green',
 };
 
-
 const sixOptions: Partial<Options> = {
 
   gradient: 'black',

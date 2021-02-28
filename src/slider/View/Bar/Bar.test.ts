@@ -31,6 +31,14 @@ describe('Bar', () => {
 
     expect(bar.style.background).toBe(view.state.color);
   });
+  
+  test('clicking on the bar should update the coordinates', () => {
+    const spy = jest.spyOn(view, 'convertPxToValue');
+    const bar = view.slider.querySelector('.slider__bar') as HTMLElement;
+    bar.click();
+
+    expect(spy).toBeCalled();
+  });
 
   test('if the orientation is "vertical" bar should have a vertical modifier', () => {
     const newOptions = {
@@ -44,4 +52,6 @@ describe('Bar', () => {
 
     expect(bar).toBeVisible();
   });
+  
+  
 });

@@ -83,24 +83,7 @@ describe('Scale', () => {
     expect(scaleMarker.innerHTML).toBe(`${view.state.max}${view.state.scalePostfix}`);
     
   });
-
-  test('if onlyDivisions = true then the scale division must have the fs-0 modifier', () => {
-    view.upData({ onlyDivisions: true });
-
-    const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
-
-    expect(scaleMarker.classList.contains('slider__scale-value_fs-0')).toBe(true);
-  });
-
-  test('divisions must not have a prefix', () => {
-    view.upData({ isScalePostfix: false });
-
-    const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
-
-    expect(scaleMarker.getAttribute('data-text')).not.toBe(view.state.scalePostfix);
-  });
-
-  test('clicking on the scale should return the scale value', () => {
+ test('clicking on the scale should return the scale value', () => {
     const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
 
      const value = scaleMarker.innerHTML
@@ -114,4 +97,117 @@ describe('Scale', () => {
     expect(clickScale.mock.calls.length).toBe(1);
     expect(clickScale.mock.results[0].value).toBe(value);
   });
-});
+
+  test('if onlyDivisions = true then the scale division must have the fs-0 modifier', () => {
+    view.upData({ onlyDivisions: true });
+
+    const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
+
+    expect(scaleMarker.classList.contains('slider__scale-value_fs-0')).toBe(true);
+  });
+
+  test('should be postfix by default', () => {
+    const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
+
+    expect(scaleMarker.innerHTML).toBe(`${view.state.max}${view.state.scalePostfix}`);
+  });
+  
+  test('isScalePostfix = false, then there should be no marker', () => {
+    const newOptions = {
+      ...standardOptions,
+      isScalePostfix: false,
+     
+    };
+
+    const newView = new View(newOptions, wrap);
+
+    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!
+     
+    expect(scaleMarker.innerHTML).toBe(String(newView.state.max));
+  });
+  
+  test('isPrefix = true, must be prefix', () => {
+    const newOptions = {
+      ...standardOptions,
+      isPrefix: true,
+    };
+
+    const newView = new View(newOptions, wrap);
+
+    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+
+    expect(scaleMarker.innerHTML).toBe(`${newView.state.scalePostfix}${newView.state.max}`);
+  });
+  
+  
+  test('there is a separator by default', () => {
+    const newOptions = {
+      ...standardOptions,
+      max: 10000,
+    };
+
+    const newView = new View(newOptions, wrap);
+
+    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+
+    expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString()}${newView.state.scalePostfix}`);
+  });
+  
+  test('there is a separator by default', () => {
+    const newOptions = {
+      ...standardOptions,
+      max: 10000,
+      isSeparate: false,
+    };
+
+    const newView = new View(newOptions, wrap);
+
+    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+
+    expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toString()}${newView.state.scalePostfix}`);
+  });
+  
+  test('if separate = ".", then the result should be equal to "de-DE" of the locale', () => {
+    const newOptions = {
+      ...standardOptions,
+      max: 10000,
+      separate: '.'
+    };
+
+    const newView = new View(newOptions, wrap);
+
+    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+
+    expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString('de-DE')}${newView.state.scalePostfix}`);
+  });
+  test('if separate = ",", then the result should be equal to "en-US" of the locale', () => {
+    const newOptions = {
+      ...standardOptions,
+      max: 10000,
+      separate: ','
+    };
+
+    const newView = new View(newOptions, wrap);
+
+    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+
+    expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString('en-US')}${newView.state.scalePostfix}`);
+  });
+  test('if separate = " ", then the result should be equal to "undefined" of the locale', () => {
+    const newOptions = {
+      ...standardOptions,
+      max: 10000,
+      separate: ' '
+    };
+
+    const newView = new View(newOptions, wrap);
+
+    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+
+    expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString(undefined)}${newView.state.scalePostfix}`);
+  });
+
+  
+  
+  
+})

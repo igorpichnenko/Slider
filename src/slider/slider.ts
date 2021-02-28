@@ -4,13 +4,14 @@ import { standardOptions } from './interfaces/standardOptions';
 import './slider.scss';
 
 (function initPlugin($) {
-  ($.fn as any).colorSlider = function init(method?: {} | string, options?: Partial<Options>) {
+  ($.fn as any).colorSlider = function init(method?: {} | string) {
+    
     const methods = {
 
-      init($slider: JQuery<HTMLElement>, params: {}| undefined) {
-        const options: Options = $.extend({}, standardOptions, params);
+      init($slider: JQuery<HTMLElement>, newParam: {}| undefined) {
+        const newOptions: Options = { ...standardOptions, ...newParam };
 
-        $slider.data('presenter', new Presenter(options, $slider));
+        $slider.data('presenter', new Presenter(newOptions, $slider));
 
         return $slider;
       },
@@ -34,7 +35,7 @@ import './slider.scss';
         return this;
       },
     };
-
+ 
     if (typeof method === 'string' && (method === 'change')) {
       return methods[method].call(this, this, arguments[1]);
     }
@@ -46,5 +47,5 @@ import './slider.scss';
     if (typeof method === 'object' || !method) {
       return methods.init(this, method);
     }
-  };
+  }; 
 }(jQuery));

@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { View } from './View';
 import { standardOptions } from '../interfaces/standardOptions';
 
+
 describe('View', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;
