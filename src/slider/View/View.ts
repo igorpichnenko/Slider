@@ -20,7 +20,7 @@ class View {
 
   private scale: Scale;
 
-  private track: Track; 
+  private track: Track;
 
   constructor(options: Options, element: JQuery<HTMLElement>) {
     this.emitter = new EventEmitter();
@@ -153,8 +153,8 @@ class View {
       document.addEventListener('mouseup', handleUp);
       target.addEventListener('touchend', handleUp);
     }
-  } 
- 
+  }
+
   private drag(target: HTMLElement, event: any) {
     const { orientation } = this.state;
 
@@ -254,9 +254,9 @@ class View {
         if (value < from + step) value = to;
         this.emitter.emit('newPosition', { to: value });
       }
-    } 
-  } 
- 
+    }
+  }
+
   public convertPxToValue(coordinate: number): number {
     const {
       min, max, step, oneStep, size, orientation,
@@ -325,8 +325,8 @@ class View {
       position = slider.getBoundingClientRect().top;
     }
 
-    return position; 
-  } 
+    return position;
+  }
 
   public getSliderSize(options: Options): number {
     const { orientation } = options;

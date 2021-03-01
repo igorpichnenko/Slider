@@ -327,24 +327,6 @@ class Demo {
       this.setState({ step: value });
     };
 
-    // валидация ввода
-    if (separate === undefined) {
-      inputSeparate.value = ' ';
-    } else if (separate === ' ') {
-      inputSeparate.value = ' ';
-    } else {
-      inputSeparate.value = separate;
-    }
-    inputSeparate.onchange = () => {
-      let { value } = inputSeparate;
-
-      if (value !== '.' && value !== ',') {
-        value = ' ';
-      }
-
-      this.setState({ separate: value });
-    };
-
     inputColor.value = String(color);
 
     inputColor.onchange = () => {
@@ -377,6 +359,23 @@ class Demo {
     inputTrackPostfix.onchange = () => {
       const { value } = inputTrackPostfix;
       this.setState({ trackPostfix: value });
+    };
+        // валидация ввода
+    if (separate === undefined) {
+      inputSeparate.value = ' ';
+    } else if (separate === ' ') {
+      inputSeparate.value = ' ';
+    } else {
+      inputSeparate.value = separate;
+    }
+    inputSeparate.onchange = () => {
+      let { value } = inputSeparate;
+
+      if (value !== '.' && value !== ',') {
+        value = ' ';
+      }
+
+      this.setState({ separate: value });
     };
   }
 

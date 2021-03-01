@@ -1,9 +1,11 @@
 import { Options } from '../interfaces/interfaces';
 
-type EventCallback = (data?: any) => void;
+
+
+type funCallback = (data?: any) => void;
 
 interface Callbacks {
-  [key: string]: Array<EventCallback>
+  [key: string]: funCallback[]
 }
 
 class EventEmitter {
@@ -13,13 +15,13 @@ class EventEmitter {
     this.events = {};
   }
 
-  public subscribe(eventName: string, callback: EventCallback): void {
+  public subscribe(eventName: string, callback: funCallback) {
     !this.events[eventName] && (this.events[eventName] = []);
 
     this.events[eventName].push(callback);
   }
 
-  public emit(eventName: string, newData?: Partial<Options>): void {
+  public emit(eventName: string, newData?: Partial<Options>) {
     const event = this.events[eventName];
 
     event && event.forEach((callback) => callback.call(null, newData));
