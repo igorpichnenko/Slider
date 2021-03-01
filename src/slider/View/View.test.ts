@@ -8,11 +8,29 @@ import { standardOptions } from '../interfaces/standardOptions';
 describe('View', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;
+  
 
   beforeEach(() => {
-    wrap = $("<div class='js-toxin-slider' ></div>");
+    wrap = $("<div class='js-toxin-slider'  ></div>");
     wrap.appendTo('body');
+    
+    
     view = new View(standardOptions, wrap);
+    let slider = view.slider
+    
+    slider.getBoundingClientRect = jest.fn(() => ({
+        x: 0,
+        y: 0,
+        width: 266,
+        height: 300,
+        bottom: 0,
+        left: 70,
+        right: 0,
+        top: 80,
+        toJSON: jest.fn(),
+      }));
+    
+    
   });
 
   afterEach(() => {
@@ -221,5 +239,59 @@ describe('View', () => {
     expect(view.state.scalePostfix).toBe('$');
   });
   
+ test('the method must calculate the size', () => {
+      
+ expect(view.getSliderSize(standardOptions)).toBe(266);
+      
+    });
+    
+ test('the method must calculate the oneStep', () => {
+   
+   let slider = view.slider
+   let result = 260 / ((10 - 0) / 1)
+   
+   slider.getBoundingClientRect = jest.fn(() => ({
+        x: 0,
+        y: 0,
+        width: 260,
+        height: 300,
+        bottom: 0,
+        left: 70,
+        right: 0,
+        top: 80,
+        toJSON: jest.fn(),
+      }));
+  
+ expect(view.getOneStep(standardOptions)).toBe(result);
+      
+    });
+    
+ test('the method should return the vertical size', () => {
+      let newOptions = {
+        ...standardOptions,
+        orientation: 'vertical'
+      }
+      
+      expect(view.getSliderSize(newOptions)).toBe(300);
+    });
+    
+ test('should return the vertical position', () => {
+      view.upData({orientation: 'vertical'})
+      
+      expect(view.getSliderPosition()).toBe(80);
+    });
+    
+ test('the method must correctly calculate the coordinates', () => {
+      
+  let state = {
+        min: 0, max: 100, step: 5, oneStep: 26.6, size: 266, orientation: 'horizontal'
+     }
+  
+  let result = Math.round((200 - 70) / 26.6) * 5 + 0
+      
+      view.upData(state)
+      
+   expect(view.convertPxToValue(200)).toBe(result);
+    });
   
 });

@@ -121,7 +121,7 @@ class Scale {
     }
   }
 
-  private convertPxToPercent(value: number, options: ViewState): number {
+  public convertPxToPercent(value: number, options: ViewState): number {
     const { size } = options;
     return (value * 100) / size;
   }

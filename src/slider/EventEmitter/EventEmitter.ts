@@ -15,9 +15,9 @@ class EventEmitter {
 
   public subscribe(eventName: string, callback: EventCallback): void {
     !this.events[eventName] && (this.events[eventName] = []);
-  
+
     this.events[eventName].push(callback);
-  } 
+  }
 
   public emit(eventName: string, newData?: Partial<Options>): void {
     const event = this.events[eventName];

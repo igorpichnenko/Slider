@@ -310,7 +310,7 @@ describe('Demo', () => {
 
     expect(demo.state.trackPostfix).toBe('¢');
   });
-  
+
   test('gets new settings separate', () => {
     demo.upData({ separate: '.' });
     expect(demo.state.separate).toBe('.');
@@ -318,38 +318,37 @@ describe('Demo', () => {
     demo.upData({ separate: ',' });
     expect(demo.state.separate).toBe(',');
 
-    demo.setState({ separate: ' '});
+    demo.setState({ separate: ' ' });
     expect(demo.state.separate).toBe(' ');
-    
   });
-  
+
   test('if in the input we enter separate = "." then you should get it in state', () => {
     const inputSeparate = demo.demoTools.querySelector('.js-separate') as HTMLInputElement;
 
-    inputSeparate.value = ','
+    inputSeparate.value = ',';
     inputSeparate.dispatchEvent(new InputEvent('change'));
 
     expect(demo.state.separate).toBe(',');
   });
-  
+
   test('if in the input we enter separate = "." then you should get it in state', () => {
     const inputSeparate = demo.demoTools.querySelector('.js-separate') as HTMLInputElement;
 
-    inputSeparate.value = ''
+    inputSeparate.value = '';
     inputSeparate.dispatchEvent(new InputEvent('change'));
 
     expect(demo.state.separate).toBe(' ');
   });
-  
+
   test('if we enter separate = undefined in the input, then we should get a default value in state', () => {
     const inputSeparate = demo.demoTools.querySelector('.js-separate') as HTMLInputElement;
 
-    inputSeparate.value = 'undefined'
+    inputSeparate.value = 'undefined';
     inputSeparate.dispatchEvent(new InputEvent('change'));
 
     expect(demo.state.separate).toBe(' ');
   });
-  
+
   test('should change isPrefix parameter', () => {
     const inputIsPrefix = demo.demoTools.querySelector('.js-isPrefix-all')! as HTMLInputElement;
 
@@ -361,24 +360,24 @@ describe('Demo', () => {
     inputIsPrefix.dispatchEvent(new InputEvent('change'));
     expect(demo.state.isPrefix).toBe(false);
   });
-  
+
   test('the menuColor should be shown on click', () => {
     const btnColor = demo.demoTools.querySelector('.js-btn-color')! as HTMLButtonElement;
     const menuColor = demo.demoTools.querySelector('.js-color-setting')! as HTMLElement;
-    
+
     expect(menuColor.classList.contains('js-close-menu')).toBe(false);
-    
+
     btnColor.click();
 
     expect(menuColor.classList.contains('js-close-menu')).toBe(true);
   });
-  
+
   test('the menuView should be shown on click', () => {
     const btnView = demo.demoTools.querySelector('.js-btn-view')! as HTMLButtonElement;
     const menuView = demo.demoTools.querySelector('.js-menu-view')! as HTMLElement;
-    
+
     expect(menuView.classList.contains('js-close-menu')).toBe(false);
-    
+
     btnView.click();
 
     expect(menuView.classList.contains('js-close-menu')).toBe(true);
@@ -386,9 +385,9 @@ describe('Demo', () => {
   test('the menuPostfix should be shown on click', () => {
     const btnPostfix = demo.demoTools.querySelector('.js-btn-postfix')! as HTMLButtonElement;
     const menuPostfix = demo.demoTools.querySelector('.js-menu-postfix')! as HTMLElement;
-    
+
     expect(menuPostfix.classList.contains('js-close-menu')).toBe(false);
-    
+
     btnPostfix.click();
 
     expect(menuPostfix.classList.contains('js-close-menu')).toBe(true);
@@ -396,13 +395,11 @@ describe('Demo', () => {
   test('the menuScale should be shown on click', () => {
     const btnScale = demo.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
     const menuScale = demo.demoTools.querySelector('.js-menu-scale')! as HTMLElement;
-    
+
     expect(menuScale.classList.contains('js-close-menu')).toBe(false);
-    
+
     btnScale.click();
 
     expect(menuScale.classList.contains('js-close-menu')).toBe(true);
   });
-  
-  
 });

@@ -1,19 +1,30 @@
 import '@testing-library/jest-dom';
 import $ from 'jquery';
 import { View } from '../View';
-import { standardOptions } from '../../interfaces/standardOptions';
 import { Scale } from './Scale';
+import { standardOptions } from '../../interfaces/standardOptions';
+import { ViewState } from '../../interfaces/interfaces';
+
 
 describe('Scale', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;
-  
+  let scale: Scale
+  let viewState: ViewState
 
   beforeEach(() => {
+    
     wrap = $("<div class='js-toxin-slider' ></div>")
     wrap.appendTo( "body" )
     view = new View(standardOptions, wrap);
     
+    viewState = {
+      size: 266,
+      oneStep: 26.6,
+      slider: view.slider,
+      ...standardOptions
+    }
+     scale  = new  Scale(viewState)
   });
 
   afterEach(() => {
@@ -210,19 +221,18 @@ describe('Scale', () => {
   });
 
   
-  test('must read the incrimination', () => {
-    
-    let viewState = {
-      size: 266,
-      oneStep: 26.6,
-      slider: view.slider,
-      ...standardOptions
-    }
-    
-    let scale = new  Scale(viewState)
+  test('must correctly read the incrimination', () => {
     
     let currentValue: number = scale.getIncrement(viewState);
     expect(currentValue).toBe(2);
     
   })  
+  
+  test('must calculate the percentage correctly', () => {
+    
+    let currentValue: number = scale.convertPxToPercent(26.6, viewState);
+    expect(currentValue).toBe(10);
+    
+  })  
+  
 })

@@ -112,7 +112,7 @@ class View {
     this.bindEventListeners();
   }
 
-  private getOneStep(options: Options): number {
+  public getOneStep(options: Options): number {
     const { min, max, step } = options;
 
     const result = Math.ceil((max - min) / step);
@@ -153,8 +153,8 @@ class View {
       document.addEventListener('mouseup', handleUp);
       target.addEventListener('touchend', handleUp);
     }
-  }
-
+  } 
+ 
   private drag(target: HTMLElement, event: any) {
     const { orientation } = this.state;
 
@@ -255,8 +255,8 @@ class View {
         this.emitter.emit('newPosition', { to: value });
       }
     } 
-  }
-
+  } 
+ 
   public convertPxToValue(coordinate: number): number {
     const {
       min, max, step, oneStep, size, orientation,
@@ -315,7 +315,7 @@ class View {
     }
   }
 
-  private getSliderPosition(): number {
+  public getSliderPosition(): number {
     const { orientation, slider } = this.state;
     let position = 0;
 
@@ -325,10 +325,10 @@ class View {
       position = slider.getBoundingClientRect().top;
     }
 
-    return position;
-  }
+    return position; 
+  } 
 
-  private getSliderSize(options: Options): number {
+  public getSliderSize(options: Options): number {
     const { orientation } = options;
     let size = 0;
     if (orientation === 'horizontal') {

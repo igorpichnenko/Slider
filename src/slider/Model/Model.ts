@@ -4,7 +4,7 @@ import { EventEmitter } from '../EventEmitter/EventEmitter';
 class Model {
   public state: Options;
 
-  public emitter: EventEmitter; 
+  public emitter: EventEmitter;
 
   constructor(options: Options) {
     this.emitter = new EventEmitter();
