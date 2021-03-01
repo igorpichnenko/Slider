@@ -150,14 +150,14 @@ class Rollers {
     } else {
       rollerFirst.style.background = color;
       rollerSecond.style.background = color;
-    }
+    } 
   }
-}
-  private moveRollersAtValue(options: ViewState, rollerFirst: HTMLElement,
+} 
+  public moveRollersAtValue(options: ViewState, rollerFirst: HTMLElement,
     rollerSecond: HTMLElement): void {
     const {
-      to,
-      from, orientation,
+      to, 
+      from, orientation, 
     } = options;
 
     const pxTo = this.convertValueToPx(to, options);

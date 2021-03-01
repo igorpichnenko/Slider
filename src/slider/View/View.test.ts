@@ -293,5 +293,7 @@ describe('View', () => {
       
    expect(view.convertPxToValue(200)).toBe(result);
     });
+    
+    
   
 });

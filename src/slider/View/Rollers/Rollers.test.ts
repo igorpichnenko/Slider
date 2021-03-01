@@ -1,17 +1,20 @@
 import '@testing-library/jest-dom';
 import $ from 'jquery';
 import { View } from '../View';
+import { Rollers } from './Rollers';
 import { standardOptions } from '../../interfaces/standardOptions';
-
+import { ViewState } from '../../interfaces/interfaces';
 
 describe('Rollers', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;
+  
 
   beforeEach(() => {
     wrap = $("<div class='js-toxin-slider' ></div>")
     wrap.appendTo( "body" )
     view = new View(standardOptions, wrap);
+
   });
 
   afterEach(() => {
@@ -214,6 +217,28 @@ describe('Rollers', () => {
     expect(tooltips[0].innerHTML).toBe(`${view.state.from.toString()}${view.state.trackPostfix}`);
     expect(tooltips[1].innerHTML).toBe(`${view.state.to.toString()}${view.state.trackPostfix}`);
   });
+  
+  
+  test('rollers should be in starting position', () => {
+    
+   let state: ViewState = {
+      size: 266,
+      oneStep: 26.6,
+      slider: view.slider,
+      ...standardOptions
+    }
+    
+   let  rollers  = new  Rollers(state)
+     
+    const rollerFirst = view.slider.querySelector('.slider__roller_first') as HTMLElement;
+    const rollerSecond = view.slider.querySelector('.slider__roller_second') as HTMLElement;
+    
+    rollers.moveRollersAtValue(state, rollerFirst,rollerSecond)
+    
+    expect(rollerFirst.style.left).toBe('30.000000000000004%');
+    expect(rollerSecond.style.left).toBe('70%');
+  });
+  
   
   
 });

@@ -105,7 +105,7 @@ class Bar {
     }
   }
 
-  private getNewSliderPos(options: ViewState): number {
+  public getNewSliderPos(options: ViewState): number {
     const { orientation, slider } = options;
 
     let position = 0;
