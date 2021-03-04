@@ -76,8 +76,8 @@ const demoTemplate = `
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels">To
-   <input type="number" class="js-inputs js-to" name="to"/>
+   <label class="js-labels">Min
+   <input type="number" class="js-inputs js-min" name="min"/>
    </label>
    </div>
    <div class="js-items">
@@ -86,8 +86,8 @@ const demoTemplate = `
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels">Min
-   <input type="number" class="js-inputs js-min" name="min"/>
+   <label class="js-labels">To
+   <input type="number" class="js-inputs js-to" name="to"/>
    </label>
    </div>
    <div class="js-items">

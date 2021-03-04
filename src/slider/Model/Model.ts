@@ -77,7 +77,11 @@ class Model {
       options.to = min + step;
       options.from = min;
     }
-
+    
+    if (max < from){
+      options.from = min
+    }
+    
     if (from > 0) {
       if (min < 0 && max < 0) {
         options.from = min;
