@@ -144,22 +144,21 @@ class View {
 
       const handleUp = () => {
         document.removeEventListener('mousemove', drag);
-        document.removeEventListener('touchmove', drag);
+        target.removeEventListener('touchmove', drag);
         document.removeEventListener('mouseup', handleUp);
-        document.removeEventListener('touchend', handleUp);
+        target.removeEventListener('touchend', handleUp);
       };
 
       document.addEventListener('mousemove', drag);
-      document.addEventListener('touchmove', drag);
+      target.addEventListener('touchmove', drag);
       document.addEventListener('mouseup', handleUp);
-      document.addEventListener('touchend', handleUp);
+      target.addEventListener('touchend', handleUp);
     }
   }
 
   private drag(target: HTMLElement, event: any) {
     const { orientation } = this.state;
     event.preventDefault();
-    event.stopPropagation();
     let mouseValue = 0;
    
     if (!/roller/.test(target.className)) return;
@@ -230,14 +229,13 @@ class View {
       from, to, type, step,
     } = this.state;
 
-    this.convertValueToColor(value);
-
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
     const isSingle = type === 'single';
 
     if (isSingle && fromDistance) {
       this.emitter.emit('newPosition', { from: value });
+      this.convertValueToColor(value);
       return;
     }
 
@@ -246,17 +244,21 @@ class View {
 
       if (isFrom === 'from') {
         this.emitter.emit('newPosition', { from: value });
+        this.convertValueToColor(value);
       } else {
         this.emitter.emit('newPosition', { to: value });
+        this.convertValueToColor(value);
       }
     } else {
       const targets = this.getTargetType(target);
       if (targets === 'from') {
         if (value > to - step) value = from;
         this.emitter.emit('newPosition', { from: value });
+        this.convertValueToColor(value);
       } else {
         if (value < from + step) value = to;
         this.emitter.emit('newPosition', { to: value });
+        this.convertValueToColor(value);
       }
     }
   }
