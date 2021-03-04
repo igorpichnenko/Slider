@@ -16,10 +16,12 @@ class Rollers {
     rollerSecond.className = `slider__roller_second
       slider__roller
       slider__roller_${orientation}`;
+      
+   
 
     slider.append(rollerFirst);
     slider.append(rollerSecond);
-
+    
     this.createTooltip(rollerFirst, rollerSecond, options);
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);

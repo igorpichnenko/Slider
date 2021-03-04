@@ -137,29 +137,31 @@ class View {
 
   private dragStart(event: MouseEvent | TouchEvent) {
     const target = event.target as HTMLElement;
-
+    
+        
     if (this.getTargetType(target)) {
       const drag = this.drag.bind(this, target);
 
       const handleUp = () => {
         document.removeEventListener('mousemove', drag);
-        target.removeEventListener('touchmove', drag);
+        document.removeEventListener('touchmove', drag);
         document.removeEventListener('mouseup', handleUp);
-        target.removeEventListener('touchend', handleUp);
+        document.removeEventListener('touchend', handleUp);
       };
 
       document.addEventListener('mousemove', drag);
-      target.addEventListener('touchmove', drag);
+      document.addEventListener('touchmove', drag);
       document.addEventListener('mouseup', handleUp);
-      target.addEventListener('touchend', handleUp);
+      document.addEventListener('touchend', handleUp);
     }
   }
 
   private drag(target: HTMLElement, event: any) {
     const { orientation } = this.state;
-
-    let mouseValue = 0;
     event.preventDefault();
+    event.stopPropagation();
+    let mouseValue = 0;
+   
     if (!/roller/.test(target.className)) return;
 
     if (orientation === 'horizontal') {
@@ -192,6 +194,8 @@ class View {
     const { scalePostfix } = this.state;
     let { separate } = this.state;
     const { value } = event.detail;
+    
+    
     let position = 0;
 
     if (separate === ' ') {

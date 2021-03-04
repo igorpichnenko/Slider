@@ -129,7 +129,8 @@ class Scale {
  // Кастомный Эвент для передачи значения в Вид
   private handleScaleClick(event: Event): void {
     const { target } = event;
-
+    
+    
     if (!(target instanceof HTMLElement)) return;
     if (!target.classList.contains('slider__scale-value')) return;
     
