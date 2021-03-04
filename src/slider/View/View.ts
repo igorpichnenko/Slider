@@ -121,18 +121,18 @@ class View {
   }
 
   private bindEventListeners() {
-    this.onTrackClick = this.onTrackClick.bind(this);
-    this.onScaleClick = this.onScaleClick.bind(this);
+    this.handleTrackClick = this.handleTrackClick.bind(this);
+    this.handleScaleClick = this.handleScaleClick.bind(this);
     this.addEventListeners();
   }
 
   private addEventListeners() {
-    const bindMouseDown = this.dragStart.bind(this);
-    this.slider.addEventListener('touchstart', bindMouseDown);
-    this.slider.addEventListener('mousedown', bindMouseDown);
+    const handleSliderDrag = this.dragStart.bind(this);
+    this.slider.addEventListener('touchstart', handleSliderDrag);
+    this.slider.addEventListener('mousedown', handleSliderDrag);
 
-    this.slider.addEventListener('click', this.onTrackClick);
-    this.slider.addEventListener('scaleclick', this.onScaleClick);
+    this.slider.addEventListener('click', this.handleTrackClick);
+    this.slider.addEventListener('scaleclick', this.handleScaleClick);
   }
 
   private dragStart(event: MouseEvent | TouchEvent) {
@@ -188,7 +188,7 @@ class View {
     return 'undefined';
   }
 
-  private onScaleClick(event: any): void {
+  private handleScaleClick(event: any): void {
     const { scalePostfix } = this.state;
     let { separate } = this.state;
     const { value } = event.detail;
@@ -205,7 +205,7 @@ class View {
     this.updatePosition(position);
   }
 
-  private onTrackClick(event: any): void {
+  private handleTrackClick(event: any): void {
     const { orientation } = this.state;
     const { target } = event;
     let coordinate = 0;

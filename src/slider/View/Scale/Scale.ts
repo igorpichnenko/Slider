@@ -54,8 +54,8 @@ class Scale {
   }
 
   private addEventListeners(scale: HTMLElement) {
-    this.onScaleClick = this.onScaleClick.bind(this);
-    scale.addEventListener('click', this.onScaleClick);
+    this.handleScaleClick = this.handleScaleClick.bind(this);
+    scale.addEventListener('click', this.handleScaleClick);
   }
 
   private addScaleMarker(options: ViewState, scale: HTMLElement): void {
@@ -127,7 +127,7 @@ class Scale {
   }
   
  // Кастомный Эвент для передачи значения в Вид
-  private onScaleClick(event: Event): void {
+  private handleScaleClick(event: Event): void {
     const { target } = event;
 
     if (!(target instanceof HTMLElement)) return;
