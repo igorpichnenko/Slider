@@ -55,6 +55,7 @@ class Model {
     const {
       from, to, max, min, type, step,target
     } = options;
+    
     if (type === 'single') {
       options.to = max;
     }
@@ -75,11 +76,14 @@ class Model {
         if (to <= from) options.to = from + step
       }
     }
-
+   
+   /* надо откорректировать  */
+   if (target === "from"){
     if (to <= min) {
       options.to = min + step;
       options.from = min;
     }
+   }
     
     if (max < from){
       options.from = min

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1614878949051" clover="3.2.0">
-  <project timestamp="1614878949052" name="All files">
-    <metrics statements="704" coveredstatements="666" conditionals="256" coveredconditionals="213" methods="123" coveredmethods="120" elements="1083" coveredelements="999" complexity="0" loc="704" ncloc="704" packages="10" files="12" classes="12"/>
+<coverage generated="1614879787176" clover="3.2.0">
+  <project timestamp="1614879787176" name="All files">
+    <metrics statements="705" coveredstatements="667" conditionals="258" coveredconditionals="214" methods="123" coveredmethods="120" elements="1086" coveredelements="1001" complexity="0" loc="705" ncloc="705" packages="10" files="12" classes="12"/>
     <package name="preview.Demo">
       <metrics statements="195" coveredstatements="184" conditionals="60" coveredconditionals="48" methods="40" coveredmethods="38"/>
       <file name="Demo.ts" path="/data/data/com.termux/files/home/slider/src/preview/Demo/Demo.ts">
@@ -218,9 +218,9 @@
       </file>
     </package>
     <package name="slider.Model">
-      <metrics statements="45" coveredstatements="44" conditionals="48" coveredconditionals="44" methods="5" coveredmethods="5"/>
+      <metrics statements="46" coveredstatements="45" conditionals="50" coveredconditionals="45" methods="5" coveredmethods="5"/>
       <file name="Model.ts" path="/data/data/com.termux/files/home/slider/src/slider/Model/Model.ts">
-        <metrics statements="45" coveredstatements="44" conditionals="48" coveredconditionals="44" methods="5" coveredmethods="5"/>
+        <metrics statements="46" coveredstatements="45" conditionals="50" coveredconditionals="45" methods="5" coveredmethods="5"/>
         <line num="10" count="72" type="stmt"/>
         <line num="12" count="72" type="stmt"/>
         <line num="16" count="134" type="stmt"/>
@@ -243,29 +243,30 @@
         <line num="49" count="4" type="stmt"/>
         <line num="51" count="134" type="stmt"/>
         <line num="57" count="134" type="stmt"/>
-        <line num="58" count="134" type="cond" truecount="2" falsecount="0"/>
-        <line num="59" count="3" type="stmt"/>
-        <line num="62" count="134" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="134" type="cond" truecount="2" falsecount="0"/>
+        <line num="60" count="3" type="stmt"/>
         <line num="63" count="134" type="cond" truecount="2" falsecount="0"/>
-        <line num="65" count="134" type="cond" truecount="4" falsecount="0"/>
-        <line num="66" count="2" type="stmt"/>
+        <line num="64" count="134" type="cond" truecount="2" falsecount="0"/>
+        <line num="66" count="134" type="cond" truecount="4" falsecount="0"/>
         <line num="67" count="2" type="stmt"/>
-        <line num="70" count="134" type="cond" truecount="2" falsecount="0"/>
-        <line num="71" count="131" type="cond" truecount="1" falsecount="1"/>
-        <line num="72" count="131" type="cond" truecount="2" falsecount="0"/>
-        <line num="74" count="131" type="cond" truecount="1" falsecount="1"/>
-        <line num="75" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="79" count="134" type="cond" truecount="2" falsecount="0"/>
-        <line num="80" count="4" type="stmt"/>
-        <line num="81" count="4" type="stmt"/>
-        <line num="84" count="134" type="cond" truecount="2" falsecount="0"/>
-        <line num="85" count="5" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+        <line num="71" count="134" type="cond" truecount="2" falsecount="0"/>
+        <line num="72" count="131" type="cond" truecount="1" falsecount="1"/>
+        <line num="73" count="131" type="cond" truecount="2" falsecount="0"/>
+        <line num="75" count="131" type="cond" truecount="1" falsecount="1"/>
+        <line num="76" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="81" count="134" type="cond" truecount="1" falsecount="1"/>
+        <line num="82" count="134" type="cond" truecount="2" falsecount="0"/>
+        <line num="83" count="4" type="stmt"/>
+        <line num="84" count="4" type="stmt"/>
         <line num="88" count="134" type="cond" truecount="2" falsecount="0"/>
-        <line num="89" count="131" type="cond" truecount="4" falsecount="0"/>
-        <line num="90" count="2" type="stmt"/>
-        <line num="93" count="134" type="cond" truecount="2" falsecount="0"/>
-        <line num="94" count="9" type="stmt"/>
-        <line num="96" count="134" type="stmt"/>
+        <line num="89" count="5" type="stmt"/>
+        <line num="92" count="134" type="cond" truecount="2" falsecount="0"/>
+        <line num="93" count="131" type="cond" truecount="4" falsecount="0"/>
+        <line num="94" count="2" type="stmt"/>
+        <line num="97" count="134" type="cond" truecount="2" falsecount="0"/>
+        <line num="98" count="9" type="stmt"/>
+        <line num="100" count="134" type="stmt"/>
       </file>
     </package>
     <package name="slider.Presenter">
