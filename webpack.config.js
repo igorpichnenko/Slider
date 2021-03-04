@@ -84,6 +84,7 @@ module.exports = {
       inject: false,
       hash: true,
       template: './src/preview/index.pug',
+      favicon: "./src/images/favicon.png",
       filename: 'index.html'
     }),
   ],
