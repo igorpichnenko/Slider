@@ -53,7 +53,7 @@ class Model {
 
   private validateFromTo(options: Options): Options {
     const {
-      from, to, max, min, type, step,
+      from, to, max, min, type, step,target
     } = options;
     if (type === 'single') {
       options.to = max;
@@ -68,8 +68,11 @@ class Model {
     }
 
     if (type === 'double') {
-      if (from >= to) {
-        options.from = to - step;
+      if (target === "from"){
+      if (from >= to)  options.from = to - step
+      }
+      if (target === "to"){
+        if (to <= from) options.to = from + step
       }
     }
 

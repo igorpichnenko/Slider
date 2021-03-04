@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.48% </span>
+                <span class="strong">89.09% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>146/165</span>
+                <span class='fraction'>147/165</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.69% </span>
+                <span class="strong">60.42% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>30/52</span>
+                <span class='fraction'>29/48</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.51% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>143/158</span>
+                <span class='fraction'>144/160</span>
             </div>
         
             
@@ -400,7 +400,13 @@
 <a name='L341'></a><a href='#L341'>341</a>
 <a name='L342'></a><a href='#L342'>342</a>
 <a name='L343'></a><a href='#L343'>343</a>
-<a name='L344'></a><a href='#L344'>344</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L344'></a><a href='#L344'>344</a>
+<a name='L345'></a><a href='#L345'>345</a>
+<a name='L346'></a><a href='#L346'>346</a>
+<a name='L347'></a><a href='#L347'>347</a>
+<a name='L348'></a><a href='#L348'>348</a>
+<a name='L349'></a><a href='#L349'>349</a>
+<a name='L350'></a><a href='#L350'>350</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -540,6 +546,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -559,9 +566,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -594,6 +601,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -629,12 +638,11 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -644,14 +652,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -866,23 +878,24 @@ class View {
   }
 &nbsp;
   private bindEventListeners() {
-    this.onTrackClick = this.onTrackClick.bind(this);
-    this.onScaleClick = this.onScaleClick.bind(this);
+    this.handleTrackClick = this.handleTrackClick.bind(this);
+    this.handleScaleClick = this.handleScaleClick.bind(this);
     this.addEventListeners();
   }
 &nbsp;
   private addEventListeners() {
-    const bindMouseDown = this.dragStart.bind(this);
-    this.slider.addEventListener('touchstart', bindMouseDown);
-    this.slider.addEventListener('mousedown', bindMouseDown);
+    const handleSliderDrag = this.dragStart.bind(this);
+    this.slider.addEventListener('touchstart', handleSliderDrag);
+    this.slider.addEventListener('mousedown', handleSliderDrag);
 &nbsp;
-    this.slider.addEventListener('click', this.onTrackClick);
-    this.slider.addEventListener('scaleclick', this.onScaleClick);
+    this.slider.addEventListener('click', this.handleTrackClick);
+    this.slider.addEventListener('scaleclick', this.handleScaleClick);
   }
 &nbsp;
   private dragStart(event: MouseEvent | TouchEvent) {
     const target = event.target as HTMLElement;
-&nbsp;
+    
+        
     <span class="missing-if-branch" title="else path not taken" >E</span>if (this.getTargetType(target)) {
       const drag = this.drag.bind(this, target);
 &nbsp;
@@ -902,9 +915,9 @@ class View {
 &nbsp;
   private drag(target: HTMLElement, event: any) {
     const { orientation } = this.state;
-&nbsp;
-    let mouseValue = 0;
     event.preventDefault();
+    let mouseValue = 0;
+   
     <span class="missing-if-branch" title="if path not taken" >I</span>if (!/roller/.test(target.className)) <span class="cstat-no" title="statement not covered" >return;</span>
 &nbsp;
     <span class="missing-if-branch" title="else path not taken" >E</span>if (orientation === 'horizontal') {
@@ -933,10 +946,12 @@ class View {
 <span class="cstat-no" title="statement not covered" >    return 'undefined';</span>
   }
 &nbsp;
-  private onScaleClick(event: any): void {
+  private handleScaleClick(event: any): void {
     const { scalePostfix } = this.state;
     let { separate } = this.state;
     const { value } = event.detail;
+    
+    
     let position = 0;
 &nbsp;
     <span class="missing-if-branch" title="else path not taken" >E</span>if (separate === ' ') {
@@ -950,7 +965,7 @@ class View {
     this.updatePosition(position);
   }
 &nbsp;
-  private onTrackClick(event: any): void {
+  private handleTrackClick(event: any): void {
     const { orientation } = this.state;
     const { target } = event;
     let coordinate = 0;
@@ -971,14 +986,13 @@ class View {
       from, to, type, step,
     } = this.state;
 &nbsp;
-    this.convertValueToColor(value);
-&nbsp;
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
     const isSingle = type === 'single';
 &nbsp;
     <span class="missing-if-branch" title="if path not taken" >I</span>if (isSingle &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >fromDistance)</span> {
 <span class="cstat-no" title="statement not covered" >      this.emitter.emit('newPosition', { from: value });</span>
+<span class="cstat-no" title="statement not covered" >      this.convertValueToColor(value);</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
 &nbsp;
@@ -987,17 +1001,21 @@ class View {
 &nbsp;
       if (isFrom === 'from') {
         this.emitter.emit('newPosition', { from: value });
+        this.convertValueToColor(value);
       } else {
         this.emitter.emit('newPosition', { to: value });
+        this.convertValueToColor(value);
       }
     } else {
       const targets = this.getTargetType(target);
       <span class="missing-if-branch" title="else path not taken" >E</span>if (targets === 'from') {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (value &gt; to - step) <span class="cstat-no" title="statement not covered" >value = from;</span>
-        this.emitter.emit('newPosition', { from: value });
+        
+        this.emitter.emit('newPosition', { from: value, target: "from" });
+        this.convertValueToColor(value);
       } else {
-<span class="cstat-no" title="statement not covered" >        if (value &lt; from + step) <span class="cstat-no" title="statement not covered" >value = to;</span></span>
-<span class="cstat-no" title="statement not covered" >        this.emitter.emit('newPosition', { to: value });</span>
+      
+<span class="cstat-no" title="statement not covered" >        this.emitter.emit('newPosition', { to: value, target: "to" });</span>
+<span class="cstat-no" title="statement not covered" >        this.convertValueToColor(value);</span>
       }
     }
   }
@@ -1093,7 +1111,7 @@ export { View };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Mar 01 2021 19:43:20 GMT+0600 (GMT+06:00)
+                at Thu Mar 04 2021 23:29:08 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>
