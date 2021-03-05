@@ -1,5 +1,9 @@
-import { Options } from '../interfaces/interfaces';
-import { EventEmitter } from '../EventEmitter/EventEmitter';
+import {
+  Options,
+} from '../interfaces/interfaces';
+import {
+  EventEmitter,
+} from '../EventEmitter/EventEmitter';
 
 class Model {
   public state: Options;
@@ -16,7 +20,11 @@ class Model {
     const validateFromTo: Options = this.validateFromTo(options);
     const validateMinMaxStep: Options = this.validateMinMaxStep(options);
 
-    this.state = { ...options, ...validateFromTo, ...validateMinMaxStep };
+    this.state = {
+      ...options,
+      ...validateFromTo,
+      ...validateMinMaxStep,
+    };
 
     this.emitter.emit('newData', this.state);
   }
@@ -27,7 +35,11 @@ class Model {
   }
 
   private validateMinMaxStep(options: Options): Options {
-    const { min, max, step } = options;
+    const {
+      min,
+      max,
+      step,
+    } = options;
 
     if (step < 1) options.step = 1;
 
@@ -53,9 +65,14 @@ class Model {
 
   private validateFromTo(options: Options): Options {
     const {
-      from, to, max, min, type, step,target
+      from,
+      to,
+      max,
+      min,
+      type,
+      step,
     } = options;
-    
+
     if (type === 'single') {
       options.to = max;
     }
@@ -69,26 +86,20 @@ class Model {
     }
 
     if (type === 'double') {
-      if (target === "from"){
-      if (from >= to)  options.from = to - step
-      }
-      if (target === "to"){
-        if (to <= from) options.to = from + step
+      if (from >= to) {
+        options.from = to - step;
       }
     }
-   
-   /* надо откорректировать  */
-   if (target === "from"){
+
     if (to <= min) {
       options.to = min + step;
       options.from = min;
     }
-   }
-    
-    if (max < from){
-      options.from = min
+
+    if (max < from) {
+      options.from = min;
     }
-    
+
     if (from > 0) {
       if (min < 0 && max < 0) {
         options.from = min;
@@ -101,4 +112,6 @@ class Model {
   }
 }
 
-export { Model };
+export {
+  Model,
+};

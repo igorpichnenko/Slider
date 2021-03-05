@@ -1,16 +1,29 @@
-import { Options, ViewState } from '../interfaces/interfaces';
-import { EventEmitter } from '../EventEmitter/EventEmitter';
-import { Rollers } from './Rollers/Rollers';
-import { Track } from './Track/Track';
-import { Scale } from './Scale/Scale';
-import { Bar } from './Bar/Bar';
+import {
+  Options,
+  ViewState,
+} from '../interfaces/interfaces';
+import {
+  EventEmitter,
+} from '../EventEmitter/EventEmitter';
+import {
+  Rollers,
+} from './Rollers/Rollers';
+import {
+  Track,
+} from './Track/Track';
+import {
+  Scale,
+} from './Scale/Scale';
+import {
+  Bar,
+} from './Bar/Bar';
 
 class View {
   public emitter: EventEmitter;
 
   public state: ViewState;
 
-  public element: JQuery<HTMLElement>;
+  public element: JQuery < HTMLElement >;
 
   public slider: HTMLElement;
 
@@ -22,7 +35,7 @@ class View {
 
   private track: Track;
 
-  constructor(options: Options, element: JQuery<HTMLElement>) {
+  constructor(options: Options, element: JQuery < HTMLElement >) {
     this.emitter = new EventEmitter();
 
     this.element = element;
@@ -45,15 +58,22 @@ class View {
   private init(options: Options): ViewState {
     const size = this.getSliderSize(options);
     const oneStep = this.getOneStep(options);
-    const { slider } = this;
+    const {
+      slider,
+    } = this;
 
     return {
-      ...options, size, oneStep, slider,
+      ...options,
+      size,
+      oneStep,
+      slider,
     };
   }
 
-  public createSlider(options: Options, element: JQuery<HTMLElement>): HTMLElement {
-    const { orientation } = options;
+  public createSlider(options: Options, element: JQuery < HTMLElement >): HTMLElement {
+    const {
+      orientation,
+    } = options;
     const slider = document.createElement('div');
 
     slider.className = `slider slider_${orientation}`;
@@ -79,10 +99,10 @@ class View {
   }
 
   /**
-   * Обновляю стостояние View
-   * Обновляю состояние всех подвидов
+  * Обновляю стостояние View
+  * Обновляю состояние всех подвидов
   * */
-  public upData(newState: Partial<ViewState>) {
+  public upData(newState: Partial < ViewState >) {
     const updataState: ViewState = {
       ...this.state,
       ...newState,
@@ -113,7 +133,11 @@ class View {
   }
 
   public getOneStep(options: Options): number {
-    const { min, max, step } = options;
+    const {
+      min,
+      max,
+      step,
+    } = options;
 
     const result = Math.ceil((max - min) / step);
 
@@ -137,8 +161,7 @@ class View {
 
   private dragStart(event: MouseEvent | TouchEvent) {
     const target = event.target as HTMLElement;
-    
-        
+
     if (this.getTargetType(target)) {
       const drag = this.drag.bind(this, target);
 
@@ -157,10 +180,12 @@ class View {
   }
 
   private drag(target: HTMLElement, event: any) {
-    const { orientation } = this.state;
+    const {
+      orientation,
+    } = this.state;
     event.preventDefault();
     let mouseValue = 0;
-   
+
     if (!/roller/.test(target.className)) return;
 
     if (orientation === 'horizontal') {
@@ -190,11 +215,16 @@ class View {
   }
 
   private handleScaleClick(event: any): void {
-    const { scalePostfix } = this.state;
-    let { separate } = this.state;
-    const { value } = event.detail;
-    
-    
+    const {
+      scalePostfix,
+    } = this.state;
+    let {
+      separate,
+    } = this.state;
+    const {
+      value,
+    } = event.detail;
+
     let position = 0;
 
     if (separate === ' ') {
@@ -209,8 +239,12 @@ class View {
   }
 
   private handleTrackClick(event: any): void {
-    const { orientation } = this.state;
-    const { target } = event;
+    const {
+      orientation,
+    } = this.state;
+    const {
+      target,
+    } = event;
     let coordinate = 0;
 
     if (/scale/.test(target.className)) return;
@@ -226,7 +260,10 @@ class View {
 
   public updatePosition(value: number, target?: HTMLElement): void {
     const {
-      from, to, type, step,
+      from,
+      to,
+      type,
+      step,
     } = this.state;
 
     const fromDistance = Math.abs(from - value);
@@ -234,7 +271,9 @@ class View {
     const isSingle = type === 'single';
 
     if (isSingle && fromDistance) {
-      this.emitter.emit('newPosition', { from: value });
+      this.emitter.emit('newPosition', {
+        from: value,
+      });
       this.convertValueToColor(value);
       return;
     }
@@ -243,21 +282,39 @@ class View {
       const isFrom = (fromDistance < toDistance) ? 'from' : 'to';
 
       if (isFrom === 'from') {
-        this.emitter.emit('newPosition', { from: value });
+        this.emitter.emit('newPosition', {
+          from: value,
+        });
         this.convertValueToColor(value);
       } else {
-        this.emitter.emit('newPosition', { to: value });
+        this.emitter.emit('newPosition', {
+          to: value,
+        });
         this.convertValueToColor(value);
       }
     } else {
       const targets = this.getTargetType(target);
       if (targets === 'from') {
-        
-        this.emitter.emit('newPosition', { from: value, target: "from" });
+        if (value > to - step) {
+          this.emitter.emit('newPosition', {
+            from: to - step,
+          });
+          return;
+        }
+        this.emitter.emit('newPosition', {
+          from: value,
+        });
         this.convertValueToColor(value);
       } else {
-      
-        this.emitter.emit('newPosition', { to: value, target: "to" });
+        if (value < from + step) {
+          this.emitter.emit('newPosition', {
+            to: from + step,
+          });
+          return;
+        }
+        this.emitter.emit('newPosition', {
+          to: value,
+        });
         this.convertValueToColor(value);
       }
     }
@@ -265,7 +322,12 @@ class View {
 
   public convertPxToValue(coordinate: number): number {
     const {
-      min, max, step, oneStep, size, orientation,
+      min,
+      max,
+      step,
+      oneStep,
+      size,
+      orientation,
     } = this.state;
     const sliderPos = this.getSliderPosition();
 
@@ -287,14 +349,21 @@ class View {
   }
 
   /**
-   * Вычесляем новый цвет в зависимости от положения бегунков
-   * Переводим value в 16-ричный формат
+  * Вычесляем новый цвет в зависимости от положения бегунков
+  * Переводим value в 16-ричный формат
   * */
 
   public convertValueToColor(value: number) {
-    let { color, gradient } = this.state;
+    let {
+      color,
+      gradient,
+    } = this.state;
 
-    const { max, isColor, changeColor } = this.state;
+    const {
+      max,
+      isColor,
+      changeColor,
+    } = this.state;
 
     const val = value / max;
 
@@ -316,13 +385,20 @@ class View {
       color = `#${setColor}`;
       gradient = `#${setGradient}`;
 
-      this.emitter.emit('newPosition', { color });
-      this.emitter.emit('newPosition', { gradient });
+      this.emitter.emit('newPosition', {
+        color,
+      });
+      this.emitter.emit('newPosition', {
+        gradient,
+      });
     }
   }
 
   public getSliderPosition(): number {
-    const { orientation, slider } = this.state;
+    const {
+      orientation,
+      slider,
+    } = this.state;
     let position = 0;
 
     if (orientation === 'horizontal') {
@@ -335,7 +411,9 @@ class View {
   }
 
   public getSliderSize(options: Options): number {
-    const { orientation } = options;
+    const {
+      orientation,
+    } = options;
     let size = 0;
     if (orientation === 'horizontal') {
       size = this.slider.getBoundingClientRect().width;
@@ -346,4 +424,6 @@ class View {
   }
 }
 
-export { View };
+export {
+  View,
+};

@@ -28,8 +28,7 @@ interface Options {
   isColorOut: boolean,
   onlyDivisions: boolean,
   separate: string | undefined,
-  allColors: {[index: string]: string},
-  target: string,
+  allColors: {[index: string]: string}
 }
 
 interface ViewState extends Options{

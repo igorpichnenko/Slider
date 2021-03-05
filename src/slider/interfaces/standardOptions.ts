@@ -32,7 +32,6 @@ const standardOptions: Options = {
   onlyDivisions: false,
   separate: ' ',
   allColors,
-  target: "from"
 };
 
 export { standardOptions };

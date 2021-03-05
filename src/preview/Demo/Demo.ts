@@ -360,7 +360,7 @@ class Demo {
       const { value } = inputTrackPostfix;
       this.setState({ trackPostfix: value });
     };
-        // валидация ввода
+    // валидация ввода
     if (separate === undefined) {
       inputSeparate.value = ' ';
     } else if (separate === ' ') {

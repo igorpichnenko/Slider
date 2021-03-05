@@ -1,11 +1,9 @@
 import { Options } from '../interfaces/interfaces';
 
-
-
-type funCallback = (data?: any) => void;
+type EventCallback = (data?: any) => void;
 
 interface Callbacks {
-  [key: string]: funCallback[]
+  [key: string]: EventCallback[]
 }
 
 class EventEmitter {
@@ -15,7 +13,7 @@ class EventEmitter {
     this.events = {};
   }
 
-  public subscribe(eventName: string, callback: funCallback) {
+  public subscribe(eventName: string, callback: EventCallback) {
     !this.events[eventName] && (this.events[eventName] = []);
 
     this.events[eventName].push(callback);
