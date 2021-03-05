@@ -49,6 +49,7 @@ const twoOptions: Partial<Options> = {
   to: 10000,
   fromTo: true,
   separate: '.',
+  onlyDivisions: true,
 };
 const threeOptions: Partial<Options> = {
   orientation: 'vertical',
@@ -80,6 +81,7 @@ const fourOptions: Partial<Options> = {
   trackPostfix: '$',
   isPrefix: true,
   isColor: false,
+  onlyDivisions: true,
 };
 
 const fiveOptions: Partial<Options> = {
@@ -88,6 +90,7 @@ const fiveOptions: Partial<Options> = {
   isScale: false,
   isLabel: false,
   color: 'green',
+  
 };
 
 const sixOptions: Partial<Options> = {
@@ -104,7 +107,7 @@ const sixOptions: Partial<Options> = {
   scalePostfix: '€',
   trackPostfix: '€',
   isColor: false,
-
+  onlyDivisions: true,
 };
 
 const options = [firstOptions, twoOptions, threeOptions, fourOptions, fiveOptions, sixOptions];
