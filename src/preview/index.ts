@@ -39,7 +39,7 @@ const firstOptions: Partial<Options> = {
   orientation: 'vertical',
   type: 'double',
   isColorOut: true,
-  onlyDivisions: true,
+  isScale: false,
 };
 const twoOptions: Partial<Options> = {
   gradient: 'red',
@@ -49,7 +49,7 @@ const twoOptions: Partial<Options> = {
   to: 10000,
   fromTo: true,
   separate: '.',
-  onlyDivisions: true,
+  onlyDivisions: false,
 };
 const threeOptions: Partial<Options> = {
   orientation: 'vertical',
@@ -64,7 +64,7 @@ const threeOptions: Partial<Options> = {
   to: -700,
   changeColor: false,
   separate: ',',
-
+  onlyDivisions: false,
 };
 
 const fourOptions: Partial<Options> = {
@@ -107,7 +107,7 @@ const sixOptions: Partial<Options> = {
   scalePostfix: '€',
   trackPostfix: '€',
   isColor: false,
-  onlyDivisions: true,
+  onlyDivisions: false,
 };
 
 const options = [firstOptions, twoOptions, threeOptions, fourOptions, fiveOptions, sixOptions];

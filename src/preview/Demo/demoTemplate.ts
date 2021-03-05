@@ -55,7 +55,7 @@ const demoTemplate = `
    <button type="button" class="js-btn js-btn-scale">Управление шкалой</button>
    <div class="js-menu js-menu-scale">
        <div class="js-items">
-   <label class="js-labels js-label_checkbox">Оставить только деления
+   <label class="js-labels js-label_checkbox">Шкала с делениями/значениями
    <input type="checkbox" class="js-checkbox js-inputs js-division" name="division"/>
    </label>
    </div>

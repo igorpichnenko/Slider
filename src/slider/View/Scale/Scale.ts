@@ -1,8 +1,10 @@
 import { ViewState } from '../../interfaces/interfaces';
 
 class Scale {
+  private options: ViewState
   constructor(options: ViewState) {
     this.create(options);
+    this.options = options
   }
 
   private create(options: ViewState): void {
@@ -20,7 +22,9 @@ class Scale {
   public upData(options: ViewState) {
     const { slider } = options;
     const scale = slider.querySelector('.slider__scale')! as HTMLElement;
-
+    
+    this.options = { ...this.options, ...options}
+    
     this.checkScale(options, scale);
     this.updataScaleMarker(options);
   }
@@ -35,7 +39,7 @@ class Scale {
     scaleMarkers.forEach((scaleMarker) => {
     
       if (onlyDivisions === true) {
-        scaleMarker.setAttribute('data-text', '');
+
         scaleMarker.classList.add('slider__scale-value_fs-0');
       } else {
         scaleMarker.classList.add('slider__scale-value_fs-normal');
@@ -45,6 +49,7 @@ class Scale {
   }
 
   private checkScale(options: ViewState, scale: HTMLElement) {
+    
     const { isScale } = options;
     if (isScale === false) {
       scale.style.display = 'none';
@@ -68,15 +73,15 @@ class Scale {
     const fragment = document.createDocumentFragment();
 
     let pxCurrent = 0;
-
-    for (let current = min; current < max; current += inc) {
+    let i = 0
+    for (let current = min; current < max; current += inc, i++) {
       if (pxCurrent > size - 50) break;
-      this.createScaleMarker(fragment, current, pxCurrent, options);
-
+      this.createScaleMarker(fragment, current, pxCurrent, options, i);
+      
       pxCurrent += pxInc;
     }
 
-    this.createScaleMarker(fragment, max, size, options);
+    this.createScaleMarker(fragment, max, size, options, 5);
 
     scale.append(fragment);
   } 
@@ -89,26 +94,38 @@ class Scale {
   }
 
   private createScaleMarker(fragment: DocumentFragment,
-    value: number, position: number, options: ViewState): void {
-    const { orientation, isSeparate, isScalePostfix,isPrefix} = options;
+    value: number, position: number, options: ViewState, val: number): void {
+      
+    const { orientation, isSeparate, isScalePostfix,isPrefix, isScale, onlyDivisions} = options;
+    
     let { scalePostfix } = options
     let { separate } = options
     value = Math.floor(value)
     const scaleMarker = document.createElement('span');
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
- 
+   const divisionValue = document.createElement('span')
+   const division = document.createElement('span')
+   divisionValue.className = `slider__division-value slider__division-value_${val}`
+   division.className = 'slider__division'
+   scaleMarker.append(divisionValue)
+   scaleMarker.append(division)
+   
     fragment.append(scaleMarker);
-
-    
+ 
+    let element = divisionValue
+   
+   if (onlyDivisions === false){
+     element = scaleMarker
+   }
+   
   if (isScalePostfix === false){
     scalePostfix = ""
   }
-    scaleMarker.innerHTML = `${this.separate(value,options)}${scalePostfix}`
+    element.innerHTML = `${this.separate(value,options)}${scalePostfix}`
     
   if (isPrefix === true) {
-    scaleMarker.innerHTML = `${scalePostfix}${this.separate(value,options)}`
+    element.innerHTML = `${scalePostfix}${this.separate(value,options)}`
   }   
-    
     
     this.updataScaleMarker(options);
 
@@ -127,12 +144,19 @@ class Scale {
   }
   
  // Кастомный Эвент для передачи значения в Вид
+
   private handleScaleClick(event: Event): void {
     const { target } = event;
+    const { isScale,onlyDivisions } = this.options
+    event.stopPropagation()
     
     
     if (!(target instanceof HTMLElement)) return;
-    if (!target.classList.contains('slider__scale-value')) return;
+    if (onlyDivisions === false){
+      if (!target.classList.contains('slider__scale-value')) return;
+    }else{
+    if (!target.classList.contains('slider__division-value')) return;
+    }
     
     const value = target.innerHTML
 

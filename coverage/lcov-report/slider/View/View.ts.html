@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.55% </span>
+                <span class="strong">86.05% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>148/171</span>
+                <span class='fraction'>148/172</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.69% </span>
+                <span class="strong">55.56% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>30/52</span>
+                <span class='fraction'>30/54</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.35% </span>
+                <span class="strong">87.43% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>145/166</span>
+                <span class='fraction'>146/167</span>
             </div>
         
             
@@ -486,7 +486,12 @@
 <a name='L427'></a><a href='#L427'>427</a>
 <a name='L428'></a><a href='#L428'>428</a>
 <a name='L429'></a><a href='#L429'>429</a>
-<a name='L430'></a><a href='#L430'>430</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L430'></a><a href='#L430'>430</a>
+<a name='L431'></a><a href='#L431'>431</a>
+<a name='L432'></a><a href='#L432'>432</a>
+<a name='L433'></a><a href='#L433'>433</a>
+<a name='L434'></a><a href='#L434'>434</a>
+<a name='L435'></a><a href='#L435'>435</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -729,13 +734,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -784,21 +789,26 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1164,7 +1174,7 @@ class View {
     } = event;
     let coordinate = 0;
 &nbsp;
-    if (/scale/.test(target.className)) return;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (/scale/.test(target.className)) <span class="cstat-no" title="statement not covered" >return;</span>
 &nbsp;
     <span class="missing-if-branch" title="else path not taken" >E</span>if (orientation === 'horizontal') {
       coordinate = event.clientX;
@@ -1212,23 +1222,28 @@ class View {
     } else {
       const targets = this.getTargetType(target);
       <span class="missing-if-branch" title="else path not taken" >E</span>if (targets === 'from') {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (type === 'double'){
         <span class="missing-if-branch" title="if path not taken" >I</span>if (value &gt; to - step) {
 <span class="cstat-no" title="statement not covered" >          this.emitter.emit('newPosition', {</span>
             from: to - step,
           });
 <span class="cstat-no" title="statement not covered" >          return;</span>
         }
+        }
         this.emitter.emit('newPosition', {
           from: value,
         });
+        
         this.convertValueToColor(value);
       } else {
+       
 <span class="cstat-no" title="statement not covered" >        if (value &lt; from + step) {</span>
 <span class="cstat-no" title="statement not covered" >          this.emitter.emit('newPosition', {</span>
             to: from + step,
           });
 <span class="cstat-no" title="statement not covered" >          return;</span>
         }
+        
 <span class="cstat-no" title="statement not covered" >        this.emitter.emit('newPosition', {</span>
           to: value,
         });
@@ -1351,7 +1366,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Mar 05 2021 08:16:17 GMT+0600 (GMT+06:00)
+                at Fri Mar 05 2021 18:19:50 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

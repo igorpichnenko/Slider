@@ -95,7 +95,7 @@ $('.slider').colorSlider({
 | isColorOut | false | выводить значение текущего цвета вместо значений | boolean |
 | isSeparate | true | вкл/выкл делитель ' ' 10000 10 000 | boolean |
 | separate | ' ' | по умолчанию равен пробелу| принимает точку/запятую ' ' . , либо будет ' ' |
-| onlyDivisions | false | оставить только деления шкалы | boolean | 
+| onlyDivisions | false | Шкала с делениями/значениями | boolean | 
 
 # API Методы
 

@@ -295,23 +295,28 @@ class View {
     } else {
       const targets = this.getTargetType(target);
       if (targets === 'from') {
+        if (type === 'double'){
         if (value > to - step) {
           this.emitter.emit('newPosition', {
             from: to - step,
           });
           return;
         }
+        }
         this.emitter.emit('newPosition', {
           from: value,
         });
+        
         this.convertValueToColor(value);
       } else {
+       
         if (value < from + step) {
           this.emitter.emit('newPosition', {
             to: from + step,
           });
           return;
         }
+        
         this.emitter.emit('newPosition', {
           to: value,
         });
