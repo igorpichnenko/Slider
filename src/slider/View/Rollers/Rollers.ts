@@ -16,12 +16,10 @@ class Rollers {
     rollerSecond.className = `slider__roller_second
       slider__roller
       slider__roller_${orientation}`;
-      
-   
 
     slider.append(rollerFirst);
     slider.append(rollerSecond);
-    
+
     this.createTooltip(rollerFirst, rollerSecond, options);
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);
@@ -48,71 +46,69 @@ class Rollers {
       to,
       from,
       isPostfix,
-      isLabel, isPrefix
+      isLabel, isPrefix,
     } = options;
-    
-    let { postfix } = options
 
-    if (isPostfix === false ) {
-        postfix = ''
-      }
-      
-      // настройки постфикс
+    let { postfix } = options;
+
+    if (isPostfix === false) {
+      postfix = '';
+    }
+
+    // настройки постфикс
 
     if (isLabel === true) {
-        fistTooltip.innerHTML = `${this.separate(from,options)}${postfix}`;
-        secondTooltip.innerHTML = `${this.separate(to,options)}${postfix}`;
-     
-      // настройки префикс   
-      if (isPrefix === true){
-        fistTooltip.innerHTML = `${postfix}${this.separate(from,options)}`;
-        secondTooltip.innerHTML = `${postfix}${this.separate(to,options)}`;
+      fistTooltip.innerHTML = `${this.separate(from, options)}${postfix}`;
+      secondTooltip.innerHTML = `${this.separate(to, options)}${postfix}`;
+
+      // настройки префикс
+      if (isPrefix === true) {
+        fistTooltip.innerHTML = `${postfix}${this.separate(from, options)}`;
+        secondTooltip.innerHTML = `${postfix}${this.separate(to, options)}`;
       }
-      
     }
-   
-    this.setColor(fistTooltip, secondTooltip, options)
-}
-  
-   private separate (value: number, options: ViewState): string{
-    const { isSeparate } = options
-    let { separate } = options
-   let val = ''
-   
-   
-  if (isSeparate === false){
-     val = value.toString()
-     
-  }else{
-    if (separate === ','){
-      separate = "en-US"
-    }
-    if (separate === '.'){
-      separate = 'de-DE'
-    }
-    if (separate === ' '){
-      separate = undefined
-    }
-     val = value.toLocaleString(separate)
-  }
- 
-    return val
+
+    this.setColor(fistTooltip, secondTooltip, options);
   }
 
-   private setColor(fistTooltip: HTMLElement,
-    secondTooltip: HTMLElement, options: ViewState){
-      
-      const { color,gradient,
-      isColorOut, allColors,isChangeColor, isLabel } = options
-      
+  private separate(value: number, options: ViewState): string {
+    const { isSeparate } = options;
+    let { separate } = options;
+    let val = '';
+
+    if (isSeparate === false) {
+      val = value.toString();
+    } else {
+      if (separate === ',') {
+        separate = 'en-US';
+      }
+      if (separate === '.') {
+        separate = 'de-DE';
+      }
+      if (separate === ' ') {
+        separate = undefined;
+      }
+      val = value.toLocaleString(separate);
+    }
+
+    return val;
+  }
+
+  private setColor(fistTooltip: HTMLElement,
+    secondTooltip: HTMLElement, options: ViewState) {
+    const {
+      color, gradient,
+      isColorOut, allColors, isChangeColor, isLabel,
+    } = options;
+
     /**
-     * Задумка сделать обратный конвектор из 16-ричного в обычный вид, например #fff в 
-    white, и в дальнейшем соьирался дополнять перевод 
-    **/
+     * Задумка сделать обратный конвектор из 16-ричного в обычный вид, например #fff в
+    white, и в дальнейшем соьирался дополнять перевод
+    * */
     let newColor = allColors[color];
-   let newGradient = allColors[gradient];
-//console.log(color)
-//console.log(newColor)
+    let newGradient = allColors[gradient];
+    // console.log(color)
+    // console.log(newColor)
     if (newGradient === undefined) {
       newGradient = gradient;
     }
@@ -120,46 +116,43 @@ class Rollers {
     if (newColor === undefined) {
       newColor = color;
     }
-    if(isChangeColor === true){
-   
-    if (isColorOut === true) {
-      fistTooltip.innerHTML = String(newColor)
-      secondTooltip.innerHTML = String(newGradient)
+    if (isChangeColor === true) {
+      if (isColorOut === true) {
+        fistTooltip.innerHTML = String(newColor);
+        secondTooltip.innerHTML = String(newGradient);
 
-      fistTooltip.style.backgroundColor = `${color}`;
-      secondTooltip.style.backgroundColor = `${gradient}`;
-      fistTooltip.classList.add('slider__tooltip_bg');
-      secondTooltip.classList.add('slider__tooltip_bg');
-    }
+        fistTooltip.style.backgroundColor = `${color}`;
+        secondTooltip.style.backgroundColor = `${gradient}`;
+        fistTooltip.classList.add('slider__tooltip_bg');
+        secondTooltip.classList.add('slider__tooltip_bg');
+      }
     }
     if (isLabel === false) {
       fistTooltip.classList.add('slider__tooltip_display-none');
       secondTooltip.classList.add('slider__tooltip_display-none');
     }
-    
-    
   }
 
   private updataColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
     const {
-      color, isGradient, gradient, isChangeColor,gradientDeg,
+      color, isGradient, gradient, isChangeColor, gradientDeg,
     } = options;
-     if (isChangeColor === true){
-    
-    if (isGradient === true) {
-      rollerFirst.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
-      rollerSecond.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
-    } else {
-      rollerFirst.style.background = color;
-      rollerSecond.style.background = color;
-    } 
+    if (isChangeColor === true) {
+      if (isGradient === true) {
+        rollerFirst.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+        rollerSecond.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+      } else {
+        rollerFirst.style.background = color;
+        rollerSecond.style.background = color;
+      }
+    }
   }
-} 
+
   public moveRollersAtValue(options: ViewState, rollerFirst: HTMLElement,
     rollerSecond: HTMLElement): void {
     const {
-      to, 
-      from, orientation, 
+      to,
+      from, orientation,
     } = options;
 
     const pxTo = this.convertValueToPx(to, options);

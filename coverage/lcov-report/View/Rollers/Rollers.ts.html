@@ -276,12 +276,7 @@
 <a name='L217'></a><a href='#L217'>217</a>
 <a name='L218'></a><a href='#L218'>218</a>
 <a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a>
-<a name='L222'></a><a href='#L222'>222</a>
-<a name='L223'></a><a href='#L223'>223</a>
-<a name='L224'></a><a href='#L224'>224</a>
-<a name='L225'></a><a href='#L225'>225</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L220'></a><a href='#L220'>220</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -351,7 +346,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">528x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -360,10 +354,8 @@
 <span class="cline-any cline-yes">1062x</span>
 <span class="cline-any cline-yes">1062x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1062x</span>
 <span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1054x</span>
 <span class="cline-any cline-yes">14x</span>
@@ -384,25 +376,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">528x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">528x</span>
-<span class="cline-any cline-yes">528x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">528x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">528x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">528x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">528x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">528x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">528x</span>
 <span class="cline-any cline-yes">528x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
@@ -422,17 +414,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">528x</span>
 <span class="cline-any cline-yes">528x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">528x</span>
 <span class="cline-any cline-yes">523x</span>
 <span class="cline-any cline-yes">523x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -553,71 +543,69 @@ class Rollers {
       to,
       from,
       isPostfix,
-      isLabel, isPrefix
+      isLabel, isPrefix,
     } = options;
-    
-    let { postfix } = options
 &nbsp;
-    if (isPostfix === false ) {
-        postfix = ''
-      }
-      
-      // настройки постфикс
+    let { postfix } = options;
+&nbsp;
+    if (isPostfix === false) {
+      postfix = '';
+    }
+&nbsp;
+    // настройки постфикс
 &nbsp;
     if (isLabel === true) {
-        fistTooltip.innerHTML = `${this.separate(from,options)}${postfix}`;
-        secondTooltip.innerHTML = `${this.separate(to,options)}${postfix}`;
-     
-      // настройки префикс   
-      if (isPrefix === true){
-        fistTooltip.innerHTML = `${postfix}${this.separate(from,options)}`;
-        secondTooltip.innerHTML = `${postfix}${this.separate(to,options)}`;
+      fistTooltip.innerHTML = `${this.separate(from, options)}${postfix}`;
+      secondTooltip.innerHTML = `${this.separate(to, options)}${postfix}`;
+&nbsp;
+      // настройки префикс
+      if (isPrefix === true) {
+        fistTooltip.innerHTML = `${postfix}${this.separate(from, options)}`;
+        secondTooltip.innerHTML = `${postfix}${this.separate(to, options)}`;
       }
-      
     }
-   
-    this.setColor(fistTooltip, secondTooltip, options)
-}
-  
-   private separate (value: number, options: ViewState): string{
-    const { isSeparate } = options
-    let { separate } = options
-   let val = ''
-   
-   
-  if (isSeparate === false){
-     val = value.toString()
-     
-  }else{
-    if (separate === ','){
-      separate = "en-US"
-    }
-    if (separate === '.'){
-      separate = 'de-DE'
-    }
-    if (separate === ' '){
-      separate = undefined
-    }
-     val = value.toLocaleString(separate)
-  }
- 
-    return val
+&nbsp;
+    this.setColor(fistTooltip, secondTooltip, options);
   }
 &nbsp;
-   private setColor(fistTooltip: HTMLElement,
-    secondTooltip: HTMLElement, options: ViewState){
-      
-      const { color,gradient,
-      isColorOut, allColors,isChangeColor, isLabel } = options
-      
+  private separate(value: number, options: ViewState): string {
+    const { isSeparate } = options;
+    let { separate } = options;
+    let val = '';
+&nbsp;
+    if (isSeparate === false) {
+      val = value.toString();
+    } else {
+      if (separate === ',') {
+        separate = 'en-US';
+      }
+      if (separate === '.') {
+        separate = 'de-DE';
+      }
+      if (separate === ' ') {
+        separate = undefined;
+      }
+      val = value.toLocaleString(separate);
+    }
+&nbsp;
+    return val;
+  }
+&nbsp;
+  private setColor(fistTooltip: HTMLElement,
+    secondTooltip: HTMLElement, options: ViewState) {
+    const {
+      color, gradient,
+      isColorOut, allColors, isChangeColor, isLabel,
+    } = options;
+&nbsp;
     /**
-     * Задумка сделать обратный конвектор из 16-ричного в обычный вид, например #fff в 
-    white, и в дальнейшем соьирался дополнять перевод 
-    **/
+     * Задумка сделать обратный конвектор из 16-ричного в обычный вид, например #fff в
+    white, и в дальнейшем соьирался дополнять перевод
+    * */
     let newColor = allColors[color];
-   let newGradient = allColors[gradient];
-//console.log(color)
-//console.log(newColor)
+    let newGradient = allColors[gradient];
+    // console.log(color)
+    // console.log(newColor)
     if (newGradient === undefined) {
       newGradient = gradient;
     }
@@ -625,46 +613,43 @@ class Rollers {
     if (newColor === undefined) {
       newColor = color;
     }
-    <span class="missing-if-branch" title="else path not taken" >E</span>if(isChangeColor === true){
-   
-    if (isColorOut === true) {
-      fistTooltip.innerHTML = String(newColor)
-      secondTooltip.innerHTML = String(newGradient)
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (isChangeColor === true) {
+      if (isColorOut === true) {
+        fistTooltip.innerHTML = String(newColor);
+        secondTooltip.innerHTML = String(newGradient);
 &nbsp;
-      fistTooltip.style.backgroundColor = `${color}`;
-      secondTooltip.style.backgroundColor = `${gradient}`;
-      fistTooltip.classList.add('slider__tooltip_bg');
-      secondTooltip.classList.add('slider__tooltip_bg');
-    }
+        fistTooltip.style.backgroundColor = `${color}`;
+        secondTooltip.style.backgroundColor = `${gradient}`;
+        fistTooltip.classList.add('slider__tooltip_bg');
+        secondTooltip.classList.add('slider__tooltip_bg');
+      }
     }
     if (isLabel === false) {
       fistTooltip.classList.add('slider__tooltip_display-none');
       secondTooltip.classList.add('slider__tooltip_display-none');
     }
-    
-    
   }
 &nbsp;
   private updataColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
     const {
-      color, isGradient, gradient, isChangeColor,gradientDeg,
+      color, isGradient, gradient, isChangeColor, gradientDeg,
     } = options;
-     <span class="missing-if-branch" title="else path not taken" >E</span>if (isChangeColor === true){
-    
-    if (isGradient === true) {
-      rollerFirst.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
-      rollerSecond.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
-    } else {
-      rollerFirst.style.background = color;
-      rollerSecond.style.background = color;
-    } 
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (isChangeColor === true) {
+      if (isGradient === true) {
+        rollerFirst.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+        rollerSecond.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+      } else {
+        rollerFirst.style.background = color;
+        rollerSecond.style.background = color;
+      }
+    }
   }
-} 
+&nbsp;
   public moveRollersAtValue(options: ViewState, rollerFirst: HTMLElement,
     rollerSecond: HTMLElement): void {
     const {
-      to, 
-      from, orientation, 
+      to,
+      from, orientation,
     } = options;
 &nbsp;
     const pxTo = this.convertValueToPx(to, options);
@@ -736,7 +721,7 @@ export { Rollers };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Mar 01 2021 14:37:07 GMT+0600 (GMT+06:00)
+                at Fri Mar 05 2021 18:41:39 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

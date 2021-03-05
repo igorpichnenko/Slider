@@ -30,10 +30,10 @@ class Track {
 
   private setStartEndTrackOut(outStart: HTMLElement, outEnd: HTMLElement, options: ViewState) {
     const {
-      min, max, from, to, minMax, fromTo, isTrackPostfix,isPrefix
+      min, max, from, to, minMax, fromTo, isTrackPostfix, isPrefix,
     } = options;
-    
-    let { trackPostfix } = options
+
+    let { trackPostfix } = options;
 
     if (isTrackPostfix === false) {
       trackPostfix = '';
@@ -41,50 +41,47 @@ class Track {
     // настройки для постфикса
 
     if (minMax === true) {
-      outStart.innerHTML = `${this.separate(min,options)}${trackPostfix}`;
-      outEnd.innerHTML = `${this.separate(max,options)}${trackPostfix}`;
+      outStart.innerHTML = `${this.separate(min, options)}${trackPostfix}`;
+      outEnd.innerHTML = `${this.separate(max, options)}${trackPostfix}`;
     }
     if (fromTo === true) {
-      outStart.innerHTML = `${this.separate(from,options)}${trackPostfix}`;
-      outEnd.innerHTML = `${this.separate(to,options)}${trackPostfix}`;
+      outStart.innerHTML = `${this.separate(from, options)}${trackPostfix}`;
+      outEnd.innerHTML = `${this.separate(to, options)}${trackPostfix}`;
     }
-    
- // настройки для префикса    
-    if (isPrefix === true){
-      
+
+    // настройки для префикса
+    if (isPrefix === true) {
       if (minMax === true) {
-      outStart.innerHTML = `${trackPostfix}${this.separate(min,options)}`;
-      outEnd.innerHTML = `${trackPostfix}${this.separate(max,options)}`;
+        outStart.innerHTML = `${trackPostfix}${this.separate(min, options)}`;
+        outEnd.innerHTML = `${trackPostfix}${this.separate(max, options)}`;
+      }
+      if (fromTo === true) {
+        outStart.innerHTML = `${trackPostfix}${this.separate(from, options)}`;
+        outEnd.innerHTML = `${trackPostfix}${this.separate(to, options)}`;
+      }
     }
-    if (fromTo === true) {
-      outStart.innerHTML = `${trackPostfix}${this.separate(from,options)}`;
-      outEnd.innerHTML = `${trackPostfix}${this.separate(to,options)}`;
-    }
-    
-    }
-    
   }
-  
-  private separate (value: number, options: ViewState): string{
-  const { isSeparate } = options
-    let { separate } = options
-   let val = ''
-   
-  if (isSeparate === false){
-     val = value.toString()
-  }else{
-    if (separate === ','){
-      separate = "en-US"
+
+  private separate(value: number, options: ViewState): string {
+    const { isSeparate } = options;
+    let { separate } = options;
+    let val = '';
+
+    if (isSeparate === false) {
+      val = value.toString();
+    } else {
+      if (separate === ',') {
+        separate = 'en-US';
+      }
+      if (separate === '.') {
+        separate = 'de-DE';
+      }
+      if (separate === ' ') {
+        separate = undefined;
+      }
+      val = value.toLocaleString(separate);
     }
-    if (separate === '.'){
-      separate = 'de-DE'
-    }
-    if (separate === ' '){
-      separate = undefined
-    }
-     val = value.toLocaleString(separate)
-  }
-    return val
+    return val;
   }
 
   public upData(options: ViewState) {

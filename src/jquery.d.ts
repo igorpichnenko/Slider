@@ -1,3 +1,3 @@
 interface JQuery {
-    colorSlider(method?: {} | string, options?: Partial<Options>)
-  }
+  colorSlider(method?: {} | string, options?: Partial<Options>)
+}

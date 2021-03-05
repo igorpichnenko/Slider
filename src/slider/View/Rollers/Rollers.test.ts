@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import $ from 'jquery';
+
 import { View } from '../View';
 import { Rollers } from './Rollers';
 import { standardOptions } from '../../interfaces/standardOptions';
@@ -8,13 +9,11 @@ import { ViewState } from '../../interfaces/interfaces';
 describe('Rollers', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;
-  
 
   beforeEach(() => {
-    wrap = $("<div class='js-toxin-slider' ></div>")
-    wrap.appendTo( "body" )
+    wrap = $("<div class='js-toxin-slider' ></div>");
+    wrap.appendTo('body');
     view = new View(standardOptions, wrap);
-
   });
 
   afterEach(() => {
@@ -85,12 +84,10 @@ describe('Rollers', () => {
   });
 
   test('tooltips should display options to and from', () => {
-    
     view.upData({ isPostfix: false });
-    
+
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');
-  
-  
+
     expect(tooltips[0].innerHTML).toBe(String(view.state.from));
     expect(tooltips[1].innerHTML).toBe(String(view.state.to));
   });
@@ -102,7 +99,7 @@ describe('Rollers', () => {
     expect(tooltips[0].innerHTML).toBe(`${view.state.from}${view.state.postfix}`);
     expect(tooltips[1].innerHTML).toBe(`${view.state.to}${view.state.postfix}`);
   });
-  
+
   test('if the isPrefix = true parameter, the tooltips should display the parameters from and to the + prefix', () => {
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');
     view.upData({ isPrefix: true });
@@ -115,9 +112,9 @@ describe('Rollers', () => {
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');
 
     view.upData({ isColorOut: true });
-  
-    expect(tooltips[0].innerHTML).toBe("Оранжевый");
-    expect(tooltips[1].innerHTML).toBe("Фиолетовый");
+
+    expect(tooltips[0].innerHTML).toBe('Оранжевый');
+    expect(tooltips[1].innerHTML).toBe('Фиолетовый');
   });
 
   test('if isColorOut=true then tooltips should be colored with the variable color', () => {
@@ -129,7 +126,7 @@ describe('Rollers', () => {
     expect(firstTooltip.style.backgroundColor).toBe(view.state.color);
     expect(secondTooltip.style.backgroundColor).toBe(view.state.gradient);
   });
-  
+
   test('when the MouseEvent is fired on the roller, the color update method should be called', () => {
     const spy = jest.spyOn(view, 'convertValueToColor');
     const rollerFirst = view.slider.querySelector('.slider__roller_first') as HTMLElement;
@@ -140,7 +137,7 @@ describe('Rollers', () => {
 
     expect(spy).toBeCalled();
   });
-  
+
   test('if isColorOut = "true" then tolltips should change background', () => {
     const firstTooltip = view.slider.querySelector('.slider__tooltip_first') as HTMLElement;
     const secondTooltip = view.slider.querySelector('.slider__tooltip_second') as HTMLElement;
@@ -160,8 +157,7 @@ describe('Rollers', () => {
     expect(rollerFirst.style.background).toBe(view.state.color);
     expect(rollerSecond.style.background).toBe(view.state.color);
   });
-  
-  
+
   test('if separate = ",", then the result should be equal to "en-US" of the locale', () => {
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');
 
@@ -169,7 +165,7 @@ describe('Rollers', () => {
       separate: ',',
       max: 10000,
       from: 1000,
-      to: 5000
+      to: 5000,
     });
 
     expect(tooltips[0].innerHTML).toBe(`${view.state.from.toLocaleString('en-US')}${view.state.postfix}`);
@@ -182,7 +178,7 @@ describe('Rollers', () => {
       separate: '.',
       max: 10000,
       from: 1000,
-      to: 5000
+      to: 5000,
     });
 
     expect(tooltips[0].innerHTML).toBe(`${view.state.from.toLocaleString('de-DE')}${view.state.postfix}`);
@@ -195,15 +191,13 @@ describe('Rollers', () => {
       separate: ' ',
       max: 10000,
       from: 1000,
-      to: 5000
+      to: 5000,
     });
 
     expect(tooltips[0].innerHTML).toBe(`${view.state.from.toLocaleString(undefined)}${view.state.postfix}`);
     expect(tooltips[1].innerHTML).toBe(`${view.state.to.toLocaleString(undefined)}${view.state.postfix}`);
   });
-  
-  
-  
+
   test('isSeparate = false then there should be no separator', () => {
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');
 
@@ -217,28 +211,23 @@ describe('Rollers', () => {
     expect(tooltips[0].innerHTML).toBe(`${view.state.from.toString()}${view.state.trackPostfix}`);
     expect(tooltips[1].innerHTML).toBe(`${view.state.to.toString()}${view.state.trackPostfix}`);
   });
-  
-  
+
   test('rollers should be in starting position', () => {
-    
-   let state: ViewState = {
+    const state: ViewState = {
       size: 266,
       oneStep: 26.6,
       slider: view.slider,
-      ...standardOptions
-    }
-    
-   let  rollers  = new  Rollers(state)
-     
+      ...standardOptions,
+    };
+
+    const rollers = new Rollers(state);
+
     const rollerFirst = view.slider.querySelector('.slider__roller_first') as HTMLElement;
     const rollerSecond = view.slider.querySelector('.slider__roller_second') as HTMLElement;
-    
-    rollers.moveRollersAtValue(state, rollerFirst,rollerSecond)
-    
+
+    rollers.moveRollersAtValue(state, rollerFirst, rollerSecond);
+
     expect(rollerFirst.style.left).toBe('30.000000000000004%');
     expect(rollerSecond.style.left).toBe('70%');
   });
-  
-  
-  
 });

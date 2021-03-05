@@ -28,16 +28,15 @@ class Bar {
 
   private updataColor(options: ViewState, bar: HTMLElement) {
     const {
-      color, isGradient, gradient, gradientDeg,isChangeColor,
+      color, isGradient, gradient, gradientDeg, isChangeColor,
     } = options;
-    if (isChangeColor === true){
-    if (isGradient === true) {
-      bar.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
-    } else {
-      bar.style.background = color;
+    if (isChangeColor === true) {
+      if (isGradient === true) {
+        bar.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+      } else {
+        bar.style.background = color;
+      }
     }
-    }
-    
   }
 
   private getRollerPositions(options: ViewState): number[] {

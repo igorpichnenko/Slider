@@ -1,30 +1,29 @@
 import '@testing-library/jest-dom';
 import $ from 'jquery';
+
 import { View } from '../View';
 import { Scale } from './Scale';
 import { standardOptions } from '../../interfaces/standardOptions';
 import { ViewState } from '../../interfaces/interfaces';
 
-
 describe('Scale', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;
-  let scale: Scale
-  let viewState: ViewState
+  let scale: Scale;
+  let viewState: ViewState;
 
   beforeEach(() => {
-    
-    wrap = $("<div class='js-toxin-slider' ></div>")
-    wrap.appendTo( "body" )
+    wrap = $("<div class='js-toxin-slider' ></div>");
+    wrap.appendTo('body');
     view = new View(standardOptions, wrap);
-    
+
     viewState = {
       size: 266,
       oneStep: 26.6,
       slider: view.slider,
-      ...standardOptions
-    }
-     scale  = new  Scale(viewState)
+      ...standardOptions,
+    };
+    scale = new Scale(viewState);
   });
 
   afterEach(() => {
@@ -32,9 +31,9 @@ describe('Scale', () => {
   });
 
   test('should be initialized and visible', () => {
-    const scale = view.slider.querySelector('.slider__scale_horizontal');
+    const sliderScale = view.slider.querySelector('.slider__scale_horizontal');
 
-    expect(scale).toBeVisible();
+    expect(sliderScale).toBeVisible();
   });
 
   test('if orientation = "vertical" then the scale should have the modifier "vertical"', () => {
@@ -45,19 +44,19 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scale = newView.slider.querySelector('.slider__scale_vertical');
+    const sliderScale = newView.slider.querySelector('.slider__scale_vertical');
 
-    expect(scale).toBeVisible();
+    expect(sliderScale).toBeVisible();
   });
 
   test('should be hidden when isScale = false ', () => {
     view.upData({ isScale: true });
-    const scale = view.slider.querySelector('.slider__scale');
+    const sliderScale = view.slider.querySelector('.slider__scale');
 
-    expect(scale).toBeVisible();
+    expect(sliderScale).toBeVisible();
 
     view.upData({ isScale: false });
-    expect(scale).not.toBeVisible();
+    expect(sliderScale).not.toBeVisible();
   });
 
   test('scale divisions should be hidden', () => {
@@ -90,17 +89,15 @@ describe('Scale', () => {
   });
 
   test('if the scale element is one, then by condition it is equal to max', () => {
-    
     const scaleMarker = view.slider.querySelector('.slider__scale-value')! as HTMLElement;
-   
+
     expect(scaleMarker.innerHTML).toBe(`${view.state.max}${view.state.scalePostfix}`);
-    
   });
- test('clicking on the scale should return the scale value', () => {
+  test('clicking on the scale should return the scale value', () => {
     const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
 
-     const value = scaleMarker.innerHTML
-     
+    const value = scaleMarker.innerHTML;
+
     const clickScale = jest.fn((event) => event.detail.value);
 
     view.slider.addEventListener('scaleclick', clickScale);
@@ -124,21 +121,21 @@ describe('Scale', () => {
 
     expect(scaleMarker.innerHTML).toBe(`${view.state.max}${view.state.scalePostfix}`);
   });
-  
+
   test('isScalePostfix = false, then there should be no marker', () => {
     const newOptions = {
       ...standardOptions,
       isScalePostfix: false,
-     
+
     };
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!
-     
+    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+
     expect(scaleMarker.innerHTML).toBe(String(newView.state.max));
   });
-  
+
   test('isPrefix = true, must be prefix', () => {
     const newOptions = {
       ...standardOptions,
@@ -151,8 +148,7 @@ describe('Scale', () => {
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.scalePostfix}${newView.state.max}`);
   });
-  
-  
+
   test('there is a separator by default', () => {
     const newOptions = {
       ...standardOptions,
@@ -165,7 +161,7 @@ describe('Scale', () => {
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString()}${newView.state.scalePostfix}`);
   });
-  
+
   test('there is a separator by default', () => {
     const newOptions = {
       ...standardOptions,
@@ -179,12 +175,12 @@ describe('Scale', () => {
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toString()}${newView.state.scalePostfix}`);
   });
-  
+
   test('if separate = ".", then the result should be equal to "de-DE" of the locale', () => {
     const newOptions = {
       ...standardOptions,
       max: 10000,
-      separate: '.'
+      separate: '.',
     };
 
     const newView = new View(newOptions, wrap);
@@ -197,7 +193,7 @@ describe('Scale', () => {
     const newOptions = {
       ...standardOptions,
       max: 10000,
-      separate: ','
+      separate: ',',
     };
 
     const newView = new View(newOptions, wrap);
@@ -210,7 +206,7 @@ describe('Scale', () => {
     const newOptions = {
       ...standardOptions,
       max: 10000,
-      separate: ' '
+      separate: ' ',
     };
 
     const newView = new View(newOptions, wrap);
@@ -220,19 +216,13 @@ describe('Scale', () => {
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString(undefined)}${newView.state.scalePostfix}`);
   });
 
-  
   test('must correctly read the incrimination', () => {
-    
-    let currentValue: number = scale.getIncrement(viewState);
+    const currentValue: number = scale.getIncrement(viewState);
     expect(currentValue).toBe(2);
-    
-  })  
-  
+  });
+
   test('must calculate the percentage correctly', () => {
-    
-    let currentValue: number = scale.convertPxToPercent(26.6, viewState);
+    const currentValue: number = scale.convertPxToPercent(26.6, viewState);
     expect(currentValue).toBe(10);
-    
-  })  
-  
-})
+  });
+});

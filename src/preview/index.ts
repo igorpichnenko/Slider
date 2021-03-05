@@ -90,7 +90,7 @@ const fiveOptions: Partial<Options> = {
   isScale: false,
   isLabel: false,
   color: 'green',
-  
+
 };
 
 const sixOptions: Partial<Options> = {
