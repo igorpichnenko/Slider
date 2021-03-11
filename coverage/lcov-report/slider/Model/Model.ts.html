@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>44/44</span>
+                <span class='fraction'>45/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>40/40</span>
+                <span class='fraction'>38/38</span>
             </div>
         
             
@@ -171,7 +171,8 @@
 <a name='L112'></a><a href='#L112'>112</a>
 <a name='L113'></a><a href='#L113'>113</a>
 <a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -216,19 +217,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">133x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -251,6 +250,11 @@
 <span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -266,8 +270,6 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">133x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
@@ -313,7 +315,7 @@ class Model {
       ...validateMinMaxStep,
     };
 &nbsp;
-    this.emitter.emit('newData', this.state); 
+    this.emitter.emit('newData', this.state);
   }
 &nbsp;
   private init(options: Options): Options {
@@ -330,20 +332,18 @@ class Model {
 &nbsp;
     if (step &lt;= 0) options.step = 0.1;
 &nbsp;
+    const isMaxMin = max &lt;= min &amp;&amp; max &lt; 0;
+    const isMinMax = (min &gt;= max &amp;&amp; max &gt; 0) || (max &lt; 0 &amp;&amp; max &lt; min);
 &nbsp;
-    if (max &lt;= min &amp;&amp; max &lt; 0) {
+    if (isMaxMin) {
       options.min = min - step;
     }
 &nbsp;
-    if (min &gt;= max &amp;&amp; max &gt; 0) {
+    if (isMinMax) {
       options.min = min;
       options.max = min + step;
     }
 &nbsp;
-    if (max &lt; 0 &amp;&amp; max &lt; min) {
-      options.max = min + step;
-      options.min = min;
-    }
     return options;
   }
 &nbsp;
@@ -361,10 +361,15 @@ class Model {
       options.to = max;
     }
 &nbsp;
-    if (min &gt; from) options.from = min;
+    const maxMinZero = max &lt; 0 &amp;&amp; min === 0
+    const isMinMaxZero = min &lt; 0 &amp;&amp; max &lt; 0
+    
+    if (from &gt; max) options.from = to - step
+&nbsp;
+    if (from &lt; min) options.from = min;
     if (to &gt; max) options.to = max;
 &nbsp;
-    if (max &lt; 0 &amp;&amp; min === 0) {
+    if (maxMinZero) {
       options.from = min;
       options.to = min;
     }
@@ -380,12 +385,10 @@ class Model {
       options.from = min;
     }
 &nbsp;
-    if (max &lt; from) {
-      options.from = min;
-    }
+    
 &nbsp;
     if (from &gt; 0) {
-      if (min &lt; 0 &amp;&amp; max &lt; 0) {
+      if (isMinMaxZero) {
         options.from = min;
       }
     }
@@ -406,7 +409,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Mar 11 2021 08:28:48 GMT-0500 (Восточная Америка, стандартное время)
+                at Thu Mar 11 2021 09:38:45 GMT-0500 (Восточная Америка, стандартное время)
             </div>
         </div>
         <script src="../../prettify.js"></script>

@@ -190,7 +190,6 @@ describe('Scale', () => {
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString('en-US')}${newView.state.scalePostfix}`);
   });
 
-
   test('must correctly read the incrimination', () => {
     const currentValue: number = scale.getIncrement(viewState);
     expect(currentValue).toBe(2);

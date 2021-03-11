@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1615469328437" clover="3.2.0">
-  <project timestamp="1615469328437" name="All files">
-    <metrics statements="614" coveredstatements="578" conditionals="220" coveredconditionals="177" methods="103" coveredmethods="100" elements="937" coveredelements="855" complexity="0" loc="614" ncloc="614" packages="7" files="7" classes="7"/>
+<coverage generated="1615473525802" clover="3.2.0">
+  <project timestamp="1615473525803" name="All files">
+    <metrics statements="721" coveredstatements="678" conditionals="258" coveredconditionals="211" methods="123" coveredmethods="120" elements="1102" coveredelements="1009" complexity="0" loc="721" ncloc="721" packages="10" files="12" classes="12"/>
     <package name="preview.Demo">
-      <metrics statements="194" coveredstatements="183" conditionals="60" coveredconditionals="48" methods="40" coveredmethods="38"/>
+      <metrics statements="195" coveredstatements="184" conditionals="60" coveredconditionals="48" methods="40" coveredmethods="38"/>
       <file name="Demo.ts" path="/home/igor/Документы/Slider/src/preview/Demo/Demo.ts">
         <metrics statements="194" coveredstatements="183" conditionals="60" coveredconditionals="48" methods="40" coveredmethods="38"/>
         <line num="11" count="41" type="stmt"/>
@@ -201,11 +201,26 @@
         <line num="384" count="47" type="stmt"/>
         <line num="385" count="47" type="stmt"/>
       </file>
+      <file name="demoTemplate.ts" path="/home/igor/Документы/Slider/src/preview/Demo/demoTemplate.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="slider.EventEmitter">
+      <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+      <file name="EventEmitter.ts" path="/home/igor/Документы/Slider/src/slider/EventEmitter/EventEmitter.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+        <line num="13" count="283" type="stmt"/>
+        <line num="17" count="162" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="162" type="stmt"/>
+        <line num="23" count="213" type="stmt"/>
+        <line num="25" count="213" type="cond" truecount="2" falsecount="0"/>
+      </file>
     </package>
     <package name="slider.Model">
-      <metrics statements="41" coveredstatements="41" conditionals="40" coveredconditionals="40" methods="5" coveredmethods="5"/>
+      <metrics statements="41" coveredstatements="41" conditionals="38" coveredconditionals="38" methods="5" coveredmethods="5"/>
       <file name="Model.ts" path="/home/igor/Документы/Slider/src/slider/Model/Model.ts">
-        <metrics statements="41" coveredstatements="41" conditionals="40" coveredconditionals="40" methods="5" coveredmethods="5"/>
+        <metrics statements="41" coveredstatements="41" conditionals="38" coveredconditionals="38" methods="5" coveredmethods="5"/>
         <line num="14" count="71" type="stmt"/>
         <line num="16" count="71" type="stmt"/>
         <line num="20" count="133" type="stmt"/>
@@ -216,37 +231,37 @@
         <line num="34" count="71" type="stmt"/>
         <line num="42" count="133" type="stmt"/>
         <line num="44" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="46" count="133" type="cond" truecount="2" falsecount="0"/>
         <line num="47" count="133" type="cond" truecount="4" falsecount="0"/>
-        <line num="48" count="4" type="stmt"/>
-        <line num="51" count="133" type="cond" truecount="4" falsecount="0"/>
-        <line num="52" count="5" type="stmt"/>
-        <line num="53" count="5" type="stmt"/>
-        <line num="56" count="133" type="cond" truecount="4" falsecount="0"/>
-        <line num="57" count="4" type="stmt"/>
-        <line num="58" count="4" type="stmt"/>
-        <line num="60" count="133" type="stmt"/>
-        <line num="71" count="133" type="stmt"/>
-        <line num="73" count="133" type="cond" truecount="2" falsecount="0"/>
-        <line num="74" count="3" type="stmt"/>
-        <line num="77" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="50" count="4" type="stmt"/>
+        <line num="53" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="54" count="9" type="stmt"/>
+        <line num="55" count="9" type="stmt"/>
+        <line num="58" count="133" type="stmt"/>
+        <line num="69" count="133" type="stmt"/>
+        <line num="71" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="72" count="3" type="stmt"/>
+        <line num="75" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="76" count="133" type="cond" truecount="2" falsecount="0"/>
         <line num="78" count="133" type="cond" truecount="2" falsecount="0"/>
-        <line num="80" count="133" type="cond" truecount="4" falsecount="0"/>
-        <line num="81" count="2" type="stmt"/>
-        <line num="82" count="2" type="stmt"/>
-        <line num="85" count="133" type="cond" truecount="2" falsecount="0"/>
-        <line num="86" count="130" type="cond" truecount="2" falsecount="0"/>
-        <line num="87" count="2" type="stmt"/>
-        <line num="91" count="133" type="cond" truecount="2" falsecount="0"/>
-        <line num="92" count="4" type="stmt"/>
-        <line num="93" count="4" type="stmt"/>
-        <line num="96" count="133" type="cond" truecount="2" falsecount="0"/>
-        <line num="97" count="5" type="stmt"/>
-        <line num="100" count="133" type="cond" truecount="2" falsecount="0"/>
-        <line num="101" count="130" type="cond" truecount="4" falsecount="0"/>
-        <line num="102" count="2" type="stmt"/>
-        <line num="105" count="133" type="cond" truecount="2" falsecount="0"/>
-        <line num="106" count="9" type="stmt"/>
-        <line num="108" count="133" type="stmt"/>
+        <line num="80" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="81" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="83" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="84" count="2" type="stmt"/>
+        <line num="85" count="2" type="stmt"/>
+        <line num="88" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="89" count="130" type="cond" truecount="2" falsecount="0"/>
+        <line num="90" count="2" type="stmt"/>
+        <line num="94" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="95" count="4" type="stmt"/>
+        <line num="96" count="4" type="stmt"/>
+        <line num="101" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="102" count="130" type="cond" truecount="2" falsecount="0"/>
+        <line num="103" count="2" type="stmt"/>
+        <line num="106" count="133" type="cond" truecount="2" falsecount="0"/>
+        <line num="107" count="9" type="stmt"/>
+        <line num="109" count="133" type="stmt"/>
       </file>
     </package>
     <package name="slider.Presenter">
@@ -446,6 +461,64 @@
         <line num="423" count="380" type="stmt"/>
         <line num="425" count="17" type="stmt"/>
         <line num="427" count="397" type="stmt"/>
+      </file>
+    </package>
+    <package name="slider.View.Bar">
+      <metrics statements="52" coveredstatements="48" conditionals="16" coveredconditionals="14" methods="10" coveredmethods="10"/>
+      <file name="Bar.ts" path="/home/igor/Документы/Slider/src/slider/View/Bar/Bar.ts">
+        <metrics statements="52" coveredstatements="48" conditionals="16" coveredconditionals="14" methods="10" coveredmethods="10"/>
+        <line num="5" count="198" type="stmt"/>
+        <line num="9" count="198" type="stmt"/>
+        <line num="11" count="198" type="stmt"/>
+        <line num="13" count="198" type="stmt"/>
+        <line num="15" count="198" type="stmt"/>
+        <line num="16" count="198" type="stmt"/>
+        <line num="17" count="198" type="stmt"/>
+        <line num="21" count="319" type="stmt"/>
+        <line num="23" count="319" type="stmt"/>
+        <line num="25" count="319" type="stmt"/>
+        <line num="26" count="319" type="stmt"/>
+        <line num="32" count="517" type="stmt"/>
+        <line num="33" count="517" type="cond" truecount="1" falsecount="1"/>
+        <line num="34" count="517" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="512" type="stmt"/>
+        <line num="37" count="5" type="stmt"/>
+        <line num="43" count="517" type="stmt"/>
+        <line num="45" count="517" type="stmt"/>
+        <line num="47" count="517" type="stmt"/>
+        <line num="50" count="517" type="stmt"/>
+        <line num="54" count="1034" type="stmt"/>
+        <line num="56" count="1034" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="1034" type="stmt"/>
+        <line num="59" count="1034" type="stmt"/>
+        <line num="65" count="1025" type="stmt"/>
+        <line num="66" count="1025" type="stmt"/>
+        <line num="70" count="517" type="stmt"/>
+        <line num="72" count="517" type="stmt"/>
+        <line num="74" count="517" type="cond" truecount="2" falsecount="0"/>
+        <line num="76" count="517" type="cond" truecount="2" falsecount="0"/>
+        <line num="78" count="517" type="stmt"/>
+        <line num="80" count="517" type="stmt"/>
+        <line num="82" count="517" type="stmt"/>
+        <line num="84" count="517" type="cond" truecount="2" falsecount="0"/>
+        <line num="85" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="86" count="9" type="stmt"/>
+        <line num="88" count="9" type="stmt"/>
+        <line num="89" count="9" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="98" count="508" type="stmt"/>
+        <line num="100" count="508" type="stmt"/>
+        <line num="102" count="508" type="stmt"/>
+        <line num="103" count="508" type="stmt"/>
+        <line num="108" count="518" type="stmt"/>
+        <line num="110" count="518" type="stmt"/>
+        <line num="112" count="518" type="cond" truecount="2" falsecount="0"/>
+        <line num="113" count="497" type="stmt"/>
+        <line num="115" count="21" type="stmt"/>
+        <line num="117" count="518" type="stmt"/>
       </file>
     </package>
     <package name="slider.View.Rollers">
@@ -651,8 +724,66 @@
         <line num="182" count="301" type="stmt"/>
       </file>
     </package>
+    <package name="slider.View.Track">
+      <metrics statements="48" coveredstatements="45" conditionals="20" coveredconditionals="18" methods="6" coveredmethods="6"/>
+      <file name="Track.ts" path="/home/igor/Документы/Slider/src/slider/View/Track/Track.ts">
+        <metrics statements="48" coveredstatements="45" conditionals="20" coveredconditionals="18" methods="6" coveredmethods="6"/>
+        <line num="5" count="197" type="stmt"/>
+        <line num="9" count="197" type="stmt"/>
+        <line num="11" count="197" type="stmt"/>
+        <line num="13" count="197" type="stmt"/>
+        <line num="15" count="197" type="stmt"/>
+        <line num="16" count="197" type="stmt"/>
+        <line num="20" count="197" type="stmt"/>
+        <line num="21" count="197" type="stmt"/>
+        <line num="22" count="197" type="stmt"/>
+        <line num="23" count="197" type="stmt"/>
+        <line num="24" count="197" type="stmt"/>
+        <line num="25" count="197" type="stmt"/>
+        <line num="26" count="197" type="stmt"/>
+        <line num="28" count="197" type="stmt"/>
+        <line num="34" count="516" type="stmt"/>
+        <line num="36" count="516" type="stmt"/>
+        <line num="38" count="516" type="cond" truecount="2" falsecount="0"/>
+        <line num="39" count="5" type="stmt"/>
+        <line num="43" count="516" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="7" type="stmt"/>
+        <line num="45" count="7" type="stmt"/>
+        <line num="47" count="516" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="6" type="stmt"/>
+        <line num="49" count="6" type="stmt"/>
+        <line num="53" count="516" type="cond" truecount="2" falsecount="0"/>
+        <line num="54" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="58" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="66" count="28" type="stmt"/>
+        <line num="67" count="28" type="stmt"/>
+        <line num="68" count="28" type="stmt"/>
+        <line num="70" count="28" type="cond" truecount="2" falsecount="0"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="73" count="26" type="cond" truecount="2" falsecount="0"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="76" count="26" type="cond" truecount="1" falsecount="1"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="79" count="26" type="cond" truecount="2" falsecount="0"/>
+        <line num="80" count="24" type="stmt"/>
+        <line num="82" count="26" type="stmt"/>
+        <line num="84" count="28" type="stmt"/>
+        <line num="88" count="319" type="stmt"/>
+        <line num="90" count="319" type="stmt"/>
+        <line num="91" count="319" type="stmt"/>
+        <line num="93" count="319" type="stmt"/>
+      </file>
+    </package>
     <package name="slider.interfaces">
-      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="color.ts" path="/home/igor/Документы/Slider/src/slider/interfaces/color.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="8" type="stmt"/>
+      </file>
       <file name="standardOptions.ts" path="/home/igor/Документы/Slider/src/slider/interfaces/standardOptions.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="4" count="8" type="stmt"/>
