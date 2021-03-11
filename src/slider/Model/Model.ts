@@ -26,7 +26,7 @@ class Model {
       ...validateMinMaxStep,
     };
 
-    this.emitter.emit('newData', this.state);
+    this.emitter.emit('newData', this.state); 
   }
 
   private init(options: Options): Options {
@@ -41,11 +41,8 @@ class Model {
       step,
     } = options;
 
-    if (step < 1) options.step = 1;
+    if (step <= 0) options.step = 0.1;
 
-    const maxStep = Math.abs(max) / 2;
-
-    if (step > maxStep) options.step = maxStep;
 
     if (max <= min && max < 0) {
       options.min = min - step;

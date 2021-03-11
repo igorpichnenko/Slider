@@ -184,19 +184,6 @@ describe('Rollers', () => {
     expect(tooltips[0].innerHTML).toBe(`${view.state.from.toLocaleString('de-DE')}${view.state.postfix}`);
     expect(tooltips[1].innerHTML).toBe(`${view.state.to.toLocaleString('de-DE')}${view.state.postfix}`);
   });
-  test('if separate = " ", then the result should be equal to "undefined" of the locale', () => {
-    const tooltips = view.slider.querySelectorAll('.slider__tooltip');
-
-    view.upData({
-      separate: ' ',
-      max: 10000,
-      from: 1000,
-      to: 5000,
-    });
-
-    expect(tooltips[0].innerHTML).toBe(`${view.state.from.toLocaleString(undefined)}${view.state.postfix}`);
-    expect(tooltips[1].innerHTML).toBe(`${view.state.to.toLocaleString(undefined)}${view.state.postfix}`);
-  });
 
   test('isSeparate = false then there should be no separator', () => {
     const tooltips = view.slider.querySelectorAll('.slider__tooltip');

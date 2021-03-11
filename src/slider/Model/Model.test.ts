@@ -48,7 +48,7 @@ describe('Model', () => {
     expect(model.state.min).toBe(newOptions.min);
     expect(model.state.max).toBe(newOptions.min + newOptions.step);
   });
-  test('step cannot be less than 1', () => {
+  test('step cannot be less than 0.1', () => {
     const newOptions: Options = {
       ...standardOptions,
       min: 45,
@@ -56,21 +56,9 @@ describe('Model', () => {
       step: 0,
     };
     const model = new Model(newOptions);
-    expect(model.state.step).toBe(1);
+    expect(model.state.step).toBe(0.1);
   });
-  test('step cannot be more than 50%', () => {
-    const newOptions: Options = {
-      ...standardOptions,
-      min: 0,
-      max: 102,
-      step: 54,
-    };
-    const { max } = newOptions;
-    const maxStep = Math.abs(max) / 2;
-    const model = new Model(newOptions);
-    expect(model.state.step).toBe(maxStep);
-    expect(model.state.step).toBe(51);
-  });
+
   test('max is always 1 step more than min', () => {
     const newOptions: Options = {
       ...standardOptions,

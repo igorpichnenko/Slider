@@ -41,13 +41,13 @@ describe('Demo', () => {
     const newDemo: Demo = new Demo(newPresenter);
     expect(newDemo.state).toStrictEqual(newOptions);
   });
-  test('step must not be less than 1', () => {
+  test('step must not be less than 0.1', () => {
     const stepInput = demo.demoTools.querySelector('.js-step') as HTMLInputElement;
 
     stepInput.value = '-1';
     stepInput.dispatchEvent(new InputEvent('change'));
 
-    expect(demo.state.step).toBe(1);
+    expect(demo.state.step).toBe(0.1);
   });
 
   test('step must change', () => {

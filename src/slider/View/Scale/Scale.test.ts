@@ -153,19 +153,6 @@ describe('Scale', () => {
     const newOptions = {
       ...standardOptions,
       max: 10000,
-    };
-
-    const newView = new View(newOptions, wrap);
-
-    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
-
-    expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString()}${newView.state.scalePostfix}`);
-  });
-
-  test('there is a separator by default', () => {
-    const newOptions = {
-      ...standardOptions,
-      max: 10000,
       isSeparate: false,
     };
 
@@ -202,19 +189,7 @@ describe('Scale', () => {
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString('en-US')}${newView.state.scalePostfix}`);
   });
-  test('if separate = " ", then the result should be equal to "undefined" of the locale', () => {
-    const newOptions = {
-      ...standardOptions,
-      max: 10000,
-      separate: ' ',
-    };
 
-    const newView = new View(newOptions, wrap);
-
-    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
-
-    expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString(undefined)}${newView.state.scalePostfix}`);
-  });
 
   test('must correctly read the incrimination', () => {
     const currentValue: number = scale.getIncrement(viewState);

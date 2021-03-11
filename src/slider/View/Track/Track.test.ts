@@ -127,8 +127,8 @@ describe('Rollers', () => {
       max: 10000,
     });
 
-    expect(out[0].innerHTML).toBe(`${view.state.min.toLocaleString()}${view.state.trackPostfix}`);
-    expect(out[1].innerHTML).toBe(`${view.state.max.toLocaleString()}${view.state.trackPostfix}`);
+    expect(out[0].innerHTML).toBe(`${view.state.min.toLocaleString('en-US')}${view.state.trackPostfix}`);
+    expect(out[1].innerHTML).toBe(`${view.state.max.toLocaleString('en-US')}${view.state.trackPostfix}`);
   });
 
   test('isSeparate = false, then values ​​without a separator should be obtained', () => {
