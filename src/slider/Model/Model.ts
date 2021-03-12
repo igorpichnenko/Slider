@@ -96,8 +96,6 @@ class Model {
       options.from = min;
     }
 
-    
-
     if (from > 0) {
       if (isMinMaxZero) {
         options.from = min;
