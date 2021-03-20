@@ -1,193 +1,190 @@
-.slider_horizontal{
+.slider_horizontal {
   width: 100%;
 }
-.slider_vertical{
+.slider_vertical {
   height: 100%;
 }
 .slider {
- position: relative;
+  position: relative;
 
-&__roller {
-  position: absolute;
-  cursor: pointer;
-  z-index: 3;
-  transition: transform 0.25s;
-  background-color: green;
-  border: 2px solid #fff;
-  border-radius: 10px;
-  width: 12px;
-  height: 12px;
-  opacity: .7;
-}
+  &__roller {
+    position: absolute;
+    cursor: pointer;
+    z-index: 3;
+    transition: transform 0.25s;
+    background-color: green;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    width: 12px;
+    height: 12px;
+    opacity: 0.7;
+  }
 
-&__tooltip{
-  position: absolute;
-  font-family: Montserrat,Arial, sans-serif;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: normal;
-  color: rgba(31,32,65,0.5);
-  border-radius: 10px;
-  padding: 0 2px;
-  white-space: nowrap;
-  display: inline-block
-}
+  &__tooltip {
+    position: absolute;
+    font-family: Montserrat, Arial, sans-serif;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: normal;
+    color: rgba(31, 32, 65, 0.5);
+    border-radius: 10px;
+    padding: 0 2px;
+    white-space: nowrap;
+    display: inline-block;
+  }
 
-&__tooltip_horizontal{
-transform: translateY(-125%);
-}
+  &__tooltip_horizontal {
+    transform: translateY(-125%);
+  }
 
-&__tooltip_vertical{
-  top: -2px;
-  left: 14px;
-}
-&__tooltip_display-none{
-  display: none;
-}
+  &__tooltip_vertical {
+    top: -2px;
+    left: 14px;
+  }
+  &__tooltip_display-none {
+    display: none;
+  }
 
-&__tooltip_bg{
-  color: white;
-}
-&__roller_horizontal {
-  transform: translateX(-50%)
-}
+  &__tooltip_bg {
+    color: white;
+  }
+  &__roller_horizontal {
+    transform: translateX(-50%);
+  }
 
-&__roller_vertical {
- transform: translateY(50%)
-}
-&__track {
-  position: absolute;
-  border-radius: 5px;
-  cursor: default;
-  border: rgba(31,32,65,0.25) 1px solid;
-  box-sizing: border-box;
-}
+  &__roller_vertical {
+    transform: translateY(50%);
+  }
+  &__track {
+    position: absolute;
+    border-radius: 5px;
+    cursor: default;
+    border: rgba(31, 32, 65, 0.25) 1px solid;
+    box-sizing: border-box;
+  }
 
-&__out{
-  font-family: Montserrat,Arial, sans-serif;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: normal;
-  color: rgba(31,32,65,0.5);
-  position: absolute;
-}
+  &__out {
+    font-family: Montserrat, Arial, sans-serif;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: normal;
+    color: rgba(31, 32, 65, 0.5);
+    position: absolute;
+  }
 
-&__out-start_horizontal{
-  left: -5px;
-  bottom: 22px;
-}
-&__out-end_horizontal{
-  right: -5px;
-  bottom: 22px;
-}
-&__out-start_vertical{
-  bottom: -22px;
-  left: -2px;
-}
- &__out-end_vertical{
-  top: -22px;
-  left: -2px;
-}
+  &__out-start_horizontal {
+    left: -5px;
+    bottom: 22px;
+  }
+  &__out-end_horizontal {
+    right: -5px;
+    bottom: 22px;
+  }
+  &__out-start_vertical {
+    bottom: -22px;
+    left: -2px;
+  }
+  &__out-end_vertical {
+    top: -22px;
+    left: -2px;
+  }
 
-&__track_horizontal {
-  top: 4px;
-  width: 100%;
-  height: 5px;
-}
+  &__track_horizontal {
+    top: 4px;
+    width: 100%;
+    height: 5px;
+  }
 
-&__track_vertical {
-  top: 0;
-  left: 5px;
-  width: 5px;
-  height: 100%;
-}
+  &__track_vertical {
+    top: 0;
+    left: 5px;
+    width: 5px;
+    height: 100%;
+  }
 
-&__bar {
-   z-index: 1;
-  position: absolute;
-	border-radius: 5px;
-	background-color: green;
-	opacity: .5;
-}
-&__bar_horizontal {
-  height: 5px;
-  top: 4px;
-  
-}
-&__bar_vertical {
-  width: 5px;
-  left: 5px;
-}
-&__scale {
-  position: relative
-}
+  &__bar {
+    z-index: 1;
+    position: absolute;
+    border-radius: 5px;
+    background-color: green;
+    opacity: 0.5;
+  }
+  &__bar_horizontal {
+    height: 5px;
+    top: 4px;
+  }
+  &__bar_vertical {
+    width: 5px;
+    left: 5px;
+  }
+  &__scale {
+    position: relative;
+  }
 
-&__scale_none{
-  display: none;
-}
+  &__scale_none {
+    display: none;
+  }
 
-&__scale_horizontal {
-  top: 30px;
-  width: 100%;
- 
-}
+  &__scale_horizontal {
+    top: 30px;
+    width: 100%;
+  }
 
-&__scale_vertical {
-  left: 60px;
-  height: 100%;
-}
+  &__scale_vertical {
+    left: 60px;
+    height: 100%;
+  }
 
-&__scale-value {
-  position: absolute;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  font-family: Montserrat,Arial, sans-serif;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: normal;
-  color: rgba(31,32,65,0.5);
-   z-index: 2;
-}
-&__scale-value_fs-0{
-  font-size: 0;
-}
-&__scale-value_fs-normal{
-  font-size: 12px;
-}
+  &__scale-value {
+    position: absolute;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    font-family: Montserrat, Arial, sans-serif;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: normal;
+    color: rgba(31, 32, 65, 0.5);
+    z-index: 2;
+  }
+  &__scale-value_fs-0 {
+    font-size: 0;
+  }
+  &__scale-value_fs-normal {
+    font-size: 12px;
+  }
 
-&__scale-value:hover {
-  color: var(--scale-color);
-}
+  &__scale-value:hover {
+    color: var(--scale-color);
+  }
 
-&__scale-value_horizontal {
- transform: translateX(-50%)
-}
+  &__scale-value_horizontal {
+    transform: translateX(-50%);
+  }
 
-&__scale-value_vertical {
-  transform: translateY(50%)
-}
- 
+  &__scale-value_vertical {
+    transform: translateY(50%);
+  }
 }
 
-.slider__division-value:before{
+.slider__division-value:before {
   content: '';
   position: absolute;
   width: 1px;
   height: 5px;
-  background-color: rgba(31,32,65,0.5);
+  background-color: rgba(31, 32, 65, 0.5);
   cursor: pointer;
- transform: translate(-2px, -26px) ;
+  transform: translate(-2px, -26px);
 }
-.slider_vertical .slider__division-value:before{
+.slider_vertical .slider__division-value:before {
   transform: translate(-52.8px, 7px) rotate(90deg);
 }
-.slider__division-value_0:before{
-  transform: translate(2px, -26px) ;
+.slider__division-value_0:before {
+  transform: translate(2px, -26px);
 }
-.slider_vertical .slider__division-value_0:before{
+.slider_vertical .slider__division-value_0:before {
   transform: translate(-52.8px, 3px) rotate(90deg);
 }

@@ -2,32 +2,30 @@
   margin: 0;
   padding: 0;
 }
-.js-test-slider{
+.js-test-slider {
   padding: 40px;
   width: 266px;
 }
 
-.js-custom-from, .js-custom-to{
+.js-custom-from,
+.js-custom-to {
   margin-left: 5px;
   width: 50px;
   border-radius: 4px;
   outline: none;
-  
 }
 
-.js-custom-btn, {
+.js-custom-btn {
   margin: 20px;
   border: unset;
   background-color: #fff;
   cursor: pointer;
   outline: unset;
 }
-.js-custom-demo{
- 
+.js-custom-demo {
   margin: 20px;
-  
 }
-.js-title{
+.js-title {
   margin-top: 40px;
   text-align: center;
 }
@@ -45,7 +43,7 @@
 
 .js-demo-pages {
   padding: 10%;
- overflow: hidden;
+  overflow: hidden;
   display: flex;
   flex-wrap: wrap;
   gap: 100px;
@@ -91,13 +89,13 @@
   margin-left: 100px;
 }
 
-.js-btn-view,.js-btn-scale {
+.js-btn-view,
+.js-btn-scale {
   margin-left: 0px;
   margin-bottom: 10px;
 }
 .js-menu {
   display: none;
-
 }
 .js-menu-navigate {
   position: relative;
@@ -114,7 +112,9 @@
 .js-labels {
   font-size: 12px;
 }
-.js-scale-postfix, .js-track-postfix, .js-marker {
+.js-scale-postfix,
+.js-track-postfix,
+.js-marker {
   width: 30px;
 }
 .js-gradient-deg {
@@ -124,7 +124,11 @@
   display: flex;
 }
 
-
-.js-label-postfix{
+.js-label-postfix {
   margin-top: 10px;
+}
+
+.js-checkbox {
+  width: 15px;
+  height: 15px;
 }
