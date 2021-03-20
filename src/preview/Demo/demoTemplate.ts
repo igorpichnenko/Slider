@@ -6,6 +6,11 @@ const demoTemplate = `
    <label class="js-labels js-label_checkbox">V/H Вид
    <input type="checkbox" class="js-checkbox js-inputs js-orientation" name="orientation" />
    </label>
+   <div class="js-items">
+   <label class="js-labels js-label_checkbox">Показать/Скрыть Tooltip
+   <input type="checkbox" class="js-checkbox js-inputs js-isLabel" name="label"/>
+   </label>
+   </div>
    </div>
      <div class="js-items">
    <label class="js-labels js-label_checkbox">Range/Single
@@ -15,14 +20,6 @@ const demoTemplate = `
    
    <button class="js-btn js-btn-view">Настройки отображения</button>
    <div class="js-menu js-menu-view">
-
-   <div class="js-items">
-   <label class="js-labels js-label_checkbox">Показать/Скрыть Tooltip
-   <input type="checkbox" class="js-checkbox js-inputs js-isLabel" name="label"/>
-   </label>
-   </div>
-   
- 
    
    <div class="js-items">
    <label class="js-labels js-label_checkbox">Показать min/max
