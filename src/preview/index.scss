@@ -8,6 +8,7 @@ body {
   -khtml-user-select: none;
   user-select: none;
 }
+
 .js-test-slider {
   padding: 40px;
   width: 266px;
@@ -28,9 +29,11 @@ body {
   cursor: pointer;
   outline: unset;
 }
+
 .js-custom-demo {
   margin: 20px;
 }
+
 .js-title {
   margin-top: 40px;
   text-align: center;
@@ -54,15 +57,18 @@ body {
   flex-wrap: wrap;
   gap: 100px;
 }
+
 .js-title {
   margin-bottom: 10px;
 }
+
 .js-inputs {
   margin-left: 5px;
   width: 50px;
   border-radius: 4px;
   outline: none;
 }
+
 .demoTools {
   top: 15%;
   left: 35%;
@@ -91,6 +97,7 @@ body {
   margin-left: 40px;
   cursor: pointer;
 }
+
 .js-btn-main {
   margin-left: 100px;
 }
@@ -100,9 +107,11 @@ body {
   margin-left: 0px;
   margin-bottom: 10px;
 }
+
 .js-menu {
   display: none;
 }
+
 .js-menu-navigate {
   position: relative;
   height: 60px;
@@ -112,20 +121,25 @@ body {
 .js-close-menu {
   display: block;
 }
+
 .js-items {
   margin-top: 5px;
 }
+
 .js-labels {
   font-size: 12px;
 }
+
 .js-scale-postfix,
 .js-track-postfix,
 .js-marker {
   width: 30px;
 }
+
 .js-gradient-deg {
   width: 20px;
 }
+
 .js-label_checkbox {
   display: flex;
 }

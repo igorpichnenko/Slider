@@ -181,13 +181,13 @@ class View {
 
   private drag(target: HTMLElement, event: any) {
     const {
-      orientation
+      orientation,
     } = this.state;
     event.preventDefault();
     let mouseValue = 0;
-    
+
     if (!/tooltip || roller/.test(target.className)) return;
-   
+
     if (orientation === 'horizontal') {
       if (event.type === 'touchmove') {
         mouseValue = this.convertPxToValue(event.touches[0].clientX);
@@ -200,7 +200,6 @@ class View {
       mouseValue = this.convertPxToValue(event.clientY);
     }
     this.updatePosition(mouseValue, target);
-  
   }
 
   private getTargetType(target: HTMLElement): string {

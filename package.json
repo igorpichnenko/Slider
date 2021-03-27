@@ -8,7 +8,9 @@
     "test": "jest --collect-coverage",
     "watch": "jest --collect-coverage --watch",
     "deploy": "gh-pages -d dist",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "slint": "stylelint src/**/**/*.scss",
+    "flint": "stylelint src/**/**/*.scss --fix"
   },
   "repository": {
     "type": "git",
@@ -37,7 +39,12 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-airbnb-typescript": "^8.0.2",
     "eslint-plugin-fsd": "^1.0.1",
-    "eslint-plugin-import": "^2.22.0"
+    "eslint-plugin-import": "^2.22.0",
+    "stylelint": "^12.0.0",
+    "stylelint-config-airbnb": "0.0.0",
+    "stylelint-order": "^4.0.0",
+    "stylelint-scss": "^3.13.0",
+    "stylelint-webpack-plugin": "^1.1.1"
   },
   "dependencies": {
     "@types/jquery": "^3.5.0",

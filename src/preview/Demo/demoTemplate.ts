@@ -73,7 +73,7 @@ const demoTemplate = `
    </label>
    </div>
    <div class="js-items">
-   <label class="js-labels">Min
+   <label class="js-labels">Min 
    <input type="number" class="js-inputs js-min" name="min"/>
    </label>
    </div>

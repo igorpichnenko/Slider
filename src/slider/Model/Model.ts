@@ -72,10 +72,10 @@ class Model {
       options.to = max;
     }
 
-    const maxMinZero = max < 0 && min === 0
-    const isMinMaxZero = min < 0 && max < 0
-    
-    if (from > max) options.from = max - step
+    const maxMinZero = max < 0 && min === 0;
+    const isMinMaxZero = min < 0 && max < 0;
+
+    if (from > max) options.from = max - step;
 
     if (from < min) options.from = min;
     if (to > max) options.to = max;

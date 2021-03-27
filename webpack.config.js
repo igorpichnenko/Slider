@@ -1,51 +1,49 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const {
-  CleanWebpackPlugin
-} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const ghpages = require('gh-pages');
 
-
 module.exports = {
   entry: {
-    'index': './src/preview/index.ts',
-    'slider': './src/slider/slider.ts'
+    index: './src/preview/index.ts',
+    slider: './src/slider/slider.ts',
   },
   resolve: {
-    extensions: ['.js',
-      '.ts',
-      '.json', '.scss', '.css'],
+    extensions: ['.js', '.ts', '.json', '.scss', '.css'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: {
-        loader: "babel-loader"
-      }
-    },
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
       {
         test: /\.s?css$/,
-        use: ['style-loader',
+        use: [
+          'style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => autoprefixer({
-                overrideBrowserslist: ['last 4 versions', '> 1%']
-              }),
-
-            }
+              plugins: () =>
+                autoprefixer({
+                  overrideBrowserslist: ['last 4 versions', '> 1%'],
+                }),
+            },
           },
-          'sass-loader']
+          'sass-loader',
+        ],
       },
       {
         test: /\.tsx?$/,
@@ -56,23 +54,24 @@ module.exports = {
         test: /\.pug$/,
         loader: 'pug-loader',
         options: {
-          pretty: true
-        }
+          pretty: true,
+        },
       },
       {
         test: /\.(jpg|png|svg)$/,
         loader: 'file-loader',
         options: {
-          name: 'images/[name].[ext]'
-        }
+          name: 'public/images/[name].[ext]',
+        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|svg)$/,
         loader: 'file-loader',
         options: {
-          name: 'fonts/[name].[ext]?[hash]'
-        }
-      }]
+          name: 'fonts/[name].[ext]?[hash]',
+        },
+      },
+    ],
   },
 
   plugins: [
@@ -84,8 +83,8 @@ module.exports = {
       inject: false,
       hash: true,
       template: './src/preview/index.pug',
-      favicon: "./src/images/favicon.png",
-      filename: 'index.html'
+      favicon: './src/public/images/favicon.png',
+      filename: 'index.html',
     }),
   ],
   devtool: 'inline-source-map',
@@ -93,7 +92,7 @@ module.exports = {
     stats: 'errors-only',
     index: 'index.html',
     open: true,
-  }
+  },
 };
 
 ghpages.publish('dist', function (err) {});
