@@ -11,7 +11,7 @@ class Scale {
   private create(options: ViewState): void {
     const { slider, orientation } = options;
     const scale = document.createElement('div');
-    scale.className = `slider__scale slider__scale_${orientation}`;
+    scale.className = `slider__scale slider__scale_${orientation} js-slider__scale js-slider__scale_${orientation}`;
 
     slider.append(scale);
 
@@ -22,7 +22,7 @@ class Scale {
 
   public upData(options: ViewState) {
     const { slider } = options;
-    const scale = slider.querySelector('.slider__scale')! as HTMLElement;
+    const scale = slider.querySelector('.js-slider__scale')! as HTMLElement;
 
     this.options = { ...this.options, ...options };
 
@@ -35,7 +35,7 @@ class Scale {
       onlyDivisions, slider, color,
     } = options;
 
-    const scaleMarkers = slider.querySelectorAll<HTMLElement>('.slider__scale-value')!;
+    const scaleMarkers = slider.querySelectorAll<HTMLElement>('.js-slider__scale-value')!;
 
     scaleMarkers.forEach((scaleMarker) => {
       if (onlyDivisions === true) {
@@ -99,14 +99,14 @@ class Scale {
 
     let { scalePostfix } = options;
 
-    value = Number(value.toFixed(1))
-    
+    value = Number(value.toFixed(1));
+
     const scaleMarker = document.createElement('span');
-    scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
+    scaleMarker.className = `slider__scale-value slider__scale-value_${orientation} js-slider__scale-value js-slider__scale-value_${orientation}`;
     const divisionValue = document.createElement('span');
     const division = document.createElement('span');
-    divisionValue.className = `slider__division-value slider__division-value_${val}`;
-    division.className = 'slider__division';
+    divisionValue.className = `slider__division-value js-slider__division-value slider__division-value_${val}`;
+    division.className = 'slider__division js-slider__division';
     scaleMarker.append(divisionValue);
     scaleMarker.append(division);
 

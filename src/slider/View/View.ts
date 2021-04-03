@@ -203,7 +203,7 @@ class View {
   }
 
   private getTargetType(target: HTMLElement): string {
-    const rollers = this.slider.querySelectorAll('.slider__roller');
+    const rollers = this.slider.querySelectorAll('.js-slider__roller');
 
     if (rollers[0]) {
       if (rollers[0].contains(target)) return 'from';
@@ -233,10 +233,10 @@ class View {
 
     const del = value.split(scalePostfix).join('');
 
-    position = del.split(separate).join('')
+    position = del.split(separate).join('');
 
-   const result = String(position).split(',').join('.')
-   
+    const result = String(position).split(',').join('.');
+
     this.updatePosition(Number(result));
   }
 

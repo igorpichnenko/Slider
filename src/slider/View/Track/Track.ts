@@ -10,7 +10,7 @@ class Track {
 
     const track = document.createElement('div');
 
-    track.className = `slider__track slider__track_${orientation}`;
+    track.className = `slider__track slider__track_${orientation} js-slider__track js-slider__track_${orientation}`;
 
     slider.append(track);
     this.createOutElement(track, options);
@@ -20,8 +20,8 @@ class Track {
     const { orientation } = options;
     const startValue = document.createElement('div');
     const endValue = document.createElement('div');
-    startValue.className = `slider__out slider__out-start slider__out-start_${orientation}`;
-    endValue.className = `slider__out slider__out-end slider__out-end_${orientation}`;
+    startValue.className = `slider__out slider__out-start slider__out-start_${orientation} js-slider__out js-slider__out-start js-slider__out-start_${orientation}`;
+    endValue.className = `slider__out slider__out-end slider__out-end_${orientation} js-slider__out js-slider__out-end js-slider__out-end_${orientation}`;
     track.append(startValue);
     track.append(endValue);
 
@@ -87,8 +87,8 @@ class Track {
   public upData(options: ViewState) {
     const { slider } = options;
 
-    const outStart = slider.querySelector('.slider__out-start')! as HTMLElement;
-    const outEnd = slider.querySelector('.slider__out-end')! as HTMLElement;
+    const outStart = slider.querySelector('.js-slider__out-start')! as HTMLElement;
+    const outEnd = slider.querySelector('.js-slider__out-end')! as HTMLElement;
 
     this.setStartEndTrackOut(outStart, outEnd, options);
   }

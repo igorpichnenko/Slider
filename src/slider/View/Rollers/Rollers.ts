@@ -1,4 +1,6 @@
-import { ViewState } from '../../interfaces/interfaces';
+import {
+  ViewState,
+} from '../../interfaces/interfaces';
 
 class Rollers {
   constructor(options: ViewState) {
@@ -6,16 +8,19 @@ class Rollers {
   }
 
   private create(options: ViewState) {
-    const { slider, orientation } = options;
+    const {
+      slider,
+      orientation,
+    } = options;
 
     const rollerFirst = document.createElement('div');
-    rollerFirst.className = `slider__roller slider__roller_first slider__roller_${orientation}`;
+    rollerFirst.className = `slider__roller js-slider__roller slider__roller_first js-slider__roller_first slider__roller_${orientation} js-slider__roller_${orientation}`;
 
     const rollerSecond = document.createElement('div');
 
-    rollerSecond.className = `slider__roller_second
-      slider__roller
-      slider__roller_${orientation}`;
+    rollerSecond.className = `slider__roller_second js-slider__roller js-slider__roller_second
+    slider__roller
+    slider__roller_${orientation} js-slider__roller_${orientation}`;
 
     slider.append(rollerFirst);
     slider.append(rollerSecond);
@@ -27,12 +32,14 @@ class Rollers {
   }
 
   private createTooltip(rollerFirst: HTMLElement, rollerSecond: HTMLElement, options: ViewState) {
-    const { orientation } = options;
+    const {
+      orientation,
+    } = options;
 
     const fistTooltip = document.createElement('div');
-    fistTooltip.className = `slider__tooltip_first slider__tooltip slider__tooltip_${orientation}`;
+    fistTooltip.className = `slider__tooltip_first js-slider__tooltip_first js-slider__tooltip slider__tooltip slider__tooltip_${orientation} js-slider__tooltip_${orientation}`;
     const secondTooltip = document.createElement('div');
-    secondTooltip.className = `slider__tooltip_second slider__tooltip slider__tooltip_${orientation}`;
+    secondTooltip.className = `slider__tooltip_second js-slider__tooltip js-slider__tooltip_second slider__tooltip slider__tooltip_${orientation} js-slider__tooltip_${orientation}`;
 
     rollerFirst.append(fistTooltip);
     rollerSecond.append(secondTooltip);
@@ -46,10 +53,13 @@ class Rollers {
       to,
       from,
       isPostfix,
-      isLabel, isPrefix,
+      isLabel,
+      isPrefix,
     } = options;
 
-    let { postfix } = options;
+    let {
+      postfix,
+    } = options;
 
     if (isPostfix === false) {
       postfix = '';
@@ -72,8 +82,12 @@ class Rollers {
   }
 
   private separate(value: number, options: ViewState): string {
-    const { isSeparate } = options;
-    let { separate } = options;
+    const {
+      isSeparate,
+    } = options;
+    let {
+      separate,
+    } = options;
     let val = '';
 
     if (isSeparate === false) {
@@ -97,18 +111,21 @@ class Rollers {
   private setColor(fistTooltip: HTMLElement,
     secondTooltip: HTMLElement, options: ViewState) {
     const {
-      color, gradient,
-      isColorOut, allColors, isChangeColor, isLabel,
+      color,
+      gradient,
+      isColorOut,
+      allColors,
+      isChangeColor,
+      isLabel,
     } = options;
 
     /**
-     * Задумка сделать обратный конвектор из 16-ричного в обычный вид, например #fff в
+    * Задумка сделать обратный конвектор из 16-ричного в обычный вид, например #fff в
     white, и в дальнейшем соьирался дополнять перевод
     * */
     let newColor = allColors[color];
     let newGradient = allColors[gradient];
-    // console.log(color)
-    // console.log(newColor)
+
     if (newGradient === undefined) {
       newGradient = gradient;
     }
@@ -135,7 +152,11 @@ class Rollers {
 
   private updataColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
     const {
-      color, isGradient, gradient, isChangeColor, gradientDeg,
+      color,
+      isGradient,
+      gradient,
+      isChangeColor,
+      gradientDeg,
     } = options;
     if (isChangeColor === true) {
       if (isGradient === true) {
@@ -152,7 +173,8 @@ class Rollers {
     rollerSecond: HTMLElement): void {
     const {
       to,
-      from, orientation,
+      from,
+      orientation,
     } = options;
 
     const pxTo = this.convertValueToPx(to, options);
@@ -171,12 +193,14 @@ class Rollers {
   }
 
   public upData(options: ViewState) {
-    const { slider } = options;
+    const {
+      slider,
+    } = options;
 
-    const rollerFirst = slider.querySelector('.slider__roller_first')! as HTMLElement;
-    const rollerSecond = slider.querySelector('.slider__roller_second')! as HTMLElement;
-    const fistTooltip = slider.querySelector('.slider__tooltip_first')! as HTMLElement;
-    const secondTooltip = slider.querySelector('.slider__tooltip_second')! as HTMLElement;
+    const rollerFirst = slider.querySelector('.js-slider__roller_first')! as HTMLElement;
+    const rollerSecond = slider.querySelector('.js-slider__roller_second')! as HTMLElement;
+    const fistTooltip = slider.querySelector('.js-slider__tooltip_first')! as HTMLElement;
+    const secondTooltip = slider.querySelector('.js-slider__tooltip_second')! as HTMLElement;
 
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);
@@ -206,7 +230,9 @@ class Rollers {
   }
 
   private toggleRollers(options: ViewState, element: HTMLElement): void {
-    const { type } = options;
+    const {
+      type,
+    } = options;
 
     if (type === 'single') {
       element.style.display = 'none';
@@ -216,4 +242,6 @@ class Rollers {
   }
 }
 
-export { Rollers };
+export {
+  Rollers,
+};

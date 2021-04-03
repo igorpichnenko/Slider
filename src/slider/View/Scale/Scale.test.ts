@@ -31,7 +31,7 @@ describe('Scale', () => {
   });
 
   test('should be initialized and visible', () => {
-    const sliderScale = view.slider.querySelector('.slider__scale_horizontal');
+    const sliderScale = view.slider.querySelector('.js-slider__scale_horizontal');
 
     expect(sliderScale).toBeVisible();
   });
@@ -44,14 +44,14 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const sliderScale = newView.slider.querySelector('.slider__scale_vertical');
+    const sliderScale = newView.slider.querySelector('.js-slider__scale_vertical');
 
     expect(sliderScale).toBeVisible();
   });
 
   test('should be hidden when isScale = false ', () => {
     view.upData({ isScale: true });
-    const sliderScale = view.slider.querySelector('.slider__scale');
+    const sliderScale = view.slider.querySelector('.js-slider__scale');
 
     expect(sliderScale).toBeVisible();
 
@@ -61,7 +61,7 @@ describe('Scale', () => {
 
   test('scale divisions should be hidden', () => {
     view.upData({ isScale: true });
-    const scaleMarker = view.slider.querySelector('.slider__scale-value');
+    const scaleMarker = view.slider.querySelector('.js-slider__scale-value');
 
     expect(scaleMarker).toBeVisible();
 
@@ -70,7 +70,7 @@ describe('Scale', () => {
   });
 
   test('scale divisions must be created', () => {
-    const scaleMarker = view.slider.querySelector('.slider__scale-value');
+    const scaleMarker = view.slider.querySelector('.js-slider__scale-value');
 
     expect(scaleMarker).toBeVisible();
   });
@@ -83,18 +83,18 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.slider__scale-value_vertical');
+    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value_vertical');
 
     expect(scaleMarker).toBeVisible();
   });
 
   test('if the scale element is one, then by condition it is equal to max', () => {
-    const scaleMarker = view.slider.querySelector('.slider__scale-value')! as HTMLElement;
+    const scaleMarker = view.slider.querySelector('.js-slider__scale-value')! as HTMLElement;
 
     expect(scaleMarker.innerHTML).toBe(`${view.state.max}${view.state.scalePostfix}`);
   });
   test('clicking on the scale should return the scale value', () => {
-    const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
+    const scaleMarker = view.slider.querySelector('.js-slider__scale-value') as HTMLElement;
 
     const value = scaleMarker.innerHTML;
 
@@ -111,13 +111,13 @@ describe('Scale', () => {
   test('if onlyDivisions = true then the scale division must have the fs-0 modifier', () => {
     view.upData({ onlyDivisions: true });
 
-    const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
+    const scaleMarker = view.slider.querySelector('.js-slider__scale-value') as HTMLElement;
 
     expect(scaleMarker.classList.contains('slider__scale-value_fs-0')).toBe(true);
   });
 
   test('should be postfix by default', () => {
-    const scaleMarker = view.slider.querySelector('.slider__scale-value') as HTMLElement;
+    const scaleMarker = view.slider.querySelector('.js-slider__scale-value') as HTMLElement;
 
     expect(scaleMarker.innerHTML).toBe(`${view.state.max}${view.state.scalePostfix}`);
   });
@@ -131,7 +131,7 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value')!;
 
     expect(scaleMarker.innerHTML).toBe(String(newView.state.max));
   });
@@ -144,7 +144,7 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value')!;
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.scalePostfix}${newView.state.max}`);
   });
@@ -158,7 +158,7 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value')!;
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toString()}${newView.state.scalePostfix}`);
   });
@@ -172,7 +172,7 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value')!;
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString('de-DE')}${newView.state.scalePostfix}`);
   });
@@ -185,7 +185,7 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.slider__scale-value')!;
+    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value')!;
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString('en-US')}${newView.state.scalePostfix}`);
   });

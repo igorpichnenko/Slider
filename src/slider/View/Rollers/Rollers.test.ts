@@ -21,7 +21,7 @@ describe('Rollers', () => {
   });
 
   test('2 rollers must be initialized', () => {
-    const rollers = view.slider.querySelectorAll('.slider__roller');
+    const rollers = view.slider.querySelectorAll('.js-slider__roller');
 
     expect(rollers.length).toBe(2);
     expect(rollers[0]).toBeVisible();
@@ -44,7 +44,7 @@ describe('Rollers', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const tooltips = newView.slider.querySelectorAll('.slider__tooltip_vertical');
+    const tooltips = newView.slider.querySelectorAll('.js-slider__tooltip_vertical');
 
     expect(tooltips.length).toBe(2);
     expect(tooltips[0]).toBeVisible();
@@ -59,7 +59,7 @@ describe('Rollers', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const rollers = newView.slider.querySelectorAll('.slider__roller_vertical');
+    const rollers = newView.slider.querySelectorAll('.js-slider__roller_vertical');
 
     expect(rollers.length).toBe(2);
     expect(rollers[0]).toBeVisible();
@@ -77,7 +77,7 @@ describe('Rollers', () => {
 
   test('when type = single then only the first roller should be visible', () => {
     view.upData({ type: 'single' });
-    const rollers = view.slider.querySelectorAll('.slider__roller');
+    const rollers = view.slider.querySelectorAll('.js-slider__roller');
 
     expect(rollers[0]).toBeVisible();
     expect(rollers[1]).not.toBeVisible();
@@ -118,8 +118,8 @@ describe('Rollers', () => {
   });
 
   test('if isColorOut=true then tooltips should be colored with the variable color', () => {
-    const firstTooltip = view.slider.querySelector('.slider__tooltip_first') as HTMLElement;
-    const secondTooltip = view.slider.querySelector('.slider__tooltip_second') as HTMLElement;
+    const firstTooltip = view.slider.querySelector('.js-slider__tooltip_first') as HTMLElement;
+    const secondTooltip = view.slider.querySelector('.js-slider__tooltip_second') as HTMLElement;
 
     view.upData({ isColorOut: true });
 
@@ -129,7 +129,7 @@ describe('Rollers', () => {
 
   test('when the MouseEvent is fired on the roller, the color update method should be called', () => {
     const spy = jest.spyOn(view, 'convertValueToColor');
-    const rollerFirst = view.slider.querySelector('.slider__roller_first') as HTMLElement;
+    const rollerFirst = view.slider.querySelector('.js-slider__roller_first') as HTMLElement;
 
     rollerFirst.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
     document.dispatchEvent(new MouseEvent('mousemove'));
@@ -139,8 +139,8 @@ describe('Rollers', () => {
   });
 
   test('if isColorOut = "true" then tolltips should change background', () => {
-    const firstTooltip = view.slider.querySelector('.slider__tooltip_first') as HTMLElement;
-    const secondTooltip = view.slider.querySelector('.slider__tooltip_second') as HTMLElement;
+    const firstTooltip = view.slider.querySelector('.js-slider__tooltip_first') as HTMLElement;
+    const secondTooltip = view.slider.querySelector('.js-slider__tooltip_second') as HTMLElement;
 
     view.upData({ isColorOut: true });
 
@@ -149,8 +149,8 @@ describe('Rollers', () => {
   });
 
   test('when isGradient = false then the background of the rollers is colored with variable color', () => {
-    const rollerFirst = view.slider.querySelector('.slider__roller_first') as HTMLElement;
-    const rollerSecond = view.slider.querySelector('.slider__roller_second') as HTMLElement;
+    const rollerFirst = view.slider.querySelector('.js-slider__roller_first') as HTMLElement;
+    const rollerSecond = view.slider.querySelector('.js-slider__roller_second') as HTMLElement;
 
     view.upData({ isGradient: false });
 
@@ -209,8 +209,8 @@ describe('Rollers', () => {
 
     const rollers = new Rollers(state);
 
-    const rollerFirst = view.slider.querySelector('.slider__roller_first') as HTMLElement;
-    const rollerSecond = view.slider.querySelector('.slider__roller_second') as HTMLElement;
+    const rollerFirst = view.slider.querySelector('.js-slider__roller_first') as HTMLElement;
+    const rollerSecond = view.slider.querySelector('.js-slider__roller_second') as HTMLElement;
 
     rollers.moveRollersAtValue(state, rollerFirst, rollerSecond);
 

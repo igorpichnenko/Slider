@@ -19,7 +19,7 @@ describe('Rollers', () => {
   });
 
   test('track horizontal is initialized and visible', () => {
-    const track = view.slider.querySelector('.slider__track_horizontal');
+    const track = view.slider.querySelector('.js-slider__track_horizontal');
     expect(track).toBeVisible();
     expect(view.convertPxToValue).toBeDefined();
   });
@@ -32,7 +32,7 @@ describe('Rollers', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const track = newView.slider.querySelector('.slider__track_vertical');
+    const track = newView.slider.querySelector('.js-slider__track_vertical');
     expect(track).toBeVisible();
   });
 
@@ -52,9 +52,9 @@ describe('Rollers', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const outStart = newView.slider.querySelector('.slider__out-start_vertical') as HTMLElement;
+    const outStart = newView.slider.querySelector('.js-slider__out-start_vertical') as HTMLElement;
 
-    const outEnd = newView.slider.querySelector('.slider__out-end_vertical') as HTMLElement;
+    const outEnd = newView.slider.querySelector('.js-slider__out-end_vertical') as HTMLElement;
 
     expect(outStart).toBeVisible();
     expect(outEnd).toBeVisible();
@@ -71,7 +71,7 @@ describe('Rollers', () => {
 
   test('clicking on the track should update the coordinates', () => {
     const spy = jest.spyOn(view, 'convertPxToValue');
-    const track = view.slider.querySelector('.slider__track') as HTMLElement;
+    const track = view.slider.querySelector('.js-slider__track') as HTMLElement;
     track.click();
 
     expect(spy).toBeCalled();

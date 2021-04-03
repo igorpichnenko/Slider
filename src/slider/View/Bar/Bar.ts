@@ -10,7 +10,7 @@ class Bar {
 
     const bar = document.createElement('div');
 
-    bar.className = `slider__bar slider__bar_${orientation}`;
+    bar.className = `slider__bar slider__bar_${orientation} js-slider__bar js-slider__bar_${orientation}`;
 
     slider.append(bar);
     this.updataColor(options, bar);
@@ -20,7 +20,7 @@ class Bar {
   public upData(options: ViewState) {
     const { slider } = options;
 
-    const bar = slider.querySelector('.slider__bar')! as HTMLElement;
+    const bar = slider.querySelector('.js-slider__bar')! as HTMLElement;
 
     this.updataColor(options, bar);
     this.updataBar(options, bar);
@@ -42,7 +42,7 @@ class Bar {
   private getRollerPositions(options: ViewState): number[] {
     const { slider } = options;
 
-    const rollers = slider.querySelectorAll('.slider__roller');
+    const rollers = slider.querySelectorAll('.js-slider__roller');
 
     const rollersPositions = [this.calculatePosition(rollers[0], options),
       this.calculatePosition(rollers[1], options)];

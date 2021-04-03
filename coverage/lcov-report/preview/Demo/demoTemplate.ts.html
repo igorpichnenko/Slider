@@ -236,7 +236,61 @@
 <a name='L177'></a><a href='#L177'>177</a>
 <a name='L178'></a><a href='#L178'>178</a>
 <a name='L179'></a><a href='#L179'>179</a>
-<a name='L180'></a><a href='#L180'>180</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a>
+<a name='L207'></a><a href='#L207'>207</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -418,182 +472,209 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const demoTemplate = `
 &nbsp;
 &nbsp;
-  &lt;h4  class="js-title"&gt;Панель управления&lt;/h4&gt;
-  &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;V/H Вид
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-orientation" name="orientation" /&gt;
-   &lt;/label&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать/Скрыть Tooltip
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isLabel" name="label"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;/div&gt;
-     &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Range/Single
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isDouble" name="double"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   
-   &lt;button class="js-btn js-btn-view"&gt;Настройки отображения&lt;/button&gt;
-   &lt;div class="js-menu js-menu-view"&gt;
-   
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать min/max
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-minMax" name="minMax"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать from/to
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-fromTo" name="fromTo"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-    &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Добавить/убрать разделитель
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isScaleDel" name="scale"/&gt;
-   &lt;/label&gt;
-     &lt;/div&gt;
-     &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Делитель
-   &lt;input type="text" class="js-inputs js-separate" name="separate"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-    &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Выводить цвета/значения
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isColorOut" name="color"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-  
-   
-   
-   &lt;button type="button" class="js-btn js-btn-scale"&gt;Управление шкалой&lt;/button&gt;
-   &lt;div class="js-menu js-menu-scale"&gt;
-       &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Шкала с делениями/значениями
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-division" name="division"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-      &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать/Скрыть Шкалу
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isScale" name="scale"/&gt;
-   &lt;/label&gt;
-     &lt;/div&gt;
-   &lt;/div&gt;
-     
-   &lt;/div&gt;
-   
-   
-   &lt;/div&gt;
-    &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Max
-   &lt;input type="number" class="js-inputs js-max" name="max"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Min
-   &lt;input type="number" class="js-inputs js-min" name="min"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;From
-   &lt;input type="number" class="js-inputs js-from" name="from" /&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;To
-   &lt;input type="number" class="js-inputs js-to" name="to"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Шаг
-   &lt;input type="number" class="js-inputs js-step" name="step"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;/div&gt;
-   
-   
-   &lt;button class="js-btn js-btn-color" type="button"&gt;Настройки цвета&lt;/button&gt;
-   &lt;div class="js-menu js-color-setting"&gt;
-     &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Откл/Вкл изменение цвета
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isColor" name="isColor"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Использовать только css/переменной цвет
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isChangeColor" name="isColor"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Сменить оттенок
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-changeColor" name="isColor"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Градиент вкл/откл
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-gradient" name="isColor"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Цвет
-&lt;input type="text" class="js-inputs js-color" name="color"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Градиент
-&lt;input type="text" class="js-inputs js-gradient-out" name="gradient"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Угол градиента
-&lt;input type="number" class="js-inputs js-gradient-deg" name="gradient"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;/div&gt;
-   
-   
-   &lt;button type="button" class="js-btn js-btn-postfix"&gt;Postfix/Prefix&lt;/button&gt;
-   &lt;div class="js-menu js-menu-postfix"&gt;
-   &lt;div class="js-items"&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Добавить/убрать Префикс tooltip
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isPrefix-all" name="isPrefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;label class="js-labels js-label_checkbox js-label-postfix"&gt;Показать/Скрыть Pre/Postfix tooltip
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isPostfixTool" name="isPrefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-      &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать/Скрыть Pre/Postfix шкалы
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isPostfix" name="isPrefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels js-label_checkbox"&gt;Показать/Скрыть Pre/Postfix track
-   &lt;input type="checkbox" class="js-checkbox js-inputs js-isTrackPostfix" name="isPrefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Pre/Postfix tooltip
-   &lt;input type="text" class="js-inputs js-marker" name="marker"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-      &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Pre/Postfix шкалы
-&lt;input type="text" class="js-inputs js-scale-postfix" name="js-prefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-    &lt;div class="js-items"&gt;
-   &lt;label class="js-labels"&gt;Pre/Postfix track
-&lt;input type="text" class="js-inputs js-track-postfix" name="js-prefix"/&gt;
-   &lt;/label&gt;
-   &lt;/div&gt;
-   &lt;/div&gt;
-  
-  `;
+&lt;h4  class="panel__title"&gt;Панель управления&lt;/h4&gt;
+&lt;div class="panel__items"&gt;
 &nbsp;
-export { demoTemplate };
+&lt;label class="panel__labels panel__checkboxes"&gt;V/H Вид
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-orientation" name="orientation" /&gt;
+&lt;/label&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Показать/Скрыть Tooltip
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isLabel" name="label"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Range/Single
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isDouble" name="double"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&nbsp;
+&lt;button class="panel__button js-btn-view"&gt;Настройки отображения&lt;/button&gt;
+&lt;div class="panel__menu js-menu-view"&gt;
+&nbsp;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Показать min/max
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-minMax" name="minMax"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Показать from/to
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-fromTo" name="fromTo"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Добавить/убрать разделитель
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isScaleDel" name="scale"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;Делитель
+&lt;input type="text" class="panel__inputs js-separate" name="separate"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Выводить цвета/значения
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isColorOut" name="color"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&nbsp;
+&nbsp;
+&nbsp;
+&lt;button type="button" class="panel__button js-btn-scale"&gt;Управление шкалой&lt;/button&gt;
+&lt;div class="panel__menu js-menu-scale"&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Шкала с делениями/значениями
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-division" name="division"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Показать/Скрыть Шкалу
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isScale" name="scale"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;Max
+&lt;input type="number" class="panel__inputs js-max" name="max"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;Min
+&lt;input type="number" class="panel__inputs js-min" name="min"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;From
+&lt;input type="number" class="panel__inputs js-from" name="from" /&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;To
+&lt;input type="number" class="panel__inputs js-to" name="to"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;Шаг
+&lt;input type="number" class="panel__inputs js-step" name="step"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&nbsp;
+&nbsp;
+&lt;button class="panel__button js-btn-color" type="button"&gt;Настройки цвета&lt;/button&gt;
+&lt;div class="panel__menu js-color-setting"&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Откл/Вкл изменение цвета
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isColor" name="isColor"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Использовать только css/переменной цвет
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isChangeColor" name="isColor"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Сменить оттенок
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-changeColor" name="isColor"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Градиент вкл/откл
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-gradient" name="isColor"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;Цвет
+&lt;input type="text" class="panel__inputs js-color" name="color"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;Градиент
+&lt;input type="text" class="panel__inputs js-gradient-out" name="gradient"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;Угол градиента
+&lt;input type="number" class="panel__inputs js-gradient-deg" name="gradient"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&nbsp;
+&nbsp;
+&lt;button type="button" class="panel__button js-btn-postfix"&gt;Postfix/Prefix&lt;/button&gt;
+&lt;div class="panel__menu js-menu-postfix"&gt;
+&lt;div class="panel__items"&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Добавить/убрать Префикс tooltip
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isPrefix-all" name="isPrefix"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;label class="panel__labels panel__checkboxes js-label-postfix"&gt;Показать/Скрыть Pre/Postfix tooltip
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isPostfixTool" name="isPrefix"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Показать/Скрыть Pre/Postfix шкалы
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isPostfix" name="isPrefix"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels panel__checkboxes"&gt;Показать/Скрыть Pre/Postfix track
+&lt;input type="checkbox" class="panel__checkbox panel__inputs js-isTrackPostfix" name="isPrefix"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;Pre/Postfix tooltip
+&lt;input type="text" class="panel__inputs js-marker" name="marker"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;Pre/Postfix шкалы
+&lt;input type="text" class="panel__inputs js-scale-postfix" name="js-prefix"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="panel__items"&gt;
+&nbsp;
+&lt;label class="panel__labels"&gt;Pre/Postfix track
+&lt;input type="text" class="panel__inputs js-track-postfix" name="js-prefix"/&gt;
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&nbsp;
+`;
+&nbsp;
+export {
+  demoTemplate,
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -601,7 +682,7 @@ export { demoTemplate };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Mar 24 2021 23:29:20 GMT-0400 (Восточная Америка, летнее время)
+                at Sat Apr 03 2021 17:10:56 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

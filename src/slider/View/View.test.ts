@@ -56,7 +56,7 @@ describe('View', () => {
   });
 
   test('should create 2 rollers', () => {
-    const rollers = view.slider.querySelectorAll('.slider__roller');
+    const rollers = view.slider.querySelectorAll('.js-slider__roller');
 
     expect(rollers.length).toBe(2);
     expect(rollers[0]).toBeVisible();
@@ -64,7 +64,7 @@ describe('View', () => {
   });
 
   test('should create 2 tooltips', () => {
-    const tooltips = view.slider.querySelectorAll('.slider__tooltip');
+    const tooltips = view.slider.querySelectorAll('.js-slider__tooltip');
 
     expect(tooltips.length).toBe(2);
     expect(tooltips[0]).toBeVisible();
@@ -72,7 +72,7 @@ describe('View', () => {
   });
 
   test('should create 2 outElements', () => {
-    const outElements = view.slider.querySelectorAll('.slider__out');
+    const outElements = view.slider.querySelectorAll('.js-slider__out');
 
     expect(outElements.length).toBe(2);
     expect(outElements[0]).toBeVisible();
@@ -80,21 +80,21 @@ describe('View', () => {
   });
 
   test('should create a track', () => {
-    const track = view.slider.querySelector('.slider__track_horizontal');
+    const track = view.slider.querySelector('.js-slider__track_horizontal');
 
     expect(track).toBeTruthy();
     expect(track).toBeVisible();
   });
 
   test('should create a bar', () => {
-    const bar = view.slider.querySelector('.slider__bar_horizontal');
+    const bar = view.slider.querySelector('.js-slider__bar_horizontal');
 
     expect(bar).toBeTruthy();
     expect(bar).toBeVisible();
   });
 
   test('should create a scale', () => {
-    const scale = view.slider.querySelector('.slider__scale_horizontal');
+    const scale = view.slider.querySelector('.js-slider__scale_horizontal');
 
     expect(scale).toBeTruthy();
     expect(scale).toBeVisible();
@@ -132,7 +132,7 @@ describe('View', () => {
   });
 
   test('upData should change the isScale parameter and change the visibility of the scale', () => {
-    const scale = view.slider.querySelector('.slider__scale');
+    const scale = view.slider.querySelector('.js-slider__scale');
 
     view.upData({ isScale: false });
     expect(view.state.isScale).toBe(false);

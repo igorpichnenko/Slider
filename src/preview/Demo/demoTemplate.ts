@@ -202,5 +202,5 @@ const demoTemplate = `
 `;
 
 export {
-  demoTemplate
+  demoTemplate,
 };
