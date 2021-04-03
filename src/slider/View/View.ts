@@ -236,7 +236,7 @@ class View {
     position = del.split(separate).join('')
 
    const result = String(position).split(',').join('.')
-   console.log(Number(result))
+   
     this.updatePosition(Number(result));
   }
 

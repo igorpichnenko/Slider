@@ -1,11 +1,13 @@
 @import 'reset-css';
+
 @import '../../node_modules/normalize-css/normalize.css';
 
 body {
-  -moz-user-select:none;
+  -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
 }
+
 .panel {
 
   &__test-slider {
@@ -106,6 +108,7 @@ body {
     margin-left: 40px;
     cursor: pointer;
   }
+
   &__menu {
     display: none;
   }
