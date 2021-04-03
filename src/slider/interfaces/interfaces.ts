@@ -1,34 +1,44 @@
-interface Options {
+interface GeneralSettings{
   orientation: string,
   type: string,
   min: number,
   max: number,
   step: number,
   from: number,
-  to: number,
+  to: number
+}
+
+interface Postfix{
+  isPrefix: boolean,
   postfix: string,
   isPostfix: boolean,
-  isPrefix: boolean,
-  isLabel: boolean,
-  isScale: boolean,
-  isSeparate: boolean,
-  color: string,
-  isScalePostfix: boolean,
-  scalePostfix: string,
-  minMax: boolean,
-  fromTo: boolean,
   isTrackPostfix: boolean,
   trackPostfix: string,
-  isColor: boolean,
-  changeColor: boolean,
+  isScalePostfix: boolean,
+  scalePostfix: string
+}
+
+interface Color {
+  color: string,
   isChangeColor: boolean,
   isGradient: boolean,
   gradient: string,
   gradientDeg: number,
   isColorOut: boolean,
-  onlyDivisions: boolean,
-  separate: string | undefined,
+  changeColor: boolean,
+  isColor: boolean,
   allColors: {[index: string]: string}
+}
+
+interface VisibleSettings {
+  isLabel: boolean,
+  isScale: boolean,
+  isSeparate: boolean,
+  minMax: boolean,
+  fromTo: boolean,
+  onlyDivisions: boolean,
+  separate: string | undefined
+
 }
 
 interface ViewState extends Options{
@@ -37,5 +47,7 @@ interface ViewState extends Options{
   oneStep: number,
   slider: HTMLElement,
 }
+
+interface Options extends GeneralSettings, VisibleSettings, Postfix, Color{}
 
 export { Options, ViewState };
