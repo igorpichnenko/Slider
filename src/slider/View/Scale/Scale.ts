@@ -99,7 +99,8 @@ class Scale {
 
     let { scalePostfix } = options;
 
-    value = Math.floor(value);
+    value = Number(value.toFixed(1))
+    
     const scaleMarker = document.createElement('span');
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation}`;
     const divisionValue = document.createElement('span');
