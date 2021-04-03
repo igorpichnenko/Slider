@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 import { View } from '../View';
 import { standardOptions } from '../../interfaces/standardOptions';
+import { IOptions } from '../../interfaces/interfaces';
 
 describe('Rollers', () => {
   let wrap: JQuery<HTMLElement>;
@@ -25,7 +26,7 @@ describe('Rollers', () => {
   });
 
   test('if orientation = "vertical" then track must have a vertical modifier', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       orientation: 'vertical',
     };
@@ -45,7 +46,7 @@ describe('Rollers', () => {
   });
 
   test('if orientation = "vertical" then out element must have a vertical modifier', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       orientation: 'vertical',
     };

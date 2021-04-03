@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { Presenter } from '../../slider/Presenter/Presenter';
 import { Demo } from './Demo';
 import { standardOptions } from '../../slider/interfaces/standardOptions';
+import { IOptions } from '../../slider/interfaces/interfaces';
 
 describe('Demo', () => {
   let demo: Demo;
@@ -30,7 +31,7 @@ describe('Demo', () => {
     expect(demo.state).toStrictEqual(standardOptions);
   });
   test('can be created with other parameters', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       orientation: 'horizontal',
       type: 'single',

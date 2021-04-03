@@ -1,7 +1,7 @@
-import { Options } from './interfaces';
+import { IOptions } from './interfaces';
 import { allColors } from './color';
 
-const standardOptions: Options = {
+const standardOptions: IOptions = {
   orientation: 'horizontal',
   type: 'double',
   min: 0,

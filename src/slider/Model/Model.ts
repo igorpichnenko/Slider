@@ -1,27 +1,27 @@
 import {
-  Options,
+  IOptions,
 } from '../interfaces/interfaces';
 import {
   EventEmitter,
 } from '../EventEmitter/EventEmitter';
 
 class Model {
-  public state: Options;
+  public state: IOptions;
 
   public emitter: EventEmitter;
 
-  constructor(options: Options) {
+  constructor(IOptions: IOptions) {
     this.emitter = new EventEmitter();
 
-    this.state = this.init(options);
+    this.state = this.init(IOptions);
   }
 
-  public setData(options: Options): void {
-    const validateFromTo: Options = this.validateFromTo(options);
-    const validateMinMaxStep: Options = this.validateMinMaxStep(options);
+  public setData(IOptions: IOptions): void {
+    const validateFromTo: IOptions = this.validateFromTo(IOptions);
+    const validateMinMaxStep: IOptions = this.validateMinMaxStep(IOptions);
 
     this.state = {
-      ...options,
+      ...IOptions,
       ...validateFromTo,
       ...validateMinMaxStep,
     };
@@ -29,36 +29,36 @@ class Model {
     this.emitter.emit('newData', this.state);
   }
 
-  private init(options: Options): Options {
-    this.setData(options);
+  private init(IOptions: IOptions): IOptions {
+    this.setData(IOptions);
     return this.state;
   }
 
-  private validateMinMaxStep(options: Options): Options {
+  private validateMinMaxStep(IOptions: IOptions): IOptions {
     const {
       min,
       max,
       step,
-    } = options;
+    } = IOptions;
 
-    if (step <= 0) options.step = 0.1;
+    if (step <= 0) IOptions.step = 0.1;
 
     const isMaxMin = max <= min && max < 0;
     const isMinMax = (min >= max && max > 0) || (max < 0 && max < min);
 
     if (isMaxMin) {
-      options.min = min - step;
+      IOptions.min = min - step;
     }
 
     if (isMinMax) {
-      options.min = min;
-      options.max = min + step;
+      IOptions.min = min;
+      IOptions.max = min + step;
     }
 
-    return options;
+    return IOptions;
   }
 
-  private validateFromTo(options: Options): Options {
+  private validateFromTo(IOptions: IOptions): IOptions {
     const {
       from,
       to,
@@ -66,45 +66,45 @@ class Model {
       min,
       type,
       step,
-    } = options;
+    } = IOptions;
 
     if (type === 'single') {
-      options.to = max;
+      IOptions.to = max;
     }
 
     const maxMinZero = max < 0 && min === 0;
     const isMinMaxZero = min < 0 && max < 0;
 
-    if (from > max) options.from = max - step;
+    if (from > max) IOptions.from = max - step;
 
-    if (from < min) options.from = min;
-    if (to > max) options.to = max;
+    if (from < min) IOptions.from = min;
+    if (to > max) IOptions.to = max;
 
     if (maxMinZero) {
-      options.from = min;
-      options.to = min;
+      IOptions.from = min;
+      IOptions.to = min;
     }
 
     if (type === 'double') {
       if (from >= to) {
-        options.from = to - step;
+        IOptions.from = to - step;
       }
     }
 
     if (to <= min) {
-      options.to = min + step;
-      options.from = min;
+      IOptions.to = min + step;
+      IOptions.from = min;
     }
 
     if (from > 0) {
       if (isMinMaxZero) {
-        options.from = min;
+        IOptions.from = min;
       }
     }
     if (max < min) {
-      options.to = min + step;
+      IOptions.to = min + step;
     }
-    return options;
+    return IOptions;
   }
 }
 

@@ -1,9 +1,9 @@
 import { Presenter } from '../../slider/Presenter/Presenter';
-import { Options } from '../../slider/interfaces/interfaces';
+import { IOptions, Orientation, SliderType } from '../../slider/interfaces/interfaces';
 import { demoTemplate } from './demoTemplate';
 
 class Demo {
-  public state: Options;
+  public state: IOptions;
 
   public demoTools: HTMLElement;
 
@@ -13,7 +13,7 @@ class Demo {
     this.init();
   }
 
-  public upData(newSetting: Partial<Options>) {
+  public upData(newSetting: Partial<IOptions>) {
     this.state = { ...this.state, ...newSetting };
     this.initTools();
   }
@@ -141,10 +141,10 @@ class Demo {
     /**     чекбоксы    * */
 
     isOrientation.onchange = () => {
-      if (orientation === 'horizontal') {
+      if (orientation === Orientation[1]) {
         this.setState({ orientation: 'vertical' });
       }
-      if (orientation === 'vertical') {
+      if (orientation === Orientation[0]) {
         this.setState({ orientation: 'horizontal' });
       }
     };
@@ -229,7 +229,7 @@ class Demo {
     };
 
     isDouble.onchange = () => {
-      if (type === 'single') {
+      if (type === SliderType[1]) {
         this.setState({ type: 'double' });
       } else {
         this.setState({ type: 'single' });
@@ -379,7 +379,7 @@ class Demo {
     };
   }
 
-  public setState(newOptions: Partial<Options>) {
+  public setState(newOptions: Partial<IOptions>) {
     this.state = { ...this.state, ...newOptions };
     this.slider.setOptions(this.state);
     this.slider.upDataView();

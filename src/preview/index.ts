@@ -1,5 +1,5 @@
 import { Demo } from './Demo/Demo';
-import { Options } from '../slider/interfaces/interfaces';
+import { IOptions } from '../slider/interfaces/interfaces';
 import './index.scss';
 import '../slider/slider';
 
@@ -17,7 +17,7 @@ $wrap.colorSlider({
    с функцией и выводить любой параметр из 27 обратившись через точку values.from
 * */
 
-$wrap.colorSlider('getValue', (values: Options) => {
+$wrap.colorSlider('getValue', (values: IOptions) => {
   $('.js-custom-from').val(values.from);
   $('.js-custom-to').val(values.to);
 });
@@ -35,13 +35,13 @@ $('.js-custom-btn').click(() => {
 
 //      ***  Дэмо станица   ***
 
-const firstOptions: Partial<Options> = {
+const firstOptions: Partial<IOptions> = {
   orientation: 'vertical',
   type: 'double',
   isColorOut: true,
   isScale: false,
 };
-const twoOptions: Partial<Options> = {
+const twoOptions: Partial<IOptions> = {
   gradient: 'red',
   color: '#6698db',
   max: 15000,
@@ -51,7 +51,7 @@ const twoOptions: Partial<Options> = {
   separate: '.',
   onlyDivisions: false,
 };
-const threeOptions: Partial<Options> = {
+const threeOptions: Partial<IOptions> = {
   orientation: 'vertical',
   gradient: 'blue',
   color: 'yellow',
@@ -67,7 +67,7 @@ const threeOptions: Partial<Options> = {
   onlyDivisions: false,
 };
 
-const fourOptions: Partial<Options> = {
+const fourOptions: Partial<IOptions> = {
 
   isGradient: false,
   color: 'black',
@@ -84,7 +84,7 @@ const fourOptions: Partial<Options> = {
   onlyDivisions: true,
 };
 
-const fiveOptions: Partial<Options> = {
+const fiveOptions: Partial<IOptions> = {
   orientation: 'horizontal',
   type: 'single',
   isScale: false,
@@ -93,7 +93,7 @@ const fiveOptions: Partial<Options> = {
 
 };
 
-const sixOptions: Partial<Options> = {
+const sixOptions: Partial<IOptions> = {
 
   gradient: 'black',
   color: '#900202',

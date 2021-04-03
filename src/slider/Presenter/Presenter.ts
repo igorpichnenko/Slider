@@ -1,6 +1,6 @@
 import { Model } from '../Model/Model';
 import { View } from '../View/View';
-import { Options } from '../interfaces/interfaces';
+import { IOptions } from '../interfaces/interfaces';
 import { EventEmitter } from '../EventEmitter/EventEmitter';
 import { standardOptions } from '../interfaces/standardOptions';
 
@@ -11,7 +11,7 @@ class Presenter {
 
   public model: Model;
 
-  constructor(options: Options, public element: JQuery<HTMLElement>) {
+  constructor(options: IOptions, public element: JQuery<HTMLElement>) {
     this.emitter = new EventEmitter();
 
     this.model = this.createModel(options);
@@ -23,20 +23,20 @@ class Presenter {
     this.view.upDataSlider();
   }
 
-  public setOptions(options: Partial<Options>): void {
-    const newOptions: Options = { ...standardOptions, ...options };
+  public setOptions(options: Partial<IOptions>): void {
+    const newOptions: IOptions = { ...standardOptions, ...options };
     this.model.setData(newOptions);
   }
 
-  public getOptions(): Options {
+  public getOptions(): IOptions {
     return this.model.state;
   }
 
-  public createModel(options: Options): Model {
+  public createModel(options: IOptions): Model {
     return new Model(options);
   }
 
-  public createView(options: Options, element: JQuery<HTMLElement>): View {
+  public createView(options: IOptions, element: JQuery<HTMLElement>): View {
     return new View(options, element);
   }
 
@@ -51,14 +51,14 @@ class Presenter {
     this.view.emitter.subscribe('newPosition', this.sendNewPosition);
   }
 
-  private getNewData(newData: Options): void {
+  private getNewData(newData: IOptions): void {
     this.view.upData(newData);
     this.emitter.emit('newData', newData);
   }
 
-  private sendNewPosition(newPosition: Partial<Options>): void {
-    const modelState: Options = this.model.state;
-    const newData: Options = { ...modelState, ...newPosition };
+  private sendNewPosition(newPosition: Partial<IOptions>): void {
+    const modelState: IOptions = this.model.state;
+    const newData: IOptions = { ...modelState, ...newPosition };
     this.model.setData(newData);
   }
 }

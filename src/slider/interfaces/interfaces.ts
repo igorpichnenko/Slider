@@ -1,14 +1,23 @@
-interface GeneralSettings{
-  orientation: string,
-  type: string,
+enum Orientation {
+  vertical,
+  horizontal
+}
+enum SliderType {
+  double,
+  single
+}
+
+interface IGeneralSettings{
   min: number,
   max: number,
   step: number,
   from: number,
-  to: number
+  to: number,
+  orientation: keyof typeof Orientation,
+  type: keyof typeof SliderType
 }
 
-interface Postfix{
+interface IPostfix{
   isPrefix: boolean,
   postfix: string,
   isPostfix: boolean,
@@ -18,7 +27,7 @@ interface Postfix{
   scalePostfix: string
 }
 
-interface Color {
+interface IColor {
   color: string,
   isChangeColor: boolean,
   isGradient: boolean,
@@ -30,7 +39,7 @@ interface Color {
   allColors: {[index: string]: string}
 }
 
-interface VisibleSettings {
+interface IVisibleSettings {
   isLabel: boolean,
   isScale: boolean,
   isSeparate: boolean,
@@ -41,13 +50,15 @@ interface VisibleSettings {
 
 }
 
-interface ViewState extends Options{
+interface IViewState extends IOptions{
 
   size: number,
   oneStep: number,
   slider: HTMLElement,
 }
 
-interface Options extends GeneralSettings, VisibleSettings, Postfix, Color{}
+interface IOptions extends IGeneralSettings, IVisibleSettings, IPostfix, IColor{}
 
-export { Options, ViewState };
+export {
+  IOptions, IViewState, Orientation, SliderType,
+};

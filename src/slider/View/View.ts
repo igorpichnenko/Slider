@@ -1,6 +1,6 @@
 import {
-  Options,
-  ViewState,
+  IOptions,
+  IViewState, Orientation, SliderType,
 } from '../interfaces/interfaces';
 import {
   EventEmitter,
@@ -21,7 +21,7 @@ import {
 class View {
   public emitter: EventEmitter;
 
-  public state: ViewState;
+  public state: IViewState;
 
   public element: JQuery < HTMLElement >;
 
@@ -35,13 +35,13 @@ class View {
 
   private track: Track;
 
-  constructor(options: Options, element: JQuery < HTMLElement >) {
+  constructor(IOptions: IOptions, element: JQuery < HTMLElement >) {
     this.emitter = new EventEmitter();
 
     this.element = element;
 
-    this.slider = this.createSlider(options, element);
-    this.state = this.init(options);
+    this.slider = this.createSlider(IOptions, element);
+    this.state = this.init(IOptions);
 
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
@@ -53,27 +53,27 @@ class View {
     this.bindEventListeners();
   }
 
-  // * Расширяю Options до ViewState
+  // * Расширяю IOptions до IViewState
 
-  private init(options: Options): ViewState {
-    const size = this.getSliderSize(options);
-    const oneStep = this.getOneStep(options);
+  private init(IOptions: IOptions): IViewState {
+    const size = this.getSliderSize(IOptions);
+    const oneStep = this.getOneStep(IOptions);
     const {
       slider,
     } = this;
 
     return {
-      ...options,
+      ...IOptions,
       size,
       oneStep,
       slider,
     };
   }
 
-  public createSlider(options: Options, element: JQuery < HTMLElement >): HTMLElement {
+  public createSlider(IOptions: IOptions, element: JQuery < HTMLElement >): HTMLElement {
     const {
       orientation,
-    } = options;
+    } = IOptions;
     const slider = document.createElement('div');
 
     slider.className = `slider slider_${orientation}`;
@@ -82,28 +82,28 @@ class View {
     return slider;
   }
 
-  private createTrack(options: ViewState): Track {
-    return new Track(options);
+  private createTrack(IOptions: IViewState): Track {
+    return new Track(IOptions);
   }
 
-  private createBar(options: ViewState): Bar {
-    return new Bar(options);
+  private createBar(IOptions: IViewState): Bar {
+    return new Bar(IOptions);
   }
 
-  private createRollers(options: ViewState): Rollers {
-    return new Rollers(options);
+  private createRollers(IOptions: IViewState): Rollers {
+    return new Rollers(IOptions);
   }
 
-  private createScale(options: ViewState): Scale {
-    return new Scale(options);
+  private createScale(IOptions: IViewState): Scale {
+    return new Scale(IOptions);
   }
 
   /**
   * Обновляю стостояние View
   * Обновляю состояние всех подвидов
   * */
-  public upData(newState: Partial < ViewState >) {
-    const updataState: ViewState = {
+  public upData(newState: Partial < IViewState >) {
+    const updataState: IViewState = {
       ...this.state,
       ...newState,
     };
@@ -132,16 +132,16 @@ class View {
     this.bindEventListeners();
   }
 
-  public getOneStep(options: Options): number {
+  public getOneStep(IOptions: IOptions): number {
     const {
       min,
       max,
       step,
-    } = options;
+    } = IOptions;
 
     const result = Math.ceil((max - min) / step);
 
-    return this.getSliderSize(options) / result;
+    return this.getSliderSize(IOptions) / result;
   }
 
   private bindEventListeners() {
@@ -188,7 +188,7 @@ class View {
 
     if (!/tooltip || roller/.test(target.className)) return;
 
-    if (orientation === 'horizontal') {
+    if (orientation === Orientation[1]) {
       if (event.type === 'touchmove') {
         mouseValue = this.convertPxToValue(event.touches[0].clientX);
       } else {
@@ -251,7 +251,7 @@ class View {
 
     if (/scale/.test(target.className)) return;
 
-    if (orientation === 'horizontal') {
+    if (orientation === Orientation[1]) {
       coordinate = event.clientX;
     } else {
       coordinate = event.clientY;
@@ -270,7 +270,7 @@ class View {
 
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
-    const isSingle = type === 'single';
+    const isSingle = type === SliderType[1];
 
     if (isSingle && fromDistance) {
       this.emitter.emit('newPosition', {
@@ -297,7 +297,7 @@ class View {
     } else {
       const targets = this.getTargetType(target);
       if (targets === 'from') {
-        if (type === 'double') {
+        if (type === SliderType[0]) {
           if (value > to - step) {
             this.emitter.emit('newPosition', {
               from: to - step,
@@ -340,7 +340,7 @@ class View {
     const sliderEndPos = sliderPos + size;
 
     let px = 0;
-    if (orientation === 'horizontal') {
+    if (orientation === Orientation[1]) {
       px = coordinate - sliderPos;
     } else {
       px = sliderEndPos - coordinate;
@@ -407,7 +407,7 @@ class View {
     } = this.state;
     let position = 0;
 
-    if (orientation === 'horizontal') {
+    if (orientation === Orientation[1]) {
       position = slider.getBoundingClientRect().left;
     } else {
       position = slider.getBoundingClientRect().top;
@@ -416,12 +416,12 @@ class View {
     return position;
   }
 
-  public getSliderSize(options: Options): number {
+  public getSliderSize(IOptions: IOptions): number {
     const {
       orientation,
-    } = options;
+    } = IOptions;
     let size = 0;
-    if (orientation === 'horizontal') {
+    if (orientation === Orientation[1]) {
       size = this.slider.getBoundingClientRect().width;
     } else {
       size = this.slider.getBoundingClientRect().height;

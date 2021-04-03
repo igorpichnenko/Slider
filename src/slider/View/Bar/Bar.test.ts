@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { View } from '../View';
 import { Bar } from './Bar';
 import { standardOptions } from '../../interfaces/standardOptions';
-import { ViewState } from '../../interfaces/interfaces';
+import { IViewState, IOptions } from '../../interfaces/interfaces';
 
 describe('Bar', () => {
   let wrap: JQuery<HTMLElement>;
@@ -56,7 +56,7 @@ describe('Bar', () => {
   });
 
   test('if the orientation is "vertical" bar should have a vertical modifier', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       orientation: 'vertical',
     };
@@ -69,7 +69,7 @@ describe('Bar', () => {
   });
 
   test('must find the position correctly', () => {
-    const state: ViewState = {
+    const state: IViewState = {
       size: 266,
       oneStep: 26.6,
       slider: view.slider,

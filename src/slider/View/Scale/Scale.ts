@@ -1,14 +1,14 @@
-import { ViewState } from '../../interfaces/interfaces';
+import { IViewState, Orientation } from '../../interfaces/interfaces';
 
 class Scale {
-  private options: ViewState;
+  private options: IViewState;
 
-  constructor(options: ViewState) {
+  constructor(options: IViewState) {
     this.create(options);
     this.options = options;
   }
 
-  private create(options: ViewState): void {
+  private create(options: IViewState): void {
     const { slider, orientation } = options;
     const scale = document.createElement('div');
     scale.className = `slider__scale slider__scale_${orientation} js-slider__scale js-slider__scale_${orientation}`;
@@ -20,7 +20,7 @@ class Scale {
     this.checkScale(options, scale);
   }
 
-  public upData(options: ViewState) {
+  public upData(options: IViewState) {
     const { slider } = options;
     const scale = slider.querySelector('.js-slider__scale')! as HTMLElement;
 
@@ -30,7 +30,7 @@ class Scale {
     this.updataScaleMarker(options);
   }
 
-  private updataScaleMarker(options: ViewState) {
+  private updataScaleMarker(options: IViewState) {
     const {
       onlyDivisions, slider, color,
     } = options;
@@ -47,7 +47,7 @@ class Scale {
     document.documentElement.style.setProperty('--scale-color', ` ${color}`);
   }
 
-  private checkScale(options: ViewState, scale: HTMLElement) {
+  private checkScale(options: IViewState, scale: HTMLElement) {
     const { isScale } = options;
     if (isScale === false) {
       scale.style.display = 'none';
@@ -61,7 +61,7 @@ class Scale {
     scale.addEventListener('click', this.handleScaleClick);
   }
 
-  private addScaleMarker(options: ViewState, scale: HTMLElement): void {
+  private addScaleMarker(options: IViewState, scale: HTMLElement): void {
     const {
       min, max, step, size, oneStep,
     } = options;
@@ -84,7 +84,7 @@ class Scale {
     scale.append(fragment);
   }
 
-  public getIncrement(options: ViewState): number {
+  public getIncrement(options: IViewState): number {
     const { size, oneStep, step } = options;
     const value = Math.ceil(size / oneStep);
     const inc = Math.ceil(value / 5) * step;
@@ -92,7 +92,7 @@ class Scale {
   }
 
   private createScaleMarker(fragment: DocumentFragment,
-    value: number, position: number, options: ViewState, val: number): void {
+    value: number, position: number, options: IViewState, val: number): void {
     const {
       orientation, isScalePostfix, isPrefix, onlyDivisions,
     } = options;
@@ -131,14 +131,14 @@ class Scale {
 
     const offset = this.convertPxToPercent(position, options);
 
-    if (orientation === 'horizontal') {
+    if (orientation === Orientation[1]) {
       scaleMarker.style.left = `${offset}%`;
     } else {
       scaleMarker.style.bottom = `${offset}%`;
     }
   }
 
-  public convertPxToPercent(value: number, options: ViewState): number {
+  public convertPxToPercent(value: number, options: IViewState): number {
     const { size } = options;
     return (value * 100) / size;
   }
@@ -161,7 +161,7 @@ class Scale {
     target.dispatchEvent(scaleEvent);
   }
 
-  private separate(value: number, options: ViewState): string {
+  private separate(value: number, options: IViewState): string {
     const { isSeparate } = options;
     let { separate } = options;
     let val = '';

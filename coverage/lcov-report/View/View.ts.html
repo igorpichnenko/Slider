@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.05% </span>
+                <span class="strong">86.13% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>148/172</span>
+                <span class='fraction'>149/173</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.43% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>146/167</span>
+                <span class='fraction'>147/168</span>
             </div>
         
             
@@ -490,7 +490,9 @@
 <a name='L431'></a><a href='#L431'>431</a>
 <a name='L432'></a><a href='#L432'>432</a>
 <a name='L433'></a><a href='#L433'>433</a>
-<a name='L434'></a><a href='#L434'>434</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L434'></a><a href='#L434'>434</a>
+<a name='L435'></a><a href='#L435'>435</a>
+<a name='L436'></a><a href='#L436'>436</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -722,6 +724,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -924,8 +928,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
-  Options,
-  ViewState,
+  IOptions,
+  IViewState,
 } from '../interfaces/interfaces';
 import {
   EventEmitter,
@@ -946,7 +950,7 @@ import {
 class View {
   public emitter: EventEmitter;
 &nbsp;
-  public state: ViewState;
+  public state: IViewState;
 &nbsp;
   public element: JQuery &lt; HTMLElement &gt;;
 &nbsp;
@@ -960,13 +964,13 @@ class View {
 &nbsp;
   private track: Track;
 &nbsp;
-  constructor(options: Options, element: JQuery &lt; HTMLElement &gt;) {
+  constructor(IOptions: IOptions, element: JQuery &lt; HTMLElement &gt;) {
     this.emitter = new EventEmitter();
 &nbsp;
     this.element = element;
 &nbsp;
-    this.slider = this.createSlider(options, element);
-    this.state = this.init(options);
+    this.slider = this.createSlider(IOptions, element);
+    this.state = this.init(IOptions);
 &nbsp;
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
@@ -978,27 +982,27 @@ class View {
     this.bindEventListeners();
   }
 &nbsp;
-  // * Расширяю Options до ViewState
+  // * Расширяю IOptions до IViewState
 &nbsp;
-  private init(options: Options): ViewState {
-    const size = this.getSliderSize(options);
-    const oneStep = this.getOneStep(options);
+  private init(IOptions: IOptions): IViewState {
+    const size = this.getSliderSize(IOptions);
+    const oneStep = this.getOneStep(IOptions);
     const {
       slider,
     } = this;
 &nbsp;
     return {
-      ...options,
+      ...IOptions,
       size,
       oneStep,
       slider,
     };
   }
 &nbsp;
-  public createSlider(options: Options, element: JQuery &lt; HTMLElement &gt;): HTMLElement {
+  public createSlider(IOptions: IOptions, element: JQuery &lt; HTMLElement &gt;): HTMLElement {
     const {
       orientation,
-    } = options;
+    } = IOptions;
     const slider = document.createElement('div');
 &nbsp;
     slider.className = `slider slider_${orientation}`;
@@ -1007,28 +1011,28 @@ class View {
     return slider;
   }
 &nbsp;
-  private createTrack(options: ViewState): Track {
-    return new Track(options);
+  private createTrack(IOptions: IViewState): Track {
+    return new Track(IOptions);
   }
 &nbsp;
-  private createBar(options: ViewState): Bar {
-    return new Bar(options);
+  private createBar(IOptions: IViewState): Bar {
+    return new Bar(IOptions);
   }
 &nbsp;
-  private createRollers(options: ViewState): Rollers {
-    return new Rollers(options);
+  private createRollers(IOptions: IViewState): Rollers {
+    return new Rollers(IOptions);
   }
 &nbsp;
-  private createScale(options: ViewState): Scale {
-    return new Scale(options);
+  private createScale(IOptions: IViewState): Scale {
+    return new Scale(IOptions);
   }
 &nbsp;
   /**
   * Обновляю стостояние View
   * Обновляю состояние всех подвидов
   * */
-  public upData(newState: Partial &lt; ViewState &gt;) {
-    const updataState: ViewState = {
+  public upData(newState: Partial &lt; IViewState &gt;) {
+    const updataState: IViewState = {
       ...this.state,
       ...newState,
     };
@@ -1057,16 +1061,16 @@ class View {
     this.bindEventListeners();
   }
 &nbsp;
-  public getOneStep(options: Options): number {
+  public getOneStep(IOptions: IOptions): number {
     const {
       min,
       max,
       step,
-    } = options;
+    } = IOptions;
 &nbsp;
     const result = Math.ceil((max - min) / step);
 &nbsp;
-    return this.getSliderSize(options) / result;
+    return this.getSliderSize(IOptions) / result;
   }
 &nbsp;
   private bindEventListeners() {
@@ -1128,7 +1132,7 @@ class View {
   }
 &nbsp;
   private getTargetType(target: HTMLElement): string {
-    const rollers = this.slider.querySelectorAll('.slider__roller');
+    const rollers = this.slider.querySelectorAll('.js-slider__roller');
 &nbsp;
     <span class="missing-if-branch" title="else path not taken" >E</span>if (rollers[0]) {
       <span class="missing-if-branch" title="else path not taken" >E</span>if (rollers[0].contains(target)) return 'from';
@@ -1158,9 +1162,11 @@ class View {
 &nbsp;
     const del = value.split(scalePostfix).join('');
 &nbsp;
-    position = Math.floor(del.split(separate).join(''));
+    position = del.split(separate).join('');
 &nbsp;
-    this.updatePosition(position);
+    const result = String(position).split(',').join('.');
+&nbsp;
+    this.updatePosition(Number(result));
   }
 &nbsp;
   private handleTrackClick(event: any): void {
@@ -1339,10 +1345,10 @@ class View {
     return position;
   }
 &nbsp;
-  public getSliderSize(options: Options): number {
+  public getSliderSize(IOptions: IOptions): number {
     const {
       orientation,
-    } = options;
+    } = IOptions;
     let size = 0;
     if (orientation === 'horizontal') {
       size = this.slider.getBoundingClientRect().width;
@@ -1363,7 +1369,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Mar 27 2021 01:28:42 GMT-0400 (Восточная Америка, летнее время)
+                at Sat Apr 03 2021 19:01:29 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../prettify.js"></script>

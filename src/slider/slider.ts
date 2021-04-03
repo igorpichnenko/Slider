@@ -1,5 +1,5 @@
 import { Presenter } from './Presenter/Presenter';
-import { Options } from './interfaces/interfaces';
+import { IOptions } from './interfaces/interfaces';
 import { standardOptions } from './interfaces/standardOptions';
 import './slider.scss';
 
@@ -8,14 +8,14 @@ import './slider.scss';
     const methods = {
 
       init($slider: JQuery<HTMLElement>, newParam: {}| undefined) {
-        const newOptions: Options = { ...standardOptions, ...newParam };
+        const newOptions: IOptions = { ...standardOptions, ...newParam };
 
         $slider.data('presenter', new Presenter(newOptions, $slider));
 
         return $slider;
       },
 
-      change($slider: JQuery<HTMLElement>, values: Partial<Options>) {
+      change($slider: JQuery<HTMLElement>, values: Partial<IOptions>) {
         if (typeof values === 'undefined') {
           return $slider.data('presenter');
         }
@@ -24,7 +24,7 @@ import './slider.scss';
         return this;
       },
 
-      getValue($slider: JQuery<HTMLElement>, func: (values: Partial<Options>) => void) {
+      getValue($slider: JQuery<HTMLElement>, func: (values: Partial<IOptions>) => void) {
         $slider.data('presenter').emitter.subscribe('newData', func);
 
         if (typeof func === 'undefined') {

@@ -1,11 +1,11 @@
-import { ViewState } from '../../interfaces/interfaces';
+import { IViewState, Orientation, SliderType } from '../../interfaces/interfaces';
 
 class Bar {
-  constructor(options: ViewState) {
+  constructor(options: IViewState) {
     this.create(options);
   }
 
-  private create(options: ViewState): void {
+  private create(options: IViewState): void {
     const { slider, orientation } = options;
 
     const bar = document.createElement('div');
@@ -17,7 +17,7 @@ class Bar {
     this.updataBar(options, bar);
   }
 
-  public upData(options: ViewState) {
+  public upData(options: IViewState) {
     const { slider } = options;
 
     const bar = slider.querySelector('.js-slider__bar')! as HTMLElement;
@@ -26,7 +26,7 @@ class Bar {
     this.updataBar(options, bar);
   }
 
-  private updataColor(options: ViewState, bar: HTMLElement) {
+  private updataColor(options: IViewState, bar: HTMLElement) {
     const {
       color, isGradient, gradient, gradientDeg, isChangeColor,
     } = options;
@@ -39,7 +39,7 @@ class Bar {
     }
   }
 
-  private getRollerPositions(options: ViewState): number[] {
+  private getRollerPositions(options: IViewState): number[] {
     const { slider } = options;
 
     const rollers = slider.querySelectorAll('.js-slider__roller');
@@ -50,26 +50,26 @@ class Bar {
     return rollersPositions.sort((a, b) => a - b);
   }
 
-  private calculatePosition(element: Element, options: ViewState): number {
+  private calculatePosition(element: Element, options: IViewState): number {
     const { orientation } = options;
 
-    const side: 'left' | 'top' = orientation === 'horizontal' ? 'left' : 'top';
+    const side: 'left' | 'top' = orientation === Orientation[1] ? 'left' : 'top';
     const width = Number.parseInt(getComputedStyle(element).width, 10);
 
     return element.getBoundingClientRect()[side] + width / 2;
   }
 
-  private convertPxToProcent(value: number, options: ViewState): number {
+  private convertPxToProcent(value: number, options: IViewState): number {
     const {
       size,
     } = options;
     return (value * 100) / size;
   }
 
-  private updataBar(options: ViewState, bar: HTMLElement) {
+  private updataBar(options: IViewState, bar: HTMLElement) {
     const { type, orientation } = options;
 
-    const isHorizontal = orientation === 'horizontal';
+    const isHorizontal = orientation === Orientation[1];
 
     const side: 'left' | 'top' = isHorizontal ? 'left' : 'top';
 
@@ -77,7 +77,7 @@ class Bar {
 
     const rollerPos = this.getRollerPositions(options);
 
-    const isSingle = type === 'single';
+    const isSingle = type === SliderType[1];
 
     const sliderPos = this.getNewSliderPos(options);
 
@@ -104,12 +104,12 @@ class Bar {
     }
   }
 
-  public getNewSliderPos(options: ViewState): number {
+  public getNewSliderPos(options: IViewState): number {
     const { orientation, slider } = options;
 
     let position = 0;
 
-    if (orientation === 'horizontal') {
+    if (orientation === Orientation[1]) {
       position = slider.getBoundingClientRect().left;
     } else {
       position = slider.getBoundingClientRect().top;

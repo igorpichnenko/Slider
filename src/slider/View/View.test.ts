@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 import { View } from './View';
 import { standardOptions } from '../interfaces/standardOptions';
+import { IOptions, IViewState } from '../interfaces/interfaces';
 
 describe('View', () => {
   let wrap: JQuery<HTMLElement>;
@@ -258,7 +259,7 @@ describe('View', () => {
   });
 
   test('the method should return the vertical size', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       orientation: 'vertical',
     };
@@ -273,7 +274,7 @@ describe('View', () => {
   });
 
   test('the method must correctly calculate the coordinates', () => {
-    const state = {
+    const state: Partial<IViewState> = {
       min: 0, max: 100, step: 5, oneStep: 26.6, size: 266, orientation: 'horizontal',
     };
 

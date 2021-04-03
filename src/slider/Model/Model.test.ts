@@ -1,6 +1,6 @@
 import { Model } from './Model';
 import { standardOptions } from '../interfaces/standardOptions';
-import { Options } from '../interfaces/interfaces';
+import { IOptions } from '../interfaces/interfaces';
 
 describe('Model', () => {
   test('Model is created with default options', () => {
@@ -38,7 +38,7 @@ describe('Model', () => {
   });
 
   test('Min is expected to be less than max. And min becomes = -20 and max = -15 + step', () => {
-    const newOptions: Options = {
+    const newOptions: IOptions = {
       ...standardOptions,
       min: -15,
       max: -20,
@@ -49,7 +49,7 @@ describe('Model', () => {
     expect(model.state.max).toBe(newOptions.min + newOptions.step);
   });
   test('step cannot be less than 0.1', () => {
-    const newOptions: Options = {
+    const newOptions: IOptions = {
       ...standardOptions,
       min: 45,
       max: 5,
@@ -60,7 +60,7 @@ describe('Model', () => {
   });
 
   test('max is always 1 step more than min', () => {
-    const newOptions: Options = {
+    const newOptions: IOptions = {
       ...standardOptions,
       max: 10,
       min: 12,
@@ -71,7 +71,7 @@ describe('Model', () => {
     expect(model.state.max).toBe(newOptions.min + newOptions.step);
   });
   test('max cannot be less than min', () => {
-    const newOptions: Options = {
+    const newOptions: IOptions = {
       ...standardOptions,
       min: 15,
       max: 5,
@@ -82,7 +82,7 @@ describe('Model', () => {
     expect(model.state.max).toBe(newOptions.min + newOptions.step);
   });
   test('from cannot be greater than to, from must be to - step', () => {
-    const newOptions: Options = {
+    const newOptions: IOptions = {
       ...standardOptions,
       to: 7,
       from: 9,
@@ -93,7 +93,7 @@ describe('Model', () => {
     expect(model.state.from).toBe(newOptions.to - newOptions.step);
   });
   test('from should not be less than min', () => {
-    const newOptions: Options = {
+    const newOptions: IOptions = {
       ...standardOptions,
       min: 0,
       from: -5,
@@ -103,7 +103,7 @@ describe('Model', () => {
     expect(model.state.from).toBe(newOptions.min);
   });
   test("to, can't be more max", () => {
-    const newOptions: Options = {
+    const newOptions: IOptions = {
       ...standardOptions,
       max: 10,
       to: 12,
@@ -113,7 +113,7 @@ describe('Model', () => {
     expect(model.state.to).toBe(newOptions.max);
   });
   test('max should be equal to minimum + step', () => {
-    const newOptions: Options = {
+    const newOptions: IOptions = {
       ...standardOptions,
       min: -20,
       max: -60,
@@ -123,7 +123,7 @@ describe('Model', () => {
     expect(model.state.max).toBe(newOptions.min + newOptions.step);
   });
   test('step can be fractional', () => {
-    const newOptions: Options = {
+    const newOptions: IOptions = {
       ...standardOptions,
       min: 0,
       max: 40,
@@ -133,7 +133,7 @@ describe('Model', () => {
     expect(model.state.step).toBe(newOptions.step);
   });
   test('fractions are expected to be difficult to correct', () => {
-    const newOptions: Options = {
+    const newOptions: IOptions = {
       ...standardOptions,
       min: 3.2,
       max: 2.4,

@@ -4,26 +4,26 @@ import $ from 'jquery';
 import { View } from '../View';
 import { Scale } from './Scale';
 import { standardOptions } from '../../interfaces/standardOptions';
-import { ViewState } from '../../interfaces/interfaces';
+import { IViewState, IOptions } from '../../interfaces/interfaces';
 
 describe('Scale', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;
   let scale: Scale;
-  let viewState: ViewState;
+  let IViewState: IViewState;
 
   beforeEach(() => {
     wrap = $("<div class='js-toxin-slider' ></div>");
     wrap.appendTo('body');
     view = new View(standardOptions, wrap);
 
-    viewState = {
+    IViewState = {
       size: 266,
       oneStep: 26.6,
       slider: view.slider,
       ...standardOptions,
     };
-    scale = new Scale(viewState);
+    scale = new Scale(IViewState);
   });
 
   afterEach(() => {
@@ -37,7 +37,7 @@ describe('Scale', () => {
   });
 
   test('if orientation = "vertical" then the scale should have the modifier "vertical"', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       orientation: 'vertical',
     };
@@ -76,7 +76,7 @@ describe('Scale', () => {
   });
 
   test('if orientation = "vertical" scale divisions should be created with the "vertical" modifier', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       orientation: 'vertical',
     };
@@ -123,7 +123,7 @@ describe('Scale', () => {
   });
 
   test('isScalePostfix = false, then there should be no marker', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       isScalePostfix: false,
 
@@ -137,7 +137,7 @@ describe('Scale', () => {
   });
 
   test('isPrefix = true, must be prefix', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       isPrefix: true,
     };
@@ -150,7 +150,7 @@ describe('Scale', () => {
   });
 
   test('there is a separator by default', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       max: 10000,
       isSeparate: false,
@@ -164,7 +164,7 @@ describe('Scale', () => {
   });
 
   test('if separate = ".", then the result should be equal to "de-DE" of the locale', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       max: 10000,
       separate: '.',
@@ -191,12 +191,12 @@ describe('Scale', () => {
   });
 
   test('must correctly read the incrimination', () => {
-    const currentValue: number = scale.getIncrement(viewState);
+    const currentValue: number = scale.getIncrement(IViewState);
     expect(currentValue).toBe(2);
   });
 
   test('must calculate the percentage correctly', () => {
-    const currentValue: number = scale.convertPxToPercent(26.6, viewState);
+    const currentValue: number = scale.convertPxToPercent(26.6, IViewState);
     expect(currentValue).toBe(10);
   });
 });

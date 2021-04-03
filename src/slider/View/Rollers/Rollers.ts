@@ -1,13 +1,13 @@
 import {
-  ViewState,
+  IViewState, Orientation, SliderType,
 } from '../../interfaces/interfaces';
 
 class Rollers {
-  constructor(options: ViewState) {
+  constructor(options: IViewState) {
     this.create(options);
   }
 
-  private create(options: ViewState) {
+  private create(options: IViewState) {
     const {
       slider,
       orientation,
@@ -31,7 +31,7 @@ class Rollers {
     this.updataColor(options, rollerFirst, rollerSecond);
   }
 
-  private createTooltip(rollerFirst: HTMLElement, rollerSecond: HTMLElement, options: ViewState) {
+  private createTooltip(rollerFirst: HTMLElement, rollerSecond: HTMLElement, options: IViewState) {
     const {
       orientation,
     } = options;
@@ -48,7 +48,7 @@ class Rollers {
   }
 
   private updataOutTooltip(fistTooltip: HTMLElement,
-    secondTooltip: HTMLElement, options: ViewState) {
+    secondTooltip: HTMLElement, options: IViewState) {
     const {
       to,
       from,
@@ -81,7 +81,7 @@ class Rollers {
     this.setColor(fistTooltip, secondTooltip, options);
   }
 
-  private separate(value: number, options: ViewState): string {
+  private separate(value: number, options: IViewState): string {
     const {
       isSeparate,
     } = options;
@@ -109,7 +109,7 @@ class Rollers {
   }
 
   private setColor(fistTooltip: HTMLElement,
-    secondTooltip: HTMLElement, options: ViewState) {
+    secondTooltip: HTMLElement, options: IViewState) {
     const {
       color,
       gradient,
@@ -150,7 +150,7 @@ class Rollers {
     }
   }
 
-  private updataColor(options: ViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
+  private updataColor(options: IViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
     const {
       color,
       isGradient,
@@ -169,7 +169,7 @@ class Rollers {
     }
   }
 
-  public moveRollersAtValue(options: ViewState, rollerFirst: HTMLElement,
+  public moveRollersAtValue(options: IViewState, rollerFirst: HTMLElement,
     rollerSecond: HTMLElement): void {
     const {
       to,
@@ -183,7 +183,7 @@ class Rollers {
     const positionTo = this.convertPxToProcent(pxTo, options);
     const positionFrom = this.convertPxToProcent(pxFrom, options);
 
-    if (orientation === 'horizontal') {
+    if (orientation === Orientation[1]) {
       rollerFirst.style.left = `${positionFrom}%`;
       rollerSecond.style.left = `${positionTo}%`;
     } else {
@@ -192,7 +192,7 @@ class Rollers {
     }
   }
 
-  public upData(options: ViewState) {
+  public upData(options: IViewState) {
     const {
       slider,
     } = options;
@@ -208,7 +208,7 @@ class Rollers {
     this.updataOutTooltip(fistTooltip, secondTooltip, options);
   }
 
-  private convertValueToPx(value: number, options: ViewState): number {
+  private convertValueToPx(value: number, options: IViewState): number {
     const {
       min,
       max,
@@ -222,19 +222,19 @@ class Rollers {
     return Math.round((value - min) / step) * oneStep;
   }
 
-  private convertPxToProcent(value: number, options: ViewState): number {
+  private convertPxToProcent(value: number, options: IViewState): number {
     const {
       size,
     } = options;
     return (value * 100) / size;
   }
 
-  private toggleRollers(options: ViewState, element: HTMLElement): void {
+  private toggleRollers(options: IViewState, element: HTMLElement): void {
     const {
       type,
     } = options;
 
-    if (type === 'single') {
+    if (type === SliderType[1]) {
       element.style.display = 'none';
     } else {
       element.style.display = 'block';

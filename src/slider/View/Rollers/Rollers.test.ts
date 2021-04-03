@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { View } from '../View';
 import { Rollers } from './Rollers';
 import { standardOptions } from '../../interfaces/standardOptions';
-import { ViewState } from '../../interfaces/interfaces';
+import { IViewState, IOptions } from '../../interfaces/interfaces';
 
 describe('Rollers', () => {
   let wrap: JQuery<HTMLElement>;
@@ -37,7 +37,7 @@ describe('Rollers', () => {
   });
 
   test('if the orientation is "vertical" for tooltips the modifier should be vertical', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       orientation: 'vertical',
     };
@@ -52,7 +52,7 @@ describe('Rollers', () => {
   });
 
   test('if the orientation is "vertical" for rollers the modifier should be vertical', () => {
-    const newOptions = {
+    const newOptions: IOptions = {
       ...standardOptions,
       orientation: 'vertical',
     };
@@ -200,7 +200,7 @@ describe('Rollers', () => {
   });
 
   test('rollers should be in starting position', () => {
-    const state: ViewState = {
+    const state: IViewState = {
       size: 266,
       oneStep: 26.6,
       slider: view.slider,
