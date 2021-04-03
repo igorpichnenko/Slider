@@ -233,9 +233,11 @@ class View {
 
     const del = value.split(scalePostfix).join('');
 
-    position = Math.floor(del.split(separate).join(''));
+    position = del.split(separate).join('')
 
-    this.updatePosition(position);
+   const result = String(position).split(',').join('.')
+   console.log(Number(result))
+    this.updatePosition(Number(result));
   }
 
   private handleTrackClick(event: any): void {
