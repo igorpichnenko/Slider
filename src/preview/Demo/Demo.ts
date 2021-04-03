@@ -29,7 +29,7 @@ class Demo {
 
   private createTools(): HTMLElement {
     const demoTools = document.createElement('div');
-    demoTools.className = 'demoTools';
+    demoTools.className = 'panel__tools';
 
     return demoTools;
   }
@@ -125,17 +125,17 @@ class Demo {
     const inputGradientDeg = this.demoTools.querySelector('.js-gradient-deg')! as HTMLInputElement;
 
     btnView.onclick = () => {
-      menuView.classList.toggle('js-close-menu');
+      menuView.classList.toggle('panel__close');
     };
 
     btnScale.onclick = () => {
-      menuScale.classList.toggle('js-close-menu');
+      menuScale.classList.toggle('panel__close');
     };
     btnColor.onclick = () => {
-      menuColor.classList.toggle('js-close-menu');
+      menuColor.classList.toggle('panel__close');
     };
     btnPostfix.onclick = () => {
-      menuPostfix.classList.toggle('js-close-menu');
+      menuPostfix.classList.toggle('panel__close');
     };
 
     /**     чекбоксы    * */

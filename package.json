@@ -67,6 +67,8 @@
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.6",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "reset-css": "^5.0.1",
+    "normalize-css": "^2.3.1"
   }
 }

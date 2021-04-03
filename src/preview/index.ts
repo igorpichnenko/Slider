@@ -3,7 +3,7 @@ import { Options } from '../slider/interfaces/interfaces';
 import './index.scss';
 import '../slider/slider';
 
-const $wrap = $('.js-test-slider');
+const $wrap = $('.js-test');
 
 $wrap.colorSlider({
   isScale: false,
@@ -112,7 +112,7 @@ const sixOptions: Partial<Options> = {
 
 const options = [firstOptions, twoOptions, threeOptions, fourOptions, fiveOptions, sixOptions];
 
-const $wrappers = $('.js-toxin-slider');
+const $wrappers = $('.js-slider');
 
 $wrappers.each((index, element) => {
   new Demo($(element).colorSlider(options[index]).colorSlider('change'));
