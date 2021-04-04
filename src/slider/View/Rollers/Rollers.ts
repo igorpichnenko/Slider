@@ -3,7 +3,7 @@ import {
   Orientation,
   SliderType,
 } from '../../interfaces/interfaces';
-import { correctSeparate } from '../../libs/separate';
+import { correctSeparate } from '../../libs/correctSeparate';
 
 class Rollers {
   constructor(options: IViewState) {

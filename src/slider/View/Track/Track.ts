@@ -1,7 +1,7 @@
 import {
   IViewState,
 } from '../../interfaces/interfaces';
-import { correctSeparate } from '../../libs/separate';
+import { correctSeparate } from '../../libs/correctSeparate';
 
 class Track {
   constructor(options: IViewState) {

@@ -48,8 +48,7 @@ import './slider.scss';
       if (method === 'change') {
         return methods[method].call(this, this, arguments[1]);
       }
-    }
-    if (typeof method === 'string') {
+
       if (method === 'getValue') {
         methods[method].call(this, this, arguments[1]);
       }

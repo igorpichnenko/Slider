@@ -2,7 +2,7 @@ import {
   IViewState,
   Orientation,
 } from '../../interfaces/interfaces';
-import { correctSeparate } from '../../libs/separate';
+import { correctSeparate } from '../../libs/correctSeparate';
 
 class Scale {
   private options: IViewState;
@@ -53,9 +53,9 @@ class Scale {
 
     scaleMarkers.forEach((scaleMarker) => {
       if (onlyDivisions === true) {
-        scaleMarker.classList.add('slider__scale-value_fs-0');
+        scaleMarker.classList.add('slider__scale-value_fontSize-null');
       } else {
-        scaleMarker.classList.add('slider__scale-value_fs-normal');
+        scaleMarker.classList.add('slider__scale-value_fontSize-normal');
       }
     });
     document.documentElement.style.setProperty('--scale-color',
@@ -136,7 +136,7 @@ class Scale {
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation} js-slider__scale-value js-slider__scale-value_${orientation}`;
     const divisionValue = document.createElement('span');
     const division = document.createElement('span');
-    divisionValue.className = `slider__division-value js-slider__division-value slider__division-value_${val}`;
+    divisionValue.className = `slider__division-value js-slider__division-value slider__division-value_${val}-element`;
     division.className = 'slider__division js-slider__division';
     scaleMarker.append(divisionValue);
     scaleMarker.append(division);

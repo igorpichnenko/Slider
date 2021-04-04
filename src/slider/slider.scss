@@ -158,11 +158,11 @@
     z-index: 2;
   }
 
-  &__scale-value_fs-0 {
+  &__scale-value_fontSize-null {
     font-size: 0;
   }
 
-  &__scale-value_fs-normal {
+  &__scale-value_fontSize-normal {
     font-size: 12px;
   }
 
@@ -188,7 +188,7 @@
     transform: translate(-2px, -26px);
   }
 
-  &__division-value_0:before {
+  &__division-value_0-element:before {
     transform: translate(2px, -26px);
   }
 }
