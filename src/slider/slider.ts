@@ -45,13 +45,9 @@ import './slider.scss';
     const isMethod = typeof method === 'object' || !method;
 
     if (typeof method === 'string') {
-      if (method === 'change') {
-        return methods[method].call(this, this, arguments[1]);
-      }
 
-      if (method === 'getValue') {
-        methods[method].call(this, this, arguments[1]);
-      }
+      return (methods as any)[method].call(this, this, arguments[1]);
+
     }
     if (isMethod) {
       return methods.init(this, method);
