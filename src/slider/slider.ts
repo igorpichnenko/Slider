@@ -10,7 +10,7 @@ import {
 import './slider.scss';
 
 (function initPlugin($) {
-  ($.fn as any).colorSlider = function init(method?: {} | string) {
+  ($.fn as any).colorSlider = function init(method?: {} | string, ...arg: any[]) {
     const methods = {
 
       init($slider: JQuery < HTMLElement >, newParam: {}| undefined) {
@@ -45,9 +45,7 @@ import './slider.scss';
     const isMethod = typeof method === 'object' || !method;
 
     if (typeof method === 'string') {
-
-      return (methods as any)[method].call(this, this, arguments[1]);
-
+      return (methods as any)[method].call(this, this, ...arg);
     }
     if (isMethod) {
       return methods.init(this, method);

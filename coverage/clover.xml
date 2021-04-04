@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1617542678793" clover="3.2.0">
-  <project timestamp="1617542678794" name="All files">
+<coverage generated="1617544872797" clover="3.2.0">
+  <project timestamp="1617544872798" name="All files">
     <metrics statements="721" coveredstatements="687" conditionals="284" coveredconditionals="243" methods="121" coveredmethods="118" elements="1126" coveredelements="1048" complexity="0" loc="721" ncloc="721" packages="11" files="14" classes="14"/>
     <package name="preview.Demo">
       <metrics statements="195" coveredstatements="184" conditionals="60" coveredconditionals="48" methods="40" coveredmethods="38"/>
@@ -778,7 +778,7 @@
     </package>
     <package name="slider.libs">
       <metrics statements="16" coveredstatements="16" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
-      <file name="separate.ts" path="/data/data/com.termux/files/home/slider/src/slider/libs/separate.ts">
+      <file name="correctSeparate.ts" path="/data/data/com.termux/files/home/slider/src/slider/libs/correctSeparate.ts">
         <metrics statements="16" coveredstatements="16" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
         <line num="8" count="1355" type="stmt"/>
         <line num="11" count="1355" type="stmt"/>
