@@ -144,8 +144,8 @@ describe('Rollers', () => {
 
     view.upData({ isColorOut: true });
 
-    expect(firstTooltip.classList.contains('slider__tooltip_bg')).toBe(true);
-    expect(secondTooltip.classList.contains('slider__tooltip_bg')).toBe(true);
+    expect(firstTooltip.classList.contains('slider__tooltip_white-color')).toBe(true);
+    expect(secondTooltip.classList.contains('slider__tooltip_white-color')).toBe(true);
   });
 
   test('when isGradient = false then the background of the rollers is colored with variable color', () => {

@@ -10,20 +10,20 @@ describe('Scale', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;
   let scale: Scale;
-  let IViewState: IViewState;
+  let ViewState: IViewState;
 
   beforeEach(() => {
     wrap = $("<div class='js-toxin-slider' ></div>");
     wrap.appendTo('body');
     view = new View(standardOptions, wrap);
 
-    IViewState = {
+    ViewState = {
       size: 266,
       oneStep: 26.6,
       slider: view.slider,
       ...standardOptions,
     };
-    scale = new Scale(IViewState);
+    scale = new Scale(ViewState);
   });
 
   afterEach(() => {
@@ -191,12 +191,12 @@ describe('Scale', () => {
   });
 
   test('must correctly read the incrimination', () => {
-    const currentValue: number = scale.getIncrement(IViewState);
+    const currentValue: number = scale.getIncrement(ViewState);
     expect(currentValue).toBe(2);
   });
 
   test('must calculate the percentage correctly', () => {
-    const currentValue: number = scale.convertPxToPercent(26.6, IViewState);
+    const currentValue: number = scale.convertPxToPercent(26.6, ViewState);
     expect(currentValue).toBe(10);
   });
 });

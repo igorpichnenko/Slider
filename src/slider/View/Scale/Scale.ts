@@ -1,4 +1,8 @@
-import { IViewState, Orientation } from '../../interfaces/interfaces';
+import {
+  IViewState,
+  Orientation,
+} from '../../interfaces/interfaces';
+import { correctSeparate } from '../../libs/separate';
 
 class Scale {
   private options: IViewState;
@@ -9,7 +13,10 @@ class Scale {
   }
 
   private create(options: IViewState): void {
-    const { slider, orientation } = options;
+    const {
+      slider,
+      orientation,
+    } = options;
     const scale = document.createElement('div');
     scale.className = `slider__scale slider__scale_${orientation} js-slider__scale js-slider__scale_${orientation}`;
 
@@ -21,10 +28,15 @@ class Scale {
   }
 
   public upData(options: IViewState) {
-    const { slider } = options;
+    const {
+      slider,
+    } = options;
     const scale = slider.querySelector('.js-slider__scale')! as HTMLElement;
 
-    this.options = { ...this.options, ...options };
+    this.options = {
+      ...this.options,
+      ...options,
+    };
 
     this.checkScale(options, scale);
     this.updataScaleMarker(options);
@@ -32,10 +44,12 @@ class Scale {
 
   private updataScaleMarker(options: IViewState) {
     const {
-      onlyDivisions, slider, color,
+      onlyDivisions,
+      slider,
+      color,
     } = options;
 
-    const scaleMarkers = slider.querySelectorAll<HTMLElement>('.js-slider__scale-value')!;
+    const scaleMarkers = slider.querySelectorAll < HTMLElement >('.js-slider__scale-value')!;
 
     scaleMarkers.forEach((scaleMarker) => {
       if (onlyDivisions === true) {
@@ -44,11 +58,15 @@ class Scale {
         scaleMarker.classList.add('slider__scale-value_fs-normal');
       }
     });
-    document.documentElement.style.setProperty('--scale-color', ` ${color}`);
+    document.documentElement.style.setProperty('--scale-color',
+      ` ${color}`);
   }
 
-  private checkScale(options: IViewState, scale: HTMLElement) {
-    const { isScale } = options;
+  private checkScale(options: IViewState,
+    scale: HTMLElement) {
+    const {
+      isScale,
+    } = options;
     if (isScale === false) {
       scale.style.display = 'none';
     } if (isScale === true) {
@@ -63,7 +81,11 @@ class Scale {
 
   private addScaleMarker(options: IViewState, scale: HTMLElement): void {
     const {
-      min, max, step, size, oneStep,
+      min,
+      max,
+      step,
+      size,
+      oneStep,
     } = options;
 
     const inc = this.getIncrement(options);
@@ -85,7 +107,11 @@ class Scale {
   }
 
   public getIncrement(options: IViewState): number {
-    const { size, oneStep, step } = options;
+    const {
+      size,
+      oneStep,
+      step,
+    } = options;
     const value = Math.ceil(size / oneStep);
     const inc = Math.ceil(value / 5) * step;
     return inc;
@@ -94,10 +120,15 @@ class Scale {
   private createScaleMarker(fragment: DocumentFragment,
     value: number, position: number, options: IViewState, val: number): void {
     const {
-      orientation, isScalePostfix, isPrefix, onlyDivisions,
+      orientation,
+      isScalePostfix,
+      isPrefix,
+      onlyDivisions,
     } = options;
 
-    let { scalePostfix } = options;
+    let {
+      scalePostfix,
+    } = options;
 
     value = Number(value.toFixed(1));
 
@@ -121,10 +152,10 @@ class Scale {
     if (isScalePostfix === false) {
       scalePostfix = '';
     }
-    element.innerHTML = `${this.separate(value, options)}${scalePostfix}`;
+    element.innerHTML = `${correctSeparate(value, options)}${scalePostfix}`;
 
     if (isPrefix === true) {
-      element.innerHTML = `${scalePostfix}${this.separate(value, options)}`;
+      element.innerHTML = `${scalePostfix}${correctSeparate(value, options)}`;
     }
 
     this.updataScaleMarker(options);
@@ -139,48 +170,42 @@ class Scale {
   }
 
   public convertPxToPercent(value: number, options: IViewState): number {
-    const { size } = options;
+    const {
+      size,
+    } = options;
     return (value * 100) / size;
   }
 
   // Кастомный Эвент для передачи значения в Вид
 
   private handleScaleClick(event: Event): void {
-    const { target } = event;
-    const { onlyDivisions } = this.options;
+    const {
+      target,
+    } = event;
+    const {
+      onlyDivisions,
+    } = this.options;
     event.stopPropagation();
 
     if (!(target instanceof HTMLElement)) return;
-    if (onlyDivisions === false) {
-      if (!target.classList.contains('slider__scale-value')) return;
-    } else if (!target.classList.contains('slider__division-value')) return;
+    const isScaleDivison = !target.classList.contains('slider__division-value') && onlyDivisions === true;
+
+    const isScaleValue = !target.classList.contains('slider__scale-value') && onlyDivisions === false;
+
+    if (isScaleDivison) return;
+    if (isScaleValue) return;
 
     const value = target.innerHTML;
 
-    const scaleEvent = new CustomEvent('scaleclick', { bubbles: true, detail: { event, value } });
+    const scaleEvent = new CustomEvent('scaleclick', {
+      bubbles: true,
+      detail: {
+        event, value,
+      },
+    });
     target.dispatchEvent(scaleEvent);
   }
-
-  private separate(value: number, options: IViewState): string {
-    const { isSeparate } = options;
-    let { separate } = options;
-    let val = '';
-
-    if (isSeparate === false) {
-      val = value.toString();
-    } else {
-      if (separate === ',') {
-        separate = 'en-US';
-      }
-      if (separate === '.') {
-        separate = 'de-DE';
-      }
-      if (separate === ' ') {
-        separate = undefined;
-      }
-      val = value.toLocaleString(separate);
-    }
-    return val;
-  }
 }
-export { Scale };
+export {
+  Scale,
+};

@@ -168,9 +168,8 @@
 <a name='L109'></a><a href='#L109'>109</a>
 <a name='L110'></a><a href='#L110'>110</a>
 <a name='L111'></a><a href='#L111'>111</a>
-<a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a>
-<a name='L114'></a><a href='#L114'>114</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L112'></a><a href='#L112'>112</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -246,6 +245,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -256,21 +257,16 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
-<span class="cline-any cline-yes">130x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">133x</span>
-<span class="cline-any cline-yes">130x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">133x</span>
@@ -285,6 +281,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
   IOptions,
+  SliderType,
 } from '../interfaces/interfaces';
 import {
   EventEmitter,
@@ -295,18 +292,18 @@ class Model {
 &nbsp;
   public emitter: EventEmitter;
 &nbsp;
-  constructor(IOptions: IOptions) {
+  constructor(Options: IOptions) {
     this.emitter = new EventEmitter();
 &nbsp;
-    this.state = this.init(IOptions);
+    this.state = this.init(Options);
   }
 &nbsp;
-  public setData(IOptions: IOptions): void {
-    const validateFromTo: IOptions = this.validateFromTo(IOptions);
-    const validateMinMaxStep: IOptions = this.validateMinMaxStep(IOptions);
+  public setData(Options: IOptions): void {
+    const validateFromTo: IOptions = this.validateFromTo(Options);
+    const validateMinMaxStep: IOptions = this.validateMinMaxStep(Options);
 &nbsp;
     this.state = {
-      ...IOptions,
+      ...Options,
       ...validateFromTo,
       ...validateMinMaxStep,
     };
@@ -314,36 +311,36 @@ class Model {
     this.emitter.emit('newData', this.state);
   }
 &nbsp;
-  private init(IOptions: IOptions): IOptions {
-    this.setData(IOptions);
+  private init(Options: IOptions): IOptions {
+    this.setData(Options);
     return this.state;
   }
 &nbsp;
-  private validateMinMaxStep(IOptions: IOptions): IOptions {
+  private validateMinMaxStep(Options: IOptions): IOptions {
     const {
       min,
       max,
       step,
-    } = IOptions;
+    } = Options;
 &nbsp;
-    if (step &lt;= 0) IOptions.step = 0.1;
+    if (step &lt;= 0) Options.step = 0.1;
 &nbsp;
     const isMaxMin = max &lt;= min &amp;&amp; max &lt; 0;
     const isMinMax = (min &gt;= max &amp;&amp; max &gt; 0) || (max &lt; 0 &amp;&amp; max &lt; min);
 &nbsp;
     if (isMaxMin) {
-      IOptions.min = min - step;
+      Options.min = min - step;
     }
 &nbsp;
     if (isMinMax) {
-      IOptions.min = min;
-      IOptions.max = min + step;
+      Options.min = min;
+      Options.max = min + step;
     }
 &nbsp;
-    return IOptions;
+    return Options;
   }
 &nbsp;
-  private validateFromTo(IOptions: IOptions): IOptions {
+  private validateFromTo(Options: IOptions): IOptions {
     const {
       from,
       to,
@@ -351,45 +348,42 @@ class Model {
       min,
       type,
       step,
-    } = IOptions;
+    } = Options;
 &nbsp;
-    if (type === 'single') {
-      IOptions.to = max;
+    if (type === SliderType[1]) {
+      Options.to = max;
     }
 &nbsp;
     const maxMinZero = max &lt; 0 &amp;&amp; min === 0;
     const isMinMaxZero = min &lt; 0 &amp;&amp; max &lt; 0;
+    const isSingleFrom = type === SliderType[0] &amp;&amp; from &gt;= to;
+    const isCorrectFrom = from &gt; 0 &amp;&amp; isMinMaxZero;
 &nbsp;
-    if (from &gt; max) IOptions.from = max - step;
+    if (from &gt; max) Options.from = max - step;
 &nbsp;
-    if (from &lt; min) IOptions.from = min;
-    if (to &gt; max) IOptions.to = max;
+    if (from &lt; min) Options.from = min;
+    if (to &gt; max) Options.to = max;
 &nbsp;
     if (maxMinZero) {
-      IOptions.from = min;
-      IOptions.to = min;
+      Options.from = min;
+      Options.to = min;
     }
-&nbsp;
-    if (type === 'double') {
-      if (from &gt;= to) {
-        IOptions.from = to - step;
-      }
+    if (isSingleFrom) {
+      Options.from = to - step;
+    }
+    if (isCorrectFrom) {
+      Options.from = min;
     }
 &nbsp;
     if (to &lt;= min) {
-      IOptions.to = min + step;
-      IOptions.from = min;
+      Options.to = min + step;
+      Options.from = min;
     }
 &nbsp;
-    if (from &gt; 0) {
-      if (isMinMaxZero) {
-        IOptions.from = min;
-      }
-    }
     if (max &lt; min) {
-      IOptions.to = min + step;
+      Options.to = min + step;
     }
-    return IOptions;
+    return Options;
   }
 }
 &nbsp;
@@ -403,7 +397,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Apr 03 2021 20:50:22 GMT+0600 (GMT+06:00)
+                at Sun Apr 04 2021 16:31:49 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

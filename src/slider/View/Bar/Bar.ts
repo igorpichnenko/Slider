@@ -1,4 +1,8 @@
-import { IViewState, Orientation, SliderType } from '../../interfaces/interfaces';
+import {
+  IViewState,
+  Orientation,
+  SliderType,
+} from '../../interfaces/interfaces';
 
 class Bar {
   constructor(options: IViewState) {
@@ -6,7 +10,10 @@ class Bar {
   }
 
   private create(options: IViewState): void {
-    const { slider, orientation } = options;
+    const {
+      slider,
+      orientation,
+    } = options;
 
     const bar = document.createElement('div');
 
@@ -18,7 +25,9 @@ class Bar {
   }
 
   public upData(options: IViewState) {
-    const { slider } = options;
+    const {
+      slider,
+    } = options;
 
     const bar = slider.querySelector('.js-slider__bar')! as HTMLElement;
 
@@ -28,19 +37,26 @@ class Bar {
 
   private updataColor(options: IViewState, bar: HTMLElement) {
     const {
-      color, isGradient, gradient, gradientDeg, isChangeColor,
+      color,
+      isGradient,
+      gradient,
+      gradientDeg,
+      isChangeColor,
     } = options;
-    if (isChangeColor === true) {
-      if (isGradient === true) {
-        bar.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
-      } else {
-        bar.style.background = color;
-      }
+    const isSetGradient = isChangeColor === true && isGradient === true;
+    const isSetColor = isChangeColor === true && isGradient === false;
+
+    if (isSetGradient) {
+      bar.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+    } if (isSetColor) {
+      bar.style.background = color;
     }
   }
 
   private getRollerPositions(options: IViewState): number[] {
-    const { slider } = options;
+    const {
+      slider,
+    } = options;
 
     const rollers = slider.querySelectorAll('.js-slider__roller');
 
@@ -51,7 +67,9 @@ class Bar {
   }
 
   private calculatePosition(element: Element, options: IViewState): number {
-    const { orientation } = options;
+    const {
+      orientation,
+    } = options;
 
     const side: 'left' | 'top' = orientation === Orientation[1] ? 'left' : 'top';
     const width = Number.parseInt(getComputedStyle(element).width, 10);
@@ -67,7 +85,10 @@ class Bar {
   }
 
   private updataBar(options: IViewState, bar: HTMLElement) {
-    const { type, orientation } = options;
+    const {
+      type,
+      orientation,
+    } = options;
 
     const isHorizontal = orientation === Orientation[1];
 
@@ -80,21 +101,22 @@ class Bar {
     const isSingle = type === SliderType[1];
 
     const sliderPos = this.getNewSliderPos(options);
+    const isSingleHorizontal = isSingle && isHorizontal;
 
-    if (isSingle) {
-      if (isHorizontal) {
-        const to = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
+    if (isSingleHorizontal) {
+      const to = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
 
-        bar.style[side] = '0%';
-        bar.style[direction] = `${to}%`;
-      } else {
-        const from = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
-        const to = 100 - from;
-
-        bar.style[side] = `${from}%`;
-        bar.style[direction] = `${to}%`;
-      }
+      bar.style[side] = '0%';
+      bar.style[direction] = `${to}%`;
     } else {
+      const from = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
+      const to = 100 - from;
+
+      bar.style[side] = `${from}%`;
+      bar.style[direction] = `${to}%`;
+    }
+
+    if (!isSingle) {
       const from = this.convertPxToProcent(Math.abs(rollerPos[0] - sliderPos), options);
 
       const to = this.convertPxToProcent(Math.abs(rollerPos[1] - rollerPos[0]), options);
@@ -105,7 +127,10 @@ class Bar {
   }
 
   public getNewSliderPos(options: IViewState): number {
-    const { orientation, slider } = options;
+    const {
+      orientation,
+      slider,
+    } = options;
 
     let position = 0;
 
@@ -118,4 +143,6 @@ class Bar {
   }
 }
 
-export { Bar };
+export {
+  Bar,
+};

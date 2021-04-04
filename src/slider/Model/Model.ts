@@ -1,5 +1,6 @@
 import {
   IOptions,
+  SliderType,
 } from '../interfaces/interfaces';
 import {
   EventEmitter,
@@ -10,18 +11,18 @@ class Model {
 
   public emitter: EventEmitter;
 
-  constructor(IOptions: IOptions) {
+  constructor(Options: IOptions) {
     this.emitter = new EventEmitter();
 
-    this.state = this.init(IOptions);
+    this.state = this.init(Options);
   }
 
-  public setData(IOptions: IOptions): void {
-    const validateFromTo: IOptions = this.validateFromTo(IOptions);
-    const validateMinMaxStep: IOptions = this.validateMinMaxStep(IOptions);
+  public setData(Options: IOptions): void {
+    const validateFromTo: IOptions = this.validateFromTo(Options);
+    const validateMinMaxStep: IOptions = this.validateMinMaxStep(Options);
 
     this.state = {
-      ...IOptions,
+      ...Options,
       ...validateFromTo,
       ...validateMinMaxStep,
     };
@@ -29,36 +30,36 @@ class Model {
     this.emitter.emit('newData', this.state);
   }
 
-  private init(IOptions: IOptions): IOptions {
-    this.setData(IOptions);
+  private init(Options: IOptions): IOptions {
+    this.setData(Options);
     return this.state;
   }
 
-  private validateMinMaxStep(IOptions: IOptions): IOptions {
+  private validateMinMaxStep(Options: IOptions): IOptions {
     const {
       min,
       max,
       step,
-    } = IOptions;
+    } = Options;
 
-    if (step <= 0) IOptions.step = 0.1;
+    if (step <= 0) Options.step = 0.1;
 
     const isMaxMin = max <= min && max < 0;
     const isMinMax = (min >= max && max > 0) || (max < 0 && max < min);
 
     if (isMaxMin) {
-      IOptions.min = min - step;
+      Options.min = min - step;
     }
 
     if (isMinMax) {
-      IOptions.min = min;
-      IOptions.max = min + step;
+      Options.min = min;
+      Options.max = min + step;
     }
 
-    return IOptions;
+    return Options;
   }
 
-  private validateFromTo(IOptions: IOptions): IOptions {
+  private validateFromTo(Options: IOptions): IOptions {
     const {
       from,
       to,
@@ -66,45 +67,42 @@ class Model {
       min,
       type,
       step,
-    } = IOptions;
+    } = Options;
 
-    if (type === 'single') {
-      IOptions.to = max;
+    if (type === SliderType[1]) {
+      Options.to = max;
     }
 
     const maxMinZero = max < 0 && min === 0;
     const isMinMaxZero = min < 0 && max < 0;
+    const isSingleFrom = type === SliderType[0] && from >= to;
+    const isCorrectFrom = from > 0 && isMinMaxZero;
 
-    if (from > max) IOptions.from = max - step;
+    if (from > max) Options.from = max - step;
 
-    if (from < min) IOptions.from = min;
-    if (to > max) IOptions.to = max;
+    if (from < min) Options.from = min;
+    if (to > max) Options.to = max;
 
     if (maxMinZero) {
-      IOptions.from = min;
-      IOptions.to = min;
+      Options.from = min;
+      Options.to = min;
     }
-
-    if (type === 'double') {
-      if (from >= to) {
-        IOptions.from = to - step;
-      }
+    if (isSingleFrom) {
+      Options.from = to - step;
+    }
+    if (isCorrectFrom) {
+      Options.from = min;
     }
 
     if (to <= min) {
-      IOptions.to = min + step;
-      IOptions.from = min;
+      Options.to = min + step;
+      Options.from = min;
     }
 
-    if (from > 0) {
-      if (isMinMaxZero) {
-        IOptions.from = min;
-      }
-    }
     if (max < min) {
-      IOptions.to = min + step;
+      Options.to = min + step;
     }
-    return IOptions;
+    return Options;
   }
 }
 

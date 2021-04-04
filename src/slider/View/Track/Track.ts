@@ -1,4 +1,7 @@
-import { IViewState } from '../../interfaces/interfaces';
+import {
+  IViewState,
+} from '../../interfaces/interfaces';
+import { correctSeparate } from '../../libs/separate';
 
 class Track {
   constructor(options: IViewState) {
@@ -6,7 +9,10 @@ class Track {
   }
 
   private create(options: IViewState) {
-    const { slider, orientation } = options;
+    const {
+      slider,
+      orientation,
+    } = options;
 
     const track = document.createElement('div');
 
@@ -17,7 +23,9 @@ class Track {
   }
 
   private createOutElement(track: HTMLElement, options: IViewState) {
-    const { orientation } = options;
+    const {
+      orientation,
+    } = options;
     const startValue = document.createElement('div');
     const endValue = document.createElement('div');
     startValue.className = `slider__out slider__out-start slider__out-start_${orientation} js-slider__out js-slider__out-start js-slider__out-start_${orientation}`;
@@ -30,10 +38,19 @@ class Track {
 
   private setStartEndTrackOut(outStart: HTMLElement, outEnd: HTMLElement, options: IViewState) {
     const {
-      min, max, from, to, minMax, fromTo, isTrackPostfix, isPrefix,
+      min,
+      max,
+      from,
+      to,
+      minMax,
+      fromTo,
+      isTrackPostfix,
+      isPrefix,
     } = options;
 
-    let { trackPostfix } = options;
+    let {
+      trackPostfix,
+    } = options;
 
     if (isTrackPostfix === false) {
       trackPostfix = '';
@@ -41,51 +58,31 @@ class Track {
     // настройки для постфикса
 
     if (minMax === true) {
-      outStart.innerHTML = `${this.separate(min, options)}${trackPostfix}`;
-      outEnd.innerHTML = `${this.separate(max, options)}${trackPostfix}`;
+      outStart.innerHTML = `${correctSeparate(min, options)}${trackPostfix}`;
+      outEnd.innerHTML = `${correctSeparate(max, options)}${trackPostfix}`;
     }
     if (fromTo === true) {
-      outStart.innerHTML = `${this.separate(from, options)}${trackPostfix}`;
-      outEnd.innerHTML = `${this.separate(to, options)}${trackPostfix}`;
+      outStart.innerHTML = `${correctSeparate(from, options)}${trackPostfix}`;
+      outEnd.innerHTML = `${correctSeparate(to, options)}${trackPostfix}`;
     }
-
+    const isFromtoPrefix = fromTo === true && isPrefix === true;
+    const isMinMaxPrefix = minMax === true && isPrefix === true;
     // настройки для префикса
-    if (isPrefix === true) {
-      if (minMax === true) {
-        outStart.innerHTML = `${trackPostfix}${this.separate(min, options)}`;
-        outEnd.innerHTML = `${trackPostfix}${this.separate(max, options)}`;
-      }
-      if (fromTo === true) {
-        outStart.innerHTML = `${trackPostfix}${this.separate(from, options)}`;
-        outEnd.innerHTML = `${trackPostfix}${this.separate(to, options)}`;
-      }
-    }
-  }
 
-  private separate(value: number, options: IViewState): string {
-    const { isSeparate } = options;
-    let { separate } = options;
-    let val = '';
-
-    if (isSeparate === false) {
-      val = value.toString();
-    } else {
-      if (separate === ',') {
-        separate = 'en-US';
-      }
-      if (separate === '.') {
-        separate = 'de-DE';
-      }
-      if (separate === ' ') {
-        separate = undefined;
-      }
-      val = value.toLocaleString(separate);
+    if (isMinMaxPrefix) {
+      outStart.innerHTML = `${trackPostfix}${correctSeparate(min, options)}`;
+      outEnd.innerHTML = `${trackPostfix}${correctSeparate(max, options)}`;
     }
-    return val;
+    if (isFromtoPrefix) {
+      outStart.innerHTML = `${trackPostfix}${correctSeparate(from, options)}`;
+      outEnd.innerHTML = `${trackPostfix}${correctSeparate(to, options)}`;
+    }
   }
 
   public upData(options: IViewState) {
-    const { slider } = options;
+    const {
+      slider,
+    } = options;
 
     const outStart = slider.querySelector('.js-slider__out-start')! as HTMLElement;
     const outEnd = slider.querySelector('.js-slider__out-end')! as HTMLElement;
@@ -94,4 +91,6 @@ class Track {
   }
 }
 
-export { Track };
+export {
+  Track,
+};

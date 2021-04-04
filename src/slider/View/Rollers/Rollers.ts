@@ -1,6 +1,9 @@
 import {
-  IViewState, Orientation, SliderType,
+  IViewState,
+  Orientation,
+  SliderType,
 } from '../../interfaces/interfaces';
+import { correctSeparate } from '../../libs/separate';
 
 class Rollers {
   constructor(options: IViewState) {
@@ -65,47 +68,20 @@ class Rollers {
       postfix = '';
     }
 
+    const isSetPrefix = isLabel === true && isPrefix === true;
+    const isSetPostfix = isLabel === true && isPrefix === false;
     // настройки постфикс
-
-    if (isLabel === true) {
-      fistTooltip.innerHTML = `${this.separate(from, options)}${postfix}`;
-      secondTooltip.innerHTML = `${this.separate(to, options)}${postfix}`;
-
-      // настройки префикс
-      if (isPrefix === true) {
-        fistTooltip.innerHTML = `${postfix}${this.separate(from, options)}`;
-        secondTooltip.innerHTML = `${postfix}${this.separate(to, options)}`;
-      }
+    if (isSetPostfix) {
+      fistTooltip.innerHTML = `${correctSeparate(from, options)}${postfix}`;
+      secondTooltip.innerHTML = `${correctSeparate(to, options)}${postfix}`;
+    }
+    // настройки префикс
+    if (isSetPrefix) {
+      fistTooltip.innerHTML = `${postfix}${correctSeparate(from, options)}`;
+      secondTooltip.innerHTML = `${postfix}${correctSeparate(to, options)}`;
     }
 
     this.setColor(fistTooltip, secondTooltip, options);
-  }
-
-  private separate(value: number, options: IViewState): string {
-    const {
-      isSeparate,
-    } = options;
-    let {
-      separate,
-    } = options;
-    let val = '';
-
-    if (isSeparate === false) {
-      val = value.toString();
-    } else {
-      if (separate === ',') {
-        separate = 'en-US';
-      }
-      if (separate === '.') {
-        separate = 'de-DE';
-      }
-      if (separate === ' ') {
-        separate = undefined;
-      }
-      val = value.toLocaleString(separate);
-    }
-
-    return val;
   }
 
   private setColor(fistTooltip: HTMLElement,
@@ -133,17 +109,19 @@ class Rollers {
     if (newColor === undefined) {
       newColor = color;
     }
-    if (isChangeColor === true) {
-      if (isColorOut === true) {
-        fistTooltip.innerHTML = String(newColor);
-        secondTooltip.innerHTML = String(newGradient);
 
-        fistTooltip.style.backgroundColor = `${color}`;
-        secondTooltip.style.backgroundColor = `${gradient}`;
-        fistTooltip.classList.add('slider__tooltip_bg');
-        secondTooltip.classList.add('slider__tooltip_bg');
-      }
+    const setNewColor = isChangeColor === true && isColorOut === true;
+
+    if (setNewColor) {
+      fistTooltip.innerHTML = String(newColor);
+      secondTooltip.innerHTML = String(newGradient);
+
+      fistTooltip.style.backgroundColor = `${color}`;
+      secondTooltip.style.backgroundColor = `${gradient}`;
+      fistTooltip.classList.add('slider__tooltip_white-color');
+      secondTooltip.classList.add('slider__tooltip_white-color');
     }
+
     if (isLabel === false) {
       fistTooltip.classList.add('slider__tooltip_display-none');
       secondTooltip.classList.add('slider__tooltip_display-none');
@@ -158,14 +136,15 @@ class Rollers {
       isChangeColor,
       gradientDeg,
     } = options;
-    if (isChangeColor === true) {
-      if (isGradient === true) {
-        rollerFirst.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
-        rollerSecond.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
-      } else {
-        rollerFirst.style.background = color;
-        rollerSecond.style.background = color;
-      }
+    const isChangeGradient = isChangeColor === true && isGradient === true;
+    const isColor = isChangeColor === true && isGradient === false;
+
+    if (isChangeGradient) {
+      rollerFirst.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+      rollerSecond.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+    } if (isColor) {
+      rollerFirst.style.background = color;
+      rollerSecond.style.background = color;
     }
   }
 

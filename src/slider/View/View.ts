@@ -1,6 +1,8 @@
 import {
   IOptions,
-  IViewState, Orientation, SliderType,
+  IViewState,
+  Orientation,
+  SliderType,
 } from '../interfaces/interfaces';
 import {
   EventEmitter,
@@ -35,13 +37,13 @@ class View {
 
   private track: Track;
 
-  constructor(IOptions: IOptions, element: JQuery < HTMLElement >) {
+  constructor(Options: IOptions, element: JQuery < HTMLElement >) {
     this.emitter = new EventEmitter();
 
     this.element = element;
 
-    this.slider = this.createSlider(IOptions, element);
-    this.state = this.init(IOptions);
+    this.slider = this.createSlider(Options, element);
+    this.state = this.init(Options);
 
     this.rollers = this.createRollers(this.state);
     this.bar = this.createBar(this.state);
@@ -53,27 +55,27 @@ class View {
     this.bindEventListeners();
   }
 
-  // * Расширяю IOptions до IViewState
+  // * Расширяю Options до IViewState
 
-  private init(IOptions: IOptions): IViewState {
-    const size = this.getSliderSize(IOptions);
-    const oneStep = this.getOneStep(IOptions);
+  private init(Options: IOptions): IViewState {
+    const size = this.getSliderSize(Options);
+    const oneStep = this.getOneStep(Options);
     const {
       slider,
     } = this;
 
     return {
-      ...IOptions,
+      ...Options,
       size,
       oneStep,
       slider,
     };
   }
 
-  public createSlider(IOptions: IOptions, element: JQuery < HTMLElement >): HTMLElement {
+  public createSlider(Options: IOptions, element: JQuery < HTMLElement >): HTMLElement {
     const {
       orientation,
-    } = IOptions;
+    } = Options;
     const slider = document.createElement('div');
 
     slider.className = `slider slider_${orientation}`;
@@ -82,20 +84,20 @@ class View {
     return slider;
   }
 
-  private createTrack(IOptions: IViewState): Track {
-    return new Track(IOptions);
+  private createTrack(Options: IViewState): Track {
+    return new Track(Options);
   }
 
-  private createBar(IOptions: IViewState): Bar {
-    return new Bar(IOptions);
+  private createBar(Options: IViewState): Bar {
+    return new Bar(Options);
   }
 
-  private createRollers(IOptions: IViewState): Rollers {
-    return new Rollers(IOptions);
+  private createRollers(Options: IViewState): Rollers {
+    return new Rollers(Options);
   }
 
-  private createScale(IOptions: IViewState): Scale {
-    return new Scale(IOptions);
+  private createScale(Options: IViewState): Scale {
+    return new Scale(Options);
   }
 
   /**
@@ -132,16 +134,16 @@ class View {
     this.bindEventListeners();
   }
 
-  public getOneStep(IOptions: IOptions): number {
+  public getOneStep(Options: IOptions): number {
     const {
       min,
       max,
       step,
-    } = IOptions;
+    } = Options;
 
     const result = Math.ceil((max - min) / step);
 
-    return this.getSliderSize(IOptions) / result;
+    return this.getSliderSize(Options) / result;
   }
 
   private bindEventListeners() {
@@ -185,29 +187,34 @@ class View {
     } = this.state;
     event.preventDefault();
     let mouseValue = 0;
+    const isHandle = !/tooltip || roller/.test(target.className);
+    if (isHandle) return;
+    const sensorHorizontalEvent = event.type === 'touchmove' && orientation === Orientation[1];
+    const mouseHorizontalEvent = event.type === 'mousemove' && orientation === Orientation[1];
+    const sensorVerticalEvent = event.type === 'touchmove' && orientation === Orientation[0];
+    const mouseVerticalEvent = event.type === 'mousemove' && orientation === Orientation[0];
 
-    if (!/tooltip || roller/.test(target.className)) return;
+    if (sensorHorizontalEvent) {
+      mouseValue = this.convertPxToValue(event.touches[0].clientX);
+    }
+    if (mouseHorizontalEvent) {
+      mouseValue = this.convertPxToValue(event.clientX);
+    }
 
-    if (orientation === Orientation[1]) {
-      if (event.type === 'touchmove') {
-        mouseValue = this.convertPxToValue(event.touches[0].clientX);
-      } else {
-        mouseValue = this.convertPxToValue(event.clientX);
-      }
-    } else if (event.type === 'touchmove') {
+    if (sensorVerticalEvent) {
       mouseValue = this.convertPxToValue(event.touches[0].clientY);
-    } else {
+    } if (mouseVerticalEvent) {
       mouseValue = this.convertPxToValue(event.clientY);
     }
+
     this.updatePosition(mouseValue, target);
   }
 
   private getTargetType(target: HTMLElement): string {
     const rollers = this.slider.querySelectorAll('.js-slider__roller');
 
-    if (rollers[0]) {
-      if (rollers[0].contains(target)) return 'from';
-    }
+    if (rollers[0].contains(target)) return 'from';
+
     if (rollers[1].contains(target)) {
       return 'to';
     }
@@ -271,8 +278,9 @@ class View {
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
     const isSingle = type === SliderType[1];
+    const isSingleFrom = isSingle && fromDistance;
 
-    if (isSingle && fromDistance) {
+    if (isSingleFrom) {
       this.emitter.emit('newPosition', {
         from: value,
       });
@@ -280,49 +288,52 @@ class View {
       return;
     }
 
-    if (!target) {
-      const isFrom = (fromDistance < toDistance) ? 'from' : 'to';
+    const isFrom = (fromDistance < toDistance) ? 'from' : 'to';
+    const targetFrom = !target && isFrom === 'from';
+    const targetTo = !target && isFrom === 'to';
 
-      if (isFrom === 'from') {
-        this.emitter.emit('newPosition', {
-          from: value,
-        });
-        this.convertValueToColor(value);
-      } else {
-        this.emitter.emit('newPosition', {
-          to: value,
-        });
-        this.convertValueToColor(value);
-      }
-    } else {
-      const targets = this.getTargetType(target);
-      if (targets === 'from') {
-        if (type === SliderType[0]) {
-          if (value > to - step) {
-            this.emitter.emit('newPosition', {
-              from: to - step,
-            });
-            return;
-          }
-        }
-        this.emitter.emit('newPosition', {
-          from: value,
-        });
+    if (targetFrom) {
+      this.emitter.emit('newPosition', {
+        from: value,
+      });
+      this.convertValueToColor(value);
+    } if (targetTo) {
+      this.emitter.emit('newPosition', {
+        to: value,
+      });
+      this.convertValueToColor(value);
+    }
 
-        this.convertValueToColor(value);
-      } else {
-        if (value < from + step) {
-          this.emitter.emit('newPosition', {
-            to: from + step,
-          });
-          return;
-        }
+    const targets = target && this.getTargetType(target);
 
-        this.emitter.emit('newPosition', {
-          to: value,
-        });
-        this.convertValueToColor(value);
-      }
+    const isFromTarget = targets === 'from' && type === SliderType[0];
+    const isToTarget = targets === 'to';
+    const correctFrom = isFromTarget && value > to - step;
+    const correctTo = isToTarget && value < from + step;
+
+    if (isFromTarget) {
+      this.emitter.emit('newPosition', {
+        from: value,
+      });
+      this.convertValueToColor(value);
+    }
+    if (correctFrom) {
+      this.emitter.emit('newPosition', {
+        from: to - step,
+      });
+      return;
+    }
+
+    if (isToTarget) {
+      this.emitter.emit('newPosition', {
+        to: value,
+      });
+      this.convertValueToColor(value);
+    }
+    if (correctTo) {
+      this.emitter.emit('newPosition', {
+        to: from + step,
+      });
     }
   }
 
@@ -372,32 +383,31 @@ class View {
     } = this.state;
 
     const val = value / max;
-
-    if (isColor === true) {
-      let palitra = 0;
-      let grPalitra = 0;
-      if (changeColor === false) {
-        palitra = Math.round(val * 255 * 255 * 255);
-        grPalitra = Math.round(val * 255 * 254 * 254);
-      } else {
-        palitra = Math.round(val * 256 * 256 * 255);
-        grPalitra = Math.round(val * 254 * 254 * 254);
-      }
-      const correctGradient = Math.abs(grPalitra);
-      const correct = Math.abs(palitra);
-      const setColor = correct.toString(16);
-      const setGradient = correctGradient.toString(16);
-
-      color = `#${setColor}`;
-      gradient = `#${setGradient}`;
-
-      this.emitter.emit('newPosition', {
-        color,
-      });
-      this.emitter.emit('newPosition', {
-        gradient,
-      });
+    const isChangeColor = isColor === true && changeColor === false;
+    const isChangeNewColor = isColor === true && changeColor === true;
+    let palitra = 0;
+    let grPalitra = 0;
+    if (isChangeColor) {
+      palitra = Math.round(val * 255 * 255 * 255);
+      grPalitra = Math.round(val * 255 * 254 * 254);
+    } if (isChangeNewColor) {
+      palitra = Math.round(val * 256 * 256 * 255);
+      grPalitra = Math.round(val * 254 * 254 * 254);
     }
+    const correctGradient = Math.abs(grPalitra);
+    const correct = Math.abs(palitra);
+    const setColor = correct.toString(16);
+    const setGradient = correctGradient.toString(16);
+
+    color = `#${setColor}`;
+    gradient = `#${setGradient}`;
+
+    this.emitter.emit('newPosition', {
+      color,
+    });
+    this.emitter.emit('newPosition', {
+      gradient,
+    });
   }
 
   public getSliderPosition(): number {
@@ -416,10 +426,10 @@ class View {
     return position;
   }
 
-  public getSliderSize(IOptions: IOptions): number {
+  public getSliderSize(Options: IOptions): number {
     const {
       orientation,
-    } = IOptions;
+    } = Options;
     let size = 0;
     if (orientation === Orientation[1]) {
       size = this.slider.getBoundingClientRect().width;
