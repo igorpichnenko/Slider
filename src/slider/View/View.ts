@@ -307,26 +307,19 @@ class View {
     const targets = target && this.getTargetType(target);
 
     const isFromTarget = targets === 'from' && type === SliderType[0];
-    const isToTarget = targets === 'to';
+    const isToTarget = targets === 'to' && type === SliderType[0];
     const correctFrom = isFromTarget && value > to - step;
     const correctTo = isToTarget && value < from + step;
 
-    if (isFromTarget) {
-      this.emitter.emit('newPosition', {
-        from: value,
-      });
-      this.convertValueToColor(value);
-    }
     if (correctFrom) {
       this.emitter.emit('newPosition', {
         from: to - step,
       });
       return;
     }
-
-    if (isToTarget) {
+    if (isFromTarget) {
       this.emitter.emit('newPosition', {
-        to: value,
+        from: value,
       });
       this.convertValueToColor(value);
     }
@@ -334,6 +327,13 @@ class View {
       this.emitter.emit('newPosition', {
         to: from + step,
       });
+      return;
+    }
+    if (isToTarget) {
+      this.emitter.emit('newPosition', {
+        to: value,
+      });
+      this.convertValueToColor(value);
     }
   }
 

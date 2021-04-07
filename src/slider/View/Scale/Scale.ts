@@ -130,8 +130,6 @@ class Scale {
       scalePostfix,
     } = options;
 
-    value = Number(value.toFixed(1));
-
     const scaleMarker = document.createElement('span');
     scaleMarker.className = `slider__scale-value slider__scale-value_${orientation} js-slider__scale-value js-slider__scale-value_${orientation}`;
     const divisionValue = document.createElement('span');

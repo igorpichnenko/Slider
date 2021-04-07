@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.71% </span>
+                <span class="strong">88.24% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>165/186</span>
+                <span class='fraction'>165/187</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.23% </span>
+                <span class="strong">68.75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>54/78</span>
+                <span class='fraction'>55/80</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.06% </span>
+                <span class="strong">89.56% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>163/181</span>
+                <span class='fraction'>163/182</span>
             </div>
         
             
@@ -816,6 +816,12 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -827,16 +833,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -941,7 +942,6 @@
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">397x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1256,33 +1256,33 @@ class View {
     const targets = target &amp;&amp; this.getTargetType(target);
 &nbsp;
     const isFromTarget = targets === 'from' &amp;&amp; type === SliderType[0];
-    const isToTarget = targets === 'to';
+    const isToTarget = targets === 'to' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >type === SliderType[0];</span>
     const correctFrom = isFromTarget &amp;&amp; value &gt; to - step;
     const correctTo = isToTarget &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >value &lt; from + step;</span>
 &nbsp;
-    if (isFromTarget) {
-      this.emitter.emit('newPosition', {
-        from: value,
-      });
-      this.convertValueToColor(value);
-    }
     <span class="missing-if-branch" title="if path not taken" >I</span>if (correctFrom) {
 <span class="cstat-no" title="statement not covered" >      this.emitter.emit('newPosition', {</span>
         from: to - step,
       });
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
-&nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (isToTarget) {
-<span class="cstat-no" title="statement not covered" >      this.emitter.emit('newPosition', {</span>
-        to: value,
+    if (isFromTarget) {
+      this.emitter.emit('newPosition', {
+        from: value,
       });
-<span class="cstat-no" title="statement not covered" >      this.convertValueToColor(value);</span>
+      this.convertValueToColor(value);
     }
     <span class="missing-if-branch" title="if path not taken" >I</span>if (correctTo) {
 <span class="cstat-no" title="statement not covered" >      this.emitter.emit('newPosition', {</span>
         to: from + step,
       });
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (isToTarget) {
+<span class="cstat-no" title="statement not covered" >      this.emitter.emit('newPosition', {</span>
+        to: value,
+      });
+<span class="cstat-no" title="statement not covered" >      this.convertValueToColor(value);</span>
     }
   }
 &nbsp;
@@ -1300,13 +1300,13 @@ class View {
     const sliderEndPos = sliderPos + size;
 &nbsp;
     let px = 0;
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (orientation === Orientation[1]) {
-      px = coordinate - sliderPos;
+    if (orientation === Orientation[1]) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>  px = coordinate - sliderPos;
     } else {
-<span class="cstat-no" title="statement not covered" >      px = sliderEndPos - coordinate;</span>
-    }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (px &gt; size) <span class="cstat-no" title="statement not covered" >return max;</span>
-&nbsp;
+      px = sliderEndPos - coordinate;
+    }<span class="cstat-no" title="statement not covered" ></span>
+    if (px &gt; size) return max;
+<span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span></span>
     if (px &lt; 0) return min;
 &nbsp;
     const value = Math.round(px / oneStep) * step + min;
@@ -1336,11 +1336,11 @@ class View {
     const isChangeNewColor = isColor === true &amp;&amp; changeColor === true;
     let palitra = 0;
     let grPalitra = 0;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (isChangeColor) {
-<span class="cstat-no" title="statement not covered" >      palitra = Math.round(val * 255 * 255 * 255);</span>
-<span class="cstat-no" title="statement not covered" >      grPalitra = Math.round(val * 255 * 254 * 254);</span>
-    } <span class="missing-if-branch" title="else path not taken" >E</span>if (isChangeNewColor) {
-      palitra = Math.round(val * 256 * 256 * 255);
+    if (isChangeColor) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>  palitra = Math.round(val * 255 * 255 * 255);
+<span class="cstat-no" title="statement not covered" >      grPalitra = Math.round(val * 255 * 254 * 254)</span>;
+    } <span class="cstat-no" title="statement not covered" >if (isChangeNewColor) {</span>
+      <span class="missing-if-branch" title="else path not taken" >E</span>palitra = Math.round(val * 256 * 256 * 255);
       grPalitra = Math.round(val * 254 * 254 * 254);
     }
     const correctGradient = Math.abs(grPalitra);
@@ -1399,7 +1399,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Apr 04 2021 20:01:12 GMT+0600 (GMT+06:00)
+                at Wed Apr 07 2021 15:51:00 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>
