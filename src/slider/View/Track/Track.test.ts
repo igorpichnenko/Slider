@@ -3,7 +3,6 @@ import $ from 'jquery';
 
 import { View } from '../View';
 import { standardOptions } from '../../interfaces/standardOptions';
-import { IOptions } from '../../interfaces/interfaces';
 
 describe('Rollers', () => {
   let wrap: JQuery<HTMLElement>;
@@ -20,21 +19,9 @@ describe('Rollers', () => {
   });
 
   test('track horizontal is initialized and visible', () => {
-    const track = view.slider.querySelector('.js-slider__track_horizontal');
+    const track = view.slider.querySelector('.js-slider__track');
     expect(track).toBeVisible();
     expect(view.convertPxToValue).toBeDefined();
-  });
-
-  test('if orientation = "vertical" then track must have a vertical modifier', () => {
-    const newOptions: IOptions = {
-      ...standardOptions,
-      orientation: 'vertical',
-    };
-
-    const newView = new View(newOptions, wrap);
-
-    const track = newView.slider.querySelector('.js-slider__track_vertical');
-    expect(track).toBeVisible();
   });
 
   test('2 out element should be created', () => {
@@ -43,22 +30,6 @@ describe('Rollers', () => {
     expect(out.length).toBe(2);
     expect(out[0]).toBeVisible();
     expect(out[1]).toBeVisible();
-  });
-
-  test('if orientation = "vertical" then out element must have a vertical modifier', () => {
-    const newOptions: IOptions = {
-      ...standardOptions,
-      orientation: 'vertical',
-    };
-
-    const newView = new View(newOptions, wrap);
-
-    const outStart = newView.slider.querySelector('.js-slider__out-start_vertical') as HTMLElement;
-
-    const outEnd = newView.slider.querySelector('.js-slider__out-end_vertical') as HTMLElement;
-
-    expect(outStart).toBeVisible();
-    expect(outEnd).toBeVisible();
   });
 
   test('if minMax = true, then the out element should display the min, max and trackPrefix values', () => {

@@ -36,8 +36,8 @@ $('.js-custom-btn').click(() => {
 //      ***  Дэмо станица   ***
 
 const firstOptions: Partial<IOptions> = {
-  orientation: 'vertical',
-  type: 'double',
+  isVertical: true,
+  isDouble: false,
   isColorOut: true,
   isScale: false,
 };
@@ -52,7 +52,7 @@ const twoOptions: Partial<IOptions> = {
   onlyDivisions: false,
 };
 const threeOptions: Partial<IOptions> = {
-  orientation: 'vertical',
+  isVertical: true,
   gradient: 'blue',
   color: 'yellow',
   postfix: '',
@@ -82,15 +82,14 @@ const fourOptions: Partial<IOptions> = {
   isPrefix: true,
   isColor: false,
   onlyDivisions: true,
+
 };
 
 const fiveOptions: Partial<IOptions> = {
-  orientation: 'horizontal',
-  type: 'single',
   isScale: false,
   isLabel: false,
   color: 'green',
-
+  isDouble: true,
 };
 
 const sixOptions: Partial<IOptions> = {

@@ -35,11 +35,11 @@ describe('View', () => {
 
   test('initialized and got the correct parameters', () => {
     const {
-      orientation, type, minMax, color,
+      isVertical, minMax, color, isDouble,
     } = view.state;
 
-    expect(orientation).toBe(standardOptions.orientation);
-    expect(type).toBe(standardOptions.type);
+    expect(isVertical).toBe(standardOptions.isVertical);
+    expect(isDouble).toBe(standardOptions.isDouble);
     expect(minMax).toBe(standardOptions.minMax);
     expect(color).toBe(standardOptions.color);
   });
@@ -53,7 +53,7 @@ describe('View', () => {
     const sliderClass = view.slider.className;
 
     expect(view.slider).toBeTruthy();
-    expect(sliderClass).toBe('slider slider_horizontal');
+    expect(sliderClass).toBe('slider');
   });
 
   test('should create 2 rollers', () => {
@@ -81,35 +81,35 @@ describe('View', () => {
   });
 
   test('should create a track', () => {
-    const track = view.slider.querySelector('.js-slider__track_horizontal');
+    const track = view.slider.querySelector('.js-slider__track');
 
     expect(track).toBeTruthy();
     expect(track).toBeVisible();
   });
 
   test('should create a bar', () => {
-    const bar = view.slider.querySelector('.js-slider__bar_horizontal');
+    const bar = view.slider.querySelector('.js-slider__bar');
 
     expect(bar).toBeTruthy();
     expect(bar).toBeVisible();
   });
 
   test('should create a scale', () => {
-    const scale = view.slider.querySelector('.js-slider__scale_horizontal');
+    const scale = view.slider.querySelector('.js-slider__scale');
 
     expect(scale).toBeTruthy();
     expect(scale).toBeVisible();
   });
 
   test('upData method should update orientation in state', () => {
-    view.upData({ orientation: 'vertical' });
-    expect(view.state.orientation).toBe('vertical');
+    view.upData({ isVertical: true });
+    expect(view.state.isVertical).toBe(true);
 
-    view.upData({ orientation: 'horizontal' });
-    expect(view.state.orientation).toBe('horizontal');
+    view.upData({ isVertical: false });
+    expect(view.state.isVertical).toBe(false);
 
-    view.upData({ orientation: 'vertical' });
-    expect(view.state.orientation).toBe('vertical');
+    view.upData({ isVertical: true });
+    expect(view.state.isVertical).toBe(true);
   });
   test('roller move must call updatePosition method', () => {
     const spy = jest.spyOn(view, 'updatePosition');
@@ -122,14 +122,14 @@ describe('View', () => {
   });
 
   test('upData method should update type in state', () => {
-    view.upData({ type: 'single' });
-    expect(view.state.type).toBe('single');
+    view.upData({ isDouble: false });
+    expect(view.state.isDouble).toBe(false);
 
-    view.upData({ type: 'double' });
-    expect(view.state.type).toBe('double');
+    view.upData({ isDouble: true });
+    expect(view.state.isDouble).toBe(true);
 
-    view.upData({ type: 'single' });
-    expect(view.state.type).toBe('single');
+    view.upData({ isDouble: false });
+    expect(view.state.isDouble).toBe(false);
   });
 
   test('upData should change the isScale parameter and change the visibility of the scale', () => {
@@ -261,21 +261,21 @@ describe('View', () => {
   test('the method should return the vertical size', () => {
     const newOptions: IOptions = {
       ...standardOptions,
-      orientation: 'vertical',
+      isVertical: true,
     };
 
     expect(view.getSliderSize(newOptions)).toBe(300);
   });
 
   test('should return the vertical position', () => {
-    view.upData({ orientation: 'vertical' });
+    view.upData({ isVertical: true });
 
     expect(view.getSliderPosition()).toBe(80);
   });
 
   test('the method must correctly calculate the coordinates', () => {
     const state: Partial<IViewState> = {
-      min: 0, max: 100, step: 5, oneStep: 26.6, size: 266, orientation: 'horizontal',
+      min: 0, max: 100, step: 5, oneStep: 26.6, size: 266, isVertical: false,
     };
 
     const result = Math.round((200 - 70) / 26.6) * 5 + 0;

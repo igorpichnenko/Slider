@@ -64,16 +64,11 @@ describe('Presenter', () => {
     presenter.setOptions({ step });
     expect(presenter.getOptions().step).toBe(step);
   });
-  test('should get a new one orientation the model', () => {
-    const orientation = 'vertical';
-    presenter.setOptions({ orientation });
-    expect(presenter.getOptions().orientation).toBe(orientation);
-  });
 
   test('should get a new one type the model', () => {
-    const type = 'single';
-    presenter.setOptions({ type });
-    expect(presenter.getOptions().type).toBe(type);
+    const isDouble = false;
+    presenter.setOptions({ isDouble });
+    expect(presenter.getOptions().isDouble).toBe(isDouble);
   });
 
   test('should get a new one parameter the model', () => {

@@ -1,20 +1,11 @@
-enum Orientation {
-  vertical,
-  horizontal
-}
-enum SliderType {
-  double,
-  single
-}
-
 interface IGeneralSettings{
   min: number,
   max: number,
   step: number,
   from: number,
   to: number,
-  orientation: keyof typeof Orientation,
-  type: keyof typeof SliderType
+  isVertical: boolean,
+  isDouble: boolean
 }
 
 interface IPostfix{
@@ -60,5 +51,5 @@ interface IViewState extends IOptions{
 interface IOptions extends IGeneralSettings, IVisibleSettings, IPostfix, IColor{}
 
 export {
-  IOptions, IViewState, Orientation, SliderType,
+  IOptions, IViewState,
 };

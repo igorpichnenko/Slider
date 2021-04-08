@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { View } from '../View';
 import { Bar } from './Bar';
 import { standardOptions } from '../../interfaces/standardOptions';
-import { IViewState, IOptions } from '../../interfaces/interfaces';
+import { IViewState } from '../../interfaces/interfaces';
 
 describe('Bar', () => {
   let wrap: JQuery<HTMLElement>;
@@ -53,19 +53,6 @@ describe('Bar', () => {
     bar.click();
 
     expect(spy).toBeCalled();
-  });
-
-  test('if the orientation is "vertical" bar should have a vertical modifier', () => {
-    const newOptions: IOptions = {
-      ...standardOptions,
-      orientation: 'vertical',
-    };
-
-    const newView = new View(newOptions, wrap);
-
-    const bar = newView.slider.querySelector('.js-slider__bar_vertical');
-
-    expect(bar).toBeVisible();
   });
 
   test('must find the position correctly', () => {

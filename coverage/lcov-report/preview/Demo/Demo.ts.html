@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.33% </span>
+                <span class="strong">94.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>183/194</span>
+                <span class='fraction'>184/195</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">79.03% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>48/60</span>
+                <span class='fraction'>49/62</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.33% </span>
+                <span class="strong">94.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>183/194</span>
+                <span class='fraction'>184/195</span>
             </div>
         
             
@@ -446,7 +446,8 @@
 <a name='L387'></a><a href='#L387'>387</a>
 <a name='L388'></a><a href='#L388'>388</a>
 <a name='L389'></a><a href='#L389'>389</a>
-<a name='L390'></a><a href='#L390'>390</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L390'></a><a href='#L390'>390</a>
+<a name='L391'></a><a href='#L391'>391</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -678,9 +679,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">92x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -836,7 +838,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Presenter } from '../../slider/Presenter/Presenter';
-import { IOptions, Orientation, SliderType } from '../../slider/interfaces/interfaces';
+import { IOptions } from '../../slider/interfaces/interfaces';
 import { demoTemplate } from './demoTemplate';
 &nbsp;
 class Demo {
@@ -879,12 +881,12 @@ class Demo {
 &nbsp;
   private initTools() {
     const {
-      orientation, isScale, type, isLabel, from, to, min, max, postfix, step,
+      isScale, isLabel, from, to, min, max, postfix, step,
       color, isScalePostfix, scalePostfix, minMax,
       fromTo, isTrackPostfix, trackPostfix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
       onlyDivisions, isPostfix, isChangeColor,
-      separate, isSeparate, isPrefix,
+      separate, isSeparate, isPrefix, isVertical,isDouble
     } = this.state;
 &nbsp;
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
@@ -911,7 +913,7 @@ class Demo {
 &nbsp;
     const label = this.demoTools.querySelector('.js-isLabel')! as HTMLElement;
 &nbsp;
-    const isDouble = this.demoTools.querySelector('.js-isDouble')! as HTMLElement;
+    const isDoubleType = this.demoTools.querySelector('.js-isDouble')! as HTMLElement;
 &nbsp;
     const inputFrom = this.demoTools.querySelector('.js-from')! as HTMLInputElement;
 &nbsp;
@@ -978,11 +980,11 @@ class Demo {
     /**     чекбоксы    * */
 &nbsp;
     isOrientation.onchange = () =&gt; {
-      <span class="missing-if-branch" title="else path not taken" >E</span>if (orientation === Orientation[1]) {
-        this.setState({ orientation: 'vertical' });
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (isVertical === false) {
+        this.setState({ isVertical: true });
       }
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (orientation === Orientation[0]) {
-<span class="cstat-no" title="statement not covered" >        this.setState({ orientation: 'horizontal' });</span>
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (isVertical === true) {
+<span class="cstat-no" title="statement not covered" >        this.setState({ isVertical: false });</span>
       }
     };
 &nbsp;
@@ -1065,11 +1067,12 @@ class Demo {
       }
     };
 &nbsp;
-    isDouble.onchange = () =&gt; {
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (type === SliderType[1]) {
-<span class="cstat-no" title="statement not covered" >        this.setState({ type: 'double' });</span>
-      } else {
-        this.setState({ type: 'single' });
+    isDoubleType.onchange = () =&gt; {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (isDouble === false){
+        this.setState({ isDouble: true });
+      }
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (isDouble === true){
+<span class="cstat-no" title="statement not covered" >        this.setState({ isDouble: false });</span>
       }
     };
 &nbsp;
@@ -1231,7 +1234,7 @@ export { Demo };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Apr 07 2021 15:51:00 GMT+0600 (GMT+06:00)
+                at Thu Apr 08 2021 16:22:46 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

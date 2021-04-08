@@ -31,20 +31,7 @@ describe('Scale', () => {
   });
 
   test('should be initialized and visible', () => {
-    const sliderScale = view.slider.querySelector('.js-slider__scale_horizontal');
-
-    expect(sliderScale).toBeVisible();
-  });
-
-  test('if orientation = "vertical" then the scale should have the modifier "vertical"', () => {
-    const newOptions: IOptions = {
-      ...standardOptions,
-      orientation: 'vertical',
-    };
-
-    const newView = new View(newOptions, wrap);
-
-    const sliderScale = newView.slider.querySelector('.js-slider__scale_vertical');
+    const sliderScale = view.slider.querySelector('.js-slider__scale');
 
     expect(sliderScale).toBeVisible();
   });
@@ -71,19 +58,6 @@ describe('Scale', () => {
 
   test('scale divisions must be created', () => {
     const scaleMarker = view.slider.querySelector('.js-slider__scale-value');
-
-    expect(scaleMarker).toBeVisible();
-  });
-
-  test('if orientation = "vertical" scale divisions should be created with the "vertical" modifier', () => {
-    const newOptions: IOptions = {
-      ...standardOptions,
-      orientation: 'vertical',
-    };
-
-    const newView = new View(newOptions, wrap);
-
-    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value_vertical');
 
     expect(scaleMarker).toBeVisible();
   });

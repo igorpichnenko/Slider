@@ -1,7 +1,5 @@
 import {
   IViewState,
-  Orientation,
-  SliderType,
 } from '../../interfaces/interfaces';
 
 class Bar {
@@ -12,12 +10,11 @@ class Bar {
   private create(options: IViewState): void {
     const {
       slider,
-      orientation,
     } = options;
 
     const bar = document.createElement('div');
-
-    bar.className = `slider__bar slider__bar_${orientation} js-slider__bar js-slider__bar_${orientation}`;
+    const barClassNames = 'slider__bar js-slider__bar';
+    bar.className = barClassNames;
 
     slider.append(bar);
     this.updataColor(options, bar);
@@ -68,10 +65,10 @@ class Bar {
 
   private calculatePosition(element: Element, options: IViewState): number {
     const {
-      orientation,
+      isVertical,
     } = options;
 
-    const side: 'left' | 'top' = orientation === Orientation[1] ? 'left' : 'top';
+    const side: 'left' | 'top' = !isVertical ? 'left' : 'top';
     const width = Number.parseInt(getComputedStyle(element).width, 10);
 
     return element.getBoundingClientRect()[side] + width / 2;
@@ -86,22 +83,17 @@ class Bar {
 
   private updataBar(options: IViewState, bar: HTMLElement) {
     const {
-      type,
-      orientation,
+      isVertical, isDouble,
     } = options;
 
-    const isHorizontal = orientation === Orientation[1];
+    const side: 'left' | 'top' = !isVertical ? 'left' : 'top';
 
-    const side: 'left' | 'top' = isHorizontal ? 'left' : 'top';
-
-    const direction: 'width' | 'height' = isHorizontal ? 'width' : 'height';
+    const direction: 'width' | 'height' = !isVertical ? 'width' : 'height';
 
     const rollerPos = this.getRollerPositions(options);
 
-    const isSingle = type === SliderType[1];
-
     const sliderPos = this.getNewSliderPos(options);
-    const isSingleHorizontal = isSingle && isHorizontal;
+    const isSingleHorizontal = isDouble && !isVertical;
 
     if (isSingleHorizontal) {
       const to = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
@@ -116,7 +108,7 @@ class Bar {
       bar.style[direction] = `${to}%`;
     }
 
-    if (!isSingle) {
+    if (!isDouble) {
       const from = this.convertPxToProcent(Math.abs(rollerPos[0] - sliderPos), options);
 
       const to = this.convertPxToProcent(Math.abs(rollerPos[1] - rollerPos[0]), options);
@@ -128,13 +120,12 @@ class Bar {
 
   public getNewSliderPos(options: IViewState): number {
     const {
-      orientation,
-      slider,
+      slider, isVertical,
     } = options;
 
     let position = 0;
 
-    if (orientation === Orientation[1]) {
+    if (!isVertical) {
       position = slider.getBoundingClientRect().left;
     } else {
       position = slider.getBoundingClientRect().top;

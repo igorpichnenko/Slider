@@ -1,8 +1,6 @@
 import {
   IOptions,
   IViewState,
-  Orientation,
-  SliderType,
 } from '../interfaces/interfaces';
 import {
   EventEmitter,
@@ -74,11 +72,16 @@ class View {
 
   public createSlider(Options: IOptions, element: JQuery < HTMLElement >): HTMLElement {
     const {
-      orientation,
+      isVertical,
     } = Options;
     const slider = document.createElement('div');
+    let sliderClassNames = 'slider';
 
-    slider.className = `slider slider_${orientation}`;
+    if (isVertical) {
+      sliderClassNames = 'slider slider_orientation-vertical';
+    }
+
+    slider.className = sliderClassNames;
     element.append(slider);
 
     return slider;
@@ -183,16 +186,16 @@ class View {
 
   private drag(target: HTMLElement, event: any) {
     const {
-      orientation,
+      isVertical,
     } = this.state;
     event.preventDefault();
     let mouseValue = 0;
     const isHandle = !/tooltip || roller/.test(target.className);
     if (isHandle) return;
-    const sensorHorizontalEvent = event.type === 'touchmove' && orientation === Orientation[1];
-    const mouseHorizontalEvent = event.type === 'mousemove' && orientation === Orientation[1];
-    const sensorVerticalEvent = event.type === 'touchmove' && orientation === Orientation[0];
-    const mouseVerticalEvent = event.type === 'mousemove' && orientation === Orientation[0];
+    const sensorHorizontalEvent = event.type === 'touchmove' && !isVertical;
+    const mouseHorizontalEvent = event.type === 'mousemove' && !isVertical;
+    const sensorVerticalEvent = event.type === 'touchmove' && isVertical;
+    const mouseVerticalEvent = event.type === 'mousemove' && isVertical;
 
     if (sensorHorizontalEvent) {
       mouseValue = this.convertPxToValue(event.touches[0].clientX);
@@ -249,7 +252,7 @@ class View {
 
   private handleTrackClick(event: any): void {
     const {
-      orientation,
+      isVertical,
     } = this.state;
     const {
       target,
@@ -258,7 +261,7 @@ class View {
 
     if (/scale/.test(target.className)) return;
 
-    if (orientation === Orientation[1]) {
+    if (!isVertical) {
       coordinate = event.clientX;
     } else {
       coordinate = event.clientY;
@@ -271,14 +274,12 @@ class View {
     const {
       from,
       to,
-      type,
-      step,
+      step, isDouble,
     } = this.state;
 
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
-    const isSingle = type === SliderType[1];
-    const isSingleFrom = isSingle && fromDistance;
+    const isSingleFrom = isDouble && fromDistance;
 
     if (isSingleFrom) {
       this.emitter.emit('newPosition', {
@@ -306,8 +307,8 @@ class View {
 
     const targets = target && this.getTargetType(target);
 
-    const isFromTarget = targets === 'from' && type === SliderType[0];
-    const isToTarget = targets === 'to' && type === SliderType[0];
+    const isFromTarget = targets === 'from' && !isDouble;
+    const isToTarget = targets === 'to' && !isDouble;
     const correctFrom = isFromTarget && value > to - step;
     const correctTo = isToTarget && value < from + step;
 
@@ -344,14 +345,14 @@ class View {
       step,
       oneStep,
       size,
-      orientation,
+      isVertical,
     } = this.state;
     const sliderPos = this.getSliderPosition();
 
     const sliderEndPos = sliderPos + size;
 
     let px = 0;
-    if (orientation === Orientation[1]) {
+    if (!isVertical) {
       px = coordinate - sliderPos;
     } else {
       px = sliderEndPos - coordinate;
@@ -412,12 +413,12 @@ class View {
 
   public getSliderPosition(): number {
     const {
-      orientation,
       slider,
+      isVertical,
     } = this.state;
     let position = 0;
 
-    if (orientation === Orientation[1]) {
+    if (!isVertical) {
       position = slider.getBoundingClientRect().left;
     } else {
       position = slider.getBoundingClientRect().top;
@@ -428,10 +429,10 @@ class View {
 
   public getSliderSize(Options: IOptions): number {
     const {
-      orientation,
+      isVertical,
     } = Options;
     let size = 0;
-    if (orientation === Orientation[1]) {
+    if (!isVertical) {
       size = this.slider.getBoundingClientRect().width;
     } else {
       size = this.slider.getBoundingClientRect().height;

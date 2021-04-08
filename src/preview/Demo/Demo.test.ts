@@ -33,8 +33,8 @@ describe('Demo', () => {
   test('can be created with other parameters', () => {
     const newOptions: IOptions = {
       ...standardOptions,
-      orientation: 'horizontal',
-      type: 'single',
+      isVertical: false,
+      isDouble: false,
       changeColor: true,
       minMax: false,
     };
@@ -106,7 +106,7 @@ describe('Demo', () => {
 
     inputIsOrientation.dispatchEvent(new InputEvent('change'));
 
-    expect(demo.state.orientation).toBe('vertical');
+    expect(demo.state.isVertical).toBe(true);
   });
 
   test('should change isScale parameter', () => {
@@ -190,11 +190,11 @@ describe('Demo', () => {
     expect(demo.state.isLabel).toBe(true);
   });
   test('must change type double/single', () => {
-    const isDouble = demo.demoTools.querySelector('.js-isDouble')! as HTMLElement;
+    const isDoubleType = demo.demoTools.querySelector('.js-isDouble')! as HTMLElement;
 
-    isDouble.dispatchEvent(new InputEvent('change'));
+    isDoubleType.dispatchEvent(new InputEvent('change'));
 
-    expect(demo.state.type).toBe('single');
+    expect(demo.state.isDouble).toBe(true);
   });
   test('should change minMax parameter', () => {
     const inputMinMax = demo.demoTools.querySelector('.js-minMax')! as HTMLInputElement;

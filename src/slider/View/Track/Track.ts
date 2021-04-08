@@ -11,25 +11,23 @@ class Track {
   private create(options: IViewState) {
     const {
       slider,
-      orientation,
     } = options;
 
     const track = document.createElement('div');
-
-    track.className = `slider__track slider__track_${orientation} js-slider__track js-slider__track_${orientation}`;
+    const trackClassNames = 'slider__track js-slider__track';
+    track.className = trackClassNames;
 
     slider.append(track);
     this.createOutElement(track, options);
   }
 
   private createOutElement(track: HTMLElement, options: IViewState) {
-    const {
-      orientation,
-    } = options;
     const startValue = document.createElement('div');
     const endValue = document.createElement('div');
-    startValue.className = `slider__out slider__out-start slider__out-start_${orientation} js-slider__out js-slider__out-start js-slider__out-start_${orientation}`;
-    endValue.className = `slider__out slider__out-end slider__out-end_${orientation} js-slider__out js-slider__out-end js-slider__out-end_${orientation}`;
+    const startValueClassNames = 'slider__out slider__out-start js-slider__out js-slider__out-start';
+    const endValueClassNames = 'slider__out slider__out-end js-slider__out js-slider__out-end';
+    startValue.className = startValueClassNames;
+    endValue.className = endValueClassNames;
     track.append(startValue);
     track.append(endValue);
 

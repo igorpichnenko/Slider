@@ -5,8 +5,8 @@ import { IOptions } from '../interfaces/interfaces';
 describe('Model', () => {
   test('Model is created with default options', () => {
     const model: Model = new Model(standardOptions);
-    expect(model.state.orientation).toBe(standardOptions.orientation);
-    expect(model.state.type).toBe(standardOptions.type);
+    expect(model.state.isVertical).toBe(standardOptions.isVertical);
+    expect(model.state.isDouble).toBe(standardOptions.isDouble);
     expect(model.state.min).toBe(standardOptions.min);
     expect(model.state.max).toBe(standardOptions.max);
     expect(model.state.step).toBe(standardOptions.step);

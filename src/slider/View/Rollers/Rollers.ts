@@ -1,7 +1,5 @@
 import {
   IViewState,
-  Orientation,
-  SliderType,
 } from '../../interfaces/interfaces';
 import { correctSeparate } from '../../libs/correctSeparate';
 
@@ -13,17 +11,16 @@ class Rollers {
   private create(options: IViewState) {
     const {
       slider,
-      orientation,
     } = options;
+    const rollerFirstClassNames = 'slider__roller js-slider__roller slider__roller_first js-slider__roller_first';
+    const rollerSecondClassNames = 'slider__roller_second js-slider__roller js-slider__roller_second slider__roller';
 
     const rollerFirst = document.createElement('div');
-    rollerFirst.className = `slider__roller js-slider__roller slider__roller_first js-slider__roller_first slider__roller_${orientation} js-slider__roller_${orientation}`;
+    rollerFirst.className = rollerFirstClassNames;
 
     const rollerSecond = document.createElement('div');
 
-    rollerSecond.className = `slider__roller_second js-slider__roller js-slider__roller_second
-    slider__roller
-    slider__roller_${orientation} js-slider__roller_${orientation}`;
+    rollerSecond.className = rollerSecondClassNames;
 
     slider.append(rollerFirst);
     slider.append(rollerSecond);
@@ -35,14 +32,13 @@ class Rollers {
   }
 
   private createTooltip(rollerFirst: HTMLElement, rollerSecond: HTMLElement, options: IViewState) {
-    const {
-      orientation,
-    } = options;
+    const firstTooltipClassNames = 'slider__tooltip_first js-slider__tooltip_first js-slider__tooltip slider__tooltip';
+    const secondTooltipClassNames = 'slider__tooltip_second js-slider__tooltip js-slider__tooltip_second slider__tooltip';
 
     const fistTooltip = document.createElement('div');
-    fistTooltip.className = `slider__tooltip_first js-slider__tooltip_first js-slider__tooltip slider__tooltip slider__tooltip_${orientation} js-slider__tooltip_${orientation}`;
+    fistTooltip.className = firstTooltipClassNames;
     const secondTooltip = document.createElement('div');
-    secondTooltip.className = `slider__tooltip_second js-slider__tooltip js-slider__tooltip_second slider__tooltip slider__tooltip_${orientation} js-slider__tooltip_${orientation}`;
+    secondTooltip.className = secondTooltipClassNames;
 
     rollerFirst.append(fistTooltip);
     rollerSecond.append(secondTooltip);
@@ -153,7 +149,7 @@ class Rollers {
     const {
       to,
       from,
-      orientation,
+      isVertical,
     } = options;
 
     const pxTo = this.convertValueToPx(to, options);
@@ -162,7 +158,7 @@ class Rollers {
     const positionTo = this.convertPxToProcent(pxTo, options);
     const positionFrom = this.convertPxToProcent(pxFrom, options);
 
-    if (orientation === Orientation[1]) {
+    if (!isVertical) {
       rollerFirst.style.left = `${positionFrom}%`;
       rollerSecond.style.left = `${positionTo}%`;
     } else {
@@ -210,10 +206,10 @@ class Rollers {
 
   private toggleRollers(options: IViewState, element: HTMLElement): void {
     const {
-      type,
+      isDouble,
     } = options;
 
-    if (type === SliderType[1]) {
+    if (isDouble) {
       element.style.display = 'none';
     } else {
       element.style.display = 'block';

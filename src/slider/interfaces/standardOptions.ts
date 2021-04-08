@@ -2,8 +2,6 @@ import { IOptions } from './interfaces';
 import { allColors } from './color';
 
 const standardOptions: IOptions = {
-  orientation: 'horizontal',
-  type: 'double',
   min: 0,
   max: 10,
   step: 1,
@@ -32,6 +30,8 @@ const standardOptions: IOptions = {
   onlyDivisions: false,
   separate: ' ',
   allColors,
+  isVertical: false,
+  isDouble: false,
 };
 
 export { standardOptions };

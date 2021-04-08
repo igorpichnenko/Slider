@@ -1,6 +1,5 @@
 import {
   IViewState,
-  Orientation,
 } from '../../interfaces/interfaces';
 import { correctSeparate } from '../../libs/correctSeparate';
 
@@ -15,10 +14,10 @@ class Scale {
   private create(options: IViewState): void {
     const {
       slider,
-      orientation,
     } = options;
     const scale = document.createElement('div');
-    scale.className = `slider__scale slider__scale_${orientation} js-slider__scale js-slider__scale_${orientation}`;
+    const scaleClassNames = 'slider__scale js-slider__scale ';
+    scale.className = scaleClassNames;
 
     slider.append(scale);
 
@@ -120,10 +119,9 @@ class Scale {
   private createScaleMarker(fragment: DocumentFragment,
     value: number, position: number, options: IViewState, val: number): void {
     const {
-      orientation,
       isScalePostfix,
       isPrefix,
-      onlyDivisions,
+      onlyDivisions, isVertical,
     } = options;
 
     let {
@@ -131,7 +129,7 @@ class Scale {
     } = options;
 
     const scaleMarker = document.createElement('span');
-    scaleMarker.className = `slider__scale-value slider__scale-value_${orientation} js-slider__scale-value js-slider__scale-value_${orientation}`;
+    scaleMarker.className = 'slider__scale-value  js-slider__scale-value';
     const divisionValue = document.createElement('span');
     const division = document.createElement('span');
     divisionValue.className = `slider__division-value js-slider__division-value slider__division-value_${val}-element`;
@@ -160,7 +158,7 @@ class Scale {
 
     const offset = this.convertPxToPercent(position, options);
 
-    if (orientation === Orientation[1]) {
+    if (!isVertical) {
       scaleMarker.style.left = `${offset}%`;
     } else {
       scaleMarker.style.bottom = `${offset}%`;

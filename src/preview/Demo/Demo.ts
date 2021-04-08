@@ -1,5 +1,5 @@
 import { Presenter } from '../../slider/Presenter/Presenter';
-import { IOptions, Orientation, SliderType } from '../../slider/interfaces/interfaces';
+import { IOptions } from '../../slider/interfaces/interfaces';
 import { demoTemplate } from './demoTemplate';
 
 class Demo {
@@ -42,12 +42,12 @@ class Demo {
 
   private initTools() {
     const {
-      orientation, isScale, type, isLabel, from, to, min, max, postfix, step,
+      isScale, isLabel, from, to, min, max, postfix, step,
       color, isScalePostfix, scalePostfix, minMax,
       fromTo, isTrackPostfix, trackPostfix, isColor, gradient, isColorOut,
       changeColor, isGradient, gradientDeg,
       onlyDivisions, isPostfix, isChangeColor,
-      separate, isSeparate, isPrefix,
+      separate, isSeparate, isPrefix, isVertical, isDouble,
     } = this.state;
 
     const btnScale = this.demoTools.querySelector('.js-btn-scale')! as HTMLButtonElement;
@@ -74,7 +74,7 @@ class Demo {
 
     const label = this.demoTools.querySelector('.js-isLabel')! as HTMLElement;
 
-    const isDouble = this.demoTools.querySelector('.js-isDouble')! as HTMLElement;
+    const isDoubleType = this.demoTools.querySelector('.js-isDouble')! as HTMLElement;
 
     const inputFrom = this.demoTools.querySelector('.js-from')! as HTMLInputElement;
 
@@ -141,11 +141,11 @@ class Demo {
     /**     чекбоксы    * */
 
     isOrientation.onchange = () => {
-      if (orientation === Orientation[1]) {
-        this.setState({ orientation: 'vertical' });
+      if (isVertical === false) {
+        this.setState({ isVertical: true });
       }
-      if (orientation === Orientation[0]) {
-        this.setState({ orientation: 'horizontal' });
+      if (isVertical === true) {
+        this.setState({ isVertical: false });
       }
     };
 
@@ -228,11 +228,12 @@ class Demo {
       }
     };
 
-    isDouble.onchange = () => {
-      if (type === SliderType[1]) {
-        this.setState({ type: 'double' });
-      } else {
-        this.setState({ type: 'single' });
+    isDoubleType.onchange = () => {
+      if (isDouble === false) {
+        this.setState({ isDouble: true });
+      }
+      if (isDouble === true) {
+        this.setState({ isDouble: false });
       }
     };
 

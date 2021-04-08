@@ -1,6 +1,5 @@
 import {
   IOptions,
-  SliderType,
 } from '../interfaces/interfaces';
 import {
   EventEmitter,
@@ -65,17 +64,16 @@ class Model {
       to,
       max,
       min,
-      type,
-      step,
+      step, isDouble,
     } = Options;
 
-    if (type === SliderType[1]) {
+    if (isDouble) {
       Options.to = max;
     }
 
     const maxMinZero = max < 0 && min === 0;
     const isMinMaxZero = min < 0 && max < 0;
-    const isSingleFrom = type === SliderType[0] && from >= to;
+    const isSingleFrom = !isDouble && from >= to;
     const isCorrectFrom = from > 0 && isMinMaxZero;
 
     if (from > max) Options.from = max - step;
