@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for slider/interfaces/standardOptions.ts</title>
+    <title>Code coverage report for slider/libs/classNames.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">slider/interfaces</a> standardOptions.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">slider/libs</a> classNames.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -82,22 +82,7 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -122,52 +107,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IOptions } from './interfaces';
-import { allColors } from './color';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const classNames = {
 &nbsp;
-const standardOptions: IOptions = {
-  min: 0,
-  max: 10,
-  step: 1,
-  from: 3,
-  to: 7,
-  postfix: '₽',
-  isPrefix: false,
-  isPostfix: true,
-  isLabel: true,
-  isScale: true,
-  isSeparate: true,
-  color: 'orange',
-  isScalePostfix: true,
-  scalePostfix: '₽',
-  minMax: false,
-  fromTo: false,
-  isTrackPostfix: true,
-  trackPostfix: '₽',
-  isColor: true,
-  changeColor: true,
-  isChangeColor: true,
-  isGradient: true,
-  gradient: 'purple',
-  gradientDeg: 45,
-  isColorOut: false,
-  onlyDivisions: false,
-  separate: ' ',
-  allColors,
-  isVertical: false,
-  isDouble: false,
+  slider: 'slider',
+  sliderVertical: 'slider slider_orientation-vertical',
+  trackOutStart: 'slider__out slider__out-start js-slider__out js-slider__out-start',
+  trackOutEnd: 'slider__out slider__out-end js-slider__out js-slider__out-end',
+  track: 'slider__track js-slider__track',
+  scale: 'slider__scale js-slider__scale ',
+  scaleFsZero: 'slider__scale-value_fontSize-zero',
+  scaleFsNormal: 'slider__scale-value_fontSize-normal',
+  bar: 'slider__bar js-slider__bar',
+  rollerFirst: 'slider__roller js-slider__roller slider__roller_first js-slider__roller_first',
+  rollerSecond: 'slider__roller_second js-slider__roller js-slider__roller_second slider__roller',
+  firstTooltip: 'slider__tooltip_first js-slider__tooltip_first js-slider__tooltip slider__tooltip',
+  secondTooltip: 'slider__tooltip_second js-slider__tooltip js-slider__tooltip_second slider__tooltip',
+  tooltipWhite: 'slider__tooltip_white-color',
+  tooltipDisplay: 'slider__tooltip_display-none',
+  scaleMarker: 'slider__scale-value  js-slider__scale-value',
+  divisionValue: 'slider__division-value js-slider__division-value',
+  division: 'slider__division js-slider__division',
 };
 &nbsp;
-export { standardOptions };
+export {
+  classNames,
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

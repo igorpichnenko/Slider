@@ -2,6 +2,7 @@ import {
   IViewState,
 } from '../../interfaces/interfaces';
 import { correctSeparate } from '../../libs/correctSeparate';
+import { classNames } from '../../libs/classNames';
 
 class Track {
   constructor(options: IViewState) {
@@ -14,9 +15,7 @@ class Track {
     } = options;
 
     const track = document.createElement('div');
-    const trackClassNames = 'slider__track js-slider__track';
-    track.className = trackClassNames;
-
+    track.className = classNames.track;
     slider.append(track);
     this.createOutElement(track, options);
   }
@@ -24,10 +23,9 @@ class Track {
   private createOutElement(track: HTMLElement, options: IViewState) {
     const startValue = document.createElement('div');
     const endValue = document.createElement('div');
-    const startValueClassNames = 'slider__out slider__out-start js-slider__out js-slider__out-start';
-    const endValueClassNames = 'slider__out slider__out-end js-slider__out js-slider__out-end';
-    startValue.className = startValueClassNames;
-    endValue.className = endValueClassNames;
+
+    startValue.className = classNames.trackOutStart;
+    endValue.className = classNames.trackOutEnd;
     track.append(startValue);
     track.append(endValue);
 

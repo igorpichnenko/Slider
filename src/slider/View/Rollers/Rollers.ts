@@ -2,6 +2,7 @@ import {
   IViewState,
 } from '../../interfaces/interfaces';
 import { correctSeparate } from '../../libs/correctSeparate';
+import { classNames } from '../../libs/classNames';
 
 class Rollers {
   constructor(options: IViewState) {
@@ -12,15 +13,11 @@ class Rollers {
     const {
       slider,
     } = options;
-    const rollerFirstClassNames = 'slider__roller js-slider__roller slider__roller_first js-slider__roller_first';
-    const rollerSecondClassNames = 'slider__roller_second js-slider__roller js-slider__roller_second slider__roller';
 
     const rollerFirst = document.createElement('div');
-    rollerFirst.className = rollerFirstClassNames;
-
+    rollerFirst.className = classNames.rollerFirst;
     const rollerSecond = document.createElement('div');
-
-    rollerSecond.className = rollerSecondClassNames;
+    rollerSecond.className = classNames.rollerSecond;
 
     slider.append(rollerFirst);
     slider.append(rollerSecond);
@@ -32,21 +29,17 @@ class Rollers {
   }
 
   private createTooltip(rollerFirst: HTMLElement, rollerSecond: HTMLElement, options: IViewState) {
-    const firstTooltipClassNames = 'slider__tooltip_first js-slider__tooltip_first js-slider__tooltip slider__tooltip';
-    const secondTooltipClassNames = 'slider__tooltip_second js-slider__tooltip js-slider__tooltip_second slider__tooltip';
-
-    const fistTooltip = document.createElement('div');
-    fistTooltip.className = firstTooltipClassNames;
+    const firstTooltip = document.createElement('div');
+    firstTooltip.className = classNames.firstTooltip;
     const secondTooltip = document.createElement('div');
-    secondTooltip.className = secondTooltipClassNames;
-
-    rollerFirst.append(fistTooltip);
+    secondTooltip.className = classNames.secondTooltip;
+    rollerFirst.append(firstTooltip);
     rollerSecond.append(secondTooltip);
 
-    this.updataOutTooltip(fistTooltip, secondTooltip, options);
+    this.updataOutTooltip(firstTooltip, secondTooltip, options);
   }
 
-  private updataOutTooltip(fistTooltip: HTMLElement,
+  private updataOutTooltip(firstTooltip: HTMLElement,
     secondTooltip: HTMLElement, options: IViewState) {
     const {
       to,
@@ -68,19 +61,19 @@ class Rollers {
     const isSetPostfix = isLabel === true && isPrefix === false;
     // настройки постфикс
     if (isSetPostfix) {
-      fistTooltip.innerHTML = `${correctSeparate(from, options)}${postfix}`;
+      firstTooltip.innerHTML = `${correctSeparate(from, options)}${postfix}`;
       secondTooltip.innerHTML = `${correctSeparate(to, options)}${postfix}`;
     }
     // настройки префикс
     if (isSetPrefix) {
-      fistTooltip.innerHTML = `${postfix}${correctSeparate(from, options)}`;
+      firstTooltip.innerHTML = `${postfix}${correctSeparate(from, options)}`;
       secondTooltip.innerHTML = `${postfix}${correctSeparate(to, options)}`;
     }
 
-    this.setColor(fistTooltip, secondTooltip, options);
+    this.setColor(firstTooltip, secondTooltip, options);
   }
 
-  private setColor(fistTooltip: HTMLElement,
+  private setColor(firstTooltip: HTMLElement,
     secondTooltip: HTMLElement, options: IViewState) {
     const {
       color,
@@ -109,18 +102,18 @@ class Rollers {
     const setNewColor = isChangeColor === true && isColorOut === true;
 
     if (setNewColor) {
-      fistTooltip.innerHTML = String(newColor);
+      firstTooltip.innerHTML = String(newColor);
       secondTooltip.innerHTML = String(newGradient);
 
-      fistTooltip.style.backgroundColor = `${color}`;
+      firstTooltip.style.backgroundColor = `${color}`;
       secondTooltip.style.backgroundColor = `${gradient}`;
-      fistTooltip.classList.add('slider__tooltip_white-color');
-      secondTooltip.classList.add('slider__tooltip_white-color');
+      firstTooltip.classList.add(classNames.tooltipWhite);
+      secondTooltip.classList.add(classNames.tooltipWhite);
     }
 
     if (isLabel === false) {
-      fistTooltip.classList.add('slider__tooltip_display-none');
-      secondTooltip.classList.add('slider__tooltip_display-none');
+      firstTooltip.classList.add(classNames.tooltipDisplay);
+      secondTooltip.classList.add(classNames.tooltipDisplay);
     }
   }
 
@@ -174,13 +167,13 @@ class Rollers {
 
     const rollerFirst = slider.querySelector('.js-slider__roller_first')! as HTMLElement;
     const rollerSecond = slider.querySelector('.js-slider__roller_second')! as HTMLElement;
-    const fistTooltip = slider.querySelector('.js-slider__tooltip_first')! as HTMLElement;
+    const firstTooltip = slider.querySelector('.js-slider__tooltip_first')! as HTMLElement;
     const secondTooltip = slider.querySelector('.js-slider__tooltip_second')! as HTMLElement;
 
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);
     this.updataColor(options, rollerFirst, rollerSecond);
-    this.updataOutTooltip(fistTooltip, secondTooltip, options);
+    this.updataOutTooltip(firstTooltip, secondTooltip, options);
   }
 
   private convertValueToPx(value: number, options: IViewState): number {

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.55% </span>
+                <span class="strong">96.51% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>84/87</span>
+                <span class='fraction'>83/86</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>82/82</span>
+                <span class='fraction'>81/81</span>
             </div>
         
             
@@ -263,18 +263,11 @@
 <a name='L204'></a><a href='#L204'>204</a>
 <a name='L205'></a><a href='#L205'>205</a>
 <a name='L206'></a><a href='#L206'>206</a>
-<a name='L207'></a><a href='#L207'>207</a>
-<a name='L208'></a><a href='#L208'>208</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L207'></a><a href='#L207'>207</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">197x</span>
-<span class="cline-any cline-yes">197x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -282,11 +275,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">197x</span>
 <span class="cline-any cline-yes">197x</span>
-<span class="cline-any cline-yes">197x</span>
-<span class="cline-any cline-yes">197x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">197x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">197x</span>
+<span class="cline-any cline-yes">197x</span>
+<span class="cline-any cline-yes">197x</span>
 <span class="cline-any cline-yes">197x</span>
 <span class="cline-any cline-yes">197x</span>
 <span class="cline-any cline-yes">197x</span>
@@ -399,6 +396,7 @@
 <span class="cline-any cline-yes">272x</span>
 <span class="cline-any cline-yes">272x</span>
 <span class="cline-any cline-yes">272x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">272x</span>
 <span class="cline-any cline-yes">272x</span>
 <span class="cline-any cline-yes">272x</span>
@@ -475,6 +473,7 @@
   IViewState,
 } from '../../interfaces/interfaces';
 import { correctSeparate } from '../../libs/correctSeparate';
+import { classNames } from '../../libs/classNames';
 &nbsp;
 class Scale {
   private options: IViewState;
@@ -489,11 +488,8 @@ class Scale {
       slider,
     } = options;
     const scale = document.createElement('div');
-    const scaleClassNames = 'slider__scale js-slider__scale ';
-    scale.className = scaleClassNames;
-&nbsp;
+    scale.className = classNames.scale;
     slider.append(scale);
-&nbsp;
     this.addEventListeners(scale);
     this.addScaleMarker(options, scale);
     this.checkScale(options, scale);
@@ -525,9 +521,9 @@ class Scale {
 &nbsp;
     scaleMarkers.forEach((scaleMarker) =&gt; {
       if (onlyDivisions === true) {
-        scaleMarker.classList.add('slider__scale-value_fontSize-null');
+        scaleMarker.classList.add(classNames.scaleFsZero);
       } else {
-        scaleMarker.classList.add('slider__scale-value_fontSize-normal');
+        scaleMarker.classList.add(classNames.scaleFsNormal);
       }
     });
     document.documentElement.style.setProperty('--scale-color',
@@ -602,11 +598,12 @@ class Scale {
     } = options;
 &nbsp;
     const scaleMarker = document.createElement('span');
-    scaleMarker.className = 'slider__scale-value  js-slider__scale-value';
+    scaleMarker.className = classNames.scaleMarker;
     const divisionValue = document.createElement('span');
     const division = document.createElement('span');
-    divisionValue.className = `slider__division-value js-slider__division-value slider__division-value_${val}-element`;
-    division.className = 'slider__division js-slider__division';
+    divisionValue.className = `${classNames.divisionValue} slider__division-value_${val}-element`;
+&nbsp;
+    division.className = classNames.division;
     scaleMarker.append(divisionValue);
     scaleMarker.append(division);
 &nbsp;
@@ -685,7 +682,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Apr 08 2021 16:22:46 GMT+0600 (GMT+06:00)
+                at Thu Apr 08 2021 19:12:58 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

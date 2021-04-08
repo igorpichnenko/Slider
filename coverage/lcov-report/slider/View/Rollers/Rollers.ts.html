@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>92/92</span>
+                <span class='fraction'>88/88</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>91/91</span>
+                <span class='fraction'>87/87</span>
             </div>
         
             
@@ -272,14 +272,8 @@
 <a name='L213'></a><a href='#L213'>213</a>
 <a name='L214'></a><a href='#L214'>214</a>
 <a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a>
-<a name='L217'></a><a href='#L217'>217</a>
-<a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a>
-<a name='L222'></a><a href='#L222'>222</a>
-<a name='L223'></a><a href='#L223'>223</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L216'></a><a href='#L216'>216</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -293,14 +287,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-yes">183x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">183x</span>
 <span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">183x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">183x</span>
@@ -315,12 +305,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">183x</span>
 <span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">183x</span>
 <span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">183x</span>
 <span class="cline-any cline-yes">183x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -505,6 +491,7 @@
   IViewState,
 } from '../../interfaces/interfaces';
 import { correctSeparate } from '../../libs/correctSeparate';
+import { classNames } from '../../libs/classNames';
 &nbsp;
 class Rollers {
   constructor(options: IViewState) {
@@ -515,15 +502,11 @@ class Rollers {
     const {
       slider,
     } = options;
-    const rollerFirstClassNames = 'slider__roller js-slider__roller slider__roller_first js-slider__roller_first';
-    const rollerSecondClassNames = 'slider__roller_second js-slider__roller js-slider__roller_second slider__roller';
 &nbsp;
     const rollerFirst = document.createElement('div');
-    rollerFirst.className = rollerFirstClassNames;
-&nbsp;
+    rollerFirst.className = classNames.rollerFirst;
     const rollerSecond = document.createElement('div');
-&nbsp;
-    rollerSecond.className = rollerSecondClassNames;
+    rollerSecond.className = classNames.rollerSecond;
 &nbsp;
     slider.append(rollerFirst);
     slider.append(rollerSecond);
@@ -535,21 +518,17 @@ class Rollers {
   }
 &nbsp;
   private createTooltip(rollerFirst: HTMLElement, rollerSecond: HTMLElement, options: IViewState) {
-    const firstTooltipClassNames = 'slider__tooltip_first js-slider__tooltip_first js-slider__tooltip slider__tooltip';
-    const secondTooltipClassNames = 'slider__tooltip_second js-slider__tooltip js-slider__tooltip_second slider__tooltip';
-&nbsp;
-    const fistTooltip = document.createElement('div');
-    fistTooltip.className = firstTooltipClassNames;
+    const firstTooltip = document.createElement('div');
+    firstTooltip.className = classNames.firstTooltip;
     const secondTooltip = document.createElement('div');
-    secondTooltip.className = secondTooltipClassNames;
-&nbsp;
-    rollerFirst.append(fistTooltip);
+    secondTooltip.className = classNames.secondTooltip;
+    rollerFirst.append(firstTooltip);
     rollerSecond.append(secondTooltip);
 &nbsp;
-    this.updataOutTooltip(fistTooltip, secondTooltip, options);
+    this.updataOutTooltip(firstTooltip, secondTooltip, options);
   }
 &nbsp;
-  private updataOutTooltip(fistTooltip: HTMLElement,
+  private updataOutTooltip(firstTooltip: HTMLElement,
     secondTooltip: HTMLElement, options: IViewState) {
     const {
       to,
@@ -571,19 +550,19 @@ class Rollers {
     const isSetPostfix = isLabel === true &amp;&amp; isPrefix === false;
     // настройки постфикс
     if (isSetPostfix) {
-      fistTooltip.innerHTML = `${correctSeparate(from, options)}${postfix}`;
+      firstTooltip.innerHTML = `${correctSeparate(from, options)}${postfix}`;
       secondTooltip.innerHTML = `${correctSeparate(to, options)}${postfix}`;
     }
     // настройки префикс
     if (isSetPrefix) {
-      fistTooltip.innerHTML = `${postfix}${correctSeparate(from, options)}`;
+      firstTooltip.innerHTML = `${postfix}${correctSeparate(from, options)}`;
       secondTooltip.innerHTML = `${postfix}${correctSeparate(to, options)}`;
     }
 &nbsp;
-    this.setColor(fistTooltip, secondTooltip, options);
+    this.setColor(firstTooltip, secondTooltip, options);
   }
 &nbsp;
-  private setColor(fistTooltip: HTMLElement,
+  private setColor(firstTooltip: HTMLElement,
     secondTooltip: HTMLElement, options: IViewState) {
     const {
       color,
@@ -612,18 +591,18 @@ class Rollers {
     const setNewColor = isChangeColor === true &amp;&amp; isColorOut === true;
 &nbsp;
     if (setNewColor) {
-      fistTooltip.innerHTML = String(newColor);
+      firstTooltip.innerHTML = String(newColor);
       secondTooltip.innerHTML = String(newGradient);
 &nbsp;
-      fistTooltip.style.backgroundColor = `${color}`;
+      firstTooltip.style.backgroundColor = `${color}`;
       secondTooltip.style.backgroundColor = `${gradient}`;
-      fistTooltip.classList.add('slider__tooltip_white-color');
-      secondTooltip.classList.add('slider__tooltip_white-color');
+      firstTooltip.classList.add(classNames.tooltipWhite);
+      secondTooltip.classList.add(classNames.tooltipWhite);
     }
 &nbsp;
     if (isLabel === false) {
-      fistTooltip.classList.add('slider__tooltip_display-none');
-      secondTooltip.classList.add('slider__tooltip_display-none');
+      firstTooltip.classList.add(classNames.tooltipDisplay);
+      secondTooltip.classList.add(classNames.tooltipDisplay);
     }
   }
 &nbsp;
@@ -677,13 +656,13 @@ class Rollers {
 &nbsp;
     const rollerFirst = slider.querySelector('.js-slider__roller_first')! as HTMLElement;
     const rollerSecond = slider.querySelector('.js-slider__roller_second')! as HTMLElement;
-    const fistTooltip = slider.querySelector('.js-slider__tooltip_first')! as HTMLElement;
+    const firstTooltip = slider.querySelector('.js-slider__tooltip_first')! as HTMLElement;
     const secondTooltip = slider.querySelector('.js-slider__tooltip_second')! as HTMLElement;
 &nbsp;
     this.moveRollersAtValue(options, rollerFirst, rollerSecond);
     this.toggleRollers(options, rollerSecond);
     this.updataColor(options, rollerFirst, rollerSecond);
-    this.updataOutTooltip(fistTooltip, secondTooltip, options);
+    this.updataOutTooltip(firstTooltip, secondTooltip, options);
   }
 &nbsp;
   private convertValueToPx(value: number, options: IViewState): number {
@@ -709,7 +688,7 @@ class Rollers {
 &nbsp;
   private toggleRollers(options: IViewState, element: HTMLElement): void {
     const {
-      isDouble
+      isDouble,
     } = options;
 &nbsp;
     if (isDouble) {
@@ -730,7 +709,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Apr 08 2021 16:22:46 GMT+0600 (GMT+06:00)
+                at Thu Apr 08 2021 19:12:58 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

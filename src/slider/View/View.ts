@@ -1,8 +1,4 @@
 import {
-  IOptions,
-  IViewState,
-} from '../interfaces/interfaces';
-import {
   EventEmitter,
 } from '../EventEmitter/EventEmitter';
 import {
@@ -17,6 +13,11 @@ import {
 import {
   Bar,
 } from './Bar/Bar';
+import {
+  IOptions,
+  IViewState,
+} from '../interfaces/interfaces';
+import { classNames } from '../libs/classNames';
 
 class View {
   public emitter: EventEmitter;
@@ -75,13 +76,9 @@ class View {
       isVertical,
     } = Options;
     const slider = document.createElement('div');
-    let sliderClassNames = 'slider';
+    slider.className = classNames.slider;
+    if (isVertical) slider.className = classNames.sliderVertical;
 
-    if (isVertical) {
-      sliderClassNames = 'slider slider_orientation-vertical';
-    }
-
-    slider.className = sliderClassNames;
     element.append(slider);
 
     return slider;

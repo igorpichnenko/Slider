@@ -2,6 +2,7 @@ import {
   IViewState,
 } from '../../interfaces/interfaces';
 import { correctSeparate } from '../../libs/correctSeparate';
+import { classNames } from '../../libs/classNames';
 
 class Scale {
   private options: IViewState;
@@ -16,11 +17,8 @@ class Scale {
       slider,
     } = options;
     const scale = document.createElement('div');
-    const scaleClassNames = 'slider__scale js-slider__scale ';
-    scale.className = scaleClassNames;
-
+    scale.className = classNames.scale;
     slider.append(scale);
-
     this.addEventListeners(scale);
     this.addScaleMarker(options, scale);
     this.checkScale(options, scale);
@@ -52,9 +50,9 @@ class Scale {
 
     scaleMarkers.forEach((scaleMarker) => {
       if (onlyDivisions === true) {
-        scaleMarker.classList.add('slider__scale-value_fontSize-null');
+        scaleMarker.classList.add(classNames.scaleFsZero);
       } else {
-        scaleMarker.classList.add('slider__scale-value_fontSize-normal');
+        scaleMarker.classList.add(classNames.scaleFsNormal);
       }
     });
     document.documentElement.style.setProperty('--scale-color',
@@ -129,11 +127,12 @@ class Scale {
     } = options;
 
     const scaleMarker = document.createElement('span');
-    scaleMarker.className = 'slider__scale-value  js-slider__scale-value';
+    scaleMarker.className = classNames.scaleMarker;
     const divisionValue = document.createElement('span');
     const division = document.createElement('span');
-    divisionValue.className = `slider__division-value js-slider__division-value slider__division-value_${val}-element`;
-    division.className = 'slider__division js-slider__division';
+    divisionValue.className = `${classNames.divisionValue} slider__division-value_${val}-element`;
+
+    division.className = classNames.division;
     scaleMarker.append(divisionValue);
     scaleMarker.append(division);
 

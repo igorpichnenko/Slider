@@ -1,6 +1,7 @@
 import {
   IViewState,
 } from '../../interfaces/interfaces';
+import { classNames } from '../../libs/classNames';
 
 class Bar {
   constructor(options: IViewState) {
@@ -13,9 +14,7 @@ class Bar {
     } = options;
 
     const bar = document.createElement('div');
-    const barClassNames = 'slider__bar js-slider__bar';
-    bar.className = barClassNames;
-
+    bar.className = classNames.bar;
     slider.append(bar);
     this.updataColor(options, bar);
     this.updataBar(options, bar);
