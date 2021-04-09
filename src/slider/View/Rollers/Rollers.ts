@@ -5,8 +5,15 @@ import { correctSeparate } from '../../libs/correctSeparate';
 import { classNames } from '../../libs/classNames';
 
 class Rollers {
+  rollers: HTMLElement [];
+
+  tooltips: HTMLElement [];
+
   constructor(options: IViewState) {
-    this.create(options);
+    this.rollers = this.create(options);
+    this.tooltips = this.createTooltip();
+    this.moveRollersAtValue(options);
+    this.toggleRollers(options);
   }
 
   private create(options: IViewState) {
@@ -22,25 +29,22 @@ class Rollers {
     slider.append(rollerFirst);
     slider.append(rollerSecond);
 
-    this.createTooltip(rollerFirst, rollerSecond, options);
-    this.moveRollersAtValue(options, rollerFirst, rollerSecond);
-    this.toggleRollers(options, rollerSecond);
-    this.updataColor(options, rollerFirst, rollerSecond);
+    return [rollerFirst, rollerSecond];
   }
 
-  private createTooltip(rollerFirst: HTMLElement, rollerSecond: HTMLElement, options: IViewState) {
+  private createTooltip() {
     const firstTooltip = document.createElement('div');
     firstTooltip.className = classNames.firstTooltip;
     const secondTooltip = document.createElement('div');
     secondTooltip.className = classNames.secondTooltip;
-    rollerFirst.append(firstTooltip);
-    rollerSecond.append(secondTooltip);
 
-    this.updataOutTooltip(firstTooltip, secondTooltip, options);
+    this.rollers[0].append(firstTooltip);
+    this.rollers[1].append(secondTooltip);
+
+    return [firstTooltip, secondTooltip];
   }
 
-  private updataOutTooltip(firstTooltip: HTMLElement,
-    secondTooltip: HTMLElement, options: IViewState) {
+  private updataOutTooltip(options: IViewState) {
     const {
       to,
       from,
@@ -61,20 +65,19 @@ class Rollers {
     const isSetPostfix = isLabel === true && isPrefix === false;
     // настройки постфикс
     if (isSetPostfix) {
-      firstTooltip.innerHTML = `${correctSeparate(from, options)}${postfix}`;
-      secondTooltip.innerHTML = `${correctSeparate(to, options)}${postfix}`;
+      this.tooltips[0].innerHTML = `${correctSeparate(from, options)}${postfix}`;
+      this.tooltips[1].innerHTML = `${correctSeparate(to, options)}${postfix}`;
     }
     // настройки префикс
     if (isSetPrefix) {
-      firstTooltip.innerHTML = `${postfix}${correctSeparate(from, options)}`;
-      secondTooltip.innerHTML = `${postfix}${correctSeparate(to, options)}`;
+      this.tooltips[0].innerHTML = `${postfix}${correctSeparate(from, options)}`;
+      this.tooltips[1].innerHTML = `${postfix}${correctSeparate(to, options)}`;
     }
 
-    this.setColor(firstTooltip, secondTooltip, options);
+    this.setColor(options);
   }
 
-  private setColor(firstTooltip: HTMLElement,
-    secondTooltip: HTMLElement, options: IViewState) {
+  private setColor(options: IViewState) {
     const {
       color,
       gradient,
@@ -102,22 +105,22 @@ class Rollers {
     const setNewColor = isChangeColor === true && isColorOut === true;
 
     if (setNewColor) {
-      firstTooltip.innerHTML = String(newColor);
-      secondTooltip.innerHTML = String(newGradient);
+      this.tooltips[0].innerHTML = String(newColor);
+      this.tooltips[1].innerHTML = String(newGradient);
 
-      firstTooltip.style.backgroundColor = `${color}`;
-      secondTooltip.style.backgroundColor = `${gradient}`;
-      firstTooltip.classList.add(classNames.tooltipWhite);
-      secondTooltip.classList.add(classNames.tooltipWhite);
+      this.tooltips[0].style.backgroundColor = `${color}`;
+      this.tooltips[1].style.backgroundColor = `${gradient}`;
+      this.tooltips[0].classList.add(classNames.tooltipWhite);
+      this.tooltips[1].classList.add(classNames.tooltipWhite);
     }
 
     if (isLabel === false) {
-      firstTooltip.classList.add(classNames.tooltipDisplay);
-      secondTooltip.classList.add(classNames.tooltipDisplay);
+      this.tooltips[0].classList.add(classNames.tooltipDisplay);
+      this.tooltips[1].classList.add(classNames.tooltipDisplay);
     }
   }
 
-  private updataColor(options: IViewState, rollerFirst: HTMLElement, rollerSecond: HTMLElement) {
+  private updataColor(options: IViewState) {
     const {
       color,
       isGradient,
@@ -129,16 +132,15 @@ class Rollers {
     const isColor = isChangeColor === true && isGradient === false;
 
     if (isChangeGradient) {
-      rollerFirst.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
-      rollerSecond.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+      this.rollers[0].style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+      this.rollers[1].style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
     } if (isColor) {
-      rollerFirst.style.background = color;
-      rollerSecond.style.background = color;
+      this.rollers[0].style.background = color;
+      this.rollers[1].style.background = color;
     }
   }
 
-  public moveRollersAtValue(options: IViewState, rollerFirst: HTMLElement,
-    rollerSecond: HTMLElement): void {
+  public moveRollersAtValue(options: IViewState): void {
     const {
       to,
       from,
@@ -152,28 +154,21 @@ class Rollers {
     const positionFrom = this.convertPxToProcent(pxFrom, options);
 
     if (!isVertical) {
-      rollerFirst.style.left = `${positionFrom}%`;
-      rollerSecond.style.left = `${positionTo}%`;
+      this.rollers[0].style.left = `${positionFrom}%`;
+      this.rollers[1].style.left = `${positionTo}%`;
     } else {
-      rollerFirst.style.bottom = `${positionFrom}%`;
-      rollerSecond.style.bottom = `${positionTo}%`;
+      this.rollers[0].style.bottom = `${positionFrom}%`;
+      this.rollers[1].style.bottom = `${positionTo}%`;
     }
+    this.updataColor(options);
+    this.updataOutTooltip(options);
   }
 
   public upData(options: IViewState) {
-    const {
-      slider,
-    } = options;
-
-    const rollerFirst = slider.querySelector('.js-slider__roller_first')! as HTMLElement;
-    const rollerSecond = slider.querySelector('.js-slider__roller_second')! as HTMLElement;
-    const firstTooltip = slider.querySelector('.js-slider__tooltip_first')! as HTMLElement;
-    const secondTooltip = slider.querySelector('.js-slider__tooltip_second')! as HTMLElement;
-
-    this.moveRollersAtValue(options, rollerFirst, rollerSecond);
-    this.toggleRollers(options, rollerSecond);
-    this.updataColor(options, rollerFirst, rollerSecond);
-    this.updataOutTooltip(firstTooltip, secondTooltip, options);
+    this.moveRollersAtValue(options);
+    this.toggleRollers(options);
+    this.updataColor(options);
+    this.updataOutTooltip(options);
   }
 
   private convertValueToPx(value: number, options: IViewState): number {
@@ -197,15 +192,15 @@ class Rollers {
     return (value * 100) / size;
   }
 
-  private toggleRollers(options: IViewState, element: HTMLElement): void {
+  private toggleRollers(options: IViewState): void {
     const {
       isDouble,
     } = options;
 
     if (isDouble) {
-      element.style.display = 'none';
+      this.rollers[1].style.display = 'none';
     } else {
-      element.style.display = 'block';
+      this.rollers[1].style.display = 'block';
     }
   }
 }

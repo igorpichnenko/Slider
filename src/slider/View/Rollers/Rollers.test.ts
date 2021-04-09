@@ -168,23 +168,4 @@ describe('Rollers', () => {
     expect(tooltips[0].innerHTML).toBe(`${view.state.from.toString()}${view.state.trackPostfix}`);
     expect(tooltips[1].innerHTML).toBe(`${view.state.to.toString()}${view.state.trackPostfix}`);
   });
-
-  test('rollers should be in starting position', () => {
-    const state: IViewState = {
-      size: 266,
-      oneStep: 26.6,
-      slider: view.slider,
-      ...standardOptions,
-    };
-
-    const rollers = new Rollers(state);
-
-    const rollerFirst = view.slider.querySelector('.js-slider__roller_first') as HTMLElement;
-    const rollerSecond = view.slider.querySelector('.js-slider__roller_second') as HTMLElement;
-
-    rollers.moveRollersAtValue(state, rollerFirst, rollerSecond);
-
-    expect(rollerFirst.style.left).toBe('30.000000000000004%');
-    expect(rollerSecond.style.left).toBe('70%');
-  });
 });

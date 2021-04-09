@@ -159,7 +159,7 @@ const demoTemplate = `
 <div class="panel__items">
 <div class="panel__items">
 
-<label class="panel__labels panel__checkboxes">Добавить/убрать Префикс tooltip
+<label class="panel__labels panel__checkboxes">Сменить Префикс/Постфикс
 <input type="checkbox" class="panel__checkbox panel__inputs js-isPrefix-all" name="isPrefix"/>
 </label>
 </div>

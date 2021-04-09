@@ -113,7 +113,7 @@ class View {
     this.rollers.upData(updataState);
     this.bar.upData(updataState);
     this.scale.upData(updataState);
-    this.track.upData(updataState);
+    this.track.setOut(updataState);
 
     this.state = {
       ...updataState,

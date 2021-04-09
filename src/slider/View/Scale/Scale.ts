@@ -93,12 +93,18 @@ class Scale {
     let i = 0;
     for (let current = min; current < max; current += inc, i += 1) {
       if (pxCurrent > size - 50) break;
-      this.createScaleMarker(fragment, current, pxCurrent, options, i);
+      const parameters = {
+        fragment, value: current, position: pxCurrent, options, val: i,
+      };
+      this.createScaleMarker(parameters);
 
       pxCurrent += pxInc;
     }
+    const newParam = {
+      fragment, value: max, position: size, options, val: 5,
+    };
 
-    this.createScaleMarker(fragment, max, size, options, 5);
+    this.createScaleMarker(newParam);
 
     scale.append(fragment);
   }
@@ -114,8 +120,10 @@ class Scale {
     return inc;
   }
 
-  private createScaleMarker(fragment: DocumentFragment,
-    value: number, position: number, options: IViewState, val: number): void {
+  private createScaleMarker({
+    fragment, value, position, options, val,
+  }: {fragment: DocumentFragment,
+    value: number, position: number, options: IViewState, val: number}): void {
     const {
       isScalePostfix,
       isPrefix,
