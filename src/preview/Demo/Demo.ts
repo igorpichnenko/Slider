@@ -141,79 +141,79 @@ class Demo {
     /**     чекбоксы    * */
 
     isOrientation.onchange = () => {
-      if (isVertical === false) {
+      if (!isVertical) {
         this.setState({ isVertical: true });
       }
-      if (isVertical === true) {
+      if (isVertical) {
         this.setState({ isVertical: false });
       }
     };
 
     inputIsPostfix.onchange = () => {
-      if (isScalePostfix === true) {
+      if (isScalePostfix) {
         this.setState({ isScalePostfix: false });
       }
-      if (isScalePostfix === false) {
+      if (!isScalePostfix) {
         this.setState({ isScalePostfix: true });
       }
     };
 
     inputIsToolPostfix.onchange = () => {
-      if (isPostfix === true) {
+      if (isPostfix) {
         this.setState({ isPostfix: false });
       }
-      if (isPostfix === false) {
+      if (!isPostfix) {
         this.setState({ isPostfix: true });
       }
     };
 
     inputIsPrefix.onchange = () => {
-      if (isPrefix === true) {
+      if (isPrefix) {
         this.setState({ isPrefix: false });
       }
-      if (isPrefix === false) {
+      if (!isPrefix) {
         this.setState({ isPrefix: true });
       }
     };
 
     inputGradient.onchange = () => {
-      if (isGradient === true) {
+      if (isGradient) {
         this.setState({ isGradient: false });
       }
-      if (isGradient === false) {
+      if (!isGradient) {
         this.setState({ isGradient: true });
       }
     };
 
     inputIsChangeColor.onchange = () => {
-      if (isChangeColor === true) {
+      if (isChangeColor) {
         this.setState({ isChangeColor: false });
       }
-      if (isChangeColor === false) {
+      if (!isChangeColor) {
         this.setState({ isChangeColor: true });
       }
     };
 
     inputIsSeparate.onchange = () => {
-      if (isSeparate === true) {
+      if (isSeparate) {
         this.setState({ isSeparate: false });
       }
-      if (isSeparate === false) {
+      if (!isSeparate) {
         this.setState({ isSeparate: true });
       }
     };
 
     inputColorOut.onchange = () => {
-      if (isColorOut === true) {
+      if (isColorOut) {
         this.setState({ isColorOut: false });
       }
-      if (isColorOut === false) {
+      if (!isColorOut) {
         this.setState({ isColorOut: true });
       }
     };
 
     changeScale.onchange = () => {
-      if (isScale === false) {
+      if (!isScale) {
         this.setState({ isScale: true });
       } else {
         this.setState({ isScale: false });
@@ -221,24 +221,24 @@ class Demo {
     };
 
     label.onchange = () => {
-      if (isLabel === true) {
+      if (isLabel) {
         this.setState({ isLabel: false });
-      } if (isLabel === false) {
+      } if (!isLabel) {
         this.setState({ isLabel: true });
       }
     };
 
     isDoubleType.onchange = () => {
-      if (isDouble === false) {
+      if (!isDouble) {
         this.setState({ isDouble: true });
       }
-      if (isDouble === true) {
+      if (isDouble) {
         this.setState({ isDouble: false });
       }
     };
 
     inputMinMax.onchange = () => {
-      if (minMax === false) {
+      if (!minMax) {
         this.setState({ minMax: true });
       } else {
         this.setState({ minMax: false });
@@ -246,7 +246,7 @@ class Demo {
     };
 
     inputFromTo.onchange = () => {
-      if (fromTo === false) {
+      if (!fromTo) {
         this.setState({ fromTo: true });
       } else {
         this.setState({ fromTo: false });
@@ -254,7 +254,7 @@ class Demo {
     };
 
     inputDivision.onchange = () => {
-      if (onlyDivisions === false) {
+      if (!onlyDivisions) {
         this.setState({ onlyDivisions: true });
       } else {
         this.setState({ onlyDivisions: false });
@@ -262,7 +262,7 @@ class Demo {
     };
 
     inputIsTrackPostfix.onchange = () => {
-      if (isTrackPostfix === false) {
+      if (!isTrackPostfix) {
         this.setState({ isTrackPostfix: true });
       } else {
         this.setState({ isTrackPostfix: false });
@@ -270,7 +270,7 @@ class Demo {
     };
 
     inputIsColor.onchange = () => {
-      if (isColor === true) {
+      if (isColor) {
         this.setState({ isColor: false });
       } else {
         this.setState({ isColor: true });
@@ -278,7 +278,7 @@ class Demo {
     };
 
     inputChangeColor.onchange = () => {
-      if (changeColor === true) {
+      if (changeColor) {
         this.setState({ changeColor: false });
       } else {
         this.setState({ changeColor: true });

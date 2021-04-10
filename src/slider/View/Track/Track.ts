@@ -55,21 +55,21 @@ class Track {
       trackPostfix,
     } = options;
 
-    if (isTrackPostfix === false) {
+    if (!isTrackPostfix) {
       trackPostfix = '';
     }
     // настройки для постфикса
 
-    if (minMax === true) {
+    if (minMax) {
       this.outElements[0].innerHTML = `${correctSeparate(min, options)}${trackPostfix}`;
       this.outElements[1].innerHTML = `${correctSeparate(max, options)}${trackPostfix}`;
     }
-    if (fromTo === true) {
+    if (fromTo) {
       this.outElements[0].innerHTML = `${correctSeparate(from, options)}${trackPostfix}`;
       this.outElements[1].innerHTML = `${correctSeparate(to, options)}${trackPostfix}`;
     }
-    const isFromtoPrefix = fromTo === true && isPrefix === true;
-    const isMinMaxPrefix = minMax === true && isPrefix === true;
+    const isFromtoPrefix = fromTo && isPrefix;
+    const isMinMaxPrefix = minMax && isPrefix;
     // настройки для префикса
 
     if (isMinMaxPrefix) {

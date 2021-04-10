@@ -2,9 +2,7 @@ import '@testing-library/jest-dom';
 import $ from 'jquery';
 
 import { View } from '../View';
-import { Rollers } from './Rollers';
 import { standardOptions } from '../../interfaces/standardOptions';
-import { IViewState } from '../../interfaces/interfaces';
 
 describe('Rollers', () => {
   let wrap: JQuery<HTMLElement>;
@@ -41,8 +39,8 @@ describe('Rollers', () => {
 
     view.upData({ isLabel: false });
 
-    expect(tooltips[0].classList.contains('slider__tooltip_display-none')).toBe(true);
-    expect(tooltips[1].classList.contains('slider__tooltip_display-none')).toBe(true);
+    expect(tooltips[0].classList.contains('slider__tooltip_is-visible')).toBe(true);
+    expect(tooltips[1].classList.contains('slider__tooltip_is-visible')).toBe(true);
   });
 
   test('when isDouble = false then only the first roller should be visible', () => {
@@ -114,8 +112,8 @@ describe('Rollers', () => {
 
     view.upData({ isColorOut: true });
 
-    expect(firstTooltip.classList.contains('slider__tooltip_white-color')).toBe(true);
-    expect(secondTooltip.classList.contains('slider__tooltip_white-color')).toBe(true);
+    expect(firstTooltip.classList.contains('slider__tooltip_white')).toBe(true);
+    expect(secondTooltip.classList.contains('slider__tooltip_white')).toBe(true);
   });
 
   test('when isGradient = false then the background of the rollers is colored with variable color', () => {

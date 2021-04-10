@@ -39,8 +39,8 @@ class Bar {
       gradientDeg,
       isChangeColor,
     } = options;
-    const isSetGradient = isChangeColor === true && isGradient === true;
-    const isSetColor = isChangeColor === true && isGradient === false;
+    const isSetGradient = isChangeColor && isGradient;
+    const isSetColor = isChangeColor && !isGradient;
 
     if (isSetGradient) {
       bar.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;

@@ -964,95 +964,95 @@ class Demo {
     const inputGradientDeg = this.demoTools.querySelector('.js-gradient-deg')! as HTMLInputElement;
 &nbsp;
     btnView.onclick = () =&gt; {
-      menuView.classList.toggle('panel__close');
+      menuView.classList.toggle('panel_is-visible');
     };
 &nbsp;
     btnScale.onclick = () =&gt; {
-      menuScale.classList.toggle('panel__close');
+      menuScale.classList.toggle('panel_is-visible');
     };
     btnColor.onclick = () =&gt; {
-      menuColor.classList.toggle('panel__close');
+      menuColor.classList.toggle('panel_is-visible');
     };
     btnPostfix.onclick = () =&gt; {
-      menuPostfix.classList.toggle('panel__close');
+      menuPostfix.classList.toggle('panel_is-visible');
     };
 &nbsp;
     /**     чекбоксы    * */
 &nbsp;
     isOrientation.onchange = () =&gt; {
-      <span class="missing-if-branch" title="else path not taken" >E</span>if (isVertical === false) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!isVertical) {
         this.setState({ isVertical: true });
       }
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (isVertical === true) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (isVertical) {
 <span class="cstat-no" title="statement not covered" >        this.setState({ isVertical: false });</span>
       }
     };
 &nbsp;
     inputIsPostfix.onchange = () =&gt; {
-      if (isScalePostfix === true) {
+      if (isScalePostfix) {
         this.setState({ isScalePostfix: false });
       }
-      if (isScalePostfix === false) {
+      if (!isScalePostfix) {
         this.setState({ isScalePostfix: true });
       }
     };
 &nbsp;
     inputIsToolPostfix.onchange = () =&gt; {
-      if (isPostfix === true) {
+      if (isPostfix) {
         this.setState({ isPostfix: false });
       }
-      if (isPostfix === false) {
+      if (!isPostfix) {
         this.setState({ isPostfix: true });
       }
     };
 &nbsp;
     inputIsPrefix.onchange = () =&gt; {
-      if (isPrefix === true) {
+      if (isPrefix) {
         this.setState({ isPrefix: false });
       }
-      if (isPrefix === false) {
+      if (!isPrefix) {
         this.setState({ isPrefix: true });
       }
     };
 &nbsp;
     inputGradient.onchange = () =&gt; {
-      if (isGradient === true) {
+      if (isGradient) {
         this.setState({ isGradient: false });
       }
-      if (isGradient === false) {
+      if (!isGradient) {
         this.setState({ isGradient: true });
       }
     };
 &nbsp;
     inputIsChangeColor.onchange = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >      if (isChangeColor === true) {</span>
+<span class="cstat-no" title="statement not covered" >      if (isChangeColor) {</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({ isChangeColor: false });</span>
       }
-<span class="cstat-no" title="statement not covered" >      if (isChangeColor === false) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!isChangeColor) {</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({ isChangeColor: true });</span>
       }
     };
 &nbsp;
     inputIsSeparate.onchange = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >      if (isSeparate === true) {</span>
+<span class="cstat-no" title="statement not covered" >      if (isSeparate) {</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({ isSeparate: false });</span>
       }
-<span class="cstat-no" title="statement not covered" >      if (isSeparate === false) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!isSeparate) {</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({ isSeparate: true });</span>
       }
     };
 &nbsp;
     inputColorOut.onchange = () =&gt; {
-      if (isColorOut === true) {
+      if (isColorOut) {
         this.setState({ isColorOut: false });
       }
-      if (isColorOut === false) {
+      if (!isColorOut) {
         this.setState({ isColorOut: true });
       }
     };
 &nbsp;
     changeScale.onchange = () =&gt; {
-      if (isScale === false) {
+      if (!isScale) {
         this.setState({ isScale: true });
       } else {
         this.setState({ isScale: false });
@@ -1060,24 +1060,24 @@ class Demo {
     };
 &nbsp;
     label.onchange = () =&gt; {
-      if (isLabel === true) {
+      if (isLabel) {
         this.setState({ isLabel: false });
-      } if (isLabel === false) {
+      } if (!isLabel) {
         this.setState({ isLabel: true });
       }
     };
 &nbsp;
     isDoubleType.onchange = () =&gt; {
-      <span class="missing-if-branch" title="else path not taken" >E</span>if (isDouble === false) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!isDouble) {
         this.setState({ isDouble: true });
       }
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (isDouble === true) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (isDouble) {
 <span class="cstat-no" title="statement not covered" >        this.setState({ isDouble: false });</span>
       }
     };
 &nbsp;
     inputMinMax.onchange = () =&gt; {
-      if (minMax === false) {
+      if (!minMax) {
         this.setState({ minMax: true });
       } else {
         this.setState({ minMax: false });
@@ -1085,7 +1085,7 @@ class Demo {
     };
 &nbsp;
     inputFromTo.onchange = () =&gt; {
-      if (fromTo === false) {
+      if (!fromTo) {
         this.setState({ fromTo: true });
       } else {
         this.setState({ fromTo: false });
@@ -1093,7 +1093,7 @@ class Demo {
     };
 &nbsp;
     inputDivision.onchange = () =&gt; {
-      if (onlyDivisions === false) {
+      if (!onlyDivisions) {
         this.setState({ onlyDivisions: true });
       } else {
         this.setState({ onlyDivisions: false });
@@ -1101,7 +1101,7 @@ class Demo {
     };
 &nbsp;
     inputIsTrackPostfix.onchange = () =&gt; {
-      if (isTrackPostfix === false) {
+      if (!isTrackPostfix) {
         this.setState({ isTrackPostfix: true });
       } else {
         this.setState({ isTrackPostfix: false });
@@ -1109,7 +1109,7 @@ class Demo {
     };
 &nbsp;
     inputIsColor.onchange = () =&gt; {
-      if (isColor === true) {
+      if (isColor) {
         this.setState({ isColor: false });
       } else {
         this.setState({ isColor: true });
@@ -1117,7 +1117,7 @@ class Demo {
     };
 &nbsp;
     inputChangeColor.onchange = () =&gt; {
-      if (changeColor === true) {
+      if (changeColor) {
         this.setState({ changeColor: false });
       } else {
         this.setState({ changeColor: true });
@@ -1234,7 +1234,7 @@ export { Demo };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Apr 09 2021 15:14:14 GMT+0600 (GMT+06:00)
+                at Sat Apr 10 2021 20:51:35 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

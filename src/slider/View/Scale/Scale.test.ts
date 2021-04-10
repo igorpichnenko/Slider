@@ -82,12 +82,12 @@ describe('Scale', () => {
     expect(clickScale.mock.results[0].value).toBe(value);
   });
 
-  test('if onlyDivisions = true then the scale division must have the fontSize-zero modifier', () => {
+  test('if onlyDivisions = true then the scale division must have the not-visible modifier', () => {
     view.upData({ onlyDivisions: true });
 
     const scaleMarker = view.slider.querySelector('.js-slider__scale-value') as HTMLElement;
 
-    expect(scaleMarker.classList.contains('slider__scale-value_fontSize-zero')).toBe(true);
+    expect(scaleMarker.classList.contains('slider__scale-value_not-visible')).toBe(true);
   });
 
   test('should be postfix by default', () => {

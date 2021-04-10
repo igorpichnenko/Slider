@@ -57,12 +57,12 @@ class Rollers {
       postfix,
     } = options;
 
-    if (isPostfix === false) {
+    if (!isPostfix) {
       postfix = '';
     }
 
-    const isSetPrefix = isLabel === true && isPrefix === true;
-    const isSetPostfix = isLabel === true && isPrefix === false;
+    const isSetPrefix = isLabel && isPrefix;
+    const isSetPostfix = isLabel && !isPrefix;
     // настройки постфикс
     if (isSetPostfix) {
       this.tooltips[0].innerHTML = `${correctSeparate(from, options)}${postfix}`;
@@ -94,15 +94,15 @@ class Rollers {
     let newColor = allColors[color];
     let newGradient = allColors[gradient];
 
-    if (newGradient === undefined) {
+    if (!newGradient) {
       newGradient = gradient;
     }
 
-    if (newColor === undefined) {
+    if (!newColor) {
       newColor = color;
     }
 
-    const setNewColor = isChangeColor === true && isColorOut === true;
+    const setNewColor = isChangeColor && isColorOut;
 
     if (setNewColor) {
       this.tooltips[0].innerHTML = String(newColor);
@@ -114,7 +114,7 @@ class Rollers {
       this.tooltips[1].classList.add(classNames.tooltipWhite);
     }
 
-    if (isLabel === false) {
+    if (!isLabel) {
       this.tooltips[0].classList.add(classNames.tooltipDisplay);
       this.tooltips[1].classList.add(classNames.tooltipDisplay);
     }
@@ -128,8 +128,8 @@ class Rollers {
       isChangeColor,
       gradientDeg,
     } = options;
-    const isChangeGradient = isChangeColor === true && isGradient === true;
-    const isColor = isChangeColor === true && isGradient === false;
+    const isChangeGradient = isChangeColor && isGradient;
+    const isColor = isChangeColor && !isGradient;
 
     if (isChangeGradient) {
       this.rollers[0].style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;

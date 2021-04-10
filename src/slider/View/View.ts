@@ -381,8 +381,8 @@ class View {
     } = this.state;
 
     const val = value / max;
-    const isChangeColor = isColor === true && changeColor === false;
-    const isChangeNewColor = isColor === true && changeColor === true;
+    const isChangeColor = isColor && !changeColor;
+    const isChangeNewColor = isColor && changeColor;
     let palitra = 0;
     let grPalitra = 0;
     if (isChangeColor) {

@@ -49,9 +49,9 @@ class Scale {
     const scaleMarkers = slider.querySelectorAll < HTMLElement >('.js-slider__scale-value')!;
 
     scaleMarkers.forEach((scaleMarker) => {
-      if (onlyDivisions === true) {
+      if (onlyDivisions) {
         scaleMarker.classList.add(classNames.scaleFsZero);
-      } 
+      }
     });
     document.documentElement.style.setProperty('--scale-color',
       ` ${color}`);
@@ -62,9 +62,9 @@ class Scale {
     const {
       isScale,
     } = options;
-    if (isScale === false) {
+    if (!isScale) {
       scale.style.display = 'none';
-    } if (isScale === true) {
+    } if (isScale) {
       scale.style.display = '';
     }
   }
@@ -146,16 +146,16 @@ class Scale {
 
     let element = divisionValue;
 
-    if (onlyDivisions === false) {
+    if (!onlyDivisions) {
       element = scaleMarker;
     }
 
-    if (isScalePostfix === false) {
+    if (!isScalePostfix) {
       scalePostfix = '';
     }
     element.innerHTML = `${correctSeparate(value, options)}${scalePostfix}`;
 
-    if (isPrefix === true) {
+    if (isPrefix) {
       element.innerHTML = `${scalePostfix}${correctSeparate(value, options)}`;
     }
 
