@@ -125,17 +125,17 @@ class Demo {
     const inputGradientDeg = this.demoTools.querySelector('.js-gradient-deg')! as HTMLInputElement;
 
     btnView.onclick = () => {
-      menuView.classList.toggle('panel__close');
+      menuView.classList.toggle('panel_is-visible');
     };
 
     btnScale.onclick = () => {
-      menuScale.classList.toggle('panel__close');
+      menuScale.classList.toggle('panel_is-visible');
     };
     btnColor.onclick = () => {
-      menuColor.classList.toggle('panel__close');
+      menuColor.classList.toggle('panel_is-visible');
     };
     btnPostfix.onclick = () => {
-      menuPostfix.classList.toggle('panel__close');
+      menuPostfix.classList.toggle('panel_is-visible');
     };
 
     /**     чекбоксы    * */

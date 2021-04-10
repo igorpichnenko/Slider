@@ -51,9 +51,7 @@ class Scale {
     scaleMarkers.forEach((scaleMarker) => {
       if (onlyDivisions === true) {
         scaleMarker.classList.add(classNames.scaleFsZero);
-      } else {
-        scaleMarker.classList.add(classNames.scaleFsNormal);
-      }
+      } 
     });
     document.documentElement.style.setProperty('--scale-color',
       ` ${color}`);
@@ -138,7 +136,7 @@ class Scale {
     scaleMarker.className = classNames.scaleMarker;
     const divisionValue = document.createElement('span');
     const division = document.createElement('span');
-    divisionValue.className = `${classNames.divisionValue} slider__division-value_${val}-element`;
+    divisionValue.className = `${classNames.divisionValue}${val}`;
 
     division.className = classNames.division;
     scaleMarker.append(divisionValue);
