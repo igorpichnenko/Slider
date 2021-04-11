@@ -189,9 +189,9 @@ class Scale {
     event.stopPropagation();
 
     if (!(target instanceof HTMLElement)) return;
-    const isScaleDivison = !target.classList.contains('slider__division-value') && onlyDivisions === true;
+    const isScaleDivison = !target.classList.contains('slider__division-value') && onlyDivisions;
 
-    const isScaleValue = !target.classList.contains('slider__scale-value') && onlyDivisions === false;
+    const isScaleValue = !target.classList.contains('slider__scale-value') && !onlyDivisions;
 
     if (isScaleDivison) return;
     if (isScaleValue) return;

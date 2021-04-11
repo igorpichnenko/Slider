@@ -187,7 +187,8 @@ class View {
     } = this.state;
     event.preventDefault();
     let mouseValue = 0;
-    const isHandle = !/tooltip || roller/.test(target.className);
+    const regexp = /tooltip || roller/
+    const isHandle = !regexp.test(target.className);
     if (isHandle) return;
     const sensorHorizontalEvent = event.type === 'touchmove' && !isVertical;
     const mouseHorizontalEvent = event.type === 'mousemove' && !isVertical;
@@ -255,8 +256,8 @@ class View {
       target,
     } = event;
     let coordinate = 0;
-
-    if (/scale/.test(target.className)) return;
+    const regexp = /scale/
+    if (regexp.test(target.className)) return;
 
     if (!isVertical) {
       coordinate = event.clientX;
