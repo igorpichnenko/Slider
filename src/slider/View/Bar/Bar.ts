@@ -55,9 +55,10 @@ class Bar {
     } = options;
 
     const rollers = slider.querySelectorAll(classNames.findRollers);
+    const [ firstRoller, secondRoller] = [rollers[0], rollers[1]]
 
-    const rollersPositions = [this.calculatePosition(rollers[0], options),
-      this.calculatePosition(rollers[1], options)];
+    const rollersPositions = [this.calculatePosition(firstRoller, options),
+      this.calculatePosition(secondRoller, options)];
 
     return rollersPositions.sort((a, b) => a - b);
   }

@@ -21,10 +21,11 @@ describe('Rollers', () => {
 
   test('2 rollers must be initialized', () => {
     const rollers = view.slider.querySelectorAll(classNames.findRollers);
+    const [ rollerFirst, rollerSecond] = [rollers[0], rollers[1]]
 
     expect(rollers.length).toBe(2);
-    expect(rollers[0]).toBeVisible();
-    expect(rollers[1]).toBeVisible();
+    expect(rollerFirst).toBeVisible();
+    expect(rollerSecond).toBeVisible();
   });
 
   test('2 tooltip must be initialized', () => {

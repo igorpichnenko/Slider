@@ -213,10 +213,11 @@ class View {
 
   private getTargetType(target: HTMLElement): string {
     const rollers = this.slider.querySelectorAll(classNames.findRollers);
+    const [ rollerFirst, rollerSecond] = [rollers[0], rollers[1]]
 
-    if (rollers[0].contains(target)) return 'from';
+    if (rollerFirst.contains(target)) return 'from';
 
-    if (rollers[1].contains(target)) {
+    if (rollerSecond.contains(target)) {
       return 'to';
     }
     return 'undefined';
