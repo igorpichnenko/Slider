@@ -16,10 +16,7 @@ class Rollers {
     this.toggleRollers(options);
   }
 
-  private create(options: IViewState) {
-    const {
-      slider,
-    } = options;
+  private create({slider}: IViewState) {
 
     const rollerFirst = document.createElement('div');
     rollerFirst.className = classNames.rollerFirst;
@@ -77,19 +74,11 @@ class Rollers {
     this.setColor(options);
   }
 
-  private setColor(options: IViewState) {
-    const {
-      color,
-      gradient,
-      isColorOut,
-      allColors,
-      isChangeColor,
-      isLabel,
-    } = options;
+  private setColor({color,gradient,isColorOut,allColors,isChangeColor,isLabel}: IViewState) {
 
     /**
     * Задумка сделать обратный конвектор из 16-ричного в обычный вид, например #fff в
-    white, и в дальнейшем соьирался дополнять перевод
+    white, и в дальнейшем собирался дополнять перевод
     * */
     let newColor = allColors[color];
     let newGradient = allColors[gradient];
@@ -120,14 +109,8 @@ class Rollers {
     }
   }
 
-  private updataColor(options: IViewState) {
-    const {
-      color,
-      isGradient,
-      gradient,
-      isChangeColor,
-      gradientDeg,
-    } = options;
+  private updataColor({color,isGradient,gradient,isChangeColor,gradientDeg}: IViewState) {
+ 
     const isChangeGradient = isChangeColor && isGradient;
     const isColor = isChangeColor && !isGradient;
 
@@ -192,10 +175,7 @@ class Rollers {
     return (value * 100) / size;
   }
 
-  private toggleRollers(options: IViewState): void {
-    const {
-      isDouble,
-    } = options;
+  private toggleRollers({isDouble}: IViewState): void {
 
     if (isDouble) {
       this.rollers[1].style.display = 'none';

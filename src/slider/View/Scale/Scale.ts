@@ -39,12 +39,7 @@ class Scale {
     this.updataScaleMarker(options);
   }
 
-  private updataScaleMarker(options: IViewState) {
-    const {
-      onlyDivisions,
-      slider,
-      color,
-    } = options;
+  private updataScaleMarker({onlyDivisions,slider,color}: IViewState) {
 
     const scaleMarkers = slider.querySelectorAll < HTMLElement >('.js-slider__scale-value')!;
 
@@ -107,12 +102,8 @@ class Scale {
     scale.append(fragment);
   }
 
-  public getIncrement(options: IViewState): number {
-    const {
-      size,
-      oneStep,
-      step,
-    } = options;
+  public getIncrement({size,oneStep,step}: IViewState): number {
+
     const value = Math.ceil(size / oneStep);
     const inc = Math.ceil(value / 5) * step;
     return inc;

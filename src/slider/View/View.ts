@@ -425,10 +425,8 @@ class View {
     return position;
   }
 
-  public getSliderSize(Options: IOptions): number {
-    const {
-      isVertical,
-    } = Options;
+  public getSliderSize({isVertical}: IOptions): number {
+    
     let size = 0;
     if (!isVertical) {
       size = this.slider.getBoundingClientRect().width;

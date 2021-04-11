@@ -117,10 +117,7 @@ class Bar {
     }
   }
 
-  public getNewSliderPos(options: IViewState): number {
-    const {
-      slider, isVertical,
-    } = options;
+  public getNewSliderPos({slider,isVertical}: IViewState): number {
 
     let position = 0;
 
