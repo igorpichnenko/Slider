@@ -5,6 +5,7 @@ import { View } from '../View';
 import { Bar } from './Bar';
 import { standardOptions } from '../../interfaces/standardOptions';
 import { IViewState } from '../../interfaces/interfaces';
+import { classNames } from '../../libs/classNames';
 
 describe('Bar', () => {
   let wrap: JQuery<HTMLElement>;
@@ -34,13 +35,13 @@ describe('Bar', () => {
   });
 
   test('bar horizontal is initialized and visible visible', () => {
-    const bar = view.slider.querySelector('.js-slider__bar');
+    const bar = view.slider.querySelector(classNames.findBar);
 
     expect(bar).toBeVisible();
   });
 
   test('if isGradient = false then the background of the bar must be the color of the variable', () => {
-    const bar = view.slider.querySelector('.js-slider__bar') as HTMLElement;
+    const bar = view.slider.querySelector(classNames.findBar) as HTMLElement;
 
     view.upData({ isGradient: false });
 
@@ -49,7 +50,7 @@ describe('Bar', () => {
 
   test('clicking on the bar should update the coordinates', () => {
     const spy = jest.spyOn(view, 'convertPxToValue');
-    const bar = view.slider.querySelector('.js-slider__bar') as HTMLElement;
+    const bar = view.slider.querySelector(classNames.findBar) as HTMLElement;
     bar.click();
 
     expect(spy).toBeCalled();

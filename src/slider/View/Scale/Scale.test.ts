@@ -5,6 +5,7 @@ import { View } from '../View';
 import { Scale } from './Scale';
 import { standardOptions } from '../../interfaces/standardOptions';
 import { IViewState, IOptions } from '../../interfaces/interfaces';
+import { classNames } from '../../libs/classNames';
 
 describe('Scale', () => {
   let wrap: JQuery<HTMLElement>;
@@ -31,24 +32,24 @@ describe('Scale', () => {
   });
 
   test('should be initialized and visible', () => {
-    const sliderScale = view.slider.querySelector('.js-slider__scale');
+    const sliderScale = view.slider.querySelector(classNames.findScale);
 
     expect(sliderScale).toBeVisible();
   });
 
   test('scale divisions must be created', () => {
-    const scaleMarker = view.slider.querySelector('.js-slider__scale-value');
+    const scaleMarker = view.slider.querySelector(classNames.findScaleValue);
 
     expect(scaleMarker).toBeVisible();
   });
 
   test('if the scale element is one, then by condition it is equal to max', () => {
-    const scaleMarker = view.slider.querySelector('.js-slider__scale-value')! as HTMLElement;
+    const scaleMarker = view.slider.querySelector(classNames.findScaleValue)! as HTMLElement;
 
     expect(scaleMarker.innerHTML).toBe(`${view.state.max}${view.state.scalePostfix}`);
   });
   test('clicking on the scale should return the scale value', () => {
-    const scaleMarker = view.slider.querySelector('.js-slider__scale-value') as HTMLElement;
+    const scaleMarker = view.slider.querySelector(classNames.findScaleValue) as HTMLElement;
 
     const value = scaleMarker.innerHTML;
 
@@ -65,13 +66,13 @@ describe('Scale', () => {
   test('if onlyDivisions = true then the scale division must have the not-visible modifier', () => {
     view.upData({ onlyDivisions: true });
 
-    const scaleMarker = view.slider.querySelector('.js-slider__scale-value') as HTMLElement;
+    const scaleMarker = view.slider.querySelector(classNames.findScaleValue) as HTMLElement;
 
-    expect(scaleMarker.classList.contains('slider__scale-value_not-visible')).toBe(true);
+    expect(scaleMarker.classList.contains(classNames.notVisible)).toBe(false);
   });
 
   test('should be postfix by default', () => {
-    const scaleMarker = view.slider.querySelector('.js-slider__scale-value') as HTMLElement;
+    const scaleMarker = view.slider.querySelector(classNames.findScaleValue) as HTMLElement;
 
     expect(scaleMarker.innerHTML).toBe(`${view.state.max}${view.state.scalePostfix}`);
   });
@@ -85,7 +86,7 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value')!;
+    const scaleMarker = newView.slider.querySelector(classNames.findScaleValue)!;
 
     expect(scaleMarker.innerHTML).toBe(String(newView.state.max));
   });
@@ -98,7 +99,7 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value')!;
+    const scaleMarker = newView.slider.querySelector(classNames.findScaleValue)!;
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.scalePostfix}${newView.state.max}`);
   });
@@ -112,7 +113,7 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value')!;
+    const scaleMarker = newView.slider.querySelector(classNames.findScaleValue)!;
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toString()}${newView.state.scalePostfix}`);
   });
@@ -126,7 +127,7 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value')!;
+    const scaleMarker = newView.slider.querySelector(classNames.findScaleValue)!;
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString('de-DE')}${newView.state.scalePostfix}`);
   });
@@ -139,7 +140,7 @@ describe('Scale', () => {
 
     const newView = new View(newOptions, wrap);
 
-    const scaleMarker = newView.slider.querySelector('.js-slider__scale-value')!;
+    const scaleMarker = newView.slider.querySelector(classNames.findScaleValue)!;
 
     expect(scaleMarker.innerHTML).toBe(`${newView.state.max.toLocaleString('en-US')}${newView.state.scalePostfix}`);
   });

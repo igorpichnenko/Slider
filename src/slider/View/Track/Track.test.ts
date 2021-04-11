@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 import { View } from '../View';
 import { standardOptions } from '../../interfaces/standardOptions';
+import { classNames } from '../../libs/classNames';
 
 describe('Rollers', () => {
   let wrap: JQuery<HTMLElement>;
@@ -19,13 +20,13 @@ describe('Rollers', () => {
   });
 
   test('track horizontal is initialized and visible', () => {
-    const track = view.slider.querySelector('.js-slider__track');
+    const track = view.slider.querySelector(classNames.findTrack);
     expect(track).toBeVisible();
     expect(view.convertPxToValue).toBeDefined();
   });
 
   test('2 out element should be created', () => {
-    const out = view.slider.querySelectorAll('.slider__out');
+    const out = view.slider.querySelectorAll(classNames.findTrackOut);
 
     expect(out.length).toBe(2);
     expect(out[0]).toBeVisible();
@@ -33,7 +34,7 @@ describe('Rollers', () => {
   });
 
   test('if minMax = true, then the out element should display the min, max and trackPrefix values', () => {
-    const out = view.slider.querySelectorAll('.slider__out');
+    const out = view.slider.querySelectorAll(classNames.findTrackOut);
 
     view.upData({ minMax: true });
 
@@ -43,14 +44,14 @@ describe('Rollers', () => {
 
   test('clicking on the track should update the coordinates', () => {
     const spy = jest.spyOn(view, 'convertPxToValue');
-    const track = view.slider.querySelector('.js-slider__track') as HTMLElement;
+    const track = view.slider.querySelector(classNames.findTrack) as HTMLElement;
     track.click();
 
     expect(spy).toBeCalled();
   });
 
   test('if fromTo = true, then the out element should display the from, to and trackPrefix values', () => {
-    const out = view.slider.querySelectorAll('.slider__out');
+    const out = view.slider.querySelectorAll(classNames.findTrackOut);
 
     view.upData({ fromTo: true });
 
@@ -59,7 +60,7 @@ describe('Rollers', () => {
   });
 
   test('if isPrefix = true then they should be prefix and not postfix', () => {
-    const out = view.slider.querySelectorAll('.slider__out');
+    const out = view.slider.querySelectorAll(classNames.findTrackOut);
 
     view.upData({ isPrefix: true, fromTo: true });
 
@@ -68,7 +69,7 @@ describe('Rollers', () => {
   });
 
   test('if fromTo=true, isTrackPrefix=false, then the out element should display from, to values', () => {
-    const out = view.slider.querySelectorAll('.slider__out');
+    const out = view.slider.querySelectorAll(classNames.findTrackOut);
 
     view.upData({
       fromTo: true,
@@ -79,7 +80,7 @@ describe('Rollers', () => {
     expect(out[1].innerHTML).toBe(`${view.state.to.toLocaleString()}`);
   });
   test('if minMax=true, isTrackPrefix=false, then the out element should display min, max values', () => {
-    const out = view.slider.querySelectorAll('.slider__out');
+    const out = view.slider.querySelectorAll(classNames.findTrackOut);
 
     view.upData({
       minMax: true,
@@ -91,7 +92,7 @@ describe('Rollers', () => {
   });
 
   test('there must be a separator that is set', () => {
-    const out = view.slider.querySelectorAll('.slider__out');
+    const out = view.slider.querySelectorAll(classNames.findTrackOut);
 
     view.upData({
       separate: ',',
@@ -104,7 +105,7 @@ describe('Rollers', () => {
   });
 
   test('isSeparate = false, then values ​​without a separator should be obtained', () => {
-    const out = view.slider.querySelectorAll('.slider__out');
+    const out = view.slider.querySelectorAll(classNames.findTrackOut);
 
     view.upData({
       separate: ',',

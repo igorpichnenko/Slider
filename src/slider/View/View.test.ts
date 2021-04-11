@@ -4,6 +4,8 @@ import $ from 'jquery';
 import { View } from './View';
 import { standardOptions } from '../interfaces/standardOptions';
 import { IOptions, IViewState } from '../interfaces/interfaces';
+import { classNames } from '../libs/classNames';
+
 
 describe('View', () => {
   let wrap: JQuery<HTMLElement>;
@@ -53,11 +55,11 @@ describe('View', () => {
     const sliderClass = view.slider.className;
 
     expect(view.slider).toBeTruthy();
-    expect(sliderClass).toBe('slider');
+    expect(sliderClass).toBe(classNames.slider);
   });
 
   test('should create 2 rollers', () => {
-    const rollers = view.slider.querySelectorAll('.js-slider__roller');
+    const rollers = view.slider.querySelectorAll(classNames.findRollers);
 
     expect(rollers.length).toBe(2);
     expect(rollers[0]).toBeVisible();
@@ -65,7 +67,7 @@ describe('View', () => {
   });
 
   test('should create 2 tooltips', () => {
-    const tooltips = view.slider.querySelectorAll('.js-slider__tooltip');
+    const tooltips = view.slider.querySelectorAll(classNames.findTooltip);
 
     expect(tooltips.length).toBe(2);
     expect(tooltips[0]).toBeVisible();
@@ -73,7 +75,7 @@ describe('View', () => {
   });
 
   test('should create 2 outElements', () => {
-    const outElements = view.slider.querySelectorAll('.js-slider__out');
+    const outElements = view.slider.querySelectorAll(classNames.findTrackOut);
 
     expect(outElements.length).toBe(2);
     expect(outElements[0]).toBeVisible();
@@ -81,21 +83,21 @@ describe('View', () => {
   });
 
   test('should create a track', () => {
-    const track = view.slider.querySelector('.js-slider__track');
+    const track = view.slider.querySelector(classNames.findTrack);
 
     expect(track).toBeTruthy();
     expect(track).toBeVisible();
   });
 
   test('should create a bar', () => {
-    const bar = view.slider.querySelector('.js-slider__bar');
+    const bar = view.slider.querySelector(classNames.findBar);
 
     expect(bar).toBeTruthy();
     expect(bar).toBeVisible();
   });
 
   test('should create a scale', () => {
-    const scale = view.slider.querySelector('.js-slider__scale');
+    const scale = view.slider.querySelector(classNames.findScale);
 
     expect(scale).toBeTruthy();
     expect(scale).toBeVisible();
@@ -113,7 +115,7 @@ describe('View', () => {
   });
   test('roller move must call updatePosition method', () => {
     const spy = jest.spyOn(view, 'updatePosition');
-    const roller = view.slider.querySelector('.slider__roller') as HTMLElement;
+    const roller = view.slider.querySelector(classNames.findRollers) as HTMLElement;
     roller.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
     document.dispatchEvent(new MouseEvent('mousemove'));
     document.dispatchEvent(new MouseEvent('mouseup'));
