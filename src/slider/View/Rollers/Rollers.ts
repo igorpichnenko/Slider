@@ -186,8 +186,9 @@ class Rollers {
   private toggleRollers({ isDouble }: IViewState): void {
     const { rollers } = this;
     const [firstRoller, secondRoller] = rollers;
-    if (isDouble) {
-      firstRoller.classList.add(classNames.notVisible);
+    const isVisible = isDouble && firstRoller;
+    if (isVisible) {
+      secondRoller.classList.add(classNames.notVisible);
     } else {
       secondRoller.classList.remove(classNames.notVisible);
     }
