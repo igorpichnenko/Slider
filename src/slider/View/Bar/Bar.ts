@@ -25,7 +25,7 @@ class Bar {
       slider,
     } = options;
 
-    const bar = slider.querySelector('.js-slider__bar')! as HTMLElement;
+    const bar = slider.querySelector(classNames.findBar)! as HTMLElement;
 
     this.updataColor(options, bar);
     this.updataBar(options, bar);
@@ -54,7 +54,7 @@ class Bar {
       slider,
     } = options;
 
-    const rollers = slider.querySelectorAll('.js-slider__roller');
+    const rollers = slider.querySelectorAll(classNames.findRollers);
 
     const rollersPositions = [this.calculatePosition(rollers[0], options),
       this.calculatePosition(rollers[1], options)];
@@ -117,8 +117,7 @@ class Bar {
     }
   }
 
-  public getNewSliderPos({slider,isVertical}: IViewState): number {
-
+  public getNewSliderPos({ slider, isVertical }: IViewState): number {
     let position = 0;
 
     if (!isVertical) {

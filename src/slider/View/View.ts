@@ -187,7 +187,7 @@ class View {
     } = this.state;
     event.preventDefault();
     let mouseValue = 0;
-    const regexp = /tooltip || roller/
+    const regexp = /tooltip || roller/;
     const isHandle = !regexp.test(target.className);
     if (isHandle) return;
     const sensorHorizontalEvent = event.type === 'touchmove' && !isVertical;
@@ -212,7 +212,7 @@ class View {
   }
 
   private getTargetType(target: HTMLElement): string {
-    const rollers = this.slider.querySelectorAll('.js-slider__roller');
+    const rollers = this.slider.querySelectorAll(classNames.findRollers);
 
     if (rollers[0].contains(target)) return 'from';
 
@@ -256,7 +256,7 @@ class View {
       target,
     } = event;
     let coordinate = 0;
-    const regexp = /scale/
+    const regexp = /scale/;
     if (regexp.test(target.className)) return;
 
     if (!isVertical) {
@@ -425,8 +425,7 @@ class View {
     return position;
   }
 
-  public getSliderSize({isVertical}: IOptions): number {
-    
+  public getSliderSize({ isVertical }: IOptions): number {
     let size = 0;
     if (!isVertical) {
       size = this.slider.getBoundingClientRect().width;

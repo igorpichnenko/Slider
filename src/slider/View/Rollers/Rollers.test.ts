@@ -34,23 +34,6 @@ describe('Rollers', () => {
     expect(tooltips[1]).toBeVisible();
   });
 
-  test('if the checkbox is checked, the islabel is false, then the tooltip should not be visible', () => {
-    const tooltips = view.slider.querySelectorAll('.slider__tooltip');
-
-    view.upData({ isLabel: false });
-
-    expect(tooltips[0].classList.contains('slider__tooltip_is-visible')).toBe(true);
-    expect(tooltips[1].classList.contains('slider__tooltip_is-visible')).toBe(true);
-  });
-
-  test('when isDouble = false then only the first roller should be visible', () => {
-    view.upData({ isDouble: true });
-    const rollers = view.slider.querySelectorAll('.js-slider__roller');
-
-    expect(rollers[0]).toBeVisible();
-    expect(rollers[1]).not.toBeVisible();
-  });
-
   test('tooltips should display options to and from', () => {
     view.upData({ isPostfix: false });
 

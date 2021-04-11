@@ -30,11 +30,6 @@
     display: inline-block;
     transform: translateY(-125%);
 
-
-    &_is-visible {
-      display: none;
-    }
-
     &_white {
       color: white;
     }
@@ -80,6 +75,10 @@
     opacity: .5;
     height: 5px;
     top: 4px;
+  }
+  
+  &__element_not-visible {
+    display: none;
   }
 
   &__scale {

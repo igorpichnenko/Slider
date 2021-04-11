@@ -28,7 +28,7 @@ class Scale {
     const {
       slider,
     } = options;
-    const scale = slider.querySelector('.js-slider__scale')! as HTMLElement;
+    const scale = slider.querySelector(classNames.findScale)! as HTMLElement;
 
     this.options = {
       ...this.options,
@@ -39,9 +39,8 @@ class Scale {
     this.updataScaleMarker(options);
   }
 
-  private updataScaleMarker({onlyDivisions,slider,color}: IViewState) {
-
-    const scaleMarkers = slider.querySelectorAll < HTMLElement >('.js-slider__scale-value')!;
+  private updataScaleMarker({ onlyDivisions, slider, color }: IViewState) {
+    const scaleMarkers = slider.querySelectorAll < HTMLElement >(classNames.findScaleValue)!;
 
     scaleMarkers.forEach((scaleMarker) => {
       if (onlyDivisions) {
@@ -58,9 +57,9 @@ class Scale {
       isScale,
     } = options;
     if (!isScale) {
-      scale.style.display = 'none';
+      scale.classList.add(classNames.notVisible);
     } if (isScale) {
-      scale.style.display = '';
+      scale.classList.remove(classNames.notVisible);
     }
   }
 
@@ -102,8 +101,7 @@ class Scale {
     scale.append(fragment);
   }
 
-  public getIncrement({size,oneStep,step}: IViewState): number {
-
+  public getIncrement({ size, oneStep, step }: IViewState): number {
     const value = Math.ceil(size / oneStep);
     const inc = Math.ceil(value / 5) * step;
     return inc;
@@ -180,9 +178,9 @@ class Scale {
     event.stopPropagation();
 
     if (!(target instanceof HTMLElement)) return;
-    const isScaleDivison = !target.classList.contains('slider__division-value') && onlyDivisions;
+    const isScaleDivison = !target.classList.contains(classNames.isScaleDivison) && onlyDivisions;
 
-    const isScaleValue = !target.classList.contains('slider__scale-value') && !onlyDivisions;
+    const isScaleValue = !target.classList.contains(classNames.isScaleValue) && !onlyDivisions;
 
     if (isScaleDivison) return;
     if (isScaleValue) return;

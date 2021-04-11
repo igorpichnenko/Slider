@@ -36,26 +36,6 @@ describe('Scale', () => {
     expect(sliderScale).toBeVisible();
   });
 
-  test('should be hidden when isScale = false ', () => {
-    view.upData({ isScale: true });
-    const sliderScale = view.slider.querySelector('.js-slider__scale');
-
-    expect(sliderScale).toBeVisible();
-
-    view.upData({ isScale: false });
-    expect(sliderScale).not.toBeVisible();
-  });
-
-  test('scale divisions should be hidden', () => {
-    view.upData({ isScale: true });
-    const scaleMarker = view.slider.querySelector('.js-slider__scale-value');
-
-    expect(scaleMarker).toBeVisible();
-
-    view.upData({ isScale: false });
-    expect(scaleMarker).not.toBeVisible();
-  });
-
   test('scale divisions must be created', () => {
     const scaleMarker = view.slider.querySelector('.js-slider__scale-value');
 

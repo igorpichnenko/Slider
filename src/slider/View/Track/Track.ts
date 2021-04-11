@@ -15,8 +15,7 @@ class Track {
     this.setOut(options);
   }
 
-  private create({slider}: IViewState) {
-
+  private create({ slider }: IViewState) {
     const track = document.createElement('div');
     track.className = classNames.track;
     slider.append(track);

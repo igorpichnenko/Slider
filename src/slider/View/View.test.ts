@@ -132,22 +132,6 @@ describe('View', () => {
     expect(view.state.isDouble).toBe(false);
   });
 
-  test('upData should change the isScale parameter and change the visibility of the scale', () => {
-    const scale = view.slider.querySelector('.js-slider__scale');
-
-    view.upData({ isScale: false });
-    expect(view.state.isScale).toBe(false);
-    expect(scale).not.toBeVisible();
-
-    view.upData({ isScale: true });
-    expect(view.state.isScale).toBe(true);
-    expect(scale).toBeVisible();
-
-    view.upData({ isScale: false });
-    expect(view.state.isScale).toBe(false);
-    expect(scale).not.toBeVisible();
-  });
-
   test('upData should change the option from', () => {
     view.upData({ from: 0 });
     expect(view.state.from).toBe(0);
