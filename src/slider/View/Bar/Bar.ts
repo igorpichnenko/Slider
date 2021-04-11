@@ -55,7 +55,7 @@ class Bar {
     } = options;
 
     const rollers = slider.querySelectorAll(classNames.findRollers);
-    const [ firstRoller, secondRoller] = [rollers[0], rollers[1]]
+    const [firstRoller, secondRoller] = [rollers[0], rollers[1]];
 
     const rollersPositions = [this.calculatePosition(firstRoller, options),
       this.calculatePosition(secondRoller, options)];
@@ -67,11 +67,15 @@ class Bar {
     const {
       isVertical,
     } = options;
-
-    const side: 'left' | 'top' = !isVertical ? 'left' : 'top';
+    let position = 0;
     const width = Number.parseInt(getComputedStyle(element).width, 10);
 
-    return element.getBoundingClientRect()[side] + width / 2;
+    if (!isVertical) {
+      position = element.getBoundingClientRect().left + width / 2;
+    } else {
+      position = element.getBoundingClientRect().top + width / 2;
+    }
+    return position;
   }
 
   private convertPxToProcent(value: number, options: IViewState): number {

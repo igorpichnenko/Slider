@@ -21,7 +21,7 @@ describe('Rollers', () => {
 
   test('2 rollers must be initialized', () => {
     const rollers = view.slider.querySelectorAll(classNames.findRollers);
-    const [ rollerFirst, rollerSecond] = [rollers[0], rollers[1]]
+    const [rollerFirst, rollerSecond] = [rollers[0], rollers[1]];
 
     expect(rollers.length).toBe(2);
     expect(rollerFirst).toBeVisible();

@@ -1,3 +1,15 @@
+enum Direction{
+  FORWARD,
+  BACKWARD,
+  TARGET_FORWARD,
+  TARGET_BACKWARD
+}
+
+enum Events{
+  NEW_DATA,
+  NEW_POSITION
+}
+
 interface IGeneralSettings{
   min: number,
   max: number,
@@ -51,5 +63,5 @@ interface IViewState extends IOptions{
 interface IOptions extends IGeneralSettings, IVisibleSettings, IPostfix, IColor{}
 
 export {
-  IOptions, IViewState,
+  IOptions, IViewState, Direction, Events,
 };

@@ -15,7 +15,7 @@ import {
 } from './Bar/Bar';
 import {
   IOptions,
-  IViewState,
+  IViewState,Direction, Events
 } from '../interfaces/interfaces';
 import { classNames } from '../libs/classNames';
 
@@ -211,16 +211,17 @@ class View {
     this.updatePosition(mouseValue, target);
   }
 
-  private getTargetType(target: HTMLElement): string {
+  private getTargetType(target: HTMLElement): undefined | Direction {
+    const { TARGET_FORWARD,TARGET_BACKWARD}= Direction 
     const rollers = this.slider.querySelectorAll(classNames.findRollers);
     const [ rollerFirst, rollerSecond] = [rollers[0], rollers[1]]
 
-    if (rollerFirst.contains(target)) return 'from';
+    if (rollerFirst.contains(target)) return TARGET_FORWARD;
 
     if (rollerSecond.contains(target)) {
-      return 'to';
+      return TARGET_BACKWARD;
     }
-    return 'undefined';
+    return ;
   }
 
   private handleScaleClick(event: any): void {
@@ -275,30 +276,31 @@ class View {
       to,
       step, isDouble,
     } = this.state;
-
+    const { FORWARD, BACKWARD,TARGET_FORWARD,TARGET_BACKWARD}= Direction 
+    const { NEW_POSITION } = Events
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
     const isSingleFrom = isDouble && fromDistance;
 
     if (isSingleFrom) {
-      this.emitter.emit('newPosition', {
+      this.emitter.emit(NEW_POSITION, {
         from: value,
       });
       this.convertValueToColor(value);
       return;
     }
 
-    const isFrom = (fromDistance < toDistance) ? 'from' : 'to';
-    const targetFrom = !target && isFrom === 'from';
-    const targetTo = !target && isFrom === 'to';
+    const isFrom = (fromDistance < toDistance) ? FORWARD : BACKWARD ;
+    const targetFrom = !target && isFrom === FORWARD;
+    const targetTo = !target && isFrom === BACKWARD;
 
     if (targetFrom) {
-      this.emitter.emit('newPosition', {
+      this.emitter.emit(NEW_POSITION, {
         from: value,
       });
       this.convertValueToColor(value);
     } if (targetTo) {
-      this.emitter.emit('newPosition', {
+      this.emitter.emit(NEW_POSITION, {
         to: value,
       });
       this.convertValueToColor(value);
@@ -306,31 +308,31 @@ class View {
 
     const targets = target && this.getTargetType(target);
 
-    const isFromTarget = targets === 'from' && !isDouble;
-    const isToTarget = targets === 'to' && !isDouble;
+    const isFromTarget = targets === TARGET_FORWARD && !isDouble;
+    const isToTarget = targets === TARGET_BACKWARD && !isDouble;
     const correctFrom = isFromTarget && value > to - step;
     const correctTo = isToTarget && value < from + step;
 
     if (correctFrom) {
-      this.emitter.emit('newPosition', {
+      this.emitter.emit(NEW_POSITION, {
         from: to - step,
       });
       return;
     }
     if (isFromTarget) {
-      this.emitter.emit('newPosition', {
+      this.emitter.emit(NEW_POSITION, {
         from: value,
       });
       this.convertValueToColor(value);
     }
     if (correctTo) {
-      this.emitter.emit('newPosition', {
+      this.emitter.emit(NEW_POSITION, {
         to: from + step,
       });
       return;
     }
     if (isToTarget) {
-      this.emitter.emit('newPosition', {
+      this.emitter.emit(NEW_POSITION, {
         to: value,
       });
       this.convertValueToColor(value);
@@ -401,11 +403,12 @@ class View {
 
     color = `#${setColor}`;
     gradient = `#${setGradient}`;
+    const {NEW_POSITION} = Events
 
-    this.emitter.emit('newPosition', {
+    this.emitter.emit(NEW_POSITION, {
       color,
     });
-    this.emitter.emit('newPosition', {
+    this.emitter.emit(NEW_POSITION, {
       gradient,
     });
   }

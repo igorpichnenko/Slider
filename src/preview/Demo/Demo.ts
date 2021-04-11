@@ -1,5 +1,5 @@
 import { Presenter } from '../../slider/Presenter/Presenter';
-import { IOptions } from '../../slider/interfaces/interfaces';
+import { IOptions, Events } from '../../slider/interfaces/interfaces';
 import { demoTemplate } from './demoTemplate';
 
 class Demo {
@@ -24,7 +24,7 @@ class Demo {
 
     this.upData = this.upData.bind(this);
 
-    this.slider.emitter.subscribe('newData', this.upData);
+    this.slider.emitter.subscribe(Events.NEW_DATA, this.upData);
   }
 
   private createTools(): HTMLElement {

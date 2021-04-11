@@ -6,7 +6,6 @@ import { standardOptions } from '../interfaces/standardOptions';
 import { IOptions, IViewState } from '../interfaces/interfaces';
 import { classNames } from '../libs/classNames';
 
-
 describe('View', () => {
   let wrap: JQuery<HTMLElement>;
   let view: View;

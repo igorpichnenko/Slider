@@ -1,5 +1,5 @@
 import {
-  IOptions,
+  IOptions, Events,
 } from '../interfaces/interfaces';
 import {
   EventEmitter,
@@ -26,7 +26,7 @@ class Model {
       ...validateMinMaxStep,
     };
 
-    this.emitter.emit('newData', this.state);
+    this.emitter.emit(Events.NEW_DATA, this.state);
   }
 
   private init(Options: IOptions): IOptions {

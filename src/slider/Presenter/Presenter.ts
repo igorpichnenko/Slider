@@ -1,6 +1,6 @@
 import { Model } from '../Model/Model';
 import { View } from '../View/View';
-import { IOptions } from '../interfaces/interfaces';
+import { IOptions, Events } from '../interfaces/interfaces';
 import { EventEmitter } from '../EventEmitter/EventEmitter';
 import { standardOptions } from '../interfaces/standardOptions';
 
@@ -47,13 +47,13 @@ class Presenter {
   }
 
   private addSubscribtions(): void {
-    this.model.emitter.subscribe('newData', this.getNewData);
-    this.view.emitter.subscribe('newPosition', this.sendNewPosition);
+    this.model.emitter.subscribe(Events.NEW_DATA, this.getNewData);
+    this.view.emitter.subscribe(Events.NEW_POSITION, this.sendNewPosition);
   }
 
   private getNewData(newData: IOptions): void {
     this.view.upData(newData);
-    this.emitter.emit('newData', newData);
+    this.emitter.emit(Events.NEW_DATA, newData);
   }
 
   private sendNewPosition(newPosition: Partial<IOptions>): void {

@@ -2,7 +2,7 @@ import {
   Presenter,
 } from './Presenter/Presenter';
 import {
-  IOptions,
+  IOptions, Events,
 } from './interfaces/interfaces';
 import {
   standardOptions,
@@ -33,12 +33,12 @@ import './slider.scss';
       },
 
       getValue($slider: JQuery < HTMLElement >, func: (values: Partial < IOptions >) => void) {
-        $slider.data('presenter').emitter.subscribe('newData', func);
+        $slider.data('presenter').emitter.subscribe(Events.NEW_DATA, func);
 
         if (typeof func === 'undefined') {
           return this;
         }
-        $slider.data('presenter').emitter.subscribe('newData', func);
+        $slider.data('presenter').emitter.subscribe(Events.NEW_DATA, func);
         return this;
       },
     };

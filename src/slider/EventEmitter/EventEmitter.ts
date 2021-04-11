@@ -1,4 +1,4 @@
-import { IOptions } from '../interfaces/interfaces';
+import { IOptions, Events } from '../interfaces/interfaces';
 
 type EventCallback = (data?: any) => void;
 
@@ -13,13 +13,13 @@ class EventEmitter {
     this.events = {};
   }
 
-  public subscribe(eventName: string, callback: EventCallback) {
+  public subscribe(eventName: Events, callback: EventCallback) {
     !this.events[eventName] && (this.events[eventName] = []);
 
     this.events[eventName].push(callback);
   }
 
-  public emit(eventName: string, newData?: Partial<IOptions>) {
+  public emit(eventName: Events, newData?: Partial<IOptions>) {
     const event = this.events[eventName];
 
     event && event.forEach((callback) => callback.call(null, newData));
