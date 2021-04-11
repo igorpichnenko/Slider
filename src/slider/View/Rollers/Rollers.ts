@@ -33,9 +33,11 @@ class Rollers {
     firstTooltip.className = classNames.firstTooltip;
     const secondTooltip = document.createElement('div');
     secondTooltip.className = classNames.secondTooltip;
+    const { rollers } = this;
+    const [firstRoller, secondRoller] = rollers;
 
-    this.rollers[0].append(firstTooltip);
-    this.rollers[1].append(secondTooltip);
+    firstRoller.append(firstTooltip);
+    secondRoller.append(secondTooltip);
 
     return [firstTooltip, secondTooltip];
   }
@@ -52,7 +54,8 @@ class Rollers {
     let {
       postfix,
     } = options;
-
+    const { tooltips } = this;
+    const [firstTooltip, secondTooltip] = tooltips;
     if (!isPostfix) {
       postfix = '';
     }
@@ -61,13 +64,13 @@ class Rollers {
     const isSetPostfix = isLabel && !isPrefix;
     // настройки постфикс
     if (isSetPostfix) {
-      this.tooltips[0].innerHTML = `${correctSeparate(from, options)}${postfix}`;
-      this.tooltips[1].innerHTML = `${correctSeparate(to, options)}${postfix}`;
+      firstTooltip.innerHTML = `${correctSeparate(from, options)}${postfix}`;
+      secondTooltip.innerHTML = `${correctSeparate(to, options)}${postfix}`;
     }
     // настройки префикс
     if (isSetPrefix) {
-      this.tooltips[0].innerHTML = `${postfix}${correctSeparate(from, options)}`;
-      this.tooltips[1].innerHTML = `${postfix}${correctSeparate(to, options)}`;
+      firstTooltip.innerHTML = `${postfix}${correctSeparate(from, options)}`;
+      secondTooltip.innerHTML = `${postfix}${correctSeparate(to, options)}`;
     }
 
     this.setColor(options);
@@ -90,37 +93,40 @@ class Rollers {
     if (!newColor) {
       newColor = color;
     }
-
+    const { tooltips } = this;
+    const [firstTooltip, secondTooltip] = tooltips;
     const setNewColor = isChangeColor && isColorOut;
 
     if (setNewColor) {
-      this.tooltips[0].innerHTML = String(newColor);
-      this.tooltips[1].innerHTML = String(newGradient);
+      firstTooltip.innerHTML = String(newColor);
+      secondTooltip.innerHTML = String(newGradient);
 
-      this.tooltips[0].style.backgroundColor = `${color}`;
-      this.tooltips[1].style.backgroundColor = `${gradient}`;
-      this.tooltips[0].classList.add(classNames.tooltipWhite);
-      this.tooltips[1].classList.add(classNames.tooltipWhite);
+      firstTooltip.style.backgroundColor = `${color}`;
+      secondTooltip.style.backgroundColor = `${gradient}`;
+      firstTooltip.classList.add(classNames.tooltipWhite);
+      secondTooltip.classList.add(classNames.tooltipWhite);
     }
 
     if (!isLabel) {
-      this.tooltips[0].classList.add(classNames.notVisible);
-      this.tooltips[1].classList.add(classNames.notVisible);
+      firstTooltip.classList.add(classNames.notVisible);
+      secondTooltip.classList.add(classNames.notVisible);
     }
   }
 
   private updataColor({
     color, isGradient, gradient, isChangeColor, gradientDeg,
   }: IViewState) {
+    const { rollers } = this;
+    const [firstRoller, secondRoller] = rollers;
     const isChangeGradient = isChangeColor && isGradient;
     const isColor = isChangeColor && !isGradient;
 
     if (isChangeGradient) {
-      this.rollers[0].style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
-      this.rollers[1].style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+      firstRoller.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
+      secondRoller.style.background = `linear-gradient(${gradientDeg}deg, ${color}, ${gradient})`;
     } if (isColor) {
-      this.rollers[0].style.background = color;
-      this.rollers[1].style.background = color;
+      firstRoller.style.background = color;
+      secondRoller.style.background = color;
     }
   }
 
@@ -130,7 +136,8 @@ class Rollers {
       from,
       isVertical,
     } = options;
-
+    const { rollers } = this;
+    const [firstRoller, secondRoller] = rollers;
     const pxTo = this.convertValueToPx(to, options);
     const pxFrom = this.convertValueToPx(from, options);
 
@@ -138,11 +145,11 @@ class Rollers {
     const positionFrom = this.convertPxToProcent(pxFrom, options);
 
     if (!isVertical) {
-      this.rollers[0].style.left = `${positionFrom}%`;
-      this.rollers[1].style.left = `${positionTo}%`;
+      firstRoller.style.left = `${positionFrom}%`;
+      secondRoller.style.left = `${positionTo}%`;
     } else {
-      this.rollers[0].style.bottom = `${positionFrom}%`;
-      this.rollers[1].style.bottom = `${positionTo}%`;
+      firstRoller.style.bottom = `${positionFrom}%`;
+      secondRoller.style.bottom = `${positionTo}%`;
     }
     this.updataColor(options);
     this.updataOutTooltip(options);
@@ -177,10 +184,12 @@ class Rollers {
   }
 
   private toggleRollers({ isDouble }: IViewState): void {
+    const { rollers } = this;
+    const [firstRoller, secondRoller] = rollers;
     if (isDouble) {
-      this.rollers[1].classList.add(classNames.notVisible);
+      firstRoller.classList.add(classNames.notVisible);
     } else {
-      this.rollers[1].classList.remove(classNames.notVisible);
+      secondRoller.classList.remove(classNames.notVisible);
     }
   }
 }

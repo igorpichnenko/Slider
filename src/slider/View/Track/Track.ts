@@ -55,26 +55,28 @@ class Track {
       trackPostfix = '';
     }
     // настройки для постфикса
+    const { outElements } = this;
+    const [trackOutStart, trackOutEnd] = outElements;
 
     if (minMax) {
-      this.outElements[0].innerHTML = `${correctSeparate(min, options)}${trackPostfix}`;
-      this.outElements[1].innerHTML = `${correctSeparate(max, options)}${trackPostfix}`;
+      trackOutStart.innerHTML = `${correctSeparate(min, options)}${trackPostfix}`;
+      trackOutEnd.innerHTML = `${correctSeparate(max, options)}${trackPostfix}`;
     }
     if (fromTo) {
-      this.outElements[0].innerHTML = `${correctSeparate(from, options)}${trackPostfix}`;
-      this.outElements[1].innerHTML = `${correctSeparate(to, options)}${trackPostfix}`;
+      trackOutStart.innerHTML = `${correctSeparate(from, options)}${trackPostfix}`;
+      trackOutEnd.innerHTML = `${correctSeparate(to, options)}${trackPostfix}`;
     }
     const isFromtoPrefix = fromTo && isPrefix;
     const isMinMaxPrefix = minMax && isPrefix;
     // настройки для префикса
 
     if (isMinMaxPrefix) {
-      this.outElements[0].innerHTML = `${trackPostfix}${correctSeparate(min, options)}`;
-      this.outElements[1].innerHTML = `${trackPostfix}${correctSeparate(max, options)}`;
+      trackOutStart.innerHTML = `${trackPostfix}${correctSeparate(min, options)}`;
+      trackOutEnd.innerHTML = `${trackPostfix}${correctSeparate(max, options)}`;
     }
     if (isFromtoPrefix) {
-      this.outElements[0].innerHTML = `${trackPostfix}${correctSeparate(from, options)}`;
-      this.outElements[1].innerHTML = `${trackPostfix}${correctSeparate(to, options)}`;
+      trackOutStart.innerHTML = `${trackPostfix}${correctSeparate(from, options)}`;
+      trackOutEnd.innerHTML = `${trackPostfix}${correctSeparate(to, options)}`;
     }
   }
 }

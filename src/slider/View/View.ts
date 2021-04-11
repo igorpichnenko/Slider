@@ -15,7 +15,7 @@ import {
 } from './Bar/Bar';
 import {
   IOptions,
-  IViewState,Direction, Events
+  IViewState, Direction, Events,
 } from '../interfaces/interfaces';
 import { classNames } from '../libs/classNames';
 
@@ -211,17 +211,17 @@ class View {
     this.updatePosition(mouseValue, target);
   }
 
-  private getTargetType(target: HTMLElement): undefined | Direction {
-    const { TARGET_FORWARD,TARGET_BACKWARD}= Direction 
+  private getTargetType(target: HTMLElement): string | Direction {
+    const { TARGET_FORWARD, TARGET_BACKWARD } = Direction;
     const rollers = this.slider.querySelectorAll(classNames.findRollers);
-    const [ rollerFirst, rollerSecond] = [rollers[0], rollers[1]]
+    const [rollerFirst, rollerSecond] = [rollers[0], rollers[1]];
 
     if (rollerFirst.contains(target)) return TARGET_FORWARD;
 
     if (rollerSecond.contains(target)) {
       return TARGET_BACKWARD;
     }
-    return ;
+    return 'undefined';
   }
 
   private handleScaleClick(event: any): void {
@@ -276,8 +276,10 @@ class View {
       to,
       step, isDouble,
     } = this.state;
-    const { FORWARD, BACKWARD,TARGET_FORWARD,TARGET_BACKWARD}= Direction 
-    const { NEW_POSITION } = Events
+    const {
+      FORWARD, BACKWARD, TARGET_FORWARD, TARGET_BACKWARD,
+    } = Direction;
+    const { NEW_POSITION } = Events;
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
     const isSingleFrom = isDouble && fromDistance;
@@ -290,7 +292,7 @@ class View {
       return;
     }
 
-    const isFrom = (fromDistance < toDistance) ? FORWARD : BACKWARD ;
+    const isFrom = (fromDistance < toDistance) ? FORWARD : BACKWARD;
     const targetFrom = !target && isFrom === FORWARD;
     const targetTo = !target && isFrom === BACKWARD;
 
@@ -403,7 +405,7 @@ class View {
 
     color = `#${setColor}`;
     gradient = `#${setGradient}`;
-    const {NEW_POSITION} = Events
+    const { NEW_POSITION } = Events;
 
     this.emitter.emit(NEW_POSITION, {
       color,
