@@ -212,14 +212,13 @@ class View {
   }
 
   private getTargetType(target: HTMLElement): string | Direction {
-    const { TARGET_FORWARD, TARGET_BACKWARD } = Direction;
-    const rollers = this.slider.querySelectorAll(classNames.findRollers);
-    const [rollerFirst, rollerSecond] = [rollers[0], rollers[1]];
+ 
+    const [rollerFirst, rollerSecond] = Array.from(this.slider.querySelectorAll(classNames.findRollers));
 
-    if (rollerFirst.contains(target)) return TARGET_FORWARD;
+    if (rollerFirst.contains(target)) return Direction.TARGET_FORWARD;
 
     if (rollerSecond.contains(target)) {
-      return TARGET_BACKWARD;
+      return Direction.TARGET_BACKWARD;
     }
     return 'undefined';
   }
@@ -276,33 +275,30 @@ class View {
       to,
       step, isDouble,
     } = this.state;
-    const {
-      FORWARD, BACKWARD, TARGET_FORWARD, TARGET_BACKWARD,
-    } = Direction;
-    const { NEW_POSITION } = Events;
+    
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
     const isSingleFrom = isDouble && fromDistance;
 
     if (isSingleFrom) {
-      this.emitter.emit(NEW_POSITION, {
+      this.emitter.emit(Events.NEW_POSITION, {
         from: value,
       });
       this.convertValueToColor(value);
       return;
     }
 
-    const isFrom = (fromDistance < toDistance) ? FORWARD : BACKWARD;
-    const targetFrom = !target && isFrom === FORWARD;
-    const targetTo = !target && isFrom === BACKWARD;
+    const isFrom = (fromDistance < toDistance) ? Direction.FORWARD : Direction.BACKWARD;
+    const targetFrom = !target && isFrom === Direction.FORWARD;
+    const targetTo = !target && isFrom === Direction.BACKWARD;
 
     if (targetFrom) {
-      this.emitter.emit(NEW_POSITION, {
+      this.emitter.emit(Events.NEW_POSITION, {
         from: value,
       });
       this.convertValueToColor(value);
     } if (targetTo) {
-      this.emitter.emit(NEW_POSITION, {
+      this.emitter.emit(Events.NEW_POSITION, {
         to: value,
       });
       this.convertValueToColor(value);
@@ -310,31 +306,31 @@ class View {
 
     const targets = target && this.getTargetType(target);
 
-    const isFromTarget = targets === TARGET_FORWARD && !isDouble;
-    const isToTarget = targets === TARGET_BACKWARD && !isDouble;
+    const isFromTarget = targets === Direction.TARGET_FORWARD && !isDouble;
+    const isToTarget = targets === Direction.TARGET_BACKWARD && !isDouble;
     const correctFrom = isFromTarget && value > to - step;
     const correctTo = isToTarget && value < from + step;
 
     if (correctFrom) {
-      this.emitter.emit(NEW_POSITION, {
+      this.emitter.emit(Events.NEW_POSITION, {
         from: to - step,
       });
       return;
     }
     if (isFromTarget) {
-      this.emitter.emit(NEW_POSITION, {
+      this.emitter.emit(Events.NEW_POSITION, {
         from: value,
       });
       this.convertValueToColor(value);
     }
     if (correctTo) {
-      this.emitter.emit(NEW_POSITION, {
+      this.emitter.emit(Events.NEW_POSITION, {
         to: from + step,
       });
       return;
     }
     if (isToTarget) {
-      this.emitter.emit(NEW_POSITION, {
+      this.emitter.emit(Events.NEW_POSITION, {
         to: value,
       });
       this.convertValueToColor(value);
@@ -405,12 +401,11 @@ class View {
 
     color = `#${setColor}`;
     gradient = `#${setGradient}`;
-    const { NEW_POSITION } = Events;
 
-    this.emitter.emit(NEW_POSITION, {
+    this.emitter.emit(Events.NEW_POSITION, {
       color,
     });
-    this.emitter.emit(NEW_POSITION, {
+    this.emitter.emit(Events.NEW_POSITION, {
       gradient,
     });
   }

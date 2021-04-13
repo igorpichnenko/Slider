@@ -54,8 +54,7 @@ class Bar {
       slider,
     } = options;
 
-    const rollers = slider.querySelectorAll(classNames.findRollers);
-    const [firstRoller, secondRoller] = [rollers[0], rollers[1]];
+    const [firstRoller, secondRoller] = Array.from(slider.querySelectorAll(classNames.findRollers))
 
     const rollersPositions = [this.calculatePosition(firstRoller, options),
       this.calculatePosition(secondRoller, options)];
@@ -93,19 +92,19 @@ class Bar {
     const side: 'left' | 'top' = !isVertical ? 'left' : 'top';
 
     const direction: 'width' | 'height' = !isVertical ? 'width' : 'height';
-
-    const rollerPos = this.getRollerPositions(options);
+    
+    const [ firstRollerPosition, secondRollerPosition] = this.getRollerPositions(options);
 
     const sliderPos = this.getNewSliderPos(options);
     const isSingleHorizontal = isDouble && !isVertical;
 
     if (isSingleHorizontal) {
-      const to = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
+      const to = this.convertPxToProcent(Math.abs(secondRollerPosition - sliderPos), options);
 
       bar.style[side] = '0%';
       bar.style[direction] = `${to}%`;
     } else {
-      const from = this.convertPxToProcent(Math.abs(rollerPos[1] - sliderPos), options);
+      const from = this.convertPxToProcent(Math.abs(secondRollerPosition - sliderPos), options);
       const to = 100 - from;
 
       bar.style[side] = `${from}%`;
@@ -113,9 +112,9 @@ class Bar {
     }
 
     if (!isDouble) {
-      const from = this.convertPxToProcent(Math.abs(rollerPos[0] - sliderPos), options);
+      const from = this.convertPxToProcent(Math.abs(firstRollerPosition - sliderPos), options);
 
-      const to = this.convertPxToProcent(Math.abs(rollerPos[1] - rollerPos[0]), options);
+      const to = this.convertPxToProcent(Math.abs(secondRollerPosition - firstRollerPosition), options);
 
       bar.style[side] = `${from}%`;
       bar.style[direction] = `${to}%`;
