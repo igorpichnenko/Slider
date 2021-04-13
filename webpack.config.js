@@ -51,13 +51,6 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.pug$/,
-        loader: 'pug-loader',
-        options: {
-          pretty: true,
-        },
-      },
-      {
         test: /\.(jpg|png|svg)$/,
         loader: 'file-loader',
         options: {
@@ -82,7 +75,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: false,
       hash: true,
-      template: './src/preview/index.pug',
+      template: './src/preview/index.html',
       favicon: './src/public/images/favicon.png',
       filename: 'index.html',
     }),

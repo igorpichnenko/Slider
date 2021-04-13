@@ -8,34 +8,10 @@ body {
 
 .panel {
 
-  &__test-slider {
-    padding: 40px;
-    width: 266px;
-  }
-
-  &__custom-from,
-  &__custom-to {
-    margin-left: 5px;
-    width: 50px;
-    border-radius: 4px;
-    outline: none;
-  }
-
-  &__custom-button {
-    margin: 20px;
-    border: unset;
-    background-color: #fff;
-    cursor: pointer;
-    outline: unset;
-  }
-
-  &__content {
-    margin: 20px;
-  }
-
   &__title {
-    margin-top: 40px;
+    margin-top: 30px;
     text-align: center;
+    margin-bottom: 20px;
   }
 
   &__toxin-slider {
@@ -57,7 +33,6 @@ body {
     gap: 100px;
   }
 
-
   &__inputs {
     margin-left: 5px;
     width: 50px;
@@ -66,7 +41,10 @@ body {
   }
 
   &__items {
-    margin-top: 5px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
   }
 
   &__labels {
@@ -75,8 +53,9 @@ body {
 
   &__checkboxes {
     display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
   }
-
 
   &__tools {
     top: 15%;
@@ -86,32 +65,10 @@ body {
     padding-right: 10px;
     border-radius: 5px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     background-color: #b0adda;
     position: absolute;
     width: 160px;
     z-index: 5;
-  }
-
-  &__button {
-    border: unset;
-    margin-top: 10px;
-    font-style: normal;
-    font-size: 12px;
-    line-height: 15px;
-    font-weight: normal;
-    color: #fff;
-    background-color: transparent;
-    outline: unset;
-    margin-left: 40px;
-    cursor: pointer;
-  }
-
-  &__menu {
-    display: none;
-  }
-
-  &_is-visible {
-    display: block;
   }
 }
