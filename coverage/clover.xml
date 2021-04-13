@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1618137225063" clover="3.2.0">
-  <project timestamp="1618137225064" name="All files">
-    <metrics statements="732" coveredstatements="697" conditionals="292" coveredconditionals="248" methods="120" coveredmethods="117" elements="1144" coveredelements="1062" complexity="0" loc="732" ncloc="732" packages="11" files="15" classes="15"/>
+<coverage generated="1618137359966" clover="3.2.0">
+  <project timestamp="1618137359967" name="All files">
+    <metrics statements="732" coveredstatements="697" conditionals="292" coveredconditionals="249" methods="120" coveredmethods="117" elements="1144" coveredelements="1063" complexity="0" loc="732" ncloc="732" packages="11" files="15" classes="15"/>
     <package name="preview.Demo">
       <metrics statements="196" coveredstatements="185" conditionals="62" coveredconditionals="49" methods="40" coveredmethods="38"/>
       <file name="Demo.ts" path="/data/data/com.termux/files/home/slider/src/preview/Demo/Demo.ts">
@@ -548,9 +548,9 @@
       </file>
     </package>
     <package name="slider.View.Rollers">
-      <metrics statements="93" coveredstatements="93" conditionals="36" coveredconditionals="35" methods="11" coveredmethods="11"/>
+      <metrics statements="93" coveredstatements="93" conditionals="36" coveredconditionals="36" methods="11" coveredmethods="11"/>
       <file name="Rollers.ts" path="/data/data/com.termux/files/home/slider/src/slider/View/Rollers/Rollers.ts">
-        <metrics statements="93" coveredstatements="93" conditionals="36" coveredconditionals="35" methods="11" coveredmethods="11"/>
+        <metrics statements="93" coveredstatements="93" conditionals="36" coveredconditionals="36" methods="11" coveredmethods="11"/>
         <line num="13" count="176" type="stmt"/>
         <line num="14" count="176" type="stmt"/>
         <line num="15" count="176" type="stmt"/>
@@ -641,9 +641,9 @@
         <line num="187" count="464" type="stmt"/>
         <line num="188" count="464" type="stmt"/>
         <line num="189" count="464" type="cond" truecount="2" falsecount="0"/>
-        <line num="190" count="4" type="stmt"/>
-        <line num="191" count="464" type="cond" truecount="1" falsecount="1"/>
-        <line num="192" count="464" type="stmt"/>
+        <line num="190" count="464" type="cond" truecount="2" falsecount="0"/>
+        <line num="191" count="4" type="stmt"/>
+        <line num="193" count="460" type="stmt"/>
       </file>
     </package>
     <package name="slider.View.Scale">
