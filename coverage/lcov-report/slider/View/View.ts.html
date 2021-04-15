@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.66% </span>
+                <span class="strong">88.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>172/194</span>
+                <span class='fraction'>167/189</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.51% </span>
+                <span class="strong">70.24% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>57/82</span>
+                <span class='fraction'>59/84</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.89% </span>
+                <span class="strong">89.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>169/188</span>
+                <span class='fraction'>164/183</span>
             </div>
         
             
@@ -502,9 +502,7 @@
 <a name='L443'></a><a href='#L443'>443</a>
 <a name='L444'></a><a href='#L444'>444</a>
 <a name='L445'></a><a href='#L445'>445</a>
-<a name='L446'></a><a href='#L446'>446</a>
-<a name='L447'></a><a href='#L447'>447</a>
-<a name='L448'></a><a href='#L448'>448</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L446'></a><a href='#L446'>446</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -693,9 +691,13 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -715,12 +717,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -764,7 +765,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -783,9 +784,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -909,7 +907,6 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -945,7 +942,6 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">235x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1140,9 +1136,13 @@ class View {
     } = this.state;
     event.preventDefault();
     let mouseValue = 0;
-    const regexp = /tooltip || roller/;
-    const isHandle = !regexp.test(target.className);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (isHandle) <span class="cstat-no" title="statement not covered" >return;</span>
+&nbsp;
+    const isTooltip = target.classList.contains(classNames.findTooltip);
+    const isRollers = target.classList.contains(classNames.findRollers);
+    const isCorrectElement = isTooltip || isRollers;
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (isCorrectElement)<span class="cstat-no" title="statement not covered" > return;</span>
+&nbsp;
     const sensorHorizontalEvent = event.type === 'touchmove' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >!isVertical;</span>
     const mouseHorizontalEvent = event.type === 'mousemove' &amp;&amp; !isVertical;
     const sensorVerticalEvent = event.type === 'touchmove' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >isVertical;</span>
@@ -1165,17 +1165,15 @@ class View {
   }
 &nbsp;
   private getTargetType(target: HTMLElement): string | Direction {
-    const { TARGET_FORWARD, TARGET_BACKWARD } = Direction;
-    const rollers = this.slider.querySelectorAll(classNames.findRollers);
-    const [rollerFirst, rollerSecond] = [rollers[0], rollers[1]];
+    const [rollerFirst, rollerSecond] = Array.from(this.slider.querySelectorAll(classNames.findRollers));
 &nbsp;
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (rollerFirst.contains(target)) return TARGET_FORWARD;
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    if (rollerSecond.contains(target)) {</span>
-<span class="cstat-no" title="statement not covered" >      return TARGET_BACKWARD;</span>
-    }
-<span class="cstat-no" title="statement not covered" >    return 'undefined';</span>
-  }
+    if (rollerFirst.contains(target)) return Direction.TARGET_FORWARD;
+<span class="missing-if-branch" title="else path not taken" >E</span>
+    if (rollerSecond.contains(target)) {
+<span class="cstat-no" title="statement not covered" >      return Direction.TARGET_BACKWARD;</span>
+    }<span class="cstat-no" title="statement not covered" ></span>
+    return 'undefined';
+  }<span class="cstat-no" title="statement not covered" ></span>
 &nbsp;
   private handleScaleClick(event: any): void {
     const {
@@ -1190,8 +1188,8 @@ class View {
 &nbsp;
     let position = 0;
 &nbsp;
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (separate === ' ') {
-      separate = '&amp;nbsp;';
+    if (separate === ' ') {
+    <span class="missing-if-branch" title="else path not taken" >E</span>  separate = '&amp;nbsp;';
     }
 &nbsp;
     const del = value.split(scalePostfix).join('');
@@ -1211,14 +1209,14 @@ class View {
       target,
     } = event;
     let coordinate = 0;
-    const regexp = /scale/;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (regexp.test(target.className)) <span class="cstat-no" title="statement not covered" >return;</span>
 &nbsp;
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (!isVertical) {
-      coordinate = event.clientX;
+    if (target.classList.contains(classNames.findScale)) return;
+<span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span></span>
+    if (!isVertical) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>  coordinate = event.clientX;
     } else {
-<span class="cstat-no" title="statement not covered" >      coordinate = event.clientY;</span>
-    }
+      coordinate = event.clientY;
+    }<span class="cstat-no" title="statement not covered" ></span>
     const value = this.convertPxToValue(coordinate);
     this.updatePosition(value);
   }
@@ -1229,33 +1227,30 @@ class View {
       to,
       step, isDouble,
     } = this.state;
-    const {
-      FORWARD, BACKWARD, TARGET_FORWARD, TARGET_BACKWARD,
-    } = Direction;
-    const { NEW_POSITION } = Events;
+&nbsp;
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
-    const isSingleFrom = isDouble &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >fromDistance;</span>
-&nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (isSingleFrom) {
-<span class="cstat-no" title="statement not covered" >      this.emitter.emit(NEW_POSITION, {</span>
-        from: value,
+    const isSingleFrom = isDouble &amp;&amp; fromDistance;
+<span class="branch-1 cbranch-no" title="branch not covered" ></span>
+    if (isSingleFrom) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>  this.emitter.emit(Events.NEW_POSITION, {
+<span class="cstat-no" title="statement not covered" >        from: value,</span>
       });
-<span class="cstat-no" title="statement not covered" >      this.convertValueToColor(value);</span>
+      this.convertValueToColor(value);
 <span class="cstat-no" title="statement not covered" >      return;</span>
-    }
+    }<span class="cstat-no" title="statement not covered" ></span>
 &nbsp;
-    const isFrom = (fromDistance &lt; toDistance) ? FORWARD : BACKWARD;
-    const targetFrom = !target &amp;&amp; isFrom === FORWARD;
-    const targetTo = !target &amp;&amp; isFrom === BACKWARD;
+    const isFrom = (fromDistance &lt; toDistance) ? Direction.FORWARD : Direction.BACKWARD;
+    const targetFrom = !target &amp;&amp; isFrom === Direction.FORWARD;
+    const targetTo = !target &amp;&amp; isFrom === Direction.BACKWARD;
 &nbsp;
     if (targetFrom) {
-      this.emitter.emit(NEW_POSITION, {
+      this.emitter.emit(Events.NEW_POSITION, {
         from: value,
       });
       this.convertValueToColor(value);
     } if (targetTo) {
-      this.emitter.emit(NEW_POSITION, {
+      this.emitter.emit(Events.NEW_POSITION, {
         to: value,
       });
       this.convertValueToColor(value);
@@ -1263,35 +1258,35 @@ class View {
 &nbsp;
     const targets = target &amp;&amp; this.getTargetType(target);
 &nbsp;
-    const isFromTarget = targets === TARGET_FORWARD &amp;&amp; !isDouble;
-    const isToTarget = targets === TARGET_BACKWARD &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >!isDouble;</span>
-    const correctFrom = isFromTarget &amp;&amp; value &gt; to - step;
-    const correctTo = isToTarget &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >value &lt; from + step;</span>
-&nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (correctFrom) {
-<span class="cstat-no" title="statement not covered" >      this.emitter.emit(NEW_POSITION, {</span>
-        from: to - step,
+    const isFromTarget = targets === Direction.TARGET_FORWARD &amp;&amp; !isDouble;
+    const isToTarget = targets === Direction.TARGET_BACKWARD &amp;&amp; !isDouble;
+    const correctFrom = isFromTarget &amp;&amp; value &gt; to - step;<span class="branch-1 cbranch-no" title="branch not covered" ></span>
+    const correctTo = isToTarget &amp;&amp; value &lt; from + step;
+<span class="branch-1 cbranch-no" title="branch not covered" ></span>
+    if (correctFrom) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>  this.emitter.emit(Events.NEW_POSITION, {
+<span class="cstat-no" title="statement not covered" >        from: to - step,</span>
       });
-<span class="cstat-no" title="statement not covered" >      return;</span>
-    }
+      return;
+    }<span class="cstat-no" title="statement not covered" ></span>
     if (isFromTarget) {
-      this.emitter.emit(NEW_POSITION, {
+      this.emitter.emit(Events.NEW_POSITION, {
         from: value,
       });
       this.convertValueToColor(value);
     }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (correctTo) {
-<span class="cstat-no" title="statement not covered" >      this.emitter.emit(NEW_POSITION, {</span>
-        to: from + step,
+    if (correctTo) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>  this.emitter.emit(Events.NEW_POSITION, {
+<span class="cstat-no" title="statement not covered" >        to: from + step,</span>
       });
-<span class="cstat-no" title="statement not covered" >      return;</span>
-    }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (isToTarget) {
-<span class="cstat-no" title="statement not covered" >      this.emitter.emit(NEW_POSITION, {</span>
-        to: value,
+      return;
+    }<span class="cstat-no" title="statement not covered" ></span>
+    if (isToTarget) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>  this.emitter.emit(Events.NEW_POSITION, {
+<span class="cstat-no" title="statement not covered" >        to: value,</span>
       });
-<span class="cstat-no" title="statement not covered" >      this.convertValueToColor(value);</span>
-    }
+      this.convertValueToColor(value);
+    }<span class="cstat-no" title="statement not covered" ></span>
   }
 &nbsp;
   public convertPxToValue(coordinate: number): number {
@@ -1308,13 +1303,13 @@ class View {
     const sliderEndPos = sliderPos + size;
 &nbsp;
     let px = 0;
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (!isVertical) {
-      px = coordinate - sliderPos;
+    if (!isVertical) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>  px = coordinate - sliderPos;
     } else {
-<span class="cstat-no" title="statement not covered" >      px = sliderEndPos - coordinate;</span>
-    }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (px &gt; size) <span class="cstat-no" title="statement not covered" >return max;</span>
-&nbsp;
+      px = sliderEndPos - coordinate;
+    }<span class="cstat-no" title="statement not covered" ></span>
+    if (px &gt; size) return max;
+<span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span></span>
     if (px &lt; 0) return min;
 &nbsp;
     const value = Math.round(px / oneStep) * step + min;
@@ -1344,11 +1339,11 @@ class View {
     const isChangeNewColor = isColor &amp;&amp; changeColor;
     let palitra = 0;
     let grPalitra = 0;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (isChangeColor) {
-<span class="cstat-no" title="statement not covered" >      palitra = Math.round(val * 255 * 255 * 255);</span>
-<span class="cstat-no" title="statement not covered" >      grPalitra = Math.round(val * 255 * 254 * 254);</span>
-    } <span class="missing-if-branch" title="else path not taken" >E</span>if (isChangeNewColor) {
-      palitra = Math.round(val * 256 * 256 * 255);
+    if (isChangeColor) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>  palitra = Math.round(val * 255 * 255 * 255);
+<span class="cstat-no" title="statement not covered" >      grPalitra = Math.round(val * 255 * 254 * 254)</span>;
+    } <span class="cstat-no" title="statement not covered" >if (isChangeNewColor) {</span>
+      <span class="missing-if-branch" title="else path not taken" >E</span>palitra = Math.round(val * 256 * 256 * 255);
       grPalitra = Math.round(val * 254 * 254 * 254);
     }
     const correctGradient = Math.abs(grPalitra);
@@ -1358,12 +1353,11 @@ class View {
 &nbsp;
     color = `#${setColor}`;
     gradient = `#${setGradient}`;
-    const { NEW_POSITION } = Events;
 &nbsp;
-    this.emitter.emit(NEW_POSITION, {
+    this.emitter.emit(Events.NEW_POSITION, {
       color,
     });
-    this.emitter.emit(NEW_POSITION, {
+    this.emitter.emit(Events.NEW_POSITION, {
       gradient,
     });
   }
@@ -1405,7 +1399,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Apr 13 2021 11:42:49 GMT+0600 (GMT+06:00)
+                at Thu Apr 15 2021 09:53:10 GMT+0600 (GMT+06:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

@@ -187,9 +187,13 @@ class View {
     } = this.state;
     event.preventDefault();
     let mouseValue = 0;
-    const regexp = /tooltip || roller/;
-    const isHandle = !regexp.test(target.className);
-    if (isHandle) return;
+
+    const isTooltip = target.classList.contains(classNames.findTooltip);
+    const isRollers = target.classList.contains(classNames.findRollers);
+    const isCorrectElement = isTooltip || isRollers;
+
+    if (isCorrectElement) return;
+
     const sensorHorizontalEvent = event.type === 'touchmove' && !isVertical;
     const mouseHorizontalEvent = event.type === 'mousemove' && !isVertical;
     const sensorVerticalEvent = event.type === 'touchmove' && isVertical;
@@ -212,8 +216,9 @@ class View {
   }
 
   private getTargetType(target: HTMLElement): string | Direction {
- 
-    const [rollerFirst, rollerSecond] = Array.from(this.slider.querySelectorAll(classNames.findRollers));
+    const [rollerFirst, rollerSecond] = Array.from(
+      this.slider.querySelectorAll(classNames.findRollers),
+    );
 
     if (rollerFirst.contains(target)) return Direction.TARGET_FORWARD;
 
@@ -257,8 +262,8 @@ class View {
       target,
     } = event;
     let coordinate = 0;
-    const regexp = /scale/;
-    if (regexp.test(target.className)) return;
+
+    if (target.classList.contains(classNames.findScale)) return;
 
     if (!isVertical) {
       coordinate = event.clientX;
@@ -275,7 +280,7 @@ class View {
       to,
       step, isDouble,
     } = this.state;
-    
+
     const fromDistance = Math.abs(from - value);
     const toDistance = Math.abs(to - value);
     const isSingleFrom = isDouble && fromDistance;
