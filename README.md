@@ -15,7 +15,8 @@ npm install
 ### Режим работы
 ```
 // develop
-npm run start
+npm run start 
+(port 8080)
 
 // production
 npm run build
